@@ -1886,11 +1886,9 @@ Réponds UNIQUEMENT avec un JSON valide (pas de markdown, pas de backticks):
 }`;
 
   try {
-    const hdrs = { "Content-Type": "application/json", "anthropic-dangerous-direct-browser-access": "true" };
-    if (window._eadeeApiKey) hdrs["x-api-key"] = window._eadeeApiKey;
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
+    const res = await fetch("/api/proxy", {
       method: "POST",
-      headers: hdrs,
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         model: "claude-sonnet-4-6",
         max_tokens: 4000,
@@ -2501,11 +2499,9 @@ Réponds UNIQUEMENT avec un JSON valide (pas de markdown, pas de backticks):
 }`;
 
   try {
-    const hdrs = { "Content-Type": "application/json", "anthropic-dangerous-direct-browser-access": "true" };
-    if (window._eadeeApiKey) hdrs["x-api-key"] = window._eadeeApiKey;
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
+    const res = await fetch("/api/proxy", {
       method: "POST",
-      headers: hdrs,
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         model: "claude-sonnet-4-6",
         max_tokens: 4000,
