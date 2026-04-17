@@ -654,13 +654,14 @@ nav {
 
 .rev-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
 .rev-cell {
-  background: rgba(200,255,0,0.08);
-  border: 1px solid rgba(200,255,0,0.15);
-  border-radius: 4px; padding: 12px;
-  text-align: center;
+  background: linear-gradient(135deg, rgba(200,255,0,0.1), rgba(200,255,0,0.04));
+  border: 1px solid rgba(200,255,0,0.25);
+  border-radius: 8px; padding: 14px 10px;
+  text-align: center; position: relative; overflow: hidden;
 }
-.rev-period { font-family: 'DM Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
-.rev-amount { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: var(--acid); }
+.rev-cell::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--acid); }
+.rev-period { font-family: 'DM Mono', monospace; font-size: 9px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; }
+.rev-amount { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--acid); line-height:1; }
 
 .res-divider { border: none; border-top: 1px solid rgba(255,255,255,0.07); }
 
@@ -735,17 +736,19 @@ nav {
 
 .pay-plan-option {
   border: 1.5px solid var(--border);
-  border-radius: 6px; padding: 16px 20px;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: space-between;
-  transition: border-color 0.2s;
+  border-radius: 10px; padding: 18px 20px;
+  cursor: pointer; margin-bottom: 12px;
+  display: flex; align-items: flex-start;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  position: relative;
 }
-.pay-plan-option:hover { border-color: var(--ink); }
-.pay-plan-option.selected { border-color: var(--ink); background: var(--cream); }
-
-.ppo-name { font-weight: 700; font-size: 15px; }
-.ppo-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
-.ppo-price { font-family: 'Bebas Neue', sans-serif; font-size: 28px; }
+.pay-plan-option:hover { border-color: var(--ink); box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+.pay-plan-option.selected { border-color: var(--ink); background: var(--cream); box-shadow: 0 2px 16px rgba(0,0,0,0.1); }
+.pay-plan-empire { border-color: #c94b2a !important; background: linear-gradient(135deg, rgba(201,75,42,0.04), rgba(255,255,255,0)); }
+.pay-plan-empire.selected { background: linear-gradient(135deg, rgba(201,75,42,0.07), var(--cream)); }
+.ppo-name { font-weight: 800; font-size: 16px; }
+.ppo-price { font-family: 'Bebas Neue', sans-serif; font-size: 24px; }
+.ppo-feat { font-size: 12px; color: var(--muted); line-height: 1.5; }
 
 .radio-circle {
   width: 20px; height: 20px;
@@ -862,49 +865,54 @@ nav {
 .os-feat::before { content:'✓'; color: var(--acid); font-weight: 700; }
 
 /* PLAN DOCUMENT BLOCKS */
-.plan-block { padding:20px 0; border-bottom:1px solid rgba(255,255,255,0.06); }
+.plan-block { padding:24px 0; border-bottom:1px solid rgba(255,255,255,0.06); }
 .plan-block:last-child { border-bottom:none; }
-.plan-block-title { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--acid); margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+.plan-block-title { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--acid); margin-bottom:16px; display:flex; align-items:center; gap:10px; }
 .plan-block-title::after { content:''; flex:1; height:1px; background:rgba(200,255,0,0.15); }
-.plan-block-content { font-size:13px; line-height:1.75; color:rgba(255,255,255,0.78); }
-.stat-mini { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:4px; padding:12px; }
-.stat-mini-label { font-family:'DM Mono',monospace; font-size:9px; text-transform:uppercase; letter-spacing:0.12em; color:rgba(255,255,255,0.3); margin-bottom:5px; }
-.stat-mini-val { font-family:'Bebas Neue',sans-serif; font-size:22px; color:#fff; letter-spacing:0.02em; line-height:1; }
-.concurrent-card { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:4px; padding:12px 14px; display:grid; grid-template-columns:120px 1fr auto; align-items:center; gap:14px; }
+.plan-block-content { font-size:14px; line-height:1.85; color:rgba(255,255,255,0.82); }
+.stat-mini { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:14px; transition:border-color .2s; }
+.stat-mini:hover { border-color:rgba(200,255,0,0.3); }
+.stat-mini-label { font-family:'DM Mono',monospace; font-size:9px; text-transform:uppercase; letter-spacing:0.12em; color:rgba(255,255,255,0.35); margin-bottom:6px; }
+.stat-mini-val { font-family:'Bebas Neue',sans-serif; font-size:24px; color:var(--acid); letter-spacing:0.02em; line-height:1; }
+.concurrent-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.09); border-radius:8px; padding:14px 16px; display:grid; grid-template-columns:130px 1fr auto; align-items:center; gap:14px; transition:border-color .2s; }
+.concurrent-card:hover { border-color:rgba(255,255,255,0.18); }
 .cc-name { font-weight:700; font-size:13px; color:#fff; }
 .cc-desc { font-size:12px; color:rgba(255,255,255,0.45); line-height:1.5; }
 .cc-threat { font-family:'DM Mono',monospace; font-size:10px; padding:3px 8px; border-radius:2px; white-space:nowrap; }
 .threat-high { background:rgba(201,75,42,0.2); color:#f87171; }
 .threat-med { background:rgba(200,160,0,0.2); color:#fbbf24; }
 .threat-low { background:rgba(34,197,94,0.2); color:#4ade80; }
-.offre-card { background:rgba(200,255,0,0.06); border:1px solid rgba(200,255,0,0.15); border-radius:4px; padding:12px 14px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.offre-card { background:rgba(200,255,0,0.07); border:1px solid rgba(200,255,0,0.2); border-radius:8px; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; transition:background .2s; }
+.offre-card:hover { background:rgba(200,255,0,0.11); }
 .offre-name { font-weight:700; font-size:13px; color:#fff; }
 .offre-desc { font-size:12px; color:rgba(255,255,255,0.45); margin-top:2px; }
 .offre-price { font-family:'Bebas Neue',sans-serif; font-size:24px; color:var(--acid); white-space:nowrap; }
-.acq-card { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:4px; padding:12px 14px; display:grid; grid-template-columns:100px 1fr auto; gap:12px; align-items:start; }
+.acq-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.09); border-radius:8px; padding:14px 16px; display:grid; grid-template-columns:120px 1fr auto; gap:12px; align-items:start; }
 .acq-canal { font-weight:700; font-size:13px; color:#fff; }
 .acq-desc { font-size:12px; color:rgba(255,255,255,0.5); line-height:1.5; }
 .acq-cac { font-family:'DM Mono',monospace; font-size:11px; color:var(--acid); text-align:right; white-space:nowrap; }
-.action-row { display:grid; grid-template-columns:80px 1fr; border-bottom:1px solid rgba(255,255,255,0.05); }
+.action-row { display:grid; grid-template-columns:90px 1fr; border-bottom:1px solid rgba(255,255,255,0.05); transition:background .15s; }
+.action-row:hover { background:rgba(255,255,255,0.02); }
 .action-row:last-child { border-bottom:none; }
-.action-phase { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:var(--acid); padding:12px 12px 12px 0; border-right:1px solid rgba(200,255,0,0.15); display:flex; align-items:center; }
-.action-content { padding:12px 0 12px 14px; }
-.action-title { font-weight:600; font-size:13px; color:#fff; margin-bottom:3px; }
-.action-detail { font-size:12px; color:rgba(255,255,255,0.45); line-height:1.5; }
-.invest-row { display:flex; align-items:center; justify-content:space-between; padding:9px 12px; border-radius:3px; background:rgba(255,255,255,0.02); }
-.invest-row:nth-child(even) { background:rgba(255,255,255,0.04); }
-.invest-label { font-size:13px; color:rgba(255,255,255,0.7); }
-.invest-amount { font-family:'DM Mono',monospace; font-size:13px; color:#fff; }
-.invest-row.total { background:rgba(200,255,0,0.08); border:1px solid rgba(200,255,0,0.15); margin-top:4px; }
-.invest-row.total .invest-label { color:var(--acid); font-weight:700; }
-.invest-row.total .invest-amount { color:var(--acid); }
-.risk-card { background:rgba(255,255,255,0.03); border-left:3px solid var(--rust); border-radius:0 4px 4px 0; padding:12px 14px; }
-.risk-title { font-weight:700; font-size:13px; color:#f87171; margin-bottom:4px; }
-.risk-solution { font-size:12px; color:rgba(255,255,255,0.55); line-height:1.6; }
-.outil-card { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:4px; padding:12px; }
-.outil-name { font-weight:700; font-size:13px; color:#fff; margin-bottom:3px; }
-.outil-usage { font-size:11px; color:rgba(255,255,255,0.45); }
-.outil-prix { font-family:'DM Mono',monospace; font-size:11px; color:var(--acid); margin-top:4px; }
+.action-phase { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:var(--acid); padding:14px 14px 14px 0; border-right:1px solid rgba(200,255,0,0.2); display:flex; align-items:center; }
+.action-content { padding:14px 0 14px 16px; }
+.action-title { font-weight:700; font-size:13px; color:#fff; margin-bottom:5px; }
+.action-detail { font-size:12px; color:rgba(255,255,255,0.55); line-height:1.6; }
+.invest-row { display:flex; align-items:center; justify-content:space-between; padding:10px 14px; border-radius:6px; background:rgba(255,255,255,0.03); margin-bottom:3px; }
+.invest-row:nth-child(even) { background:rgba(255,255,255,0.05); }
+.invest-label { font-size:13px; color:rgba(255,255,255,0.75); }
+.invest-amount { font-family:'DM Mono',monospace; font-size:13px; color:#fff; font-weight:600; }
+.invest-row.total { background:rgba(200,255,0,0.1); border:1px solid rgba(200,255,0,0.25); margin-top:8px; border-radius:8px; }
+.invest-row.total .invest-label { color:var(--acid); font-weight:700; font-size:14px; }
+.invest-row.total .invest-amount { color:var(--acid); font-size:15px; }
+.risk-card { background:rgba(248,65,65,0.05); border:1px solid rgba(248,65,65,0.2); border-left:4px solid var(--rust); border-radius:0 8px 8px 0; padding:14px 16px; }
+.risk-title { font-weight:700; font-size:13px; color:#f87171; margin-bottom:6px; }
+.risk-solution { font-size:13px; color:rgba(255,255,255,0.65); line-height:1.65; }
+.outil-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.09); border-radius:8px; padding:14px; transition:border-color .2s; }
+.outil-card:hover { border-color:rgba(255,255,255,0.18); }
+.outil-name { font-weight:700; font-size:13px; color:#fff; margin-bottom:4px; }
+.outil-usage { font-size:12px; color:rgba(255,255,255,0.5); line-height:1.5; }
+.outil-prix { font-family:'DM Mono',monospace; font-size:11px; color:var(--acid); margin-top:6px; display:inline-block; background:rgba(200,255,0,0.1); padding:2px 8px; border-radius:20px; }
 
 /* TOAST */
 .toast {
@@ -1497,21 +1505,41 @@ nav {
           <div class="payment-layout">
             <div>
               <div class="pay-plan-selector" id="planSelector">
+                <!-- BUILDER -->
                 <div class="pay-plan-option selected" data-plan="builder" data-price="19" onclick="selectPayPlan(this)">
                   <div class="radio-circle"><div class="radio-dot"></div></div>
-                  <div style="flex:1;margin-left:12px">
-                    <div class="ppo-name">Builder ⚡</div>
-                    <div class="ppo-desc">Plans illimités + PDF + Pitch deck</div>
+                  <div style="flex:1;margin-left:14px">
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+                      <div class="ppo-name">Builder ⚡</div>
+                      <div class="ppo-price">19€<span style="font-size:12px;font-weight:400;color:var(--muted)">/mois</span></div>
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:4px">
+                      <div class="ppo-feat">✅ Business plans <strong>illimités</strong></div>
+                      <div class="ppo-feat">✅ Export PDF professionnel</div>
+                      <div class="ppo-feat">✅ Pitch deck inclus</div>
+                      <div class="ppo-feat">✅ Historique de tous tes plans</div>
+                      <div class="ppo-feat">✅ Support prioritaire</div>
+                    </div>
                   </div>
-                  <div class="ppo-price">19€<span style="font-size:13px;font-weight:400;color:var(--muted)">/mois</span></div>
                 </div>
-                <div class="pay-plan-option" data-plan="empire" data-price="39.99" onclick="selectPayPlan(this)">
+                <!-- EMPIRE -->
+                <div class="pay-plan-option pay-plan-empire" data-plan="empire" data-price="39.99" onclick="selectPayPlan(this)">
+                  <div style="position:absolute;top:-12px;right:16px;background:linear-gradient(90deg,#c8ff00,#a8e000);color:#0a0a0a;font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.1em;padding:3px 12px;border-radius:20px;">MEILLEUR CHOIX</div>
                   <div class="radio-circle"><div class="radio-dot"></div></div>
-                  <div style="flex:1;margin-left:12px">
-                    <div class="ppo-name">Empire 👑</div>
-                    <div class="ppo-desc">Tout Builder + Coaching + API + Excel</div>
+                  <div style="flex:1;margin-left:14px">
+                    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+                      <div class="ppo-name">Empire 👑</div>
+                      <div class="ppo-price">39.99€<span style="font-size:12px;font-weight:400;color:var(--muted)">/mois</span></div>
+                    </div>
+                    <div style="display:flex;flex-direction:column;gap:4px">
+                      <div class="ppo-feat">✅ <strong>Tout ce qui est inclus dans Builder</strong></div>
+                      <div class="ppo-feat">👑 <strong>Chat IA Coach</strong> — conseiller 24h/24</div>
+                      <div class="ppo-feat">📊 Étude de marché complète</div>
+                      <div class="ppo-feat">📋 Modèle financier Excel</div>
+                      <div class="ppo-feat">🎯 Coaching mensuel 1h (visio)</div>
+                      <div class="ppo-feat">🔌 Accès API direct</div>
+                    </div>
                   </div>
-                  <div class="ppo-price">39.99€<span style="font-size:13px;font-weight:400;color:var(--muted)">/mois</span></div>
                 </div>
               </div>
 
@@ -2068,54 +2096,92 @@ function drawRevenueChart(monthlyData) {
   const canvas = document.getElementById('revenueChart');
   if (!canvas || !monthlyData.length) return;
   const ctx = canvas.getContext('2d');
-  const W = canvas.offsetWidth || 400;
-  const H = 80;
-  canvas.width = W;
-  canvas.height = H;
+  const dpr = window.devicePixelRatio || 1;
+  const W = canvas.parentElement.offsetWidth || 500;
+  const H = 160;
+  canvas.style.width = W + 'px';
+  canvas.style.height = H + 'px';
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  ctx.scale(dpr, dpr);
 
   const max = Math.max(...monthlyData, 1);
-  const pad = { l: 8, r: 8, t: 8, b: 20 };
+  const pad = { l: 52, r: 16, t: 16, b: 32 };
   const cw = W - pad.l - pad.r;
   const ch = H - pad.t - pad.b;
   const step = cw / (monthlyData.length - 1);
 
-  // Gradient fill
-  const grad = ctx.createLinearGradient(0, pad.t, 0, H - pad.b);
-  grad.addColorStop(0, 'rgba(200,255,0,0.25)');
-  grad.addColorStop(1, 'rgba(200,255,0,0)');
+  // Grid lines + Y labels
+  const gridSteps = 4;
+  ctx.textAlign = 'right';
+  ctx.font = '10px DM Mono, monospace';
+  for (let i = 0; i <= gridSteps; i++) {
+    const y = pad.t + ch - (i / gridSteps) * ch;
+    const val = Math.round((i / gridSteps) * max);
+    ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(W - pad.r, y); ctx.stroke();
+    ctx.fillStyle = 'rgba(255,255,255,0.3)';
+    const label = val >= 1000 ? (val/1000).toFixed(0)+'k€' : val+'€';
+    ctx.fillText(label, pad.l - 6, y + 4);
+  }
 
+  // Smooth curve points
+  const pts = monthlyData.map((v, i) => ({
+    x: pad.l + i * step,
+    y: pad.t + ch - (v / max) * ch
+  }));
+
+  // Gradient fill under curve
+  const grad = ctx.createLinearGradient(0, pad.t, 0, H - pad.b);
+  grad.addColorStop(0, 'rgba(200,255,0,0.2)');
+  grad.addColorStop(1, 'rgba(200,255,0,0)');
   ctx.beginPath();
-  monthlyData.forEach((v, i) => {
-    const x = pad.l + i * step;
-    const y = pad.t + ch - (v / max) * ch;
-    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-  });
-  // close for fill
-  ctx.lineTo(pad.l + (monthlyData.length - 1) * step, H - pad.b);
-  ctx.lineTo(pad.l, H - pad.b);
+  ctx.moveTo(pts[0].x, pts[0].y);
+  for (let i = 1; i < pts.length; i++) {
+    const cpx = (pts[i-1].x + pts[i].x) / 2;
+    ctx.bezierCurveTo(cpx, pts[i-1].y, cpx, pts[i].y, pts[i].x, pts[i].y);
+  }
+  ctx.lineTo(pts[pts.length-1].x, H - pad.b);
+  ctx.lineTo(pts[0].x, H - pad.b);
   ctx.closePath();
   ctx.fillStyle = grad;
   ctx.fill();
 
-  // Line
+  // Smooth line
   ctx.beginPath();
-  monthlyData.forEach((v, i) => {
-    const x = pad.l + i * step;
-    const y = pad.t + ch - (v / max) * ch;
-    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-  });
+  ctx.moveTo(pts[0].x, pts[0].y);
+  for (let i = 1; i < pts.length; i++) {
+    const cpx = (pts[i-1].x + pts[i].x) / 2;
+    ctx.bezierCurveTo(cpx, pts[i-1].y, cpx, pts[i].y, pts[i].x, pts[i].y);
+  }
   ctx.strokeStyle = '#c8ff00';
-  ctx.lineWidth = 2;
+  ctx.lineWidth = 2.5;
   ctx.stroke();
 
-  // Month labels
-  ctx.fillStyle = 'rgba(255,255,255,0.25)';
-  ctx.font = '9px DM Mono, monospace';
-  ctx.textAlign = 'center';
+  // Data points + values for key months
   [0, 2, 5, 8, 11].forEach(i => {
-    if (monthlyData[i] !== undefined) {
-      ctx.fillText(`M${i+1}`, pad.l + i * step, H - 4);
-    }
+    if (!pts[i]) return;
+    const {x, y} = pts[i];
+    // Dot
+    ctx.beginPath();
+    ctx.arc(x, y, 4, 0, Math.PI*2);
+    ctx.fillStyle = '#c8ff00';
+    ctx.fill();
+    ctx.strokeStyle = '#0a0a0a';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    // Value label above dot
+    const val = monthlyData[i];
+    const label = val >= 1000 ? (val/1000).toFixed(1)+'k€' : val+'€';
+    ctx.fillStyle = '#c8ff00';
+    ctx.font = 'bold 10px DM Mono, monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText(label, x, y - 9);
+    // Month label below
+    ctx.fillStyle = 'rgba(255,255,255,0.35)';
+    ctx.font = '10px DM Mono, monospace';
+    ctx.fillText('M'+(i+1), x, H - pad.b + 18);
   });
 }
 
