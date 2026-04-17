@@ -1909,22 +1909,10 @@ Réponds UNIQUEMENT avec un JSON valide (pas de markdown, pas de backticks):
 
     const text = data.content.map(i => i.text || '').join('');
 
-    // Robust JSON extraction and repair
+    // JSON already cleaned server-side by proxy
     const jsonMatch = text.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) throw new Error('JSON introuvable dans la réponse');
-    let rawJson = jsonMatch[0];
-    // Fix unescaped control characters inside JSON strings
-    rawJson = rawJson.replace(/"((?:[^"\\]|\\.)*)"/g, (match) => {
-      return match.replace(/[\n\r\t]/g, (c) => c === '\n' ? '\\n' : c === '\r' ? '\\r' : '\\t');
-    });
-    let plan;
-    try {
-      plan = JSON.parse(rawJson);
-    } catch(e) {
-      // Last resort: truncate at last valid closing brace
-      const lastBrace = rawJson.lastIndexOf('}');
-      plan = JSON.parse(rawJson.substring(0, lastBrace + 1));
-    }
+    if (!jsonMatch) throw new Error('Réponse invalide — réessaie');
+    const plan = JSON.parse(jsonMatch[0]);
 
     clearInterval(statusInterval);
     fillPlan(plan);
