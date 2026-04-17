@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eadee — Kit Pub Réseaux Sociaux</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bricolage+Grotesque:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #f0ede6; font-family: 'Bricolage Grotesque', sans-serif; color: #0a0a0a; padding: 40px 32px; }
+
+h1 { font-family: 'Bebas Neue', sans-serif; font-size: 52px; letter-spacing: 0.04em; margin-bottom: 6px; }
+h1 span { color: #c8ff00; background: #0a0a0a; padding: 2px 10px; }
+.subtitle { font-size: 14px; color: #6b6557; font-family: 'DM Mono', monospace; margin-bottom: 48px; letter-spacing: 0.05em; }
+
+.section { margin-bottom: 60px; }
+
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+  color: #0a0a0a;
+  display: flex; align-items: center; gap: 12px;
+}
+
+.section-title .platform-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  background: #0a0a0a;
+  color: #c8ff00;
+  padding: 4px 12px;
+  border-radius: 2px;
+  letter-spacing: 0.1em;
+}
+
+.section-desc { font-size: 13px; color: #6b6557; margin-bottom: 24px; font-family: 'DM Mono', monospace; }
+
+/* CARDS GRID */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 20px;
+}
+
+/* AD CARD WRAPPER */
+.ad-wrapper {
+  background: #fff;
+  border: 1px solid rgba(10,10,10,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.ad-label {
+  padding: 10px 16px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: #6b6557;
+  border-bottom: 1px solid rgba(10,10,10,0.07);
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.copy-btn {
+  background: #0a0a0a;
+  color: #c8ff00;
+  border: none;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  padding: 4px 10px;
+  border-radius: 2px;
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  transition: background 0.2s;
+}
+.copy-btn:hover { background: #333; }
+.copy-btn.copied { background: #3b6d11; }
+
+/* VISUAL AD */
+.ad-visual {
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  min-height: 200px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+
+/* Instagram style */
+.ig-dark {
+  background: #0a0a0a;
+  color: #f5f2eb;
+}
+
+.ig-acid {
+  background: #c8ff00;
+  color: #0a0a0a;
+}
+
+.ig-cream {
+  background: #f5f2eb;
+  color: #0a0a0a;
+  border: 1px solid rgba(10,10,10,0.08);
+}
+
+.ad-big-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 44px;
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  position: relative; z-index: 1;
+}
+
+.ad-small-text {
+  font-size: 13px;
+  line-height: 1.6;
+  opacity: 0.7;
+  position: relative; z-index: 1;
+}
+
+.ad-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  opacity: 0.5;
+  text-transform: uppercase;
+  position: relative; z-index: 1;
+}
+
+.ad-cta-badge {
+  display: inline-block;
+  padding: 8px 18px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.1em;
+  border-radius: 2px;
+  align-self: flex-start;
+  position: relative; z-index: 1;
+}
+
+.badge-acid { background: #c8ff00; color: #0a0a0a; }
+.badge-dark { background: #0a0a0a; color: #c8ff00; }
+.badge-white { background: #fff; color: #0a0a0a; }
+.badge-rust { background: #c94b2a; color: #fff; }
+
+.bg-number {
+  position: absolute;
+  bottom: -20px; right: -10px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 180px;
+  opacity: 0.06;
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* CAPTION BOX */
+.caption-box {
+  padding: 16px 20px;
+  border-top: 1px solid rgba(10,10,10,0.07);
+  background: #fafafa;
+}
+
+.caption-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #6b6557;
+  margin-bottom: 8px;
+  font-family: 'DM Mono', monospace;
+}
+
+.caption-text {
+  font-size: 13px;
+  line-height: 1.65;
+  color: #0a0a0a;
+  white-space: pre-line;
+}
+
+.hashtags {
+  margin-top: 10px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: #3b6d11;
+  line-height: 1.6;
+}
+
+/* DIVIDER */
+.divider {
+  border: none;
+  border-top: 2px solid #0a0a0a;
+  margin: 48px 0;
+}
+
+/* SCRIPT CARD */
+.script-card {
+  background: #0a0a0a;
+  color: #f5f2eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.script-header {
+  padding: 16px 24px;
+  background: #141414;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: #c8ff00;
+  letter-spacing: 0.1em;
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+.script-body {
+  padding: 24px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.script-time {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: #c8ff00;
+  margin-top: 4px;
+  margin-bottom: 12px;
+}
+
+.script-line { margin-bottom: 16px; }
+.script-action { color: rgba(245,242,235,0.4); font-style: italic; font-size: 12px; }
+.script-say { color: #f5f2eb; }
+.script-emphasis { color: #c8ff00; font-weight: 700; }
+
+/* STEPS */
+.steps-list {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 12px;
+  margin-top: 24px;
+}
+
+.step-item {
+  display: flex; gap: 16px; align-items: flex-start;
+  background: #fff;
+  border: 1px solid rgba(10,10,10,0.1);
+  border-radius: 6px;
+  padding: 16px 20px;
+}
+
+.step-num {
+  width: 32px; height: 32px;
+  background: #c8ff00;
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.step-content { flex: 1; }
+.step-title { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+.step-desc { font-size: 13px; color: #6b6557; line-height: 1.5; }
+.step-link { font-family: 'DM Mono', monospace; font-size: 11px; color: #185fa5; margin-top: 6px; }
+
+/* CHECKLIST */
+.checklist {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.check-item {
+  background: #fff;
+  border: 1px solid rgba(10,10,10,0.1);
+  border-radius: 6px;
+  padding: 14px 16px;
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 13px;
+}
+
+.check-item.done { border-left: 3px solid #63c522; }
+.check-item.todo { border-left: 3px solid #c8ff00; }
+.check-item.paid { border-left: 3px solid #c94b2a; }
+
+.check-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.check-label { font-weight: 600; font-size: 13px; }
+.check-sub { font-size: 11px; color: #6b6557; margin-top: 2px; font-family: 'DM Mono', monospace; }
+</style>
+</head>
+<body>
+
+<h1>EADEE <span>KIT PUB</span></h1>
+<div class="subtitle">↳ Visuels + Captions + Scripts + Démarches — Tout est là, prêt à utiliser</div>
+
+<!-- ======= INSTAGRAM ======= -->
+<div class="section">
+  <div class="section-title">
+    Instagram / Reels
+    <span class="platform-badge">📸 INSTA</span>
+  </div>
+  <div class="section-desc">Posts carrés 1:1 + captions prêtes à copier-coller</div>
+
+  <div class="cards-grid">
+
+    <!-- PUB 1 -->
+    <div class="ad-wrapper">
+      <div class="ad-label">Post #1 — Accroche choc <button class="copy-btn" onclick="copyCaption('cap1', this)">COPIER CAPTION</button></div>
+      <div class="ad-visual ig-dark">
+        <div class="bg-number">30</div>
+        <div class="ad-tag">EADEE.FR</div>
+        <div class="ad-big-text">TON BUSINESS<br><span style="color:#c8ff00">EN 30s.</span></div>
+        <div>
+          <div class="ad-small-text">Idée → Business plan complet.<br>Gratuit. Maintenant.</div>
+          <div class="ad-cta-badge badge-acid" style="margin-top:14px">→ EADEE.FR</div>
+        </div>
+      </div>
+      <div class="caption-box">
+        <div class="caption-title">Caption Instagram</div>
+        <div class="caption-text" id="cap1">Tu as une idée dans la tête depuis des mois.
+
+Tu sais pas par où commencer.
+Tu sais pas si c'est viable.
+Tu sais pas combien tu peux gagner.
+
+Eadee répond à tout ça en 30 secondes. 🔥
+
+✅ Analyse de marché
+✅ Projections de revenus réelles  
+✅ Plan d'action pour les 30 premiers jours
+✅ Risques + solutions
+✅ Outils recommandés
+
+Gratuit. Sans inscription. Maintenant.
+
+👉 Lien en bio</div>
+        <div class="hashtags">#entrepreneur #businessplan #startup #freelance #sidehustle #eadee #entrepreneurfr #business #créerentreprise #autoentrepreneur</div>
+      </div>
+    </div>
+
+    <!-- PUB 2 -->
+    <div class="ad-wrapper">
+      <div class="ad-label">Post #2 — Preuve sociale <button class="copy-btn" onclick="copyCaption('cap2', this)">COPIER CAPTION</button></div>
+      <div class="ad-visual ig-acid">
+        <div class="bg-number">€€</div>
+        <div class="ad-tag">RÉSULTATS RÉELS</div>
+        <div class="ad-big-text">DE 0€<br>À TON<br>PREMIER<br>CLIENT</div>
+        <div>
+          <div class="ad-small-text" style="opacity:0.6">Le chemin le plus court entre une idée et de l'argent.</div>
+        </div>
+      </div>
+      <div class="caption-box">
+        <div class="caption-title">Caption Instagram</div>
+        <div class="caption-text" id="cap2">La différence entre ceux qui réussissent et les autres ?
+
+Ils ont un plan. 📋
+
+Pas un plan parfait.
+Pas un plan de 50 pages.
+Juste un plan clair, actionnable, réaliste.
+
+Eadee génère ce plan pour toi en 30 secondes avec l'IA.
+
+Tu décris ton idée.
+L'IA analyse le marché.
+Tu reçois ton business plan complet.
+
+Combien de temps tu vas encore attendre ? ⏰
+
+🔗 Lien en bio — c'est gratuit</div>
+        <div class="hashtags">#businessplan #entrepreneur #IA #intelligenceartificielle #startup #freelance #eadee #créerentreprise #sidehustle #revenupassif</div>
+      </div>
+    </div>
+
+    <!-- PUB 3 -->
+    <div class="ad-wrapper">
+      <div class="ad-label">Post #3 — Pain point <button class="copy-btn" onclick="copyCaption('cap3', this)">COPIER CAPTION</button></div>
+      <div class="ad-visual ig-cream">
+        <div class="bg-number" style="opacity:0.04">?</div>
+        <div class="ad-tag">TU TE RECONNAIS ?</div>
+        <div class="ad-big-text" style="font-size:32px;line-height:1.2">"J'AI UNE SUPER IDÉE MAIS JE SAIS PAS COMMENT LA LANCER"</div>
+        <div>
+          <div class="ad-small-text">C'est fini ce problème. ↓</div>
+          <div class="ad-cta-badge badge-dark" style="margin-top:12px">EADEE.FR →</div>
+        </div>
+      </div>
+      <div class="caption-box">
+        <div class="caption-title">Caption Instagram</div>
+        <div class="caption-text" id="cap3">Si tu te retrouves dans au moins 3 de ces situations, Eadee est fait pour toi :
+
+→ Tu as une idée de business depuis longtemps
+→ Tu sais pas si c'est rentable
+→ T'as peur de te planter
+→ T'as pas le budget pour un consultant
+→ T'as commencé puis abandonné
+→ Tu passes des heures à chercher sans avancer
+
+Eadee = ton consultant business IA disponible 24h/24.
+
+Business plan complet en 30 secondes.
+Gratuit pour commencer. 💥
+
+Sauvegarde ce post si tu en as besoin plus tard 🔖</div>
+        <div class="hashtags">#entrepreneur #businessidea #startup #reconversion #freelance #eadee #créerentreprise #autoentrepreneur #revenupassif #sidehustle</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ======= TIKTOK / REELS SCRIPTS ======= -->
+<div class="section">
+  <div class="section-title">
+    TikTok / Reels
+    <span class="platform-badge">🎬 VIDÉO</span>
+  </div>
+  <div class="section-desc">Scripts prêts à filmer — durée 30 à 60 secondes</div>
+
+  <div class="script-card" style="margin-bottom:20px">
+    <div class="script-header">
+      Script #1 — "Le test en direct" (45s) — Format : face caméra
+      <button class="copy-btn" onclick="copyScript('sc1', this)">COPIER</button>
+    </div>
+    <div class="script-body" id="sc1">
+      <div class="script-line">
+        <div class="script-action">[ACCROCHE — 0 à 3s, ton direct, regard caméra]</div>
+        <div class="script-say">"Je vais générer un business plan complet en <span class="script-emphasis">30 secondes</span>. Live. Devant vous."</div>
+      </div>
+      <div class="script-line">
+        <div class="script-action">[SCREEN RECORD — Ouvre Eadee sur téléphone ou ordi]</div>
+        <div class="script-say">"Je tape juste mon idée : <span class="script-emphasis">[ton idée]</span>. Je clique. Et là..."</div>
+      </div>
+      <div class="script-line">
+        <div class="script-action">[MONTRE LES RÉSULTATS — zoom sur l'écran]</div>
+        <div class="script-say">"Analyse de marché. Revenus projetés. Plan d'action 30 jours. Risques. Outils. Tout. En 30 secondes. C'est <span class="script-emphasis">Eadee</span>."</div>
+      </div>
+      <div class="script-line">
+        <div class="script-action">[OUTRO — sourire, main vers caméra]</div>
+        <div class="script-say">"Lien dans la bio. C'est gratuit. T'as plus d'excuse."</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="script-card" style="margin-bottom:20px">
+    <div class="script-header">
+      Script #2 — "Le problème → Solution" (30s) — Format : texte + voix
+      <button class="copy-btn" onclick="copyScript('sc2', this)">COPIER</button>
+    </div>
+    <div class="script-body" id="sc2">
+      <div class="script-line">
+        <div class="script-action">[TEXTE À L'ÉCRAN : "Tu veux lancer ton business mais..."]</div>
+        <div class="script-say">"Tu veux te lancer. Mais t'as peur que ça marche pas. T'as peur de te planter. T'as peur de pas savoir par où commencer."</div>
+      </div>
+      <div class="script-line">
+        <div class="script-action">[COUPE NETTE — texte : "Eadee résout ça en 30 secondes."]</div>
+        <div class="script-say">"Eadee, c'est l'IA qui génère ton business plan complet. Tu décris ton idée. Elle analyse. Tu reçois : marché, revenus, plan d'action."</div>
+      </div>
+      <div class="script-line">
+        <div class="script-action">[MONTRE L'INTERFACE — rapide, dynamique]</div>
+        <div class="script-say">"<span class="script-emphasis">Gratuit.</span> Lien dans la bio."</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header">
+      Script #3 — "Le chiffre qui choque" (20s) — Format : texte seul / POV
+      <button class="copy-btn" onclick="copyScript('sc3', this)">COPIER</button>
+    </div>
+    <div class="script-body" id="sc3">
+      <div class="script-line">
+        <div class="script-action">[TEXTE : "Un consultant business = 2000€ minimum"]</div>
+        <div class="script-say">"Un consultant business, c'est 2000€ minimum pour un plan."</div>
+      </div>
+      <div class="script-line">
+        <div class="script-action">[COUPE — texte : "Eadee = 0€"]</div>
+        <div class="script-say">"Eadee le fait en <span class="script-emphasis">30 secondes pour 0€</span>."</div>
+      </div>
+      <div class="script-line">
+        <div class="script-action">[TEXTE : "Lien dans la bio"]</div>
+        <div class="script-say">"T'as encore besoin d'une raison ?"</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ======= LINKEDIN ======= -->
+<div class="section">
+  <div class="section-title">
+    LinkedIn
+    <span class="platform-badge">💼 LINKEDIN</span>
+  </div>
+  <div class="section-desc">Posts professionnels — format long, engagement fort</div>
+
+  <div class="cards-grid">
+    <div class="ad-wrapper" style="grid-column: 1 / -1">
+      <div class="ad-label">Post LinkedIn #1 — Storytelling <button class="copy-btn" onclick="copyCaption('linkedin1', this)">COPIER</button></div>
+      <div class="caption-box" style="border-top:none">
+        <div class="caption-text" id="linkedin1">J'ai passé 3 mois à procrastiner sur une idée de business.
+
+Peur de me planter. Pas de plan. Pas de méthode.
+
+Alors j'ai créé Eadee.
+
+Eadee, c'est un générateur de business plan propulsé par l'IA.
+Tu décris ton idée en une phrase.
+L'IA génère en 30 secondes :
+
+→ Une analyse de marché réaliste
+→ Des projections de revenus selon ton budget
+→ Un plan d'action pour les 30 premiers jours
+→ Les 3 risques principaux + leurs solutions
+→ Les outils recommandés pour démarrer
+
+Pas de jargon. Pas de blabla. Du concret.
+
+J'aurais voulu avoir cet outil quand j'ai lancé mes premiers projets.
+
+Si vous avez une idée qui traine dans un coin de votre tête, essayez Eadee.
+C'est gratuit. C'est là. Maintenant.
+
+👉 [Lien Eadee]
+
+---
+Vous connaissez quelqu'un qui hésite à se lancer ? Taguez-le en commentaire 👇</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ======= DÉMARCHES ======= -->
+<div class="section">
+  <div class="section-title">
+    Démarches pour lancer Eadee
+    <span class="platform-badge">📋 CHECKLIST</span>
+  </div>
+  <div class="section-desc">Les étapes dans l'ordre — du plus urgent au moins urgent</div>
+
+  <ol class="steps-list">
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-title">🌐 Mettre le site en ligne (Gratuit — 15 min)</div>
+        <div class="step-desc">Va sur Netlify.com ou Vercel.com. Crée un compte gratuit. Upload ton fichier eadee.html. Ton site est en ligne immédiatement avec une URL du type "eadee.netlify.app". C'est gratuit à vie pour ce type de site.</div>
+        <div class="step-link">→ netlify.com (gratuit) ou vercel.com (gratuit)</div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-title">🔗 Acheter le nom de domaine eadee.fr (12€/an)</div>
+        <div class="step-desc">Va sur OVH.com ou Namecheap.com. Cherche "eadee.fr". Si disponible, achète-le (~12€/an). Connecte-le ensuite à Netlify en quelques clics depuis le dashboard. Ton site sera sur eadee.fr.</div>
+        <div class="step-link">→ ovhcloud.com/fr (recommandé pour .fr)</div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-title">📱 Créer les comptes réseaux sociaux</div>
+        <div class="step-desc">Crée @eadee_fr sur : Instagram, TikTok, LinkedIn. Utilise le même logo partout (demande-moi de t'en faire un). Bio : "Génère ton business plan en 30 secondes avec l'IA ⚡ — Gratuit → eadee.fr". Lien en bio = URL de ton site.</div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <div class="step-title">🏛 Déclarer l'auto-entreprise (Gratuit — 30 min)</div>
+        <div class="step-desc">Va sur autoentrepreneur.urssaf.fr. Déclare une activité de "Conseil en systèmes informatiques" ou "Edition de logiciels". C'est 100% gratuit, tu peux le faire depuis ton téléphone. Tu pourras facturer tes clients légalement dès la validation (24-48h).</div>
+        <div class="step-link">→ autoentrepreneur.urssaf.fr</div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <div class="step-title">💳 Activer les paiements en ligne (pour la version payante)</div>
+        <div class="step-desc">Crée un compte Stripe (stripe.com) — gratuit à l'inscription, ils prennent 1,4% + 0,25€ par transaction seulement quand tu encaisses. C'est la solution la plus simple pour accepter les cartes bancaires sur Eadee.</div>
+        <div class="step-link">→ stripe.com (aucun frais fixe)</div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <div class="step-num">6</div>
+      <div class="step-content">
+        <div class="step-title">📧 Créer une adresse pro (Gratuit)</div>
+        <div class="step-desc">hello@eadee.fr ou contact@eadee.fr. Utilise Zoho Mail (gratuit pour 1 adresse) ou Proton Mail. C'est indispensable pour paraître professionnel face aux clients et partenaires.</div>
+        <div class="step-link">→ zoho.com/mail (gratuit)</div>
+      </div>
+    </div>
+
+    <div class="step-item">
+      <div class="step-num">7</div>
+      <div class="step-content">
+        <div class="step-title">🚀 Poster le 1er contenu (Jour J)</div>
+        <div class="step-desc">Utilise les scripts et captions de ce kit. Poste le même jour sur Instagram, TikTok et LinkedIn. Vise 1 post par jour les 2 premières semaines. Le premier objectif : 100 visiteurs sur eadee.fr dans les 7 premiers jours.</div>
+      </div>
+    </div>
+  </ol>
+
+  <div class="checklist" style="margin-top:32px">
+    <div class="check-item todo">
+      <div class="check-icon">⚡</div>
+      <div><div class="check-label">Site en ligne</div><div class="check-sub">Netlify ou Vercel — 15 min</div></div>
+    </div>
+    <div class="check-item todo">
+      <div class="check-icon">🔗</div>
+      <div><div class="check-label">Domaine eadee.fr</div><div class="check-sub">OVH — ~12€/an</div></div>
+    </div>
+    <div class="check-item todo">
+      <div class="check-icon">📱</div>
+      <div><div class="check-label">@eadee_fr créé</div><div class="check-sub">Instagram + TikTok + LinkedIn</div></div>
+    </div>
+    <div class="check-item todo">
+      <div class="check-icon">🏛</div>
+      <div><div class="check-label">Auto-entrepreneur</div><div class="check-sub">urssaf.fr — gratuit</div></div>
+    </div>
+    <div class="check-item todo">
+      <div class="check-icon">💳</div>
+      <div><div class="check-label">Stripe activé</div><div class="check-sub">stripe.com — 0€ de frais fixes</div></div>
+    </div>
+    <div class="check-item todo">
+      <div class="check-icon">📧</div>
+      <div><div class="check-label">Email pro</div><div class="check-sub">hello@eadee.fr</div></div>
+    </div>
+    <div class="check-item todo">
+      <div class="check-icon">🎬</div>
+      <div><div class="check-label">1er contenu posté</div><div class="check-sub">Instagram + TikTok + LinkedIn</div></div>
+    </div>
+    <div class="check-item todo">
+      <div class="check-icon">🎯</div>
+      <div><div class="check-label">100 premiers visiteurs</div><div class="check-sub">Objectif semaine 1</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function copyCaption(id, btn) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ COPIÉ !';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'COPIER CAPTION'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function copyScript(id, btn) {
+  const el = document.getElementById(id);
+  const lines = el.querySelectorAll('.script-say');
+  const actions = el.querySelectorAll('.script-action');
+  let text = '';
+  const allLines = el.querySelectorAll('.script-line');
+  allLines.forEach(line => {
+    const action = line.querySelector('.script-action');
+    const say = line.querySelector('.script-say');
+    if (action) text += action.innerText + '\n';
+    if (say) text += say.innerText + '\n\n';
+  });
+  navigator.clipboard.writeText(text.trim()).then(() => {
+    btn.textContent = '✓ COPIÉ !';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'COPIER'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+</body>
+</html>
