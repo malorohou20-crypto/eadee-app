@@ -18,57 +18,33 @@ export default async function handler(req, res) {
       return res.status(response.status).json(data);
     }
 
-    // Extract text from response
     const text = (data.content || []).map(i => i.text || '').join('');
 
-    // Find JSON block
-    const jsonMatch = text.match(/\{[\s\S]*\}/);
-    if (!jsonMatch) {
-      return res.status(200).json({ ...data, _cleaned: false });
+    // Find the JSON block
+    const start = text.indexOf('{');
+    const end = text.lastIndexOf('}');
+    if (start === -1 || end === -1) {
+      return res.status(500).json({ error: { message: 'Pas de JSON dans la réponse' } });
     }
 
-    // Clean the JSON server-side (more reliable in Node.js)
-    let raw = jsonMatch[0];
+    let raw = text.slice(start, end + 1);
 
-    // Remove control characters inside string values
-    let cleaned = '';
-    let inString = false;
-    let escape = false;
-    for (let i = 0; i < raw.length; i++) {
-      const c = raw[i];
-      if (escape) {
-        cleaned += c;
-        escape = false;
-        continue;
-      }
-      if (c === '\\') { escape = true; cleaned += c; continue; }
-      if (c === '"') { inString = !inString; cleaned += c; continue; }
-      if (inString) {
-        if (c === '\n') { cleaned += '\\n'; continue; }
-        if (c === '\r') { cleaned += '\\r'; continue; }
-        if (c === '\t') { cleaned += '\\t'; continue; }
-      }
-      cleaned += c;
-    }
+    // Nuclear clean: replace ALL literal control chars with space
+    // Safe because JSON ignores whitespace between tokens,
+    // and spaces inside strings are acceptable for display
+    raw = raw.replace(/[\n\r\t]/g, ' ');
 
     let plan;
     try {
-      plan = JSON.parse(cleaned);
+      plan = JSON.parse(raw);
     } catch(e) {
-      // Try truncating at last valid }
-      const last = cleaned.lastIndexOf('}');
-      try {
-        plan = JSON.parse(cleaned.substring(0, last + 1));
-      } catch(e2) {
-        return res.status(200).json({ ...data, _cleaned: false });
-      }
+      return res.status(500).json({ error: { message: 'JSON invalide même après nettoyage: ' + e.message } });
     }
 
-    // Return original data with cleaned plan embedded
+    // Return a clean response with valid JSON text
     return res.status(200).json({
       ...data,
-      content: [{ type: 'text', text: JSON.stringify(plan) }],
-      _cleaned: true
+      content: [{ type: 'text', text: JSON.stringify(plan) }]
     });
 
   } catch (err) {
