@@ -2579,7 +2579,19 @@ function scrollToPricing() {
 }
 
 // ========== INIT ==========
-updateNav();
+// Mode démo admin — accès via ?malo=empire dans l'URL
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('malo') === 'empire') {
+    user = { name: 'Malo', email: 'malorohou20@gmail.com', plan: 'empire' };
+    currentPlan = 'empire';
+    plansUsed = 0;
+    showPage('dashboard');
+    showView('generator');
+  }
+})();
+
+updateNav(); initChat();
 
 // Test API connection on load
 async function testAPIConnection() {
