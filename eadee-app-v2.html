@@ -983,18 +983,137 @@ nav {
 /* ANIMATIONS */
 @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
 
+/* MOBILE BOTTOM NAV — base (caché sur desktop) */
+.mobile-nav {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 500;
+  background: #0d0e14; border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+  justify-content: space-around; align-items: center;
+}
+.mob-nav-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  background: none; border: none; cursor: pointer;
+  color: #7a7f9a; font-size: 10px; font-family: inherit; padding: 6px 16px;
+  transition: color .2s; min-width: 60px;
+}
+.mob-nav-btn.active { color: #9db8f8; }
+.mob-nav-btn .mob-icon { font-size: 20px; line-height: 1; }
+
 /* RESPONSIVE */
-@media (max-width: 900px) {
-  .gen-layout { grid-template-columns: 1fr; }
-  .pricing-grid { grid-template-columns: 1fr; max-width: 380px; }
-  .payment-layout { grid-template-columns: 1fr; }
-  .dash-layout { grid-template-columns: 1fr; }
-  .sidebar { display: none; }
-  .features-strip { grid-template-columns: 1fr; }
-  .hero { padding: 60px 24px 40px; }
-  nav { padding: 0 20px; }
-  .dash-view { padding: 24px; }
-  .hero-stats { flex-direction: column; gap: 20px; }
+/* =============================================
+   RESPONSIVE MOBILE — Complet
+   ============================================= */
+
+/* Tablette (max 1024px) */
+@media (max-width: 1024px) {
+  .hero-split { grid-template-columns: 1fr !important; }
+  .hero-mock-wrap { display: none !important; }
+  .hero { padding: 60px 40px 48px !important; }
+}
+
+/* Mobile & Tablette (max 768px) */
+@media (max-width: 768px) {
+
+  /* NAV */
+  nav { padding: 0 20px !important; height: 56px !important; }
+  .nav-links { display: none !important; }
+  nav .nav-logo span:last-of-type { display: none; } /* cache "INTELLIGENCE BUSINESS" */
+  .nav-btn.btn-ghost { display: none !important; }
+  .nav-btn.btn-dark {
+    padding: 8px 16px !important; font-size: 12px !important;
+    border-radius: 7px !important;
+  }
+
+  /* HERO */
+  .hero { padding: 48px 20px 40px !important; min-height: auto !important; }
+  .hero-content { max-width: 100% !important; }
+  .hero-badge { font-size: 11px !important; padding: 5px 12px !important; margin-bottom: 20px !important; }
+  .hero-h1 { font-size: clamp(38px, 9vw, 56px) !important; }
+  .hero-sub { font-size: 15px !important; max-width: 100% !important; margin-top: 16px !important; }
+  .hero-actions { flex-direction: column !important; gap: 10px !important; margin-top: 28px !important; align-items: flex-start !important; }
+  .hero-cta { width: 100% !important; text-align: center !important; justify-content: center !important; display: flex !important; }
+  .hero-link { font-size: 13px !important; }
+  .hero-stats { gap: 24px !important; margin-top: 36px !important; flex-wrap: wrap !important; }
+  .stat-n { font-size: 36px !important; }
+
+  /* TICKER */
+  .marquee-wrap { padding: 12px 0 !important; }
+  .mq-item { font-size: 12px !important; gap: 28px !important; }
+
+  /* FEATURES */
+  .features-strip {
+    grid-template-columns: 1fr !important;
+    padding: 40px 20px !important; gap: 1px !important;
+  }
+  .feat-card { padding: 24px 20px !important; }
+
+  /* PRICING */
+  .pricing-wrap { padding: 48px 20px !important; }
+  .pricing-grid { grid-template-columns: 1fr !important; max-width: 100% !important; gap: 14px !important; }
+  .section-h2 { font-size: 36px !important; margin-bottom: 32px !important; }
+  .price-card { padding: 28px 24px !important; }
+  .plan-amount { font-size: 52px !important; }
+
+  /* FOOTER LÉGAL */
+  .legal-footer { padding: 28px 20px !important; }
+  .legal-footer-inner { flex-direction: column !important; align-items: flex-start !important; gap: 18px !important; }
+  .legal-footer-links { gap: 6px !important; flex-wrap: wrap !important; }
+  .legal-link { font-size: 11px !important; }
+
+  /* COOKIE BANNER */
+  .cookie-banner { padding: 16px 20px !important; }
+  .cookie-inner { flex-direction: column !important; gap: 14px !important; align-items: stretch !important; }
+  .cookie-actions { justify-content: stretch !important; }
+  .cookie-btn-refuse, .cookie-btn-accept { flex: 1 !important; text-align: center !important; padding: 11px !important; }
+
+  /* MODAUX LÉGAUX */
+  .legal-modal-overlay { padding: 0 !important; align-items: flex-end !important; }
+  .legal-modal {
+    border-radius: 16px 16px 0 0 !important;
+    max-height: 90vh !important; width: 100% !important;
+    max-width: 100% !important;
+  }
+  .legal-modal-header { padding: 18px 20px !important; }
+  .legal-modal-body { padding: 20px !important; }
+
+  /* AUTH */
+  .auth-page { padding: 20px !important; align-items: flex-start !important; padding-top: 40px !important; }
+  .auth-card { padding: 32px 24px !important; }
+
+  /* DASHBOARD */
+  .dash-layout { grid-template-columns: 1fr !important; }
+  .sidebar { display: none !important; }
+  .dash-view { padding: 20px !important; }
+  .gen-layout { grid-template-columns: 1fr !important; }
+  .view-title { font-size: 28px !important; }
+  .payment-layout { grid-template-columns: 1fr !important; }
+
+  /* MOBILE BOTTOM NAV (Dashboard) */
+  .mobile-nav {
+    display: flex !important;
+  }
+  .dash-main { padding-bottom: 70px !important; }
+
+  /* RESULT PANEL */
+  .result-panel { min-height: 400px !important; }
+  #dashResult .rev-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* PLAN DOCUMENT */
+  .concurrent-card { grid-template-columns: 1fr !important; gap: 6px !important; }
+  .acq-card { grid-template-columns: 1fr !important; }
+
+  /* DOSSIER MODAL */
+  .dossier-body { padding: 20px !important; }
+  .dossier-grid2 { grid-template-columns: 1fr !important; }
+}
+
+/* Petits téléphones (max 400px) */
+@media (max-width: 400px) {
+  .hero-h1 { font-size: 34px !important; }
+  .hero-cta { font-size: 14px !important; padding: 13px 24px !important; }
+  .plan-amount { font-size: 44px !important; }
+  .auth-card { padding: 24px 18px !important; }
 }
 
 /* ========== DOSSIER CREATION ========== */
@@ -2281,6 +2400,26 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
         </div>
 
       </main>
+
+      <!-- MOBILE BOTTOM NAV -->
+      <nav class="mobile-nav" id="mobileNav">
+        <button class="mob-nav-btn active" id="mob-generator" onclick="showView('generator');setMobActive('generator')">
+          <span class="mob-icon">⚡</span>Générateur
+        </button>
+        <button class="mob-nav-btn" id="mob-history" onclick="showView('history');setMobActive('history')">
+          <span class="mob-icon">📋</span>Mes plans
+        </button>
+        <button class="mob-nav-btn" id="mob-chat" onclick="openChat();setMobActive('chat')" style="display:none">
+          <span class="mob-icon">👑</span>Coach IA
+        </button>
+        <button class="mob-nav-btn" id="mob-billing" onclick="showView('billing');setMobActive('billing')">
+          <span class="mob-icon">💳</span>Abonnement
+        </button>
+        <button class="mob-nav-btn" id="mob-settings" onclick="showView('settings');setMobActive('settings')">
+          <span class="mob-icon">⚙️</span>Profil
+        </button>
+      </nav>
+
     </div>
   </div>
 </div>
@@ -3301,6 +3440,14 @@ function initChat() {
   const isEmpire = currentPlan === 'empire';
   const link = document.getElementById('chat-sidebar-link');
   if (link) link.style.display = isEmpire ? 'flex' : 'none';
+  const mobChat = document.getElementById('mob-chat');
+  if (mobChat) mobChat.style.display = isEmpire ? 'flex' : 'none';
+}
+
+function setMobActive(view) {
+  document.querySelectorAll('.mob-nav-btn').forEach(b => b.classList.remove('active'));
+  const btn = document.getElementById('mob-' + view);
+  if (btn) btn.classList.add('active');
 }
 
 function openChat() {
