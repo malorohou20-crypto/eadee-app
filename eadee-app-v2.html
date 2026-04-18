@@ -1819,7 +1819,7 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
         <div class="pop-badge">✦ Populaire</div>
         <div class="plan-preview-btn plan-preview-dark" onclick="event.stopPropagation();showPlanPreview('builder')">Voir un exemple</div>
         <div class="plan-name">Builder</div>
-        <div class="plan-amount"><sup>€</sup>19</div>
+        <div class="plan-amount"><sup>€</sup>7.99</div>
         <div class="plan-per">/ mois — sans engagement</div>
         <ul class="plan-feats">
           <li>Plans <strong>illimités</strong></li>
@@ -1838,7 +1838,7 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
         <div class="pop-badge" style="background:linear-gradient(135deg,#a78bfa,#f472b6);color:#fff;">✦ Le plus complet</div>
         <div class="plan-preview-btn" onclick="event.stopPropagation();showPlanPreview('empire')">Voir un exemple</div>
         <div class="plan-name">Empire</div>
-        <div class="plan-amount"><sup>€</sup>39.99</div>
+        <div class="plan-amount"><sup>€</sup>19.99</div>
         <div class="plan-per">/ mois — sans engagement</div>
         <ul class="plan-feats">
           <li><strong>Tout Builder inclus</strong></li>
@@ -2238,12 +2238,12 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
             <div>
               <div class="pay-plan-selector" id="planSelector">
                 <!-- BUILDER -->
-                <div class="pay-plan-option selected" data-plan="builder" data-price="19" onclick="selectPayPlan(this)">
+                <div class="pay-plan-option selected" data-plan="builder" data-price="7.99" onclick="selectPayPlan(this)">
                   <div class="radio-circle"><div class="radio-dot"></div></div>
                   <div style="flex:1;margin-left:14px">
                     <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
                       <div class="ppo-name">Builder ⚡</div>
-                      <div class="ppo-price">19€<span style="font-size:12px;font-weight:400;color:var(--muted)">/mois</span></div>
+                      <div class="ppo-price">7.99€<span style="font-size:12px;font-weight:400;color:var(--muted)">/mois</span></div>
                     </div>
                     <div style="display:flex;flex-direction:column;gap:4px">
                       <div class="ppo-feat"><span class="ppo-check">✓</span> Business plans <strong>illimités</strong></div>
@@ -2255,13 +2255,13 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
                   </div>
                 </div>
                 <!-- EMPIRE -->
-                <div class="pay-plan-option pay-plan-empire" data-plan="empire" data-price="39.99" onclick="selectPayPlan(this)">
+                <div class="pay-plan-option pay-plan-empire" data-plan="empire" data-price="19.99" onclick="selectPayPlan(this)">
                   <div style="position:absolute;top:-12px;right:16px;background:linear-gradient(90deg,#c8ff00,#a8e000);color:#0a0a0a;font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.1em;padding:3px 12px;border-radius:20px;">MEILLEUR CHOIX</div>
                   <div class="radio-circle"><div class="radio-dot"></div></div>
                   <div style="flex:1;margin-left:14px">
                     <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
                       <div class="ppo-name">Empire <span style="color:#fbbf24;font-size:14px">✦</span></div>
-                      <div class="ppo-price">39.99€<span style="font-size:12px;font-weight:400;color:var(--muted)">/mois</span></div>
+                      <div class="ppo-price">19.99€<span style="font-size:12px;font-weight:400;color:var(--muted)">/mois</span></div>
                     </div>
                     <div style="display:flex;flex-direction:column;gap:4px">
                       <div class="ppo-feat"><span class="ppo-check">✓</span> <strong>Tout ce qui est inclus dans Builder</strong></div>
@@ -2334,7 +2334,7 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
               </div>
               <div class="os-line os-total">
                 <span class="os-label">Total / mois</span>
-                <span class="os-value" id="osTotal">19€</span>
+                <span class="os-value" id="osTotal">7.99€</span>
               </div>
               <div class="os-features" id="osFeatures">
                 <div class="os-feat">Plans illimités</div>
@@ -2472,7 +2472,7 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
 let user = null;
 let currentPlan = 'free';
 let plansHistory = [];
-let selectedPayPlan = { name: 'Builder', price: 19 };
+let selectedPayPlan = { name: 'Builder', price: 7.99 };
 let plansUsed = 0;
 let currentResult = null;
 
@@ -3157,7 +3157,7 @@ function renderHistory() {
 
 // ========== PAYMENT ==========
 function selectPlan(planId) {
-  const plans = { starter: null, builder: { name: 'Builder', price: 19 }, empire: { name: 'Empire', price: 39.99 } };
+  const plans = { starter: null, builder: { name: 'Builder', price: 7.99 }, empire: { name: 'Empire', price: 19.99 } };
   if (planId === 'starter') { showAuth('signup'); return; }
   if (!user) { showAuth('signup'); return; }
   selectedPayPlan = plans[planId];
@@ -3212,7 +3212,7 @@ async function processPayment() {
   // Simulate Stripe processing
   await new Promise(r => setTimeout(r, 2200));
 
-  currentPlan = selectedPayPlan.price === 39.99 ? 'empire' : 'builder';
+  currentPlan = selectedPayPlan.price === 19.99 ? 'empire' : 'builder';
   user.plan = currentPlan;
   plansUsed = 0;
   updateUsage();
@@ -3430,7 +3430,7 @@ function showPlanPreview(plan) {
   }
 
   html += `<button class="preview-cta" onclick="closePlanPreview();selectPlan('${plan}')">
-    ${plan === 'starter' ? 'Commencer gratuitement' : plan === 'builder' ? '⚡ Choisir Builder — 19€/mois' : '👑 Passer à Empire — 39.99€/mois'}
+    ${plan === 'starter' ? 'Commencer gratuitement' : plan === 'builder' ? 'Choisir Builder — 7.99€/mois' : 'Passer à Empire — 19.99€/mois'}
   </button>`;
 
   body.innerHTML = html;
@@ -4061,8 +4061,8 @@ const legalContent = {
       <p>EADEE propose trois formules d'abonnement :</p>
       <ul>
         <li><strong>Starter :</strong> 0 € / gratuit à vie — 3 plans par mois</li>
-        <li><strong>Builder :</strong> 19 € TTC / mois — plans illimités + documents complets</li>
-        <li><strong>Empire :</strong> 39,99 € TTC / mois — tout Builder + Associé IA 24h/24</li>
+        <li><strong>Builder :</strong> 7,99 € TTC / mois — plans illimités + documents complets</li>
+        <li><strong>Empire :</strong> 19,99 € TTC / mois — tout Builder + Associé IA 24h/24</li>
       </ul>
       <p>Les prix s'entendent en euros TTC. EADEE se réserve le droit de modifier ses tarifs avec un préavis de 30 jours.</p>
       <h3>Article 2 — Paiement</h3>
