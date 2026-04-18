@@ -4,25 +4,33 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Eadee — Génère ton business plan en 30 secondes</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bricolage+Grotesque:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&family=Geist:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
   --ink: #0a0a0a;
-  --paper: #f5f2eb;
-  --cream: #ede9df;
-  --acid: #c8ff00;
-  --rust: #c94b2a;
-  --muted: #6b6557;
-  --border: rgba(10,10,10,0.1);
-  --green: #22c55e;
+  --paper: #13141a;
+  --cream: #1a1d26;
+  --acid: #6b8fef;
+  --rust: #a78bfa;
+  --muted: #7a7f9a;
+  --border: rgba(255,255,255,0.08);
+  --green: #34d399;
+  /* New */
+  --text: #ecedf2;
+  --accent: #6b8fef;
+  --accent2: #9db8f8;
+  --purple: #a78bfa;
+  --gold: #fbbf24;
+  --pink: #f472b6;
+  --glow: rgba(107,143,239,0.3);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
 body {
   background: var(--paper);
-  color: var(--ink);
-  font-family: 'Bricolage Grotesque', sans-serif;
+  color: var(--text);
+  font-family: 'Geist', 'Bricolage Grotesque', sans-serif;
   min-height: 100vh;
 }
 
@@ -1085,6 +1093,291 @@ nav {
 }
 .dossier-loading-text { font-size: 14px; color: rgba(255,255,255,0.5); }
 
+/* ========================================================
+   DARK THEME OVERRIDE + NOUVEAU DESIGN
+   ======================================================== */
+
+/* --- NAV --- */
+nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(255,255,255,0.07) !important; }
+.nav-logo { color: #9db8f8 !important; font-family: 'Fraunces', serif !important; letter-spacing: 1px !important; font-size: 22px !important; }
+.logo-pulse { background: #34d399 !important; box-shadow: 0 0 8px rgba(52,211,153,0.5); }
+.btn-ghost { border-color: rgba(255,255,255,0.14) !important; color: #9db8f8 !important; background: transparent !important; border-radius: 7px !important; }
+.btn-ghost:hover { background: rgba(255,255,255,0.06) !important; border-color: rgba(255,255,255,0.25) !important; }
+.btn-dark { background: linear-gradient(135deg, #6b8fef, #a78bfa) !important; color: white !important; border: none !important; border-radius: 8px !important; box-shadow: 0 3px 14px rgba(107,143,239,0.35); }
+.btn-dark:hover { opacity: 0.9 !important; transform: translateY(-1px); }
+
+/* --- FORMS (dark bg fix) --- */
+.form-input, .form-textarea, .form-select {
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  color: #ecedf2 !important;
+}
+.form-input::placeholder, .form-textarea::placeholder { color: #7a7f9a !important; }
+.form-input:focus, .form-textarea:focus, .form-select:focus { border-color: #6b8fef !important; box-shadow: 0 0 0 3px rgba(107,143,239,0.15) !important; outline: none !important; }
+.form-select option { background: #1a1d26; color: #ecedf2; }
+.form-label { color: #7a7f9a !important; }
+
+/* --- AUTH --- */
+.auth-card { background: #1a1d26 !important; }
+.auth-logo { color: #ecedf2 !important; }
+.auth-sub { color: #7a7f9a !important; }
+.auth-tabs { border-color: rgba(255,255,255,0.08) !important; background: rgba(255,255,255,0.03) !important; }
+.auth-tab { color: #7a7f9a !important; }
+.auth-tab.active { background: linear-gradient(135deg, #6b8fef, #a78bfa) !important; color: white !important; }
+.auth-submit { background: linear-gradient(135deg, #6b8fef, #a78bfa) !important; color: white !important; border-radius: 8px !important; }
+.auth-note { color: #7a7f9a !important; }
+.auth-note a { color: #9db8f8 !important; }
+.divider-line { color: #7a7f9a !important; }
+.divider-line::before, .divider-line::after { background: rgba(255,255,255,0.08) !important; }
+.google-btn { background: rgba(255,255,255,0.05) !important; border-color: rgba(255,255,255,0.1) !important; color: #ecedf2 !important; border-radius: 8px !important; }
+.google-btn:hover { border-color: rgba(255,255,255,0.2) !important; background: rgba(255,255,255,0.08) !important; }
+
+/* --- GENERATOR PANEL --- */
+.gen-panel { background: #1a1d26 !important; border-color: rgba(255,255,255,0.08) !important; }
+.gen-panel-title { color: #ecedf2 !important; }
+.gen-btn { background: linear-gradient(135deg, #6b8fef, #a78bfa) !important; color: white !important; border-radius: 8px !important; font-family: 'Geist', sans-serif !important; font-size: 15px !important; letter-spacing: 0 !important; box-shadow: 0 4px 20px rgba(107,143,239,0.35) !important; }
+.gen-btn:hover { filter: brightness(1.1) !important; transform: translateY(-1px) !important; }
+
+/* --- VIEW HEADERS --- */
+.view-title { color: #ecedf2 !important; font-family: 'Fraunces', serif !important; font-weight: 400 !important; letter-spacing: 0 !important; }
+.view-sub { color: #7a7f9a !important; }
+.view-header { border-color: rgba(255,255,255,0.07) !important; }
+
+/* --- SIDEBAR --- */
+.sidebar { background: #0d0e14 !important; }
+.sidebar-link.active { background: rgba(107,143,239,0.14) !important; color: #9db8f8 !important; }
+.sidebar-link:hover { background: rgba(255,255,255,0.06) !important; }
+.upgrade-btn { background: linear-gradient(135deg, #6b8fef, #a78bfa) !important; color: white !important; font-family: 'Geist', sans-serif !important; letter-spacing: 0 !important; font-size: 14px !important; font-weight: 600 !important; }
+.usage-block { background: rgba(255,255,255,0.04) !important; }
+.usage-fill { background: linear-gradient(90deg, #6b8fef, #a78bfa) !important; }
+
+/* --- HISTORY --- */
+.history-card { background: #1a1d26 !important; border-color: rgba(255,255,255,0.07) !important; border-radius: 10px !important; }
+.history-card:hover { background: #22263a !important; border-color: rgba(107,143,239,0.3) !important; }
+.hc-name { color: #ecedf2 !important; }
+.hc-idea { color: #7a7f9a !important; }
+.hc-date { color: #7a7f9a !important; }
+.hc-rev { color: #34d399 !important; }
+
+/* --- BILLING / SETTINGS --- */
+.pay-plan-option { background: #1a1d26 !important; border-color: rgba(255,255,255,0.08) !important; color: #ecedf2 !important; border-radius: 10px !important; }
+.pay-plan-option.selected { background: rgba(107,143,239,0.1) !important; border-color: #6b8fef !important; }
+.ppo-name { color: #ecedf2 !important; }
+.ppo-feat { color: #7a7f9a !important; }
+.radio-circle { border-color: rgba(255,255,255,0.2) !important; }
+.pay-plan-option.selected .radio-circle { border-color: #6b8fef !important; }
+.radio-dot { background: #6b8fef !important; }
+.stripe-form { background: #1a1d26 !important; border-color: rgba(255,255,255,0.08) !important; }
+.stripe-title { color: #ecedf2 !important; }
+.card-element-wrap { background: rgba(255,255,255,0.05) !important; border-color: rgba(255,255,255,0.1) !important; }
+.fake-card-num { color: #ecedf2 !important; }
+.pay-submit { background: linear-gradient(135deg, #6b8fef, #a78bfa) !important; color: white !important; border-radius: 8px !important; }
+.os-title { color: #9db8f8 !important; }
+.res-btn.primary { background: linear-gradient(135deg, #6b8fef, #a78bfa) !important; border-color: transparent !important; color: white !important; }
+
+/* ============================================================
+   LANDING PAGE — NOUVEAU DESIGN COMPLET
+   ============================================================ */
+
+/* Orbs animés */
+.orb { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; z-index: 0; }
+.orb1 { width: 520px; height: 520px; background: radial-gradient(circle, rgba(107,143,239,0.22) 0%, transparent 70%); top: -120px; left: -80px; animation: orbA 14s ease-in-out infinite; }
+.orb2 { width: 420px; height: 420px; background: radial-gradient(circle, rgba(167,139,250,0.17) 0%, transparent 70%); top: 60px; right: -60px; animation: orbB 17s ease-in-out infinite; }
+.orb3 { width: 360px; height: 360px; background: radial-gradient(circle, rgba(52,211,153,0.11) 0%, transparent 70%); bottom: -40px; left: 38%; animation: orbA 20s ease-in-out infinite reverse; }
+
+@keyframes orbA { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(40px,-28px) scale(1.08)} 66%{transform:translate(-18px,22px) scale(0.95)} }
+@keyframes orbB { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(-48px,20px) scale(0.9)} 66%{transform:translate(28px,-38px) scale(1.1)} }
+@keyframes pingDot { 0%{transform:scale(1);opacity:1} 75%,100%{transform:scale(2.4);opacity:0} }
+@keyframes gradShift { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+@keyframes tickerScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+/* Hero overrides */
+.hero {
+  position: relative !important; overflow: hidden !important;
+  min-height: calc(100vh - 60px) !important;
+  display: flex !important; flex-direction: column !important; justify-content: center !important;
+  padding: 80px 64px 60px !important; background: transparent !important;
+}
+.hero-content { position: relative; z-index: 1; max-width: 700px; }
+
+/* Badge hero */
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; color: #9db8f8; font-weight: 500;
+  background: rgba(107,143,239,0.1); border: 1px solid rgba(107,143,239,0.25);
+  padding: 6px 16px; border-radius: 20px; margin-bottom: 28px;
+}
+.badge-live {
+  width: 7px; height: 7px; border-radius: 50%; background: #34d399;
+  position: relative; flex-shrink: 0;
+}
+.badge-live::after {
+  content: ''; position: absolute; inset: 0; border-radius: 50%;
+  background: #34d399; animation: pingDot 1.6s ease infinite;
+}
+
+/* Hero heading */
+.hero-h1 {
+  font-family: 'Fraunces', serif !important;
+  font-size: clamp(52px, 6vw, 78px) !important;
+  font-weight: 300 !important; line-height: 1.07 !important;
+  letter-spacing: 0 !important; color: #ecedf2 !important;
+  max-width: 100% !important;
+}
+.hero-h1 .hero-grad {
+  background: linear-gradient(135deg, #9db8f8 0%, #a78bfa 50%, #f472b6 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  font-style: italic; display: inline;
+  animation: gradShift 4s ease infinite;
+}
+.hero-h1 .hl, .hero-h1 .hb {
+  background: none !important; transform: none !important; padding: 0 !important;
+  color: inherit !important; -webkit-text-fill-color: inherit !important;
+  display: inline !important;
+}
+
+.hero-sub {
+  font-size: 17px !important; color: #7a7f9a !important; max-width: 500px !important;
+  line-height: 1.8 !important; margin-top: 24px !important; font-weight: 300 !important;
+}
+
+/* CTA bouton */
+.hero-cta {
+  background: linear-gradient(135deg, #6b8fef, #a78bfa) !important;
+  color: white !important; font-family: 'Geist', sans-serif !important;
+  font-size: 15px !important; font-weight: 600 !important; letter-spacing: 0 !important;
+  padding: 15px 32px !important; border-radius: 10px !important;
+  box-shadow: 0 4px 24px rgba(107,143,239,0.4) !important;
+  transition: transform .15s, box-shadow .15s !important;
+  gap: 8px !important;
+}
+.hero-cta:hover { transform: translateY(-2px) !important; box-shadow: 0 8px 32px rgba(107,143,239,0.5) !important; }
+.hero-link {
+  font-size: 14px !important; color: #7a7f9a !important;
+  border-bottom: 1px solid rgba(255,255,255,0.12) !important;
+  padding-bottom: 3px !important;
+}
+.hero-link:hover { color: #9db8f8 !important; border-color: #6b8fef !important; }
+
+/* Social proof */
+.hero-social { display: flex !important; align-items: center !important; gap: 12px !important; }
+.hero-avatars { display: flex !important; }
+.h-av {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 2px solid #13141a; margin-left: -8px;
+  font-size: 11px; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, #6b8fef, #a78bfa); color: white; font-weight: 700;
+}
+.h-av:first-child { margin-left: 0; }
+.hero-social-text { font-size: 12px; color: #7a7f9a; }
+.hero-social-text strong { color: #ecedf2; }
+
+/* Stats */
+.hero-stats { margin-top: 52px !important; gap: 40px !important; }
+.stat-n {
+  font-family: 'Fraunces', serif !important; font-size: 46px !important; font-weight: 300 !important;
+  background: linear-gradient(135deg, #9db8f8, #a78bfa);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1 !important;
+}
+.stat-l { color: #7a7f9a !important; font-size: 12px !important; }
+
+/* Marquee (ticker) */
+.marquee-wrap {
+  background: rgba(107,143,239,0.05) !important;
+  border-top: 1px solid rgba(255,255,255,0.07) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.07) !important;
+  padding: 14px 0 !important;
+}
+.marquee-inner { animation: tickerScroll 30s linear infinite !important; gap: 0 !important; }
+.mq-item {
+  font-family: 'Geist', sans-serif !important; font-size: 13px !important;
+  color: #7a7f9a !important; letter-spacing: 0.3px !important; gap: 44px !important;
+  font-weight: 400 !important;
+}
+.mq-item span { color: #6b8fef !important; font-size: 16px !important; }
+
+/* Features */
+.features-strip {
+  padding: 80px 64px !important; gap: 1px !important;
+  background: rgba(255,255,255,0.06) !important;
+  border-top: 1px solid rgba(255,255,255,0.07) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.07) !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+}
+.feat-card {
+  background: #1a1d26 !important; padding: 36px 32px !important;
+  position: relative; overflow: hidden;
+  transition: background .25s !important;
+}
+.feat-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, #6b8fef, #a78bfa);
+  transform: scaleX(0); transform-origin: left; transition: transform .3s ease;
+}
+.feat-card:hover::before { transform: scaleX(1); }
+.feat-card:hover { background: #20243a !important; }
+.feat-icon {
+  background: rgba(107,143,239,0.12) !important;
+  border: 1px solid rgba(107,143,239,0.2) !important;
+  border-radius: 10px !important; color: #fff !important;
+}
+.feat-title { font-family: 'Geist', sans-serif !important; font-size: 16px !important; color: #ecedf2 !important; font-weight: 600 !important; }
+.feat-desc { color: #7a7f9a !important; font-size: 13px !important; }
+
+/* Pricing */
+.pricing-wrap { background: #1a1d26 !important; padding: 80px 64px !important; }
+.section-tag { color: #9db8f8 !important; font-family: 'Geist', sans-serif !important; }
+.section-tag::before { background: rgba(107,143,239,0.4) !important; }
+.section-h2 {
+  color: #ecedf2 !important; font-family: 'Fraunces', serif !important;
+  font-weight: 300 !important; letter-spacing: 0 !important;
+}
+.pricing-grid { gap: 16px !important; }
+.price-card {
+  background: #13141a !important; border: 1px solid rgba(255,255,255,0.1) !important;
+  border-radius: 14px !important; transition: transform .2s, border-color .2s, box-shadow .2s !important;
+}
+.price-card:hover { transform: translateY(-4px) !important; border-color: rgba(107,143,239,0.3) !important; box-shadow: 0 8px 32px rgba(0,0,0,0.4) !important; }
+.price-card.popular {
+  background: #13141a !important;
+  border: 2px solid transparent !important;
+  background-clip: padding-box !important;
+  box-shadow: 0 0 0 2px #6b8fef, 0 8px 40px rgba(107,143,239,0.2) !important;
+}
+.price-card.popular:hover { box-shadow: 0 0 0 2px #a78bfa, 0 16px 50px rgba(107,143,239,0.3) !important; }
+.pop-badge {
+  background: linear-gradient(135deg, #6b8fef, #a78bfa) !important;
+  color: white !important; border-radius: 20px !important;
+  font-family: 'Geist', sans-serif !important; font-weight: 600 !important;
+}
+.plan-name { color: #ecedf2 !important; }
+.plan-amount { color: #ecedf2 !important; }
+.plan-per { color: #7a7f9a !important; }
+.plan-feats li { color: #9db8f8 !important; border-color: rgba(255,255,255,0.06) !important; font-size: 13px !important; }
+.popular .plan-feats li { color: #ecedf2 !important; }
+.plan-for { color: #7a7f9a !important; font-style: italic; }
+.plan-cta {
+  background: transparent !important; border: 1px solid rgba(255,255,255,0.15) !important;
+  color: #ecedf2 !important; font-family: 'Geist', sans-serif !important;
+  font-size: 14px !important; letter-spacing: 0 !important; border-radius: 9px !important;
+  transition: background .2s, transform .15s !important;
+}
+.plan-cta:hover { background: rgba(255,255,255,0.07) !important; color: #ecedf2 !important; transform: translateY(-1px) !important; }
+.popular .plan-cta {
+  background: linear-gradient(135deg, #6b8fef, #a78bfa) !important;
+  color: white !important; border-color: transparent !important;
+  box-shadow: 0 4px 18px rgba(107,143,239,0.4) !important;
+}
+.popular .plan-cta:hover { box-shadow: 0 6px 26px rgba(107,143,239,0.5) !important; }
+.plan-empire { box-shadow: 0 0 0 2px #a78bfa, 0 8px 30px rgba(167,139,250,0.15) !important; border: none !important; }
+.plan-cta-empire { background: linear-gradient(135deg, #a78bfa, #f472b6) !important; color: white !important; border-color: transparent !important; }
+.plan-cta-empire:hover { box-shadow: 0 6px 24px rgba(167,139,250,0.5) !important; }
+.plan-preview-btn { color: #9db8f8 !important; border-color: rgba(107,143,239,0.3) !important; background: transparent !important; }
+.plan-preview-btn:hover { background: rgba(107,143,239,0.12) !important; color: #9db8f8 !important; }
+.plan-preview-dark { color: #9db8f8 !important; border-color: rgba(107,143,239,0.3) !important; }
+.plan-preview-dark:hover { background: rgba(107,143,239,0.12) !important; color: #9db8f8 !important; }
+
 @media print {
   body > *:not(#dossierModal) { display: none !important; }
   #dossierModal { position: static !important; background: #fff !important; }
@@ -1120,13 +1413,14 @@ nav {
 
 <!-- ========== NAV ========== -->
 <nav id="mainNav">
-  <div class="nav-logo" onclick="showPage('landing')">
-    <span class="logo-pulse"></span>
-    Eadee
+  <div class="nav-logo" onclick="showPage('landing')" style="display:flex;align-items:center;gap:10px">
+    <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#6b8fef,#a78bfa);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-size:14px;box-shadow:0 3px 12px rgba(107,143,239,0.4)">E</div>
+    <span style="font-family:'Fraunces',serif;font-size:20px;color:#9db8f8;letter-spacing:0.5px">EADEE</span>
+    <span class="logo-pulse" style="margin-left:2px"></span>
   </div>
   <div class="nav-right" id="navRight">
     <button class="nav-btn btn-ghost" onclick="showAuth('login')">Connexion</button>
-    <button class="nav-btn btn-dark" onclick="showAuth('signup')">Commencer gratuitement</button>
+    <button class="nav-btn btn-dark" onclick="showAuth('signup')">Commencer gratuitement →</button>
   </div>
 </nav>
 
@@ -1135,42 +1429,45 @@ nav {
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-tag">Intelligence Artificielle × Entrepreneuriat</div>
-    <h1 class="hero-h1">
-      Ton idée.<br>
-      Ton <span class="hl">plan.</span><br>
-      <span class="hb">30 secondes.</span>
-    </h1>
-    <p class="hero-sub">Eadee transforme n'importe quelle idée en business plan complet et actionnable. Analyse de marché, revenus projetés, plan d'action, risques — tout, instantanément.</p>
-    <div class="hero-actions">
-      <button class="hero-cta" onclick="showAuth('signup')">
-        <span>⚡</span>
-        <span>Commencer gratuitement</span>
-      </button>
-      <span class="hero-link" onclick="scrollToPricing()">Voir les tarifs →</span>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-live"></span>
+        IA active · 12 000+ plans générés · France
+      </div>
+      <h1 class="hero-h1">
+        Ton business plan<br>
+        <span class="hero-grad">complet</span><br>
+        en 60 secondes.
+      </h1>
+      <p class="hero-sub">EADEE génère un dossier professionnel avec stratégie, projection financière, démarches admin et emails prêts à envoyer.</p>
+      <div class="hero-actions">
+        <button class="hero-cta" onclick="showAuth('signup')">
+          ⚡ Créer mon plan gratuitement
+        </button>
+        <span class="hero-link" onclick="scrollToPricing()">Voir les tarifs →</span>
+      </div>
+      <div class="hero-social" style="display:flex;align-items:center;gap:12px;margin-top:44px">
+        <div class="hero-avatars">
+          <div class="h-av">M</div><div class="h-av">S</div><div class="h-av">L</div><div class="h-av">K</div><div class="h-av">+</div>
+        </div>
+        <span class="hero-social-text">Rejoint par <strong>12 000+ entrepreneurs</strong> en France</span>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-n">12k+</div><div class="stat-l">Plans générés</div></div>
+        <div class="stat"><div class="stat-n">94%</div><div class="stat-l">Satisfaction</div></div>
+        <div class="stat"><div class="stat-n">60s</div><div class="stat-l">Temps moyen</div></div>
+      </div>
     </div>
-    <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-n">12k+</div>
-        <div class="stat-l">Plans générés</div>
-      </div>
-      <div class="stat">
-        <div class="stat-n">94%</div>
-        <div class="stat-l">Satisfaction</div>
-      </div>
-      <div class="stat">
-        <div class="stat-n">30s</div>
-        <div class="stat-l">Temps moyen</div>
-      </div>
-    </div>
-    <div class="hero-bg">EADEE</div>
   </section>
 
-  <!-- MARQUEE -->
+  <!-- TICKER -->
   <div class="marquee-wrap">
     <div class="marquee-inner">
-      <div class="mq-item">ANALYSE MARCHÉ <span>✦</span> REVENUS PROJETÉS <span>✦</span> PLAN D'ACTION <span>✦</span> RISQUES <span>✦</span> OUTILS <span>✦</span> STRATÉGIE <span>✦</span> PITCH DECK <span>✦</span></div>
-      <div class="mq-item">ANALYSE MARCHÉ <span>✦</span> REVENUS PROJETÉS <span>✦</span> PLAN D'ACTION <span>✦</span> RISQUES <span>✦</span> OUTILS <span>✦</span> STRATÉGIE <span>✦</span> PITCH DECK <span>✦</span></div>
+      <div class="mq-item">Business plan en 60s <span>✦</span> Emails prêts à envoyer <span>✦</span> Démarches admin <span>✦</span> Associé IA 24h/24 <span>✦</span> Score de viabilité <span>✦</span> Projections financières <span>✦</span> Pitch 30 secondes <span>✦</span> Conçu pour la France <span>✦</span></div>
+      <div class="mq-item">Business plan en 60s <span>✦</span> Emails prêts à envoyer <span>✦</span> Démarches admin <span>✦</span> Associé IA 24h/24 <span>✦</span> Score de viabilité <span>✦</span> Projections financières <span>✦</span> Pitch 30 secondes <span>✦</span> Conçu pour la France <span>✦</span></div>
     </div>
   </div>
 
