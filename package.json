@@ -1,0 +1,7 @@
+{
+  "name": "eadee-app",
+  "version": "1.0.0",
+  "dependencies": {
+    "jsonrepair": "^3.8.0"
+  }
+}
