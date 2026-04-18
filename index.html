@@ -1305,7 +1305,7 @@ nav {
         <div class="sidebar-link" onclick="showView('history')" data-view="history">
           <span class="sidebar-icon">📋</span> Mes plans
         </div>
-        <div class="sidebar-link" id="chat-sidebar-link" onclick="showView('chat')" data-view="chat" style="display:none">
+        <div class="sidebar-link" id="chat-sidebar-link" onclick="openChat()" data-view="chat" style="display:none">
           <span class="sidebar-icon">👑</span> Coach IA Empire
         </div>
         <div class="sidebar-section">Compte</div>
@@ -2771,18 +2771,74 @@ function initChat() {
   if (link) link.style.display = isEmpire ? 'flex' : 'none';
 }
 
+function openChat() {
+  showView('chat');
+  const container = document.getElementById('chat-messages');
+  if (container && container.children.length === 0) {
+    // Message de bienvenue de l'associé
+    const prenom = user?.name?.split(' ')[0] || 'toi';
+    const hasPlan = !!currentResult;
+    const planName = currentResult?.nom_business || '';
+    addChatBubble('assistant',
+`Bonjour ${prenom} ! 👋 Je suis ton associé IA EADEE, disponible 24h/24.
+
+${hasPlan ? `Je vois que tu travailles sur "${planName}". Je connais ton business plan en détail et je peux t'aider à l'améliorer en direct.\n\n` : ''}Voici tout ce que je peux faire pour toi :
+
+✏️ **Modifier ton business plan**
+→ "Change le nom de l'entreprise en..."
+→ "Modifie le prix de l'offre 2 à..."
+→ "Réécris le résumé exécutif"
+
+📧 **Corriger / personnaliser tes emails**
+→ "Adapte l'email fournisseur pour..."
+→ "Rends l'email de prospection plus percutant"
+
+🏛️ **Démarches administratives**
+→ "Quelle est la meilleure forme juridique pour moi ?"
+→ "Comment déclarer ma micro-entreprise ?"
+
+📊 **Conseil stratégique**
+→ "Comment trouver mes 10 premiers clients ?"
+→ "Analyse mon pricing par rapport à la concurrence"
+
+💰 **Finance & fiscalité**
+→ "Comment optimiser ma fiscalité ?"
+→ "Quel budget pub pour démarrer ?"
+
+Pose-moi n'importe quelle question — je suis là pour t'aider à construire ton empire. 👑`
+    );
+  }
+}
+
 function addChatBubble(role, text) {
   const container = document.getElementById('chat-messages');
   if (!container) return;
   const isUser = role === 'user';
+  // Convert **bold** markdown
+  const formatted = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
   const bubble = document.createElement('div');
-  bubble.style.cssText = `display:flex;justify-content:${isUser ? 'flex-end' : 'flex-start'}`;
+  bubble.style.cssText = `display:flex;justify-content:${isUser ? 'flex-end' : 'flex-start'};margin-bottom:4px`;
   bubble.innerHTML = `
-    <div style="max-width:75%;padding:14px 18px;border-radius:${isUser ? '18px 18px 4px 18px' : '18px 18px 18px 4px'};
+    <div style="max-width:80%;padding:14px 18px;border-radius:${isUser ? '18px 18px 4px 18px' : '18px 18px 18px 4px'};
       background:${isUser ? '#0a0a0a' : '#f0ede6'};color:${isUser ? '#c8ff00' : '#0a0a0a'};
-      font-size:14px;line-height:1.6;white-space:pre-wrap">${text}</div>`;
+      font-size:14px;line-height:1.7;white-space:pre-wrap">${formatted}</div>`;
   container.appendChild(bubble);
   container.scrollTop = container.scrollHeight;
+}
+
+function applyPlanModifications(modifications) {
+  if (!currentResult || !modifications || Object.keys(modifications).length === 0) return;
+  let changed = false;
+  for (const [key, value] of Object.entries(modifications)) {
+    if (currentResult[key] !== undefined || key.includes('_')) {
+      currentResult[key] = value;
+      changed = true;
+    }
+  }
+  if (changed) {
+    fillPlan(currentResult);
+    toast('✅ Business plan mis à jour par ton associé IA', 'success');
+  }
 }
 
 async function sendChatMessage() {
@@ -2802,12 +2858,11 @@ async function sendChatMessage() {
   btn.disabled = true;
   btn.textContent = '...';
 
-  // Typing indicator
   const container = document.getElementById('chat-messages');
   const typing = document.createElement('div');
   typing.id = 'typing-indicator';
-  typing.style.cssText = 'display:flex;justify-content:flex-start';
-  typing.innerHTML = `<div style="padding:14px 18px;border-radius:18px 18px 18px 4px;background:#f0ede6;font-size:14px;color:#888">EADEE réfléchit...</div>`;
+  typing.style.cssText = 'display:flex;justify-content:flex-start;margin-bottom:4px';
+  typing.innerHTML = `<div style="padding:12px 18px;border-radius:18px 18px 18px 4px;background:#f0ede6;font-size:13px;color:#999;font-style:italic">Ton associé réfléchit...</div>`;
   container.appendChild(typing);
   container.scrollTop = container.scrollHeight;
 
@@ -2817,7 +2872,8 @@ async function sendChatMessage() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         messages: chatHistory,
-        businessContext: user?.businessContext || ''
+        businessPlan: currentResult || null,
+        userName: user?.name?.split(' ')[0] || ''
       })
     });
     const data = await res.json();
@@ -2825,6 +2881,8 @@ async function sendChatMessage() {
     const reply = data.reply || 'Désolé, une erreur est survenue.';
     addChatBubble('assistant', reply);
     chatHistory.push({ role: 'assistant', content: reply });
+    // Apply any plan modifications
+    if (data.modifications) applyPlanModifications(data.modifications);
   } catch(e) {
     document.getElementById('typing-indicator')?.remove();
     addChatBubble('assistant', 'Erreur de connexion. Réessaie.');
