@@ -315,20 +315,26 @@ nav {
   display: flex; gap: 10px; align-items: center;
 }
 .popular .plan-feats li { border-color: rgba(255,255,255,0.1); color: var(--paper); }
-.plan-feats li::before { content:'→'; color: var(--acid); }
+.plan-feats li::before { content:''; }
+.plan-feats li { font-size: 14px; }
+.plan-empire .plan-feats li { border-color: rgba(201,75,42,0.2); }
+.plan-for { font-size: 11px; color: var(--muted); font-style: italic; margin-bottom: 16px; margin-top: -12px; }
 
 .plan-cta {
-  width: 100%; padding: 13px;
+  width: 100%; padding: 14px;
   border: 1.5px solid var(--ink);
   background: transparent;
   font-family: 'Bebas Neue', sans-serif;
   font-size: 18px; letter-spacing: 0.1em;
-  border-radius: 2px; cursor: pointer;
+  border-radius: 4px; cursor: pointer;
   transition: all 0.2s;
 }
 .plan-cta:hover { background: var(--ink); color: var(--acid); }
 .popular .plan-cta { background: var(--acid); color: var(--ink); border-color: var(--acid); }
 .popular .plan-cta:hover { background: #b5e800; }
+.plan-empire { border: 2px solid var(--rust) !important; }
+.plan-cta-empire { background: var(--rust); color: #fff; border-color: var(--rust); }
+.plan-cta-empire:hover { background: #b53d20; color: #fff; }
 
 /* ========== AUTH PAGE ========== */
 .auth-page {
@@ -1159,6 +1165,7 @@ nav {
     <div class="section-tag">Investissement</div>
     <h2 class="section-h2">Simple. Transparent.<br>Sans surprise.</h2>
     <div class="pricing-grid">
+      <!-- STARTER -->
       <div class="price-card" onclick="selectPlan('starter')">
         <div class="plan-name">Starter</div>
         <div class="plan-amount"><sup>€</sup>0</div>
@@ -1169,35 +1176,44 @@ nav {
           <li>Projections financières</li>
           <li>Plan d'action 30j</li>
         </ul>
+        <div class="plan-for">Idéal pour tester</div>
         <button class="plan-cta" onclick="selectPlan('starter')">Commencer gratuit</button>
       </div>
+
+      <!-- BUILDER -->
       <div class="price-card popular" onclick="selectPlan('builder')">
         <div class="pop-badge">⚡ Populaire</div>
         <div class="plan-name">Builder</div>
         <div class="plan-amount"><sup>€</sup>19</div>
         <div class="plan-per">/ mois — sans engagement</div>
         <ul class="plan-feats">
-          <li style="color:var(--paper)">Plans illimités</li>
-          <li style="color:var(--paper)">Analyse marché approfondie</li>
-          <li style="color:var(--paper)">Export PDF professionnel</li>
-          <li style="color:var(--paper)">Pitch deck inclus</li>
-          <li style="color:var(--paper)">Historique des plans</li>
-          <li style="color:var(--paper)">Support prioritaire</li>
+          <li style="color:var(--paper)">✅ Plans <strong>illimités</strong></li>
+          <li style="color:var(--paper)">✅ Analyse marché approfondie</li>
+          <li style="color:var(--paper)">✅ Export PDF professionnel</li>
+          <li style="color:var(--paper)">✅ Pitch deck inclus</li>
+          <li style="color:var(--paper)">✅ Historique de tous tes plans</li>
+          <li style="color:var(--paper)">✅ Support prioritaire</li>
         </ul>
+        <div class="plan-for" style="color:rgba(255,255,255,0.5)">Pour les entrepreneurs actifs</div>
         <button class="plan-cta" onclick="selectPlan('builder')">Choisir Builder</button>
       </div>
-      <div class="price-card" onclick="selectPlan('empire')">
+
+      <!-- EMPIRE -->
+      <div class="price-card plan-empire" onclick="selectPlan('empire')">
+        <div class="pop-badge" style="background:var(--rust);color:#fff;">👑 Le plus complet</div>
         <div class="plan-name">Empire</div>
         <div class="plan-amount"><sup>€</sup>39.99</div>
-        <div class="plan-per">/ mois</div>
+        <div class="plan-per">/ mois — sans engagement</div>
         <ul class="plan-feats">
-          <li>Tout Builder inclus</li>
-          <li>Étude de marché complète</li>
-          <li>Modèle financier Excel</li>
-          <li>Coaching mensuel 1h</li>
-          <li>Accès API</li>
+          <li>✅ <strong>Tout Builder inclus</strong></li>
+          <li>👑 <strong>Chat IA Coach</strong> — disponible 24h/24</li>
+          <li>📊 Étude de marché complète</li>
+          <li>📋 Modèle financier Excel</li>
+          <li>🎯 Coaching visio 1h/mois</li>
+          <li>🔌 Accès API direct</li>
         </ul>
-        <button class="plan-cta" onclick="selectPlan('empire')">Passer à Empire</button>
+        <div class="plan-for">Pour ceux qui veulent dominer</div>
+        <button class="plan-cta plan-cta-empire" onclick="selectPlan('empire')">Passer à Empire 👑</button>
       </div>
     </div>
   </div>
