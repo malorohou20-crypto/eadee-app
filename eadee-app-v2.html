@@ -329,8 +329,8 @@ nav {
 .plan-for { font-size: 11px; color: var(--muted); font-style: italic; margin-bottom: 16px; margin-top: -12px; }
 .plan-preview-btn { display:inline-block; font-size:12px; color:var(--rust); border:1px solid var(--rust); border-radius:20px; padding:4px 12px; margin-bottom:12px; cursor:pointer; font-family:'DM Mono',monospace; letter-spacing:0.05em; transition:all .2s; }
 .plan-preview-btn:hover { background:var(--rust); color:#fff; }
-.plan-preview-dark { color:rgba(200,255,0,0.8); border-color:rgba(200,255,0,0.5); }
-.plan-preview-dark:hover { background:rgba(200,255,0,0.15); color:#c8ff00; }
+.plan-preview-dark { color:rgba(107,143,239,0.8); border-color:rgba(107,143,239,0.5); }
+.plan-preview-dark:hover { background:rgba(107,143,239,0.15); color:#9db8f8; }
 /* PREVIEW MODAL */
 .preview-modal-overlay { position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px); }
 .preview-modal { background:#0f0f0f;border-radius:12px;width:100%;max-width:780px;max-height:88vh;overflow:hidden;display:flex;flex-direction:column; }
@@ -341,13 +341,13 @@ nav {
 .preview-modal-body { flex:1;overflow-y:auto;padding:24px; }
 .preview-section { margin-bottom:20px; }
 .preview-section-title { font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--acid);margin-bottom:10px;display:flex;align-items:center;gap:8px; }
-.preview-section-title::after { content:'';flex:1;height:1px;background:rgba(200,255,0,0.12); }
+.preview-section-title::after { content:'';flex:1;height:1px;background:rgba(107,143,239,0.12); }
 .preview-text { font-size:13px;line-height:1.75;color:rgba(255,255,255,0.7); }
 .preview-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:4px; }
-.preview-cell { background:rgba(200,255,0,0.08);border:1px solid rgba(200,255,0,0.2);border-radius:6px;padding:10px;text-align:center; }
+.preview-cell { background:rgba(107,143,239,0.08);border:1px solid rgba(107,143,239,0.2);border-radius:6px;padding:10px;text-align:center; }
 .preview-cell-label { font-family:'DM Mono',monospace;font-size:8px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:4px; }
 .preview-cell-val { font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--acid); }
-.preview-tag { display:inline-block;background:rgba(200,255,0,0.1);border:1px solid rgba(200,255,0,0.2);color:var(--acid);font-size:11px;padding:3px 10px;border-radius:20px;margin:3px; }
+.preview-tag { display:inline-block;background:rgba(107,143,239,0.1);border:1px solid rgba(107,143,239,0.2);color:var(--acid);font-size:11px;padding:3px 10px;border-radius:20px;margin:3px; }
 .preview-locked { background:rgba(255,255,255,0.03);border:1px dashed rgba(255,255,255,0.1);border-radius:8px;padding:16px;text-align:center;color:rgba(255,255,255,0.3);font-size:13px; }
 .preview-cta { width:100%;padding:14px;background:var(--acid);color:var(--ink);border:none;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0.1em;border-radius:6px;cursor:pointer;margin-top:16px;transition:background .2s; }
 .preview-cta:hover { background:#b5e800; }
@@ -509,7 +509,7 @@ nav {
   text-decoration: none;
 }
 .sidebar-link:hover { background: rgba(255,255,255,0.07); color: #fff; }
-.sidebar-link.active { background: rgba(200,255,0,0.12); color: var(--acid); }
+.sidebar-link.active { background: rgba(107,143,239,0.12); color: var(--acid); }
 
 .sidebar-icon { font-size: 16px; width: 20px; flex-shrink: 0; }
 
@@ -692,8 +692,8 @@ nav {
 
 .rev-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
 .rev-cell {
-  background: linear-gradient(135deg, rgba(200,255,0,0.1), rgba(200,255,0,0.04));
-  border: 1px solid rgba(200,255,0,0.25);
+  background: linear-gradient(135deg, rgba(107,143,239,0.1), rgba(107,143,239,0.04));
+  border: 1px solid rgba(107,143,239,0.25);
   border-radius: 8px; padding: 14px 10px;
   text-align: center; position: relative; overflow: hidden;
 }
@@ -723,7 +723,7 @@ nav {
 /* LOADING ANIM */
 .loading-ring {
   width: 40px; height: 40px;
-  border: 3px solid rgba(200,255,0,0.2);
+  border: 3px solid rgba(107,143,239,0.2);
   border-top-color: var(--acid);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
@@ -905,13 +905,13 @@ nav {
 /* PLAN DOCUMENT BLOCKS */
 .plan-block { padding:24px 0; border-bottom:1px solid rgba(255,255,255,0.06); }
 .plan-block:last-child { border-bottom:none; }
-.plan-block-title { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--acid); margin-bottom:16px; display:flex; align-items:center; gap:10px; }
-.plan-block-title::after { content:''; flex:1; height:1px; background:rgba(200,255,0,0.15); }
+.plan-block-title { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#9db8f8; margin-bottom:16px; display:flex; align-items:center; gap:10px; }
+.plan-block-title::after { content:''; flex:1; height:1px; background:rgba(107,143,239,0.2); }
 .plan-block-content { font-size:14px; line-height:1.85; color:rgba(255,255,255,0.82); }
 .stat-mini { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:14px; transition:border-color .2s; }
-.stat-mini:hover { border-color:rgba(200,255,0,0.3); }
+.stat-mini:hover { border-color:rgba(107,143,239,0.4); }
 .stat-mini-label { font-family:'DM Mono',monospace; font-size:9px; text-transform:uppercase; letter-spacing:0.12em; color:rgba(255,255,255,0.35); margin-bottom:6px; }
-.stat-mini-val { font-family:'Bebas Neue',sans-serif; font-size:24px; color:var(--acid); letter-spacing:0.02em; line-height:1; }
+.stat-mini-val { font-family:'Bebas Neue',sans-serif; font-size:24px; color:#ecedf2; letter-spacing:0.02em; line-height:1; }
 .concurrent-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.09); border-radius:8px; padding:14px 16px; display:grid; grid-template-columns:130px 1fr auto; align-items:center; gap:14px; transition:border-color .2s; }
 .concurrent-card:hover { border-color:rgba(255,255,255,0.18); }
 .cc-name { font-weight:700; font-size:13px; color:#fff; }
@@ -920,19 +920,19 @@ nav {
 .threat-high { background:rgba(201,75,42,0.2); color:#f87171; }
 .threat-med { background:rgba(200,160,0,0.2); color:#fbbf24; }
 .threat-low { background:rgba(34,197,94,0.2); color:#4ade80; }
-.offre-card { background:rgba(200,255,0,0.07); border:1px solid rgba(200,255,0,0.2); border-radius:8px; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; transition:background .2s; }
-.offre-card:hover { background:rgba(200,255,0,0.11); }
+.offre-card { background:rgba(107,143,239,0.07); border:1px solid rgba(107,143,239,0.2); border-radius:8px; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; transition:background .2s; }
+.offre-card:hover { background:rgba(107,143,239,0.12); }
 .offre-name { font-weight:700; font-size:13px; color:#fff; }
 .offre-desc { font-size:12px; color:rgba(255,255,255,0.45); margin-top:2px; }
-.offre-price { font-family:'Bebas Neue',sans-serif; font-size:24px; color:var(--acid); white-space:nowrap; }
+.offre-price { font-family:'Bebas Neue',sans-serif; font-size:24px; color:#9db8f8; white-space:nowrap; }
 .acq-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.09); border-radius:8px; padding:14px 16px; display:grid; grid-template-columns:120px 1fr auto; gap:12px; align-items:start; }
 .acq-canal { font-weight:700; font-size:13px; color:#fff; }
 .acq-desc { font-size:12px; color:rgba(255,255,255,0.5); line-height:1.5; }
-.acq-cac { font-family:'DM Mono',monospace; font-size:11px; color:var(--acid); text-align:right; white-space:nowrap; }
+.acq-cac { font-family:'DM Mono',monospace; font-size:11px; color:#9db8f8; text-align:right; white-space:nowrap; }
 .action-row { display:grid; grid-template-columns:90px 1fr; border-bottom:1px solid rgba(255,255,255,0.05); transition:background .15s; }
 .action-row:hover { background:rgba(255,255,255,0.02); }
 .action-row:last-child { border-bottom:none; }
-.action-phase { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:var(--acid); padding:14px 14px 14px 0; border-right:1px solid rgba(200,255,0,0.2); display:flex; align-items:center; }
+.action-phase { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:#9db8f8; padding:14px 14px 14px 0; border-right:1px solid rgba(107,143,239,0.2); display:flex; align-items:center; }
 .action-content { padding:14px 0 14px 16px; }
 .action-title { font-weight:700; font-size:13px; color:#fff; margin-bottom:5px; }
 .action-detail { font-size:12px; color:rgba(255,255,255,0.55); line-height:1.6; }
@@ -940,9 +940,9 @@ nav {
 .invest-row:nth-child(even) { background:rgba(255,255,255,0.05); }
 .invest-label { font-size:13px; color:rgba(255,255,255,0.75); }
 .invest-amount { font-family:'DM Mono',monospace; font-size:13px; color:#fff; font-weight:600; }
-.invest-row.total { background:rgba(200,255,0,0.1); border:1px solid rgba(200,255,0,0.25); margin-top:8px; border-radius:8px; }
-.invest-row.total .invest-label { color:var(--acid); font-weight:700; font-size:14px; }
-.invest-row.total .invest-amount { color:var(--acid); font-size:15px; }
+.invest-row.total { background:rgba(107,143,239,0.1); border:1px solid rgba(107,143,239,0.25); margin-top:8px; border-radius:8px; }
+.invest-row.total .invest-label { color:#9db8f8; font-weight:700; font-size:14px; }
+.invest-row.total .invest-amount { color:#9db8f8; font-size:15px; }
 .risk-card { background:rgba(248,65,65,0.05); border:1px solid rgba(248,65,65,0.2); border-left:4px solid var(--rust); border-radius:0 8px 8px 0; padding:14px 16px; }
 .risk-title { font-weight:700; font-size:13px; color:#f87171; margin-bottom:6px; }
 .risk-solution { font-size:13px; color:rgba(255,255,255,0.65); line-height:1.65; }
@@ -950,7 +950,7 @@ nav {
 .outil-card:hover { border-color:rgba(255,255,255,0.18); }
 .outil-name { font-weight:700; font-size:13px; color:#fff; margin-bottom:4px; }
 .outil-usage { font-size:12px; color:rgba(255,255,255,0.5); line-height:1.5; }
-.outil-prix { font-family:'DM Mono',monospace; font-size:11px; color:var(--acid); margin-top:6px; display:inline-block; background:rgba(200,255,0,0.1); padding:2px 8px; border-radius:20px; }
+.outil-prix { font-family:'DM Mono',monospace; font-size:11px; color:#9db8f8; margin-top:6px; display:inline-block; background:rgba(107,143,239,0.1); padding:2px 8px; border-radius:20px; }
 
 /* TOAST */
 .toast {
@@ -1127,17 +1127,17 @@ nav {
 }
 .dossier-header {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 18px 28px; background: #0a0a0a; border-bottom: 1px solid rgba(200,255,0,0.2);
+  padding: 18px 28px; background: #0a0a0a; border-bottom: 1px solid rgba(107,143,239,0.2);
   flex-shrink: 0;
 }
-.dossier-header-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: #c8ff00; letter-spacing: 0.1em; }
+.dossier-header-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: #9db8f8; letter-spacing: 0.1em; }
 .dossier-header-sub { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 2px; }
 .dossier-header-actions { display: flex; gap: 10px; }
 .dossier-btn {
   padding: 9px 18px; border-radius: 4px; font-family: 'Bebas Neue', sans-serif;
   font-size: 15px; letter-spacing: 0.08em; cursor: pointer; border: none;
 }
-.dossier-btn.print { background: #c8ff00; color: #0a0a0a; }
+.dossier-btn.print { background: #9db8f8; color: #0a0a0a; }
 .dossier-btn.close-btn { background: transparent; color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.2); }
 .dossier-btn.close-btn:hover { background: rgba(255,255,255,0.07); }
 .dossier-tabs {
@@ -1150,7 +1150,7 @@ nav {
   transition: all 0.15s; background: transparent; border-left: none; border-right: none; border-top: none;
 }
 .dossier-tab:hover { color: rgba(255,255,255,0.75); }
-.dossier-tab.active { color: #c8ff00; border-bottom-color: #c8ff00; }
+.dossier-tab.active { color: #9db8f8; border-bottom-color: #9db8f8; }
 .dossier-body { flex: 1; overflow-y: auto; padding: 32px 40px; background: #0d0d0d; }
 .dossier-section { display: none; }
 .dossier-section.active { display: block; }
@@ -1159,9 +1159,9 @@ nav {
   border-radius: 8px; padding: 24px 28px; margin-bottom: 20px;
 }
 .dossier-card-title {
-  font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: #c8ff00;
+  font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: #9db8f8;
   letter-spacing: 0.08em; margin-bottom: 14px; padding-bottom: 10px;
-  border-bottom: 1px solid rgba(200,255,0,0.15);
+  border-bottom: 1px solid rgba(107,143,239,0.15);
 }
 .dossier-card p { color: rgba(255,255,255,0.75); font-size: 14px; line-height: 1.7; margin-bottom: 10px; }
 .dossier-card p:last-child { margin-bottom: 0; }
@@ -1173,8 +1173,8 @@ nav {
 }
 .dossier-checklist li:last-child { border-bottom: none; }
 .dossier-checklist .step-num {
-  min-width: 28px; height: 28px; border-radius: 50%; background: rgba(200,255,0,0.15);
-  color: #c8ff00; font-size: 12px; font-weight: 700; display: flex;
+  min-width: 28px; height: 28px; border-radius: 50%; background: rgba(107,143,239,0.15);
+  color: #9db8f8; font-size: 12px; font-weight: 700; display: flex;
   align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;
 }
 .dossier-checklist .step-body { flex: 1; }
@@ -1185,10 +1185,10 @@ nav {
   padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
   font-size: 14px; color: rgba(255,255,255,0.75); display: flex; align-items: center; gap: 8px;
 }
-.dossier-doclist li::before { content: "▸"; color: #c8ff00; font-size: 11px; flex-shrink: 0; }
+.dossier-doclist li::before { content: "▸"; color: #9db8f8; font-size: 11px; flex-shrink: 0; }
 .dossier-doclist li:last-child { border-bottom: none; }
 .dossier-article { margin-bottom: 18px; }
-.dossier-article-num { font-size: 11px; font-weight: 700; color: #c8ff00; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+.dossier-article-num { font-size: 11px; font-weight: 700; color: #9db8f8; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
 .dossier-article-title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 6px; }
 .dossier-article-body { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.7; white-space: pre-wrap; }
 .dossier-badge {
@@ -1196,7 +1196,7 @@ nav {
   font-weight: 700; letter-spacing: 0.05em; margin-bottom: 12px;
 }
 .dossier-badge.physique { background: rgba(255,165,0,0.15); color: #ffa500; }
-.dossier-badge.numerique { background: rgba(200,255,0,0.12); color: #c8ff00; }
+.dossier-badge.numerique { background: rgba(107,143,239,0.12); color: #9db8f8; }
 .dossier-badge.hybride { background: rgba(100,200,255,0.12); color: #64c8ff; }
 .dossier-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .dossier-bank-card {
@@ -1205,14 +1205,14 @@ nav {
 }
 .dossier-bank-name { font-weight: 700; color: #fff; font-size: 15px; margin-bottom: 4px; }
 .dossier-bank-offer { font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 6px; }
-.dossier-bank-price { font-size: 13px; font-weight: 600; color: #c8ff00; }
+.dossier-bank-price { font-size: 13px; font-weight: 600; color: #9db8f8; }
 .dossier-loading {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   height: 300px; gap: 20px;
 }
 .dossier-spinner {
-  width: 48px; height: 48px; border: 3px solid rgba(200,255,0,0.15);
-  border-top-color: #c8ff00; border-radius: 50%; animation: spin 0.8s linear infinite;
+  width: 48px; height: 48px; border: 3px solid rgba(107,143,239,0.15);
+  border-top-color: #9db8f8; border-radius: 50%; animation: spin 0.8s linear infinite;
 }
 .dossier-loading-text { font-size: 14px; color: rgba(255,255,255,0.5); }
 
@@ -1758,7 +1758,7 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
             </div>
             <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:14px">
               <div class="mock-row-item"><span>Analyse de marché</span><span class="mock-tag-g">✓ Complète</span></div>
-              <div class="mock-row-item"><span>📧 Email fournisseur</span><span class="mock-tag-g">✓ Prêt</span></div>
+              <div class="mock-row-item"><span>Email fournisseur</span><span class="mock-tag-g">✓ Prêt</span></div>
               <div class="mock-row-item"><span>Démarches URSSAF</span><span class="mock-tag-b">→ Voir</span></div>
             </div>
             <div style="background:rgba(107,143,239,0.07);border:1px solid rgba(107,143,239,0.15);border-radius:10px;padding:14px">
@@ -1859,7 +1859,7 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
     <div class="legal-footer-inner">
       <div class="legal-footer-brand">
         <span style="font-family:'Fraunces',serif;font-size:18px;color:#9db8f8">EADEE</span>
-        <span style="font-size:12px;color:#7a7f9a;margin-top:4px">Intelligence Business · Conçu en France 🇫🇷</span>
+        <span style="font-size:12px;color:#7a7f9a;margin-top:4px">Intelligence Business · Conçu en France</span>
       </div>
       <div class="legal-footer-links">
         <button class="legal-link" onclick="openLegal('mentions')">Mentions légales</button>
@@ -2074,18 +2074,23 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
               <div id="dashResult" style="display:none;flex-direction:column;flex:1;">
 
                 <!-- PLAN HEADER -->
-                <div style="padding:28px 28px 20px;border-bottom:1px solid rgba(255,255,255,0.07);">
-                  <div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;color:rgba(255,255,255,0.25);text-transform:uppercase;margin-bottom:8px;">Business Plan — Généré par Eadee</div>
-                  <div id="dBizName" style="font-family:'Bebas Neue',sans-serif;font-size:48px;line-height:1;color:var(--acid);letter-spacing:0.03em;">—</div>
-                  <div id="dBizTagline" style="font-family:'DM Mono',monospace;font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:0.08em;margin-top:4px;">—</div>
+                <div style="padding:24px 28px 20px;border-bottom:1px solid rgba(255,255,255,0.07);">
+                  <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px;">
+                    <div>
+                      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;color:rgba(255,255,255,0.2);text-transform:uppercase;margin-bottom:6px;">Business Plan · Eadee</div>
+                      <div id="dBizName" style="font-family:'Fraunces',serif;font-size:32px;font-weight:300;line-height:1.1;color:#ecedf2;">—</div>
+                      <div id="dBizTagline" style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.35);margin-top:5px;">—</div>
+                    </div>
+                    <div id="dPlanBadge" style="flex-shrink:0;background:rgba(167,139,250,0.15);border:1px solid rgba(167,139,250,0.3);color:#a78bfa;font-family:'Geist',sans-serif;font-size:12px;font-weight:600;padding:5px 12px;border-radius:20px;white-space:nowrap;margin-top:4px;"></div>
+                  </div>
 
                   <!-- VIABILITY SCORE -->
-                  <div style="display:flex;align-items:center;gap:16px;margin-top:16px;">
-                    <div style="font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.1em;text-transform:uppercase;">Score de viabilité</div>
-                    <div style="flex:1;height:6px;background:rgba(255,255,255,0.07);border-radius:3px;overflow:hidden;">
-                      <div id="dScoreBar" style="height:100%;background:var(--acid);border-radius:3px;transition:width 1s ease;width:0%"></div>
+                  <div style="display:flex;align-items:center;gap:12px;">
+                    <div style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.25);letter-spacing:0.1em;text-transform:uppercase;white-space:nowrap;">Viabilité</div>
+                    <div style="flex:1;height:4px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden;">
+                      <div id="dScoreBar" style="height:100%;background:#34d399;border-radius:2px;transition:width 1s ease;width:0%"></div>
                     </div>
-                    <div id="dScore" style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--acid);">—</div>
+                    <div id="dScore" style="font-family:'DM Mono',monospace;font-size:13px;font-weight:600;color:#34d399;">—</div>
                   </div>
                 </div>
 
@@ -2179,7 +2184,7 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
                   <!-- 12. PITCH 30S -->
                   <div class="plan-block">
                     <div class="plan-block-title">12 — Ton Pitch 30 Secondes</div>
-                    <div id="dPitch" style="font-size:15px;line-height:1.85;color:#fff;background:rgba(200,255,0,0.06);border:1px solid rgba(200,255,0,0.2);border-radius:8px;padding:18px;font-style:italic;"></div>
+                    <div id="dPitch" style="font-size:15px;line-height:1.85;color:#fff;background:rgba(107,143,239,0.06);border:1px solid rgba(107,143,239,0.2);border-radius:8px;padding:18px;font-style:italic;"></div>
                   </div>
 
                   <!-- 13. PERSONA CLIENT -->
@@ -2190,7 +2195,7 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
 
                   <!-- 14. DÉMARCHES ADMIN (Builder/Empire) -->
                   <div class="plan-block" id="dDemarchesBlock">
-                    <div class="plan-block-title">14 — Démarches Administratives 🇫🇷</div>
+                    <div class="plan-block-title">14 — Démarches Administratives</div>
                     <div id="dDemarches" style="display:flex;flex-direction:column;gap:10px;"></div>
                   </div>
 
@@ -2256,7 +2261,7 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
                 </div>
                 <!-- EMPIRE -->
                 <div class="pay-plan-option pay-plan-empire" data-plan="empire" data-price="19.99" onclick="selectPayPlan(this)">
-                  <div style="position:absolute;top:-12px;right:16px;background:linear-gradient(90deg,#c8ff00,#a8e000);color:#0a0a0a;font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.1em;padding:3px 12px;border-radius:20px;">MEILLEUR CHOIX</div>
+                  <div style="position:absolute;top:-12px;right:16px;background:linear-gradient(90deg,#9db8f8,#a8e000);color:#0a0a0a;font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.1em;padding:3px 12px;border-radius:20px;">MEILLEUR CHOIX</div>
                   <div class="radio-circle"><div class="radio-dot"></div></div>
                   <div style="flex:1;margin-left:14px">
                     <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
@@ -2399,7 +2404,7 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
               <input id="chat-input" type="text" placeholder="Pose ta question business..." onkeydown="if(event.key==='Enter')sendChatMessage()"
                 style="flex:1;padding:14px 16px;border:1.5px solid rgba(0,0,0,0.15);border-radius:8px;font-family:inherit;font-size:15px;outline:none;background:#fff"/>
               <button onclick="sendChatMessage()" id="chat-send-btn"
-                style="padding:14px 24px;background:#0a0a0a;color:#c8ff00;border:none;border-radius:8px;font-family:'Bebas Neue',sans-serif;font-size:18px;cursor:pointer;white-space:nowrap">
+                style="padding:14px 24px;background:#0a0a0a;color:#9db8f8;border:none;border-radius:8px;font-family:'Bebas Neue',sans-serif;font-size:18px;cursor:pointer;white-space:nowrap">
                 ENVOYER
               </button>
             </div>
@@ -2822,6 +2827,14 @@ function fillPlan(plan) {
   // Header
   document.getElementById('dBizName').textContent = plan.nom_business || '—';
   document.getElementById('dBizTagline').textContent = plan.tagline || '';
+  const badge = document.getElementById('dPlanBadge');
+  if (badge) {
+    const labels = { empire: 'Empire ✦', builder: 'Builder', starter: 'Starter' };
+    badge.textContent = labels[currentPlan] || 'Starter';
+    if (currentPlan === 'empire') { badge.style.background = 'rgba(167,139,250,0.15)'; badge.style.borderColor = 'rgba(167,139,250,0.3)'; badge.style.color = '#a78bfa'; }
+    else if (currentPlan === 'builder') { badge.style.background = 'rgba(107,143,239,0.12)'; badge.style.borderColor = 'rgba(107,143,239,0.25)'; badge.style.color = '#9db8f8'; }
+    else { badge.style.background = 'rgba(255,255,255,0.05)'; badge.style.borderColor = 'rgba(255,255,255,0.1)'; badge.style.color = '#7a7f9a'; }
+  }
   const score = plan.score_viabilite || 72;
   document.getElementById('dScore').textContent = score + '/100';
   setTimeout(() => { document.getElementById('dScoreBar').style.width = score + '%'; }, 200);
@@ -2938,7 +2951,7 @@ function fillPlan(plan) {
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
           <div style="font-weight:700;font-size:13px;color:#fff">${d.etape}</div>
           <div style="display:flex;gap:8px">
-            <span style="font-family:'DM Mono',monospace;font-size:10px;background:rgba(200,255,0,0.1);color:var(--acid);padding:2px 8px;border-radius:20px">${d.delai}</span>
+            <span style="font-family:'DM Mono',monospace;font-size:10px;background:rgba(107,143,239,0.1);color:var(--acid);padding:2px 8px;border-radius:20px">${d.delai}</span>
             <span style="font-family:'DM Mono',monospace;font-size:10px;background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);padding:2px 8px;border-radius:20px">${d.cout}</span>
           </div>
         </div>
@@ -2968,7 +2981,7 @@ function fillPlan(plan) {
         <div style="padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between">
           <div style="font-weight:700;font-size:14px;color:#fff">${e.label}</div>
           <button onclick="copyEmail(this)" data-text="${encodeURIComponent('Objet: ' + e.data.sujet + '\n\n' + e.data.corps)}"
-            style="font-family:'DM Mono',monospace;font-size:11px;background:rgba(200,255,0,0.1);color:var(--acid);border:1px solid rgba(200,255,0,0.2);border-radius:20px;padding:4px 12px;cursor:pointer">
+            style="font-family:'DM Mono',monospace;font-size:11px;background:rgba(107,143,239,0.1);color:var(--acid);border:1px solid rgba(107,143,239,0.2);border-radius:20px;padding:4px 12px;cursor:pointer">
             Copier
           </button>
         </div>
@@ -3037,8 +3050,8 @@ function drawRevenueChart(monthlyData) {
 
   // Gradient fill under curve
   const grad = ctx.createLinearGradient(0, pad.t, 0, H - pad.b);
-  grad.addColorStop(0, 'rgba(200,255,0,0.2)');
-  grad.addColorStop(1, 'rgba(200,255,0,0)');
+  grad.addColorStop(0, 'rgba(107,143,239,0.2)');
+  grad.addColorStop(1, 'rgba(107,143,239,0)');
   ctx.beginPath();
   ctx.moveTo(pts[0].x, pts[0].y);
   for (let i = 1; i < pts.length; i++) {
@@ -3058,7 +3071,7 @@ function drawRevenueChart(monthlyData) {
     const cpx = (pts[i-1].x + pts[i].x) / 2;
     ctx.bezierCurveTo(cpx, pts[i-1].y, cpx, pts[i].y, pts[i].x, pts[i].y);
   }
-  ctx.strokeStyle = '#c8ff00';
+  ctx.strokeStyle = '#9db8f8';
   ctx.lineWidth = 2.5;
   ctx.stroke();
 
@@ -3069,7 +3082,7 @@ function drawRevenueChart(monthlyData) {
     // Dot
     ctx.beginPath();
     ctx.arc(x, y, 4, 0, Math.PI*2);
-    ctx.fillStyle = '#c8ff00';
+    ctx.fillStyle = '#9db8f8';
     ctx.fill();
     ctx.strokeStyle = '#0a0a0a';
     ctx.lineWidth = 2;
@@ -3077,7 +3090,7 @@ function drawRevenueChart(monthlyData) {
     // Value label above dot
     const val = monthlyData[i];
     const label = val >= 1000 ? (val/1000).toFixed(1)+'k€' : val+'€';
-    ctx.fillStyle = '#c8ff00';
+    ctx.fillStyle = '#9db8f8';
     ctx.font = 'bold 10px DM Mono, monospace';
     ctx.textAlign = 'center';
     ctx.fillText(label, x, y - 9);
@@ -3337,7 +3350,7 @@ function showPlanPreview(plan) {
   const d = demos[plan];
   title.textContent = d.title;
 
-  const scoreColor = d.score >= 80 ? '#c8ff00' : d.score >= 65 ? '#fbbf24' : '#f87171';
+  const scoreColor = d.score >= 80 ? '#9db8f8' : d.score >= 65 ? '#fbbf24' : '#f87171';
 
   let html = `
     <!-- SCORE -->
@@ -3421,7 +3434,7 @@ function showPlanPreview(plan) {
           <div style="background:rgba(255,255,255,0.07);border-radius:8px;padding:10px 14px;font-size:13px;color:rgba(255,255,255,0.8);line-height:1.6">Bonjour ! J'ai analysé ton business plan. Ta marge brute estimée de 68% est excellente pour ce secteur. Je te recommande de prioriser LinkedIn avant le SEO — voici pourquoi...</div>
         </div>
         <div style="display:flex;gap:10px;justify-content:flex-end">
-          <div style="background:rgba(200,255,0,0.1);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--acid)">Comment je trouve mes 5 premiers clients ?</div>
+          <div style="background:rgba(107,143,239,0.1);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--acid)">Comment je trouve mes 5 premiers clients ?</div>
         </div>
       </div>
     </div>`;
@@ -3475,7 +3488,7 @@ ${hasPlan ? `Je vois que tu travailles sur "${planName}". Je connais ton busines
 → "Modifie le prix de l'offre 2 à..."
 → "Réécris le résumé exécutif"
 
-📧 **Corriger / personnaliser tes emails**
+**Corriger / personnaliser tes emails**
 → "Adapte l'email fournisseur pour..."
 → "Rends l'email de prospection plus percutant"
 
@@ -3506,7 +3519,7 @@ function addChatBubble(role, text) {
   bubble.style.cssText = `display:flex;justify-content:${isUser ? 'flex-end' : 'flex-start'};margin-bottom:4px`;
   bubble.innerHTML = `
     <div style="max-width:80%;padding:14px 18px;border-radius:${isUser ? '18px 18px 4px 18px' : '18px 18px 18px 4px'};
-      background:${isUser ? '#0a0a0a' : '#f0ede6'};color:${isUser ? '#c8ff00' : '#0a0a0a'};
+      background:${isUser ? '#0a0a0a' : '#f0ede6'};color:${isUser ? '#9db8f8' : '#0a0a0a'};
       font-size:14px;line-height:1.7;white-space:pre-wrap">${formatted}</div>`;
   container.appendChild(bubble);
   container.scrollTop = container.scrollHeight;
@@ -3801,7 +3814,7 @@ function renderDossier(d, r) {
       <div class="dossier-card">
         <div class="dossier-card-title">⚖️ Forme juridique recommandée : ${fj.recommandation}</div>
         <p>${fj.pourquoi}</p>
-        ${avs ? `<div style="margin:12px 0 0"><strong style="color:#c8ff00;font-size:13px;">Avantages :</strong><ul class="dossier-doclist" style="margin-top:8px">${avs}</ul></div>` : ''}
+        ${avs ? `<div style="margin:12px 0 0"><strong style="color:#9db8f8;font-size:13px;">Avantages :</strong><ul class="dossier-doclist" style="margin-top:8px">${avs}</ul></div>` : ''}
         ${alts ? `<div style="margin:18px 0 0"><strong style="color:rgba(255,255,255,0.7);font-size:13px;">Alternatives à considérer :</strong><ul class="dossier-doclist" style="margin-top:8px">${alts}</ul></div>` : ''}
       </div>
     </div>`);
@@ -3837,7 +3850,7 @@ function renderDossier(d, r) {
       <div class="dossier-card">
         <div class="dossier-card-title">Inscription URSSAF & Sécurité Sociale</div>
         <p>${ursf.intro}</p>
-        ${ursf.regime ? `<p><strong style="color:#c8ff00">Régime :</strong> ${ursf.regime}</p>` : ''}
+        ${ursf.regime ? `<p><strong style="color:#9db8f8">Régime :</strong> ${ursf.regime}</p>` : ''}
       </div>
       ${ursafDocs ? `<div class="dossier-card">
         <div class="dossier-card-title">Documents requis</div>
@@ -3895,7 +3908,7 @@ function renderDossier(d, r) {
       <div class="dossier-section">
         <div class="dossier-card">
           <div class="dossier-card-title">📍 Recherche & prise de local</div>
-          ${loc.type_recommande ? `<p><strong style="color:#c8ff00">Type recommandé :</strong> ${loc.type_recommande}</p>` : ''}
+          ${loc.type_recommande ? `<p><strong style="color:#9db8f8">Type recommandé :</strong> ${loc.type_recommande}</p>` : ''}
           ${altsLoc ? `<div style="margin-top:12px"><strong style="color:rgba(255,255,255,0.7);font-size:13px;">Alternatives :</strong><ul class="dossier-doclist" style="margin-top:8px">${altsLoc}</ul></div>` : ''}
         </div>
         ${pts ? `<div class="dossier-card">
@@ -3919,7 +3932,7 @@ function renderDossier(d, r) {
   const invRows = invAdmin.map(i => `
     <li style="${i.obligatoire ? '' : 'opacity:0.6'}">
       <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${i.obligatoire ? '#9db8f8' : 'rgba(255,255,255,0.15)'};margin-right:8px;vertical-align:middle"></span>${i.poste}</span>
-      <span style="font-weight:600;color:${i.obligatoire ? '#c8ff00' : 'rgba(255,255,255,0.5)'}">${i.montant}</span>
+      <span style="font-weight:600;color:${i.obligatoire ? '#9db8f8' : 'rgba(255,255,255,0.5)'}">${i.montant}</span>
     </li>`).join('');
   sections.push(`
     <div class="dossier-section">
