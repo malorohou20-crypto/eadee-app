@@ -1008,8 +1008,10 @@ nav {
 /* Tablette (max 1024px) */
 @media (max-width: 1024px) {
   .hero-split { grid-template-columns: 1fr !important; }
-  .hero-mock-wrap { display: none !important; }
+  .hero-mock-wrap { display: flex !important; justify-content: center !important; margin-top: 32px !important; }
+  .hero-mock-app { width: 100% !important; max-width: 400px !important; transform: none !important; }
   .hero { padding: 60px 40px 48px !important; }
+  .features-strip { grid-template-columns: repeat(2, 1fr) !important; padding: 48px 32px !important; }
 }
 
 /* Mobile & Tablette (max 768px) */
@@ -1047,6 +1049,8 @@ nav {
     padding: 40px 20px !important; gap: 1px !important;
   }
   .feat-card { padding: 24px 20px !important; }
+  .hero-mock-app { max-width: 100% !important; }
+  .hero-mock-wrap { margin-top: 24px !important; }
 
   /* PRICING */
   .pricing-wrap { padding: 48px 20px !important; }
@@ -1282,7 +1286,13 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
 .pay-plan-option { background: #1a1d26 !important; border-color: rgba(255,255,255,0.08) !important; color: #ecedf2 !important; border-radius: 10px !important; }
 .pay-plan-option.selected { background: rgba(107,143,239,0.1) !important; border-color: #6b8fef !important; }
 .ppo-name { color: #ecedf2 !important; }
-.ppo-feat { color: #7a7f9a !important; }
+.ppo-feat { color: #7a7f9a !important; display: flex !important; align-items: baseline !important; gap: 6px !important; }
+.ppo-check { color: #9db8f8 !important; font-weight: 700 !important; font-size: 13px !important; flex-shrink: 0 !important; }
+.ppo-star { color: #fbbf24 !important; font-size: 11px !important; flex-shrink: 0 !important; }
+.ppo-dot { font-size: 11px !important; flex-shrink: 0 !important; }
+.ppo-blue { color: #9db8f8 !important; }
+.ppo-purple { color: #a78bfa !important; }
+.ppo-pink { color: #f472b6 !important; }
 .radio-circle { border-color: rgba(255,255,255,0.2) !important; }
 .pay-plan-option.selected .radio-circle { border-color: #6b8fef !important; }
 .radio-dot { background: #6b8fef !important; }
@@ -1364,7 +1374,6 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
 
 @media (max-width: 1024px) {
   .hero-split { grid-template-columns: 1fr; }
-  .hero-mock-wrap { display: none; }
 }
 
 /* Badge hero */
@@ -1470,7 +1479,6 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
   background: rgba(255,255,255,0.06) !important;
   border-top: 1px solid rgba(255,255,255,0.07) !important;
   border-bottom: 1px solid rgba(255,255,255,0.07) !important;
-  grid-template-columns: repeat(3, 1fr) !important;
 }
 .feat-card {
   background: #1a1d26 !important; padding: 36px 32px !important;
@@ -1522,7 +1530,7 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
 .plan-amount { color: #ecedf2 !important; }
 .plan-per { color: #7a7f9a !important; }
 .plan-feats li { color: #9db8f8 !important; border-color: rgba(255,255,255,0.06) !important; font-size: 13px !important; padding-left: 4px !important; }
-.plan-feats li::before { content: '✓' !important; color: #34d399 !important; font-weight: 700 !important; font-size: 12px !important; flex-shrink: 0 !important; display: inline-block !important; width: 16px !important; margin-right: 4px !important; }
+.plan-feats li::before { content: '✓' !important; color: #9db8f8 !important; font-weight: 700 !important; font-size: 12px !important; flex-shrink: 0 !important; display: inline-block !important; width: 16px !important; margin-right: 4px !important; }
 .popular .plan-feats li { color: #ecedf2 !important; }
 .plan-empire .plan-feats li { color: #ecedf2 !important; }
 .plan-for { color: #7a7f9a !important; font-style: italic; }
@@ -1749,12 +1757,12 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
               <div class="mock-kpi"><div style="font-family:'Fraunces',serif;font-size:22px;color:#fbbf24">SAS</div><div style="font-size:10px;color:#7a7f9a;margin-top:3px">Conseillé</div></div>
             </div>
             <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:14px">
-              <div class="mock-row-item"><span>📊 Analyse de marché</span><span class="mock-tag-g">✓ Complète</span></div>
+              <div class="mock-row-item"><span>Analyse de marché</span><span class="mock-tag-g">✓ Complète</span></div>
               <div class="mock-row-item"><span>📧 Email fournisseur</span><span class="mock-tag-g">✓ Prêt</span></div>
               <div class="mock-row-item"><span>🏛️ Démarches URSSAF</span><span class="mock-tag-b">→ Voir</span></div>
             </div>
             <div style="background:rgba(107,143,239,0.07);border:1px solid rgba(107,143,239,0.15);border-radius:10px;padding:14px">
-              <div style="font-size:11px;color:#7a7f9a;margin-bottom:10px">👑 <span style="color:#9db8f8;font-weight:500">Associé IA</span> "Change le prix de l'offre 2 à 149€ ?"</div>
+              <div style="font-size:11px;color:#7a7f9a;margin-bottom:10px"><span style="color:#fbbf24">✦</span> <span style="color:#9db8f8;font-weight:500">Associé IA</span> "Change le prix de l'offre 2 à 149€ ?"</div>
               <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:7px;padding:9px 12px;font-size:11px;color:#7a7f9a;display:flex;justify-content:space-between;align-items:center">
                 <span>Oui, et mets à jour le résumé aussi...</span>
                 <div style="background:linear-gradient(135deg,#6b8fef,#a78bfa);color:white;border:none;border-radius:5px;padding:4px 10px;font-size:11px;font-weight:600">→</div>
@@ -1777,12 +1785,12 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
 
   <!-- FEATURES -->
   <div class="features-strip">
-    <div class="feat-card"><div class="feat-icon">📊</div><div class="feat-title">Analyse de marché IA</div><div class="feat-desc">Notre IA analyse la taille du marché, identifie la concurrence et te positionne avec précision.</div></div>
-    <div class="feat-card"><div class="feat-icon">💰</div><div class="feat-title">Projections financières</div><div class="feat-desc">Des revenus réalistes basés sur ton budget, profil et secteur. Pas de promesses, de la data.</div></div>
-    <div class="feat-card"><div class="feat-icon">🚀</div><div class="feat-title">Plan d'action 30 jours</div><div class="feat-desc">Des actions concrètes, priorisées et exécutables dès demain. Fini la procrastination.</div></div>
-    <div class="feat-card"><div class="feat-icon">⚠️</div><div class="feat-title">Gestion des risques</div><div class="feat-desc">Les 3 risques majeurs + leurs solutions concrètes. Anticipe avant que ça arrive.</div></div>
-    <div class="feat-card"><div class="feat-icon">📄</div><div class="feat-title">Export PDF Pro</div><div class="feat-desc">Un document professionnel prêt à présenter à ta banque ou des investisseurs.</div></div>
-    <div class="feat-card"><div class="feat-icon">♾</div><div class="feat-title">Plans illimités</div><div class="feat-desc">Teste autant d'idées que tu veux. Pivot, itère, recommence sans jamais t'arrêter.</div></div>
+    <div class="feat-card"><div class="feat-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="1" y="9" width="3" height="8" rx="1" fill="#6b8fef"/><rect x="7" y="5" width="3" height="12" rx="1" fill="#9db8f8"/><rect x="13" y="1" width="3" height="16" rx="1" fill="#6b8fef"/></svg></div><div class="feat-title">Analyse de marché IA</div><div class="feat-desc">Notre IA analyse la taille du marché, identifie la concurrence et te positionne avec précision.</div></div>
+    <div class="feat-card"><div class="feat-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><polyline points="1,15 6,8 10,11 17,3" stroke="#9db8f8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="12,3 17,3 17,8" stroke="#9db8f8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="feat-title">Projections financières</div><div class="feat-desc">Des revenus réalistes basés sur ton budget, profil et secteur. Pas de promesses, de la data.</div></div>
+    <div class="feat-card"><div class="feat-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#a78bfa" stroke-width="1.5"/><polyline points="6,9 9,12 13,6" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="feat-title">Plan d'action 30 jours</div><div class="feat-desc">Des actions concrètes, priorisées et exécutables dès demain. Fini la procrastination.</div></div>
+    <div class="feat-card"><div class="feat-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 1L1 6v6c0 3.3 3.4 5.6 8 5.6s8-2.3 8-5.6V6L9 1z" stroke="#f472b6" stroke-width="1.5" stroke-linejoin="round"/><line x1="9" y1="7" x2="9" y2="10" stroke="#f472b6" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="12.5" r="0.8" fill="#f472b6"/></svg></div><div class="feat-title">Gestion des risques</div><div class="feat-desc">Les 3 risques majeurs + leurs solutions concrètes. Anticipe avant que ça arrive.</div></div>
+    <div class="feat-card"><div class="feat-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 2h8l4 4v11a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="#6b8fef" stroke-width="1.5" stroke-linejoin="round"/><polyline points="11,2 11,6 15,6" stroke="#6b8fef" stroke-width="1.5" stroke-linejoin="round"/><line x1="5" y1="10" x2="13" y2="10" stroke="#9db8f8" stroke-width="1.5" stroke-linecap="round"/><line x1="5" y1="13" x2="10" y2="13" stroke="#9db8f8" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="feat-title">Export PDF Pro</div><div class="feat-desc">Un document professionnel prêt à présenter à ta banque ou des investisseurs.</div></div>
+    <div class="feat-card"><div class="feat-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9c0-2.2 1.8-4 4-4s4 2 6 2 4-1.8 4-4" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/><path d="M16 9c0 2.2-1.8 4-4 4s-4-2-6-2-4 1.8-4 4" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/></svg></div><div class="feat-title">Plans illimités</div><div class="feat-desc">Teste autant d'idées que tu veux. Pivot, itère, recommence sans jamais t'arrêter.</div></div>
   </div>
 
   <!-- PRICING -->
@@ -1792,7 +1800,7 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
     <div class="pricing-grid">
       <!-- STARTER -->
       <div class="price-card" onclick="selectPlan('starter')">
-        <div class="plan-preview-btn" onclick="event.stopPropagation();showPlanPreview('starter')">👁 Voir un exemple</div>
+        <div class="plan-preview-btn" onclick="event.stopPropagation();showPlanPreview('starter')">Voir un exemple</div>
         <div class="plan-name">Starter</div>
         <div class="plan-amount"><sup>€</sup>0</div>
         <div class="plan-per">/ pour toujours</div>
@@ -1954,14 +1962,14 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
           <span class="sidebar-icon">⚡</span> Générateur
         </div>
         <div class="sidebar-link" onclick="showView('history')" data-view="history">
-          <span class="sidebar-icon">📋</span> Mes plans
+          <span class="sidebar-icon">▤</span> Mes plans
         </div>
         <div class="sidebar-link" id="chat-sidebar-link" onclick="openChat()" data-view="chat" style="display:none">
-          <span class="sidebar-icon">👑</span> Coach IA Empire
+          <span class="sidebar-icon" style="color:#fbbf24">✦</span> Coach IA Empire
         </div>
         <div class="sidebar-section">Compte</div>
         <div class="sidebar-link" onclick="showView('billing')" data-view="billing">
-          <span class="sidebar-icon">💳</span> Abonnement
+          <span class="sidebar-icon">◈</span> Abonnement
         </div>
         <div class="sidebar-link" onclick="showView('settings')" data-view="settings">
           <span class="sidebar-icon">⚙️</span> Paramètres
@@ -2052,7 +2060,7 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
             <!-- RESULT — full document -->
             <div class="result-panel" id="resultPanel" style="background:var(--ink);border-radius:6px;padding:0;overflow:hidden;min-height:500px;display:flex;flex-direction:column;">
               <div class="result-empty-state" id="dashEmptyState" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;color:rgba(255,255,255,0.2);padding:40px;">
-                <div style="font-size:48px;opacity:0.2">📋</div>
+                <div style="font-size:40px;opacity:0.15;font-family:'Fraunces',serif;color:#9db8f8">▤</div>
                 <div style="font-size:14px;max-width:200px;line-height:1.5">Ton business plan complet apparaîtra ici</div>
               </div>
 
@@ -2194,9 +2202,9 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
 
                   <!-- ACTIONS -->
                   <div style="display:flex;gap:10px;margin-top:8px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.07);">
-                    <button class="res-btn" onclick="copyPlan()">📋 Copier</button>
+                    <button class="res-btn" onclick="copyPlan()">Copier</button>
                     <button class="res-btn" onclick="savePlan()">💾 Sauvegarder</button>
-                    <button class="res-btn primary" onclick="generateDossier()">📋 Dossier Création</button>
+                    <button class="res-btn primary" onclick="generateDossier()">Dossier Création</button>
                   </div>
                 </div>
               </div>
@@ -2238,11 +2246,11 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
                       <div class="ppo-price">19€<span style="font-size:12px;font-weight:400;color:var(--muted)">/mois</span></div>
                     </div>
                     <div style="display:flex;flex-direction:column;gap:4px">
-                      <div class="ppo-feat">✅ Business plans <strong>illimités</strong></div>
-                      <div class="ppo-feat">✅ Export PDF professionnel</div>
-                      <div class="ppo-feat">✅ Pitch deck inclus</div>
-                      <div class="ppo-feat">✅ Historique de tous tes plans</div>
-                      <div class="ppo-feat">✅ Support prioritaire</div>
+                      <div class="ppo-feat"><span class="ppo-check">✓</span> Business plans <strong>illimités</strong></div>
+                      <div class="ppo-feat"><span class="ppo-check">✓</span> Export PDF professionnel</div>
+                      <div class="ppo-feat"><span class="ppo-check">✓</span> Pitch deck inclus</div>
+                      <div class="ppo-feat"><span class="ppo-check">✓</span> Historique de tous tes plans</div>
+                      <div class="ppo-feat"><span class="ppo-check">✓</span> Support prioritaire</div>
                     </div>
                   </div>
                 </div>
@@ -2252,23 +2260,23 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
                   <div class="radio-circle"><div class="radio-dot"></div></div>
                   <div style="flex:1;margin-left:14px">
                     <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
-                      <div class="ppo-name">Empire 👑</div>
+                      <div class="ppo-name">Empire <span style="color:#fbbf24;font-size:14px">✦</span></div>
                       <div class="ppo-price">39.99€<span style="font-size:12px;font-weight:400;color:var(--muted)">/mois</span></div>
                     </div>
                     <div style="display:flex;flex-direction:column;gap:4px">
-                      <div class="ppo-feat">✅ <strong>Tout ce qui est inclus dans Builder</strong></div>
-                      <div class="ppo-feat">👑 <strong>Chat IA Coach</strong> — conseiller 24h/24</div>
-                      <div class="ppo-feat">📊 Étude de marché complète</div>
-                      <div class="ppo-feat">📋 Modèle financier Excel</div>
-                      <div class="ppo-feat">🎯 Coaching mensuel 1h (visio)</div>
-                      <div class="ppo-feat">🔌 Accès API direct</div>
+                      <div class="ppo-feat"><span class="ppo-check">✓</span> <strong>Tout ce qui est inclus dans Builder</strong></div>
+                      <div class="ppo-feat"><span class="ppo-star">✦</span> <strong>Chat IA Coach</strong> — conseiller 24h/24</div>
+                      <div class="ppo-feat"><span class="ppo-dot ppo-blue">◈</span> Étude de marché complète</div>
+                      <div class="ppo-feat"><span class="ppo-dot ppo-purple">◈</span> Modèle financier Excel</div>
+                      <div class="ppo-feat"><span class="ppo-dot ppo-pink">◈</span> Coaching mensuel 1h (visio)</div>
+                      <div class="ppo-feat"><span class="ppo-dot ppo-blue">◈</span> Accès API direct</div>
                     </div>
                   </div>
                 </div>
               </div>
 
               <div class="stripe-form">
-                <div class="stripe-title">💳 Paiement sécurisé</div>
+                <div class="stripe-title">Paiement sécurisé</div>
 
                 <div class="form-group">
                   <label class="form-label">Titulaire de la carte</label>
@@ -2279,11 +2287,11 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
                   <label class="form-label">Numéro de carte</label>
                   <div class="card-element-wrap">
                     <div class="fake-card-field">
-                      <span class="fake-card-icon">💳</span>
+                      <span class="fake-card-icon">◻</span>
                       <input type="text" id="cardNum" placeholder="1234 5678 9012 3456"
                         style="border:none;background:transparent;font-family:'DM Mono',monospace;font-size:14px;outline:none;flex:1;color:var(--ink);letter-spacing:0.1em"
                         maxlength="19" oninput="formatCard(this)">
-                      <span class="fake-card-lock">🔒</span>
+                      <span class="fake-card-lock">▪</span>
                     </div>
                   </div>
                 </div>
@@ -2300,7 +2308,7 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
                 </div>
 
                 <button class="pay-submit" id="payBtn" onclick="processPayment()">
-                  🔒 PAYER ET ACTIVER
+                  PAYER ET ACTIVER
                 </button>
 
                 <div class="stripe-badge">
@@ -2962,7 +2970,7 @@ function fillPlan(plan) {
           <div style="font-weight:700;font-size:14px;color:#fff">${e.label}</div>
           <button onclick="copyEmail(this)" data-text="${encodeURIComponent('Objet: ' + e.data.sujet + '\n\n' + e.data.corps)}"
             style="font-family:'DM Mono',monospace;font-size:11px;background:rgba(200,255,0,0.1);color:var(--acid);border:1px solid rgba(200,255,0,0.2);border-radius:20px;padding:4px 12px;cursor:pointer">
-            📋 Copier
+            Copier
           </button>
         </div>
         <div style="padding:14px 16px">
