@@ -2261,7 +2261,7 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
                 </div>
                 <!-- EMPIRE -->
                 <div class="pay-plan-option pay-plan-empire" data-plan="empire" data-price="19.99" onclick="selectPayPlan(this)">
-                  <div style="position:absolute;top:-12px;right:16px;background:linear-gradient(90deg,#9db8f8,#a8e000);color:#0a0a0a;font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:0.1em;padding:3px 12px;border-radius:20px;">MEILLEUR CHOIX</div>
+                  <div style="position:absolute;top:-12px;right:16px;background:linear-gradient(135deg,#a78bfa,#6b8fef);color:#fff;font-family:'Geist',sans-serif;font-weight:700;font-size:10px;letter-spacing:0.12em;padding:4px 12px;border-radius:20px;">MEILLEUR CHOIX</div>
                   <div class="radio-circle"><div class="radio-dot"></div></div>
                   <div style="flex:1;margin-left:14px">
                     <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
@@ -2361,7 +2361,7 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
           </div>
           <div style="max-width:480px;display:flex;flex-direction:column;gap:20px">
             <div class="gen-panel">
-              <div class="gen-panel-title" style="font-size:20px">👤 Mon profil</div>
+              <div class="gen-panel-title" style="font-size:18px;display:flex;align-items:center;gap:10px"><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="3" stroke="#9db8f8" stroke-width="1.6"/><path d="M3 17c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke="#9db8f8" stroke-width="1.6" stroke-linecap="round"/></svg> Mon profil</div>
               <div class="form-group">
                 <label class="form-label">Prénom & Nom</label>
                 <input type="text" class="form-input" id="settingsName" value="">
@@ -2373,7 +2373,7 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
               <button class="gen-btn" style="margin-top:10px;font-size:16px;padding:12px" onclick="saveSettings()">SAUVEGARDER</button>
             </div>
             <div class="gen-panel">
-              <div class="gen-panel-title" style="font-size:20px">🔑 Sécurité</div>
+              <div class="gen-panel-title" style="font-size:18px;display:flex;align-items:center;gap:10px"><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 1L3 5v6c0 3.6 3 6.5 7 7 4-0.5 7-3.4 7-7V5L10 1z" stroke="#9db8f8" stroke-width="1.6" stroke-linejoin="round"/></svg> Sécurité</div>
               <div class="form-group">
                 <label class="form-label">Nouveau mot de passe</label>
                 <input type="password" class="form-input" placeholder="••••••••">
@@ -2392,20 +2392,29 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
 
         <!-- CHAT EMPIRE VIEW -->
         <div class="dash-view" id="view-chat">
-          <div class="view-header">
-            <div>
-              <div class="view-title">Coach IA Empire</div>
-              <div class="view-sub">Ton conseiller business disponible 24h/24</div>
+          <!-- Chat header -->
+          <div style="display:flex;align-items:center;gap:14px;padding:0 0 24px;border-bottom:1px solid rgba(255,255,255,0.07);margin-bottom:24px;">
+            <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,rgba(167,139,250,0.25),rgba(107,143,239,0.15));border:1px solid rgba(167,139,250,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M18 9c0 4-3.6 7-8 7a8.8 8.8 0 01-3.5-.7L2 17l1.7-4A6.5 6.5 0 012 9c0-4 3.6-7 8-7s8 3 8 7z" stroke="#a78bfa" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7" cy="9" r="1" fill="#a78bfa"/><circle cx="10" cy="9" r="1" fill="#a78bfa"/><circle cx="13" cy="9" r="1" fill="#a78bfa"/></svg>
             </div>
+            <div>
+              <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:300;color:#ecedf2;line-height:1.2">Coach IA Empire</div>
+              <div style="font-size:12px;color:#7a7f9a;margin-top:2px;display:flex;align-items:center;gap:6px">
+                <span style="width:6px;height:6px;border-radius:50%;background:#34d399;display:inline-block"></span>Disponible 24h/24
+              </div>
+            </div>
+            <div style="margin-left:auto;background:rgba(167,139,250,0.12);border:1px solid rgba(167,139,250,0.25);color:#a78bfa;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;padding:4px 10px;border-radius:20px;">EMPIRE</div>
           </div>
-          <div style="display:flex;flex-direction:column;height:calc(100vh - 220px);max-width:800px">
-            <div id="chat-messages" style="flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:16px;padding:8px 0 24px"></div>
-            <div style="display:flex;gap:10px;padding-top:16px;border-top:1px solid rgba(0,0,0,0.08)">
-              <input id="chat-input" type="text" placeholder="Pose ta question business..." onkeydown="if(event.key==='Enter')sendChatMessage()"
-                style="flex:1;padding:14px 16px;border:1.5px solid rgba(0,0,0,0.15);border-radius:8px;font-family:inherit;font-size:15px;outline:none;background:#fff"/>
+          <div style="display:flex;flex-direction:column;height:calc(100vh - 300px);max-width:760px">
+            <div id="chat-messages" style="flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:12px;padding:4px 0 20px"></div>
+            <div style="display:flex;gap:10px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.07)">
+              <input id="chat-input" type="text" placeholder="Pose ta question business..."
+                onkeydown="if(event.key==='Enter')sendChatMessage()"
+                style="flex:1;padding:13px 16px;border:1px solid rgba(255,255,255,0.1);border-radius:10px;font-family:'Geist',sans-serif;font-size:14px;outline:none;background:rgba(255,255,255,0.04);color:#ecedf2;transition:border-color .2s;"
+                onfocus="this.style.borderColor='rgba(107,143,239,0.5)'" onblur="this.style.borderColor='rgba(255,255,255,0.1)'"/>
               <button onclick="sendChatMessage()" id="chat-send-btn"
-                style="padding:14px 24px;background:#0a0a0a;color:#9db8f8;border:none;border-radius:8px;font-family:'Bebas Neue',sans-serif;font-size:18px;cursor:pointer;white-space:nowrap">
-                ENVOYER
+                style="padding:13px 20px;background:linear-gradient(135deg,#6b8fef,#a78bfa);color:#fff;border:none;border-radius:10px;font-family:'Geist',sans-serif;font-size:14px;font-weight:600;cursor:pointer;white-space:nowrap;transition:opacity .2s;">
+                Envoyer
               </button>
             </div>
           </div>
@@ -3519,7 +3528,7 @@ function addChatBubble(role, text) {
   bubble.style.cssText = `display:flex;justify-content:${isUser ? 'flex-end' : 'flex-start'};margin-bottom:4px`;
   bubble.innerHTML = `
     <div style="max-width:80%;padding:14px 18px;border-radius:${isUser ? '18px 18px 4px 18px' : '18px 18px 18px 4px'};
-      background:${isUser ? '#0a0a0a' : '#f0ede6'};color:${isUser ? '#9db8f8' : '#0a0a0a'};
+      background:${isUser ? 'rgba(107,143,239,0.15)' : 'rgba(255,255,255,0.05)'};color:#ecedf2;border:1px solid ${isUser ? 'rgba(107,143,239,0.25)' : 'rgba(255,255,255,0.08)'};
       font-size:14px;line-height:1.7;white-space:pre-wrap">${formatted}</div>`;
   container.appendChild(bubble);
   container.scrollTop = container.scrollHeight;
