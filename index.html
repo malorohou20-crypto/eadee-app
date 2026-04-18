@@ -319,6 +319,30 @@ nav {
 .plan-feats li { font-size: 14px; }
 .plan-empire .plan-feats li { border-color: rgba(201,75,42,0.2); }
 .plan-for { font-size: 11px; color: var(--muted); font-style: italic; margin-bottom: 16px; margin-top: -12px; }
+.plan-preview-btn { display:inline-block; font-size:12px; color:var(--rust); border:1px solid var(--rust); border-radius:20px; padding:4px 12px; margin-bottom:12px; cursor:pointer; font-family:'DM Mono',monospace; letter-spacing:0.05em; transition:all .2s; }
+.plan-preview-btn:hover { background:var(--rust); color:#fff; }
+.plan-preview-dark { color:rgba(200,255,0,0.8); border-color:rgba(200,255,0,0.5); }
+.plan-preview-dark:hover { background:rgba(200,255,0,0.15); color:#c8ff00; }
+/* PREVIEW MODAL */
+.preview-modal-overlay { position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px); }
+.preview-modal { background:#0f0f0f;border-radius:12px;width:100%;max-width:780px;max-height:88vh;overflow:hidden;display:flex;flex-direction:column; }
+.preview-modal-header { padding:20px 24px;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between; }
+.preview-modal-title { font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--acid);letter-spacing:0.05em; }
+.preview-modal-close { background:none;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center; }
+.preview-modal-close:hover { border-color:#fff;color:#fff; }
+.preview-modal-body { flex:1;overflow-y:auto;padding:24px; }
+.preview-section { margin-bottom:20px; }
+.preview-section-title { font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--acid);margin-bottom:10px;display:flex;align-items:center;gap:8px; }
+.preview-section-title::after { content:'';flex:1;height:1px;background:rgba(200,255,0,0.12); }
+.preview-text { font-size:13px;line-height:1.75;color:rgba(255,255,255,0.7); }
+.preview-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:4px; }
+.preview-cell { background:rgba(200,255,0,0.08);border:1px solid rgba(200,255,0,0.2);border-radius:6px;padding:10px;text-align:center; }
+.preview-cell-label { font-family:'DM Mono',monospace;font-size:8px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:4px; }
+.preview-cell-val { font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--acid); }
+.preview-tag { display:inline-block;background:rgba(200,255,0,0.1);border:1px solid rgba(200,255,0,0.2);color:var(--acid);font-size:11px;padding:3px 10px;border-radius:20px;margin:3px; }
+.preview-locked { background:rgba(255,255,255,0.03);border:1px dashed rgba(255,255,255,0.1);border-radius:8px;padding:16px;text-align:center;color:rgba(255,255,255,0.3);font-size:13px; }
+.preview-cta { width:100%;padding:14px;background:var(--acid);color:var(--ink);border:none;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:0.1em;border-radius:6px;cursor:pointer;margin-top:16px;transition:background .2s; }
+.preview-cta:hover { background:#b5e800; }
 
 .plan-cta {
   width: 100%; padding: 14px;
@@ -1167,6 +1191,7 @@ nav {
     <div class="pricing-grid">
       <!-- STARTER -->
       <div class="price-card" onclick="selectPlan('starter')">
+        <div class="plan-preview-btn" onclick="event.stopPropagation();showPlanPreview('starter')">👁 Voir un exemple</div>
         <div class="plan-name">Starter</div>
         <div class="plan-amount"><sup>€</sup>0</div>
         <div class="plan-per">/ pour toujours</div>
@@ -1183,6 +1208,7 @@ nav {
       <!-- BUILDER -->
       <div class="price-card popular" onclick="selectPlan('builder')">
         <div class="pop-badge">⚡ Populaire</div>
+        <div class="plan-preview-btn plan-preview-dark" onclick="event.stopPropagation();showPlanPreview('builder')">👁 Voir un exemple</div>
         <div class="plan-name">Builder</div>
         <div class="plan-amount"><sup>€</sup>19</div>
         <div class="plan-per">/ mois — sans engagement</div>
@@ -1201,6 +1227,7 @@ nav {
       <!-- EMPIRE -->
       <div class="price-card plan-empire" onclick="selectPlan('empire')">
         <div class="pop-badge" style="background:var(--rust);color:#fff;">👑 Le plus complet</div>
+        <div class="plan-preview-btn" onclick="event.stopPropagation();showPlanPreview('empire')">👁 Voir un exemple</div>
         <div class="plan-name">Empire</div>
         <div class="plan-amount"><sup>€</sup>39.99</div>
         <div class="plan-per">/ mois — sans engagement</div>
@@ -1693,6 +1720,20 @@ nav {
 
       </main>
     </div>
+  </div>
+</div>
+
+<!-- PLAN PREVIEW MODAL -->
+<div id="planPreviewModal" class="preview-modal-overlay" style="display:none" onclick="if(event.target===this)closePlanPreview()">
+  <div class="preview-modal">
+    <div class="preview-modal-header">
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:4px">Exemple de résultat</div>
+        <div class="preview-modal-title" id="previewModalTitle">Business Plan — Restaurant Le Phare</div>
+      </div>
+      <button class="preview-modal-close" onclick="closePlanPreview()">✕</button>
+    </div>
+    <div class="preview-modal-body" id="previewModalBody"></div>
   </div>
 </div>
 
@@ -2380,6 +2421,169 @@ async function testAPIConnection() {
 
 // Run test after short delay
 setTimeout(testAPIConnection, 1500);
+
+// ========== PLAN PREVIEW ==========
+function showPlanPreview(plan) {
+  const modal = document.getElementById('planPreviewModal');
+  const body = document.getElementById('previewModalBody');
+  const title = document.getElementById('previewModalTitle');
+
+  const demos = {
+    starter: {
+      title: 'Business Plan — Cours de Yoga',
+      score: 71,
+      resume: 'Création d\'un studio de yoga à Lyon ciblant les actifs 25-45 ans. Le marché français du bien-être représente 4,8 Mds€ en 2024. Modèle basé sur abonnements mensuels + cours à l\'unité.',
+      marche: { taille:'4,8 Mds€', croissance:'+9%/an', part:'0,03%', clients:'12 000' },
+      revenus: ['800€','1 500€','2 800€','24 000€'],
+      locked: true
+    },
+    builder: {
+      title: 'Business Plan — Restaurant Le Phare',
+      score: 82,
+      resume: 'Restaurant de fruits de mer à Penmarc\'h, Bretagne. Ciblant touristes et locaux aisés. Le marché de la restauration bretonne pèse 1,2 Mds€. Capacité 40 couverts, ticket moyen 38€. Différenciation par la traçabilité pêche locale.',
+      marche: { taille:'1,2 Mds€', croissance:'+6%/an', part:'0,05%', clients:'8 500' },
+      revenus: ['3 200€','8 500€','15 000€','98 000€'],
+      concurrents: [
+        { nom:'L\'Armorique', menace:'haute', desc:'Restaurant similaire, 45 couverts, 42€ ticket moyen' },
+        { nom:'La Criée', menace:'moyenne', desc:'Poissonnerie-resto, format différent, prix plus bas' },
+        { nom:'Le Homard Bleu', menace:'faible', desc:'Haut de gamme, clientèle différente, +65€/pers' },
+      ],
+      actions: [
+        { phase:'Sem 1-2', titre:'Valider les fournisseurs locaux', detail:'Contacter 8 pêcheurs de la criée de Guilvinec, négocier tarifs grossiste.' },
+        { phase:'Sem 3-4', titre:'Lancer les réseaux sociaux', detail:'Instagram + Google My Business. Objectif : 500 abonnés avant ouverture.' },
+        { phase:'Mois 2', titre:'Ouverture test (weekends)', detail:'Service uniquement vendredi-dimanche. Collecter 50 avis Google.' },
+      ],
+      locked: false
+    },
+    empire: {
+      title: 'Business Plan — DevAgence Pro',
+      score: 88,
+      resume: 'Agence de développement web spécialisée PME en Île-de-France. Le marché des services digitaux aux PME représente 8,3 Mds€. Modèle MRR : forfaits maintenance 490-1 490€/mois + projets one-shot. Objectif 15 clients récurrents en 6 mois.',
+      marche: { taille:'8,3 Mds€', croissance:'+14%/an', part:'0,01%', clients:'45 000' },
+      revenus: ['2 900€','9 500€','18 500€','142 000€'],
+      concurrents: [
+        { nom:'Agence Digitale Paris', menace:'haute', desc:'50 salariés, clients CAC40, tarifs 2-3x plus élevés' },
+        { nom:'Freelances Malt', menace:'moyenne', desc:'Plateforme, pas de relation long terme, pas de maintenance' },
+        { nom:'Web Agence Lyon', menace:'faible', desc:'Hors zone géographique cible' },
+      ],
+      actions: [
+        { phase:'Sem 1-2', titre:'Créer 3 études de cas détaillées', detail:'Showcase de projets passés avec résultats mesurables (trafic, conversions, CA).' },
+        { phase:'Sem 3-4', titre:'Campagne LinkedIn ciblée', detail:'50 messages/jour vers dirigeants PME. Script testé A/B. Objectif : 5 RDV.' },
+        { phase:'Mois 2', titre:'Signer 3 premiers contrats maintenance', detail:'Objectif MRR 1 500€ minimum. Offre lancement -30% sur 3 mois.' },
+      ],
+      chat: true,
+      locked: false
+    }
+  };
+
+  const d = demos[plan];
+  title.textContent = d.title;
+
+  const scoreColor = d.score >= 80 ? '#c8ff00' : d.score >= 65 ? '#fbbf24' : '#f87171';
+
+  let html = `
+    <!-- SCORE -->
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;padding:16px;background:rgba(255,255,255,0.03);border-radius:8px">
+      <div style="font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.1em;text-transform:uppercase">Score de viabilité</div>
+      <div style="flex:1;height:8px;background:rgba(255,255,255,0.07);border-radius:4px;overflow:hidden">
+        <div style="height:100%;width:${d.score}%;background:${scoreColor};border-radius:4px;transition:width 1s ease"></div>
+      </div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:${scoreColor}">${d.score}/100</div>
+    </div>
+
+    <!-- RÉSUMÉ -->
+    <div class="preview-section">
+      <div class="preview-section-title">01 — Résumé Exécutif</div>
+      <div class="preview-text">${d.resume}</div>
+    </div>
+
+    <!-- MARCHÉ -->
+    <div class="preview-section">
+      <div class="preview-section-title">02 — Données de Marché</div>
+      <div class="preview-grid">
+        <div class="preview-cell"><div class="preview-cell-label">Marché</div><div class="preview-cell-val">${d.marche.taille}</div></div>
+        <div class="preview-cell"><div class="preview-cell-label">Croissance</div><div class="preview-cell-val">${d.marche.croissance}</div></div>
+        <div class="preview-cell"><div class="preview-cell-label">Part cible</div><div class="preview-cell-val">${d.marche.part}</div></div>
+        <div class="preview-cell"><div class="preview-cell-label">Clients potentiels</div><div class="preview-cell-val">${d.marche.clients}</div></div>
+      </div>
+    </div>
+
+    <!-- REVENUS -->
+    <div class="preview-section">
+      <div class="preview-section-title">03 — Projections Revenus</div>
+      <div class="preview-grid">
+        <div class="preview-cell"><div class="preview-cell-label">Mois 1</div><div class="preview-cell-val">${d.revenus[0]}</div></div>
+        <div class="preview-cell"><div class="preview-cell-label">Mois 3</div><div class="preview-cell-val">${d.revenus[1]}</div></div>
+        <div class="preview-cell"><div class="preview-cell-label">Mois 6</div><div class="preview-cell-val">${d.revenus[2]}</div></div>
+        <div class="preview-cell"><div class="preview-cell-label">An 1</div><div class="preview-cell-val">${d.revenus[3]}</div></div>
+      </div>
+    </div>`;
+
+  if (d.locked) {
+    html += `
+    <div class="preview-locked">
+      🔒 Analyse concurrentielle, Plan d'action 90j, Modèle financier détaillé,<br>Stratégie d'acquisition et outils recommandés<br>
+      <strong style="color:rgba(255,255,255,0.5)">inclus dans Builder & Empire</strong>
+    </div>`;
+  } else {
+    html += `
+    <!-- CONCURRENTS -->
+    <div class="preview-section">
+      <div class="preview-section-title">04 — Analyse Concurrentielle</div>
+      ${d.concurrents.map(c => `
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;gap:14px">
+          <div style="font-weight:700;font-size:13px;color:#fff;min-width:130px">${c.nom}</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.5);flex:1">${c.desc}</div>
+          <div style="font-size:11px;padding:2px 10px;border-radius:20px;background:${c.menace==='haute'?'rgba(248,65,65,0.15)':c.menace==='moyenne'?'rgba(251,191,36,0.15)':'rgba(52,211,153,0.15)'};color:${c.menace==='haute'?'#f87171':c.menace==='moyenne'?'#fbbf24':'#34d399'}">${c.menace}</div>
+        </div>`).join('')}
+    </div>
+
+    <!-- PLAN D'ACTION -->
+    <div class="preview-section">
+      <div class="preview-section-title">05 — Plan d'Action 90 Jours</div>
+      ${d.actions.map(a => `
+        <div style="display:grid;grid-template-columns:90px 1fr;border-bottom:1px solid rgba(255,255,255,0.05);padding:12px 0">
+          <div style="font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;color:var(--acid);letter-spacing:0.1em;display:flex;align-items:center">${a.phase}</div>
+          <div style="padding-left:14px">
+            <div style="font-weight:700;font-size:13px;color:#fff;margin-bottom:4px">${a.titre}</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:1.6">${a.detail}</div>
+          </div>
+        </div>`).join('')}
+    </div>`;
+
+    if (d.chat) {
+      html += `
+    <!-- EMPIRE CHAT -->
+    <div style="background:linear-gradient(135deg,rgba(201,75,42,0.15),rgba(201,75,42,0.05));border:1px solid rgba(201,75,42,0.3);border-radius:10px;padding:18px;margin-bottom:12px">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:#fff;margin-bottom:8px">👑 Chat IA Coach — Exclusif Empire</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.7;margin-bottom:14px">Après avoir généré ton plan, discute avec ton coach IA pour affiner ta stratégie, poser des questions spécifiques, et recevoir des conseils personnalisés à tout moment.</div>
+      <div style="background:rgba(0,0,0,0.3);border-radius:8px;padding:14px">
+        <div style="display:flex;gap:10px;margin-bottom:10px">
+          <div style="width:28px;height:28px;border-radius:50%;background:var(--rust);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0">👑</div>
+          <div style="background:rgba(255,255,255,0.07);border-radius:8px;padding:10px 14px;font-size:13px;color:rgba(255,255,255,0.8);line-height:1.6">Bonjour ! J'ai analysé ton business plan. Ta marge brute estimée de 68% est excellente pour ce secteur. Je te recommande de prioriser LinkedIn avant le SEO — voici pourquoi...</div>
+        </div>
+        <div style="display:flex;gap:10px;justify-content:flex-end">
+          <div style="background:rgba(200,255,0,0.1);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--acid)">Comment je trouve mes 5 premiers clients ?</div>
+        </div>
+      </div>
+    </div>`;
+    }
+  }
+
+  html += `<button class="preview-cta" onclick="closePlanPreview();selectPlan('${plan}')">
+    ${plan === 'starter' ? 'Commencer gratuitement' : plan === 'builder' ? '⚡ Choisir Builder — 19€/mois' : '👑 Passer à Empire — 39.99€/mois'}
+  </button>`;
+
+  body.innerHTML = html;
+  modal.style.display = 'flex';
+  setTimeout(() => {
+    const bar = modal.querySelector('[style*="width:' + d.score]');
+  }, 100);
+}
+
+function closePlanPreview() {
+  document.getElementById('planPreviewModal').style.display = 'none';
+}
 
 // ========== CHAT EMPIRE ==========
 const chatHistory = [];
