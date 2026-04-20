@@ -960,8 +960,74 @@ nav {
 .outil-prix { font-family:'DM Mono',monospace; font-size:11px; color:#9db8f8; margin-top:6px; display:inline-block; background:rgba(107,143,239,0.1); padding:2px 8px; border-radius:20px; }
 
 /* =============================================
-   DEMO SECTION — animated browser mockup
+   HERO BACKGROUND PLAN CARDS
    ============================================= */
+.hero-plan-bg {
+  position: absolute; inset: 0; overflow: hidden;
+  pointer-events: none; z-index: 0;
+}
+/* Gradient fade to protect text readability */
+.hero-plan-bg::after {
+  content: ''; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  background:
+    linear-gradient(to right, #13141a 0%, #13141a 12%, transparent 32%, transparent 68%, #13141a 88%, #13141a 100%),
+    linear-gradient(to bottom, rgba(13,14,20,0.5) 0%, transparent 20%, transparent 80%, rgba(13,14,20,0.7) 100%);
+}
+.hpc {
+  position: absolute;
+  z-index: 2;
+  background: rgba(19,21,29,0.85);
+  border: 1px solid rgba(107,143,239,0.15);
+  border-radius: 12px;
+  padding: 14px 16px;
+  width: 210px;
+  opacity: 0.45;
+  animation: hpcFloat var(--dur,8s) ease-in-out var(--delay,0s) infinite;
+}
+@keyframes hpcFloat {
+  0%,100% { transform: rotate(var(--rot,0deg)) translateY(0px); }
+  50%      { transform: rotate(var(--rot,0deg)) translateY(-10px); }
+}
+.hpc-label {
+  font-family:'DM Mono',monospace; font-size:8px; text-transform:uppercase;
+  letter-spacing:.12em; color:rgba(107,143,239,0.6); margin-bottom:9px;
+}
+.hpc-stat-grid { display:grid; grid-template-columns:1fr 1fr; gap:5px; }
+.hpc-stat {
+  background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06);
+  border-radius:7px; padding:8px 7px; text-align:center;
+}
+.hpc-stat-v {
+  font-family:'Bebas Neue',sans-serif; font-size:16px; color:#9db8f8; line-height:1;
+}
+.hpc-stat-l {
+  font-family:'DM Mono',monospace; font-size:7px; color:rgba(255,255,255,0.25);
+  text-transform:uppercase; letter-spacing:.08em; margin-top:3px;
+}
+.hpc-rev-row { display:grid; grid-template-columns:repeat(4,1fr); gap:4px; margin-top:2px; }
+.hpc-rev {
+  background:rgba(107,143,239,0.1); border:1px solid rgba(107,143,239,0.18);
+  border-radius:6px; padding:7px 4px; text-align:center; position:relative; overflow:hidden;
+}
+.hpc-rev::before { content:''; position:absolute; top:0; left:0; right:0; height:1.5px; background:#6b8fef; }
+.hpc-rev-p { font-family:'DM Mono',monospace; font-size:7px; color:rgba(255,255,255,0.3); text-transform:uppercase; margin-bottom:3px; }
+.hpc-rev-v { font-family:'Bebas Neue',sans-serif; font-size:15px; color:#9db8f8; line-height:1; }
+.hpc-cc { display:flex; align-items:center; gap:7px; padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.04); }
+.hpc-cc:last-child { border-bottom:none; }
+.hpc-cc-name { font-size:10px; font-weight:700; color:rgba(255,255,255,0.8); flex:1; }
+.hpc-badge { font-size:8px; padding:1px 7px; border-radius:20px; font-family:'DM Mono',monospace; white-space:nowrap; }
+.hpc-high { background:rgba(248,65,65,0.15); color:#f87171; }
+.hpc-med  { background:rgba(251,191,36,0.15); color:#fbbf24; }
+.hpc-low  { background:rgba(52,211,153,0.15); color:#34d399; }
+.hpc-action { display:flex; gap:8px; align-items:flex-start; padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.04); }
+.hpc-action:last-child { border-bottom:none; }
+.hpc-action-ph { font-family:'DM Mono',monospace; font-size:7.5px; color:#9db8f8; text-transform:uppercase; white-space:nowrap; min-width:42px; padding-top:2px; }
+.hpc-action-t { font-size:10px; font-weight:600; color:rgba(255,255,255,0.75); line-height:1.4; }
+.hpc-score-bar { height:3px; background:rgba(255,255,255,0.07); border-radius:2px; overflow:hidden; margin-top:6px; }
+.hpc-score-fill { height:100%; background:#9db8f8; border-radius:2px; }
+@media(max-width:768px) { .hero-plan-bg { display:none; } }
+
+/* DEMO placeholder (section removed) */
 .demo-section {
   padding: 100px 40px;
   max-width: 1100px;
@@ -1148,6 +1214,7 @@ nav {
 
 /* ANIMATIONS */
 @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+@keyframes heroScroll { 0%{transform:translateY(0)} 100%{transform:translateY(-50%)} }
 
 /* MOBILE BOTTOM NAV — base (caché sur desktop) */
 .mobile-nav {
@@ -1900,39 +1967,116 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
         </div>
       </div>
 
-      <!-- DROITE : mock app -->
+      <!-- DROITE : plan scrolling -->
       <div class="hero-mock-wrap">
-        <div class="hero-mock-app">
-          <div class="mock-topbar-row">
+        <div class="hero-mock-app" style="padding:0;overflow:hidden;max-height:560px;">
+          <!-- Browser bar -->
+          <div class="mock-topbar-row" style="padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.06);">
             <div style="width:10px;height:10px;border-radius:50%;background:#ff5f57"></div>
             <div style="width:10px;height:10px;border-radius:50%;background:#febc2e"></div>
             <div style="width:10px;height:10px;border-radius:50%;background:#28c840"></div>
             <div class="mock-url">eadee.fr/plan/velobretagne</div>
           </div>
-          <div class="mock-inner">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
-              <div>
-                <div style="font-family:'Fraunces',serif;font-size:20px;color:#ecedf2">VélôBretagne</div>
-                <div style="font-size:11px;color:#7a7f9a;margin-top:2px">Généré il y a 2 min · Plan complet</div>
+          <!-- Scrolling plan content -->
+          <div style="position:relative;overflow:hidden;height:510px;">
+            <!-- Fade top & bottom -->
+            <div style="position:absolute;top:0;left:0;right:0;height:48px;background:linear-gradient(to bottom,#1a1d26,transparent);z-index:2;pointer-events:none"></div>
+            <div style="position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(to top,#1a1d26,transparent);z-index:2;pointer-events:none"></div>
+            <!-- Animated content -->
+            <div style="animation:heroScroll 32s linear infinite;padding:0 0 8px;">
+
+              <!-- PLAN HEADER -->
+              <div style="padding:16px 18px 14px;border-bottom:1px solid rgba(255,255,255,0.06)">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+                  <div>
+                    <div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.28);letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px">Business Plan · 20 avr. 2026</div>
+                    <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:300;color:#ecedf2">VélôBretagne</div>
+                  </div>
+                  <div style="background:rgba(107,143,239,0.12);border:1px solid rgba(107,143,239,0.25);border-radius:20px;padding:3px 10px;font-family:'DM Mono',monospace;font-size:9px;color:#9db8f8;letter-spacing:.1em">EMPIRE</div>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px">
+                  <div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.25);text-transform:uppercase;letter-spacing:.1em;white-space:nowrap">Score</div>
+                  <div style="flex:1;height:4px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden"><div style="height:100%;width:87%;background:#9db8f8;border-radius:2px"></div></div>
+                  <div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:#9db8f8;line-height:1">87/100</div>
+                </div>
               </div>
-              <div style="background:linear-gradient(135deg,rgba(107,143,239,0.2),rgba(167,139,250,0.2));border:1px solid rgba(107,143,239,0.3);color:#9db8f8;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:500">Empire ✦</div>
-            </div>
-            <div style="display:flex;gap:10px;margin:18px 0">
-              <div class="mock-kpi"><div style="font-family:'Fraunces',serif;font-size:22px;color:#34d399">87<span style="font-size:13px">/100</span></div><div style="font-size:10px;color:#7a7f9a;margin-top:3px">Viabilité</div></div>
-              <div class="mock-kpi"><div style="font-family:'Fraunces',serif;font-size:22px;color:#9db8f8">68k€</div><div style="font-size:10px;color:#7a7f9a;margin-top:3px">CA An 1</div></div>
-              <div class="mock-kpi"><div style="font-family:'Fraunces',serif;font-size:22px;color:#fbbf24">SAS</div><div style="font-size:10px;color:#7a7f9a;margin-top:3px">Conseillé</div></div>
-            </div>
-            <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:14px">
-              <div class="mock-row-item"><span>Analyse de marché</span><span class="mock-tag-g">✓ Complète</span></div>
-              <div class="mock-row-item"><span>Email fournisseur</span><span class="mock-tag-g">✓ Prêt</span></div>
-              <div class="mock-row-item"><span>Démarches URSSAF</span><span class="mock-tag-b">→ Voir</span></div>
-            </div>
-            <div style="background:rgba(107,143,239,0.07);border:1px solid rgba(107,143,239,0.15);border-radius:10px;padding:14px">
-              <div style="font-size:11px;color:#7a7f9a;margin-bottom:10px"><span style="color:#fbbf24">✦</span> <span style="color:#9db8f8;font-weight:500">Associé IA</span> "Change le prix de l'offre 2 à 149€ ?"</div>
-              <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:7px;padding:9px 12px;font-size:11px;color:#7a7f9a;display:flex;justify-content:space-between;align-items:center">
-                <span>Oui, et mets à jour le résumé aussi...</span>
-                <div style="background:linear-gradient(135deg,#6b8fef,#a78bfa);color:white;border:none;border-radius:5px;padding:4px 10px;font-size:11px;font-weight:600">→</div>
+
+              <!-- 01 RÉSUMÉ -->
+              <div style="padding:14px 18px;border-bottom:1px solid rgba(255,255,255,0.05)">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="display:block;width:2px;height:12px;background:linear-gradient(180deg,#6b8fef,#a78bfa);border-radius:1px;flex-shrink:0"></span><span style="font-family:'Geist',sans-serif;font-size:10px;font-weight:600;color:#ecedf2">01 — Résumé Exécutif</span></div>
+                <div style="font-size:11px;line-height:1.75;color:rgba(255,255,255,0.55)">Location de vélos électriques haut de gamme en Bretagne. Marché <span style="color:#9db8f8;font-weight:600">1,8 Mds€</span>, croissance <span style="color:#9db8f8;font-weight:600">+22%/an</span>. Modèle journée + abonnement mensuel. Cible : touristes et locaux 25-55 ans.</div>
               </div>
+
+              <!-- 02 MARCHÉ -->
+              <div style="padding:14px 18px;border-bottom:1px solid rgba(255,255,255,0.05)">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="display:block;width:2px;height:12px;background:linear-gradient(180deg,#6b8fef,#a78bfa);border-radius:1px;flex-shrink:0"></span><span style="font-family:'Geist',sans-serif;font-size:10px;font-weight:600;color:#ecedf2">02 — Données de Marché</span></div>
+                <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px">
+                  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:7px;padding:8px 5px;text-align:center"><div style="font-family:'DM Mono',monospace;font-size:7px;color:rgba(255,255,255,0.28);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Marché</div><div style="font-family:'Bebas Neue',sans-serif;font-size:15px;color:#9db8f8;line-height:1">1,8 Mds€</div></div>
+                  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:7px;padding:8px 5px;text-align:center"><div style="font-family:'DM Mono',monospace;font-size:7px;color:rgba(255,255,255,0.28);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Croiss.</div><div style="font-family:'Bebas Neue',sans-serif;font-size:15px;color:#9db8f8;line-height:1">+22%/an</div></div>
+                  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:7px;padding:8px 5px;text-align:center"><div style="font-family:'DM Mono',monospace;font-size:7px;color:rgba(255,255,255,0.28);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Part cible</div><div style="font-family:'Bebas Neue',sans-serif;font-size:15px;color:#9db8f8;line-height:1">0,04%</div></div>
+                  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:7px;padding:8px 5px;text-align:center"><div style="font-family:'DM Mono',monospace;font-size:7px;color:rgba(255,255,255,0.28);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Clients</div><div style="font-family:'Bebas Neue',sans-serif;font-size:15px;color:#9db8f8;line-height:1">8 400</div></div>
+                </div>
+              </div>
+
+              <!-- 03 REVENUS -->
+              <div style="padding:14px 18px;border-bottom:1px solid rgba(255,255,255,0.05)">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="display:block;width:2px;height:12px;background:linear-gradient(180deg,#6b8fef,#a78bfa);border-radius:1px;flex-shrink:0"></span><span style="font-family:'Geist',sans-serif;font-size:10px;font-weight:600;color:#ecedf2">03 — Projections Financières</span></div>
+                <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5px">
+                  <div style="background:linear-gradient(135deg,rgba(107,143,239,0.1),rgba(107,143,239,0.03));border:1px solid rgba(107,143,239,0.2);border-radius:7px;padding:8px 5px;text-align:center;position:relative;overflow:hidden"><div style="position:absolute;top:0;left:0;right:0;height:1.5px;background:#6b8fef"></div><div style="font-family:'DM Mono',monospace;font-size:7px;color:rgba(255,255,255,0.3);margin-bottom:4px">Mois 1</div><div style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#9db8f8;line-height:1">1 200€</div></div>
+                  <div style="background:linear-gradient(135deg,rgba(107,143,239,0.1),rgba(107,143,239,0.03));border:1px solid rgba(107,143,239,0.2);border-radius:7px;padding:8px 5px;text-align:center;position:relative;overflow:hidden"><div style="position:absolute;top:0;left:0;right:0;height:1.5px;background:#6b8fef"></div><div style="font-family:'DM Mono',monospace;font-size:7px;color:rgba(255,255,255,0.3);margin-bottom:4px">Mois 3</div><div style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#9db8f8;line-height:1">4 800€</div></div>
+                  <div style="background:linear-gradient(135deg,rgba(107,143,239,0.1),rgba(107,143,239,0.03));border:1px solid rgba(107,143,239,0.2);border-radius:7px;padding:8px 5px;text-align:center;position:relative;overflow:hidden"><div style="position:absolute;top:0;left:0;right:0;height:1.5px;background:#6b8fef"></div><div style="font-family:'DM Mono',monospace;font-size:7px;color:rgba(255,255,255,0.3);margin-bottom:4px">Mois 6</div><div style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#9db8f8;line-height:1">9 500€</div></div>
+                  <div style="background:linear-gradient(135deg,rgba(107,143,239,0.1),rgba(107,143,239,0.03));border:1px solid rgba(107,143,239,0.2);border-radius:7px;padding:8px 5px;text-align:center;position:relative;overflow:hidden"><div style="position:absolute;top:0;left:0;right:0;height:1.5px;background:#6b8fef"></div><div style="font-family:'DM Mono',monospace;font-size:7px;color:rgba(255,255,255,0.3);margin-bottom:4px">An 1</div><div style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#9db8f8;line-height:1">68 000€</div></div>
+                </div>
+              </div>
+
+              <!-- 04 OFFRES -->
+              <div style="padding:14px 18px;border-bottom:1px solid rgba(255,255,255,0.05)">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="display:block;width:2px;height:12px;background:linear-gradient(180deg,#6b8fef,#a78bfa);border-radius:1px;flex-shrink:0"></span><span style="font-family:'Geist',sans-serif;font-size:10px;font-weight:600;color:#ecedf2">04 — Modèle Économique</span></div>
+                <div style="display:flex;flex-direction:column;gap:5px">
+                  <div style="background:rgba(107,143,239,0.07);border:1px solid rgba(107,143,239,0.18);border-radius:7px;padding:9px 12px;display:flex;justify-content:space-between;align-items:center"><div><div style="font-weight:700;font-size:10px;color:#fff">Location journée</div><div style="font-size:9px;color:rgba(255,255,255,0.4);margin-top:1px">Vélo électrique, casque inclus</div></div><div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:#9db8f8">35€/j</div></div>
+                  <div style="background:rgba(107,143,239,0.07);border:1px solid rgba(107,143,239,0.18);border-radius:7px;padding:9px 12px;display:flex;justify-content:space-between;align-items:center"><div><div style="font-weight:700;font-size:10px;color:#fff">Abonnement mensuel</div><div style="font-size:9px;color:rgba(255,255,255,0.4);margin-top:1px">Trajets illimités, priorité réservation</div></div><div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:#9db8f8">89€/m</div></div>
+                </div>
+              </div>
+
+              <!-- 05 CONCURRENTS -->
+              <div style="padding:14px 18px;border-bottom:1px solid rgba(255,255,255,0.05)">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="display:block;width:2px;height:12px;background:linear-gradient(180deg,#6b8fef,#a78bfa);border-radius:1px;flex-shrink:0"></span><span style="font-family:'Geist',sans-serif;font-size:10px;font-weight:600;color:#ecedf2">05 — Analyse Concurrentielle</span></div>
+                <div style="display:flex;flex-direction:column;gap:5px">
+                  <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:8px 10px;display:flex;align-items:center;gap:10px"><div style="font-weight:700;font-size:10px;color:#fff;min-width:90px">Cyclotour Pro</div><div style="font-size:9px;color:rgba(255,255,255,0.38);flex:1">Leader régional, 3x plus cher</div><div style="font-size:8px;padding:1px 7px;border-radius:20px;background:rgba(248,65,65,0.15);color:#f87171;font-family:'DM Mono',monospace;white-space:nowrap">haute</div></div>
+                  <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:8px 10px;display:flex;align-items:center;gap:10px"><div style="font-weight:700;font-size:10px;color:#fff;min-width:90px">Vélomax Quimper</div><div style="font-size:9px;color:rgba(255,255,255,0.38);flex:1">E-bikes low-cost, SAV absent</div><div style="font-size:8px;padding:1px 7px;border-radius:20px;background:rgba(251,191,36,0.15);color:#fbbf24;font-family:'DM Mono',monospace;white-space:nowrap">moyenne</div></div>
+                  <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:8px 10px;display:flex;align-items:center;gap:10px"><div style="font-weight:700;font-size:10px;color:#fff;min-width:90px">Breizh Bikes</div><div style="font-size:9px;color:rgba(255,255,255,0.38);flex:1">Flotte vieillissante, pas d'e-bike</div><div style="font-size:8px;padding:1px 7px;border-radius:20px;background:rgba(52,211,153,0.15);color:#34d399;font-family:'DM Mono',monospace;white-space:nowrap">faible</div></div>
+                </div>
+              </div>
+
+              <!-- 06 PLAN D'ACTION -->
+              <div style="padding:14px 18px;border-bottom:1px solid rgba(255,255,255,0.05)">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="display:block;width:2px;height:12px;background:linear-gradient(180deg,#6b8fef,#a78bfa);border-radius:1px;flex-shrink:0"></span><span style="font-family:'Geist',sans-serif;font-size:10px;font-weight:600;color:#ecedf2">06 — Plan d'Action 90 Jours</span></div>
+                <div>
+                  <div style="display:grid;grid-template-columns:58px 1fr;border-bottom:1px solid rgba(255,255,255,0.04);padding:8px 0"><div style="font-family:'DM Mono',monospace;font-size:7.5px;color:#9db8f8;text-transform:uppercase;display:flex;align-items:center">Sem 1-2</div><div style="padding-left:10px"><div style="font-weight:700;font-size:10px;color:#fff;margin-bottom:2px">Commander 8 vélos test</div><div style="font-size:9px;color:rgba(255,255,255,0.38)">Decathlon Pro + Riese & Müller</div></div></div>
+                  <div style="display:grid;grid-template-columns:58px 1fr;border-bottom:1px solid rgba(255,255,255,0.04);padding:8px 0"><div style="font-family:'DM Mono',monospace;font-size:7.5px;color:#9db8f8;text-transform:uppercase;display:flex;align-items:center">Sem 3-4</div><div style="padding-left:10px"><div style="font-weight:700;font-size:10px;color:#fff;margin-bottom:2px">Lancer Google My Business</div><div style="font-size:9px;color:rgba(255,255,255,0.38)">Photos pro, objectif Top 3 local</div></div></div>
+                  <div style="display:grid;grid-template-columns:58px 1fr;padding:8px 0"><div style="font-family:'DM Mono',monospace;font-size:7.5px;color:#9db8f8;text-transform:uppercase;display:flex;align-items:center">Mois 2</div><div style="padding-left:10px"><div style="font-weight:700;font-size:10px;color:#fff;margin-bottom:2px">Partenariats hôtels Bretagne</div><div style="font-size:9px;color:rgba(255,255,255,0.38)">20 hôtels/gîtes, commission 10%</div></div></div>
+                </div>
+              </div>
+
+              <!-- 07 COACH IA -->
+              <div style="padding:14px 18px;border-bottom:1px solid rgba(255,255,255,0.05)">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="display:block;width:2px;height:12px;background:linear-gradient(180deg,#a78bfa,#f472b6);border-radius:1px;flex-shrink:0"></span><span style="font-family:'Geist',sans-serif;font-size:10px;font-weight:600;color:#ecedf2">Coach IA — Disponible 24h/24</span></div>
+                <div style="background:rgba(107,143,239,0.06);border:1px solid rgba(107,143,239,0.18);border-radius:8px;padding:10px">
+                  <div style="display:flex;gap:7px;margin-bottom:7px"><div style="width:20px;height:20px;border-radius:6px;background:linear-gradient(135deg,rgba(167,139,250,0.3),rgba(107,143,239,0.2));border:1px solid rgba(167,139,250,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="9" height="9" viewBox="0 0 20 20" fill="none"><path d="M18 9c0 4-3.6 7-8 7a8.8 8.8 0 01-3.5-.7L2 17l1.7-4A6.5 6.5 0 012 9c0-4 3.6-7 8-7s8 3 8 7z" stroke="#a78bfa" stroke-width="1.8" stroke-linejoin="round"/></svg></div><div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);border-radius:0 8px 8px 8px;padding:7px 10px;font-size:9px;color:rgba(255,255,255,0.65);line-height:1.6">Ta marge de 71% est solide. Je recommande les partenariats hôtels avant la pub — ROI 3x plus rapide.</div></div>
+                  <div style="display:flex;justify-content:flex-end"><div style="background:rgba(107,143,239,0.12);border:1px solid rgba(107,143,239,0.2);border-radius:8px 0 8px 8px;padding:5px 10px;font-size:9px;color:#9db8f8">Comment signer mes 10 premiers clients ?</div></div>
+                </div>
+              </div>
+
+              <!-- Spacer + repeat header pour loop -->
+              <div style="height:30px"></div>
+              <div style="padding:16px 18px 14px;border-bottom:1px solid rgba(255,255,255,0.06)">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+                  <div><div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.28);letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px">Business Plan · 20 avr. 2026</div><div style="font-family:'Fraunces',serif;font-size:18px;font-weight:300;color:#ecedf2">VélôBretagne</div></div>
+                  <div style="background:rgba(107,143,239,0.12);border:1px solid rgba(107,143,239,0.25);border-radius:20px;padding:3px 10px;font-family:'DM Mono',monospace;font-size:9px;color:#9db8f8;letter-spacing:.1em">EMPIRE</div>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px"><div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.25);text-transform:uppercase;letter-spacing:.1em;white-space:nowrap">Score</div><div style="flex:1;height:4px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden"><div style="height:100%;width:87%;background:#9db8f8;border-radius:2px"></div></div><div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:#9db8f8;line-height:1">87/100</div></div>
+              </div>
+
             </div>
           </div>
         </div>
@@ -1957,123 +2101,6 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
     <div class="feat-card"><div class="feat-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 1L1 6v6c0 3.3 3.4 5.6 8 5.6s8-2.3 8-5.6V6L9 1z" stroke="#f472b6" stroke-width="1.5" stroke-linejoin="round"/><line x1="9" y1="7" x2="9" y2="10" stroke="#f472b6" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="12.5" r="0.8" fill="#f472b6"/></svg></div><div class="feat-title">Gestion des risques</div><div class="feat-desc">Les 3 risques majeurs + leurs solutions concrètes. Anticipe avant que ça arrive.</div></div>
     <div class="feat-card"><div class="feat-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 2h8l4 4v11a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="#6b8fef" stroke-width="1.5" stroke-linejoin="round"/><polyline points="11,2 11,6 15,6" stroke="#6b8fef" stroke-width="1.5" stroke-linejoin="round"/><line x1="5" y1="10" x2="13" y2="10" stroke="#9db8f8" stroke-width="1.5" stroke-linecap="round"/><line x1="5" y1="13" x2="10" y2="13" stroke="#9db8f8" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="feat-title">Export PDF Pro</div><div class="feat-desc">Un document professionnel prêt à présenter à ta banque ou des investisseurs.</div></div>
     <div class="feat-card"><div class="feat-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9c0-2.2 1.8-4 4-4s4 2 6 2 4-1.8 4-4" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/><path d="M16 9c0 2.2-1.8 4-4 4s-4-2-6-2-4 1.8-4 4" stroke="#fbbf24" stroke-width="2" stroke-linecap="round"/></svg></div><div class="feat-title">Plans illimités</div><div class="feat-desc">Teste autant d'idées que tu veux. Pivot, itère, recommence sans jamais t'arrêter.</div></div>
-  </div>
-
-  <!-- DEMO ANIMÉE -->
-  <div class="demo-section">
-    <div class="demo-section-label">Aperçu en direct</div>
-    <h2 class="demo-section-title">Ce que tu reçois en <em style="color:#9db8f8;font-style:italic">60 secondes</em></h2>
-    <p class="demo-section-sub">Un dossier complet, structuré, prêt à envoyer — généré pour ton secteur, ton budget, ta vision.</p>
-
-    <div class="demo-browser-wrap">
-      <div class="demo-browser-glow"></div>
-      <div class="demo-browser">
-        <!-- Browser chrome bar -->
-        <div class="demo-bar">
-          <div class="demo-dots"><span></span><span></span><span></span></div>
-          <div class="demo-url-pill">
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1a4 4 0 100 8A4 4 0 005 1zm0 0c1 1.5 1.5 3 1.5 4S6 7.5 5 9M5 1C4 2.5 3.5 4 3.5 5S4 7.5 5 9M1 5h8" stroke="rgba(255,255,255,0.25)" stroke-width="1" stroke-linecap="round"/></svg>
-            eadee.fr/plan/velobretagne
-          </div>
-          <div style="width:52px"></div>
-        </div>
-        <!-- Scrolling content -->
-        <div class="demo-viewport">
-          <div class="demo-content">
-
-            <!-- Plan header -->
-            <div style="padding:18px 20px 14px;border-bottom:1px solid rgba(255,255,255,0.06)">
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-                <div>
-                  <div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.28);letter-spacing:.14em;text-transform:uppercase;margin-bottom:5px">Business Plan · 20 avril 2026</div>
-                  <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:300;color:#ecedf2">VélôBretagne</div>
-                </div>
-                <div style="background:rgba(107,143,239,0.12);border:1px solid rgba(107,143,239,0.25);border-radius:20px;padding:3px 10px;font-family:'DM Mono',monospace;font-size:9px;color:#9db8f8;letter-spacing:.1em">BUILDER</div>
-              </div>
-              <div style="display:flex;align-items:center;gap:10px">
-                <div style="font-family:'DM Mono',monospace;font-size:8px;color:rgba(255,255,255,0.28);text-transform:uppercase;letter-spacing:.1em;white-space:nowrap">Score viabilité</div>
-                <div style="flex:1;height:4px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden"><div style="height:100%;width:84%;background:#9db8f8;border-radius:2px"></div></div>
-                <div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:#9db8f8;line-height:1">84/100</div>
-              </div>
-            </div>
-
-            <!-- 01 Résumé -->
-            <div class="demo-block">
-              <div class="demo-block-title">01 — Résumé Exécutif</div>
-              <div style="font-size:11px;line-height:1.75;color:rgba(255,255,255,0.58)">Location de vélos électriques haut de gamme en Bretagne, ciblant touristes et locaux 25-55 ans. Le marché du vélo électrique pèse <strong style="color:#9db8f8">1,8 Mds€</strong> en France avec une croissance de <strong style="color:#9db8f8">+22%/an</strong>. Modèle journée + abonnement mensuel.</div>
-            </div>
-
-            <!-- 02 Marché -->
-            <div class="demo-block">
-              <div class="demo-block-title">02 — Données de Marché</div>
-              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">
-                <div class="demo-stat"><div class="demo-stat-label">Marché</div><div class="demo-stat-val">1,8 Mds€</div></div>
-                <div class="demo-stat"><div class="demo-stat-label">Croissance</div><div class="demo-stat-val">+22%/an</div></div>
-                <div class="demo-stat"><div class="demo-stat-label">Part cible</div><div class="demo-stat-val">0,04%</div></div>
-                <div class="demo-stat"><div class="demo-stat-label">Clients pot.</div><div class="demo-stat-val">8 400</div></div>
-              </div>
-            </div>
-
-            <!-- 03 Revenus -->
-            <div class="demo-block">
-              <div class="demo-block-title">03 — Projections Financières</div>
-              <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px">
-                <div class="demo-rev"><div class="demo-rev-period">Mois 1</div><div class="demo-rev-val">1 200€</div></div>
-                <div class="demo-rev"><div class="demo-rev-period">Mois 3</div><div class="demo-rev-val">4 800€</div></div>
-                <div class="demo-rev"><div class="demo-rev-period">Mois 6</div><div class="demo-rev-val">9 500€</div></div>
-                <div class="demo-rev"><div class="demo-rev-period">An 1</div><div class="demo-rev-val">68 000€</div></div>
-              </div>
-            </div>
-
-            <!-- 04 Concurrents -->
-            <div class="demo-block">
-              <div class="demo-block-title">04 — Analyse Concurrentielle</div>
-              <div style="display:flex;flex-direction:column;gap:5px">
-                <div class="demo-cc"><div class="demo-cc-name">Breizh Bikes</div><div class="demo-cc-desc">Flotte vieillissante, pas d'e-bike</div><div class="demo-badge demo-badge-low">faible</div></div>
-                <div class="demo-cc"><div class="demo-cc-name">Vélomax Quimper</div><div class="demo-cc-desc">E-bikes low-cost, SAV inexistant</div><div class="demo-badge demo-badge-med">moyenne</div></div>
-                <div class="demo-cc"><div class="demo-cc-name">Cyclotour Pro</div><div class="demo-cc-desc">Leader régional, 3x plus cher</div><div class="demo-badge demo-badge-high">haute</div></div>
-              </div>
-            </div>
-
-            <!-- 05 Plan d'action -->
-            <div class="demo-block">
-              <div class="demo-block-title">05 — Plan d'Action 90 Jours</div>
-              <div>
-                <div class="demo-action"><div class="demo-action-phase">Sem 1-2</div><div><div class="demo-action-title">Commander 8 vélos test</div><div class="demo-action-detail">Decathlon Pro + Riese & Müller. Délai livraison 3 sem.</div></div></div>
-                <div class="demo-action"><div class="demo-action-phase">Sem 3-4</div><div><div class="demo-action-title">Lancer Google My Business</div><div class="demo-action-detail">Photos pro, catégorie "location vélo". Objectif Top 3.</div></div></div>
-                <div class="demo-action"><div class="demo-action-phase">Mois 2</div><div><div class="demo-action-title">Partenariats hôtels</div><div class="demo-action-detail">Démarcher 20 hôtels/gîtes Bretagne. Commission 10%.</div></div></div>
-              </div>
-            </div>
-
-            <!-- 06 Coach IA -->
-            <div class="demo-block" style="border-bottom:none">
-              <div class="demo-block-title">Coach IA — Disponible 24h/24</div>
-              <div style="background:rgba(107,143,239,0.06);border:1px solid rgba(107,143,239,0.18);border-radius:8px;padding:12px">
-                <div style="display:flex;gap:8px;margin-bottom:8px">
-                  <div style="width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,rgba(167,139,250,0.3),rgba(107,143,239,0.2));border:1px solid rgba(167,139,250,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="10" height="10" viewBox="0 0 20 20" fill="none"><path d="M18 9c0 4-3.6 7-8 7a8.8 8.8 0 01-3.5-.7L2 17l1.7-4A6.5 6.5 0 012 9c0-4 3.6-7 8-7s8 3 8 7z" stroke="#a78bfa" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
-                  <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);border-radius:0 8px 8px 8px;padding:8px 12px;font-size:10px;color:rgba(255,255,255,0.7);line-height:1.65">J'ai analysé VélôBretagne. Ta marge estimée de 71% est excellente. Je recommande de prioriser les partenariats hôtels avant la pub payante — ROI 3x plus rapide.</div>
-                </div>
-                <div style="display:flex;justify-content:flex-end">
-                  <div style="background:rgba(107,143,239,0.12);border:1px solid rgba(107,143,239,0.2);border-radius:8px 0 8px 8px;padding:6px 12px;font-size:10px;color:#9db8f8">Comment signer mes 10 premiers clients ?</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Spacer pour la boucle -->
-            <div style="height:420px"></div>
-
-          </div>
-        </div>
-      </div>
-
-      <!-- Pills sous le browser -->
-      <div class="demo-pills">
-        <div class="demo-pill"><div class="demo-pill-dot" style="background:#9db8f8"></div>Résumé exécutif</div>
-        <div class="demo-pill"><div class="demo-pill-dot" style="background:#a78bfa"></div>Projections financières</div>
-        <div class="demo-pill"><div class="demo-pill-dot" style="background:#34d399"></div>Plan d'action 90j</div>
-        <div class="demo-pill"><div class="demo-pill-dot" style="background:#fbbf24"></div>Coach IA</div>
-      </div>
-    </div>
   </div>
 
   <!-- PRICING -->
