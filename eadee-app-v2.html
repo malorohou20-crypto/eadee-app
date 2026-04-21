@@ -1781,33 +1781,39 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
 /* ===========================================================================
    HERO — TRADE REPUBLIC STYLE (mock centré, titre massif en bas)
    =========================================================================== */
-.hero { overflow: visible !important; padding: 60px 40px 80px !important; }
+.hero { overflow: visible !important; padding: 80px 40px 60px !important; }
 .hero-split {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
+  display: block !important;
   position: relative !important;
   max-width: 1240px !important;
   margin: 0 auto !important;
-  gap: 48px !important;
 }
-/* Titre en haut, statique, centré */
+/* Titre overlay sur le bas du mock */
 .hero-content {
-  position: static !important;
+  position: absolute !important;
+  bottom: 0 !important; left: 0 !important; right: 0 !important;
+  z-index: 10 !important;
   text-align: center !important;
-  max-width: 680px !important;
-  padding: 0 !important;
-  order: 1 !important;
+  padding: 0 24px 48px !important;
+  max-width: 100% !important;
 }
-/* Supprime le gradient du mock (plus besoin sans overlay) */
-.hero-mock-app::after { display: none !important; }
+/* Gradient sombre sur le bas du mock pour lisibilité */
+.hero-mock-app::after {
+  content: '' !important; display: block !important;
+  position: absolute !important;
+  bottom: 0 !important; left: 0 !important; right: 0 !important;
+  height: 70% !important;
+  background: linear-gradient(to top, rgba(13,14,20,1) 20%, rgba(13,14,20,0.88) 45%, transparent 100%) !important;
+  pointer-events: none !important; z-index: 3 !important;
+  border-radius: 0 0 16px 16px !important;
+}
 /* Scene : mock centré + cards absolues sur les côtés */
 .hero-mock-scene {
   position: relative !important;
   display: block !important;
   width: 100% !important;
-  max-width: 760px !important;
-  order: 2 !important;
+  max-width: 840px !important;
+  margin: 0 auto !important;
 }
 .mock-float-col {
   position: absolute !important;
@@ -1925,7 +1931,17 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
   z-index: 3 !important;
   border-radius: 0 0 16px 16px !important;
 }
-/* stale block removed */
+.hero-badge { display: none !important; }
+.hero-h1 {
+  font-size: clamp(32px, 4.5vw, 62px) !important;
+  max-width: none !important;
+  line-height: 1.05 !important;
+  margin-bottom: 24px !important;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.6) !important;
+}
+.hero-sub { display: none !important; }
+.hero-content .hero-actions { justify-content: center !important; }
+.hero-content > div:last-child { display: none !important; }
 
 /* ===========================================================================
    TR-STYLE ALTERNATING FEATURE SECTIONS
