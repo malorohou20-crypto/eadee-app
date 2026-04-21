@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "eadee (static)",
+      "runtimeExecutable": "C:\\Program Files\\Git\\usr\\bin\\perl.exe",
+      "runtimeArgs": ["-MIO::Socket::INET", "-e", "use IO::Socket::INET; $|=1; my $s=IO::Socket::INET->new(LocalPort=>3000,Listen=>5,ReuseAddr=>1) or die $!; print \"Server ready\\n\"; while(my $c=$s->accept){my $req='';while(my $l=<$c>){$req.=$l;last if $l eq \"\\r\\n\"} my($path)=$req=~/^GET ([^ ]+)/; $path=~s/\\?.*//; $path='index.html' if $path eq '/' or $path eq ''; $path=~s|^/||; my $f='C:/Users/malor/Documents/EADEE/'.$path; if(-f $f){open my $fh,'<:raw',$f;local $/;my $b=<$fh>;close $fh;my $ct='text/html';$ct='text/css' if $f=~/\\.css$/;$ct='application/javascript' if $f=~/\\.js$/;print $c \"HTTP/1.0 200 OK\\r\\nContent-Type: $ct\\r\\n\\r\\n\".$b}else{print $c \"HTTP/1.0 404 Not Found\\r\\n\\r\\n404\"}close $c}"],
+      "port": 3000
+    },
+    {
+      "name": "eadee (vercel dev — static + API)",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["vercel", "dev", "--listen", "3000", "--yes"],
+      "port": 3000
+    }
+  ]
+}
