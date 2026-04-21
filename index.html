@@ -1244,7 +1244,9 @@ nav {
   .hero-mock-wrap { display: flex !important; justify-content: center !important; margin-top: 32px !important; }
   .hero-mock-app { width: 100% !important; max-width: 400px !important; transform: none !important; }
   .hero { padding: 60px 40px 48px !important; }
-  .features-strip { grid-template-columns: repeat(2, 1fr) !important; padding: 48px 32px !important; }
+  .features-strip { grid-template-columns: repeat(2, 1fr) !important; padding: 1px 32px 48px !important; }
+  .feat-section-head { padding: 60px 32px 40px !important; }
+  .stats-band { grid-template-columns: repeat(2, 1fr) !important; }
 }
 
 /* Mobile & Tablette (max 768px) */
@@ -1277,11 +1279,17 @@ nav {
   .mq-item { font-size: 12px !important; gap: 28px !important; }
 
   /* FEATURES */
+  .feat-section-head { padding: 48px 20px 32px !important; }
   .features-strip {
     grid-template-columns: 1fr !important;
-    padding: 40px 20px !important; gap: 1px !important;
+    padding: 1px 20px 40px !important; gap: 1px !important;
   }
   .feat-card { padding: 24px 20px !important; }
+  .feat-card::after { font-size: 72px !important; }
+  /* STATS BAND */
+  .stats-band { grid-template-columns: repeat(2, 1fr) !important; }
+  .stats-num { font-size: 52px !important; }
+  .stats-cell { padding: 32px 24px !important; }
   .hero-mock-app { max-width: 100% !important; }
   .hero-mock-wrap { margin-top: 24px !important; }
 
@@ -1549,6 +1557,16 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
 
 @keyframes orbA { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(40px,-28px) scale(1.08)} 66%{transform:translate(-18px,22px) scale(0.95)} }
 @keyframes orbB { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(-48px,20px) scale(0.9)} 66%{transform:translate(28px,-38px) scale(1.1)} }
+
+/* Hero dot grid */
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(107,143,239,0.07) 1px, transparent 1px);
+  background-size: 36px 36px;
+  z-index: 0; pointer-events: none;
+}
+
 @keyframes pingDot { 0%{transform:scale(1);opacity:1} 75%,100%{transform:scale(2.4);opacity:0} }
 @keyframes gradShift { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
 @keyframes tickerScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
@@ -1708,9 +1726,8 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
 
 /* Features */
 .features-strip {
-  padding: 80px 64px !important; gap: 1px !important;
+  padding: 1px 64px 80px !important; gap: 1px !important;
   background: rgba(255,255,255,0.06) !important;
-  border-top: 1px solid rgba(255,255,255,0.07) !important;
   border-bottom: 1px solid rgba(255,255,255,0.07) !important;
 }
 .feat-card {
@@ -1732,6 +1749,62 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
 }
 .feat-title { font-family: 'Geist', sans-serif !important; font-size: 16px !important; color: #ecedf2 !important; font-weight: 600 !important; }
 .feat-desc { color: #7a7f9a !important; font-size: 13px !important; }
+
+/* === FEAT GHOST NUMBERS (CSS counter) === */
+.features-strip { counter-reset: feat-counter; }
+.feat-card { counter-increment: feat-counter; }
+.feat-card::after {
+  content: counter(feat-counter, decimal-leading-zero);
+  font-family: 'Bebas Neue', sans-serif; font-size: 100px; line-height: 1;
+  color: rgba(255,255,255,0.035); position: absolute; bottom: 10px; right: 18px;
+  pointer-events: none; user-select: none; transition: color .3s;
+}
+.feat-card:hover::after { color: rgba(107,143,239,0.1); }
+.feat-card:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(107,143,239,0.15) !important; }
+
+/* === FEATURES SECTION HEADER === */
+.feat-section-head {
+  padding: 80px 64px 44px;
+  background: var(--paper);
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+.feat-section-head .section-h2 {
+  background: linear-gradient(135deg, #ecedf2 30%, #9db8f8 70%, #a78bfa 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  animation: gradShift 5s ease infinite;
+  margin-bottom: 0 !important;
+}
+.feat-section-head .section-tag::before { background: rgba(107,143,239,0.4) !important; }
+
+/* === STATS BAND === */
+.stats-band {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: rgba(255,255,255,0.06);
+}
+.stats-cell {
+  background: #0d0e14; padding: 44px 40px; text-align: center;
+  transition: background .25s, transform .25s;
+  position: relative; overflow: hidden;
+}
+.stats-cell::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, #6b8fef, #a78bfa);
+  transform: scaleX(0); transform-origin: left; transition: transform .35s ease;
+}
+.stats-cell:hover { background: #13141a; }
+.stats-cell:hover::before { transform: scaleX(1); }
+.stats-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 64px; line-height: 1; display: block;
+  background: linear-gradient(135deg, #9db8f8, #a78bfa);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.stats-lbl {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  text-transform: uppercase; letter-spacing: .14em;
+  color: #7a7f9a; margin-top: 10px; display: block;
+}
 
 /* Pricing */
 .pricing-wrap { background: #1a1d26 !important; padding: 80px 64px !important; }
@@ -2093,6 +2166,12 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
     </div>
   </div>
 
+  <!-- FEATURES HEADER -->
+  <div class="feat-section-head">
+    <div class="section-tag">Ce que contient ton plan</div>
+    <h2 class="section-h2">Complet.<br>Sans compromis.</h2>
+  </div>
+
   <!-- FEATURES -->
   <div class="features-strip">
     <div class="feat-card"><div class="feat-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2a7 7 0 1 1 0 14A7 7 0 0 1 9 2z" stroke="#9db8f8" stroke-width="1.5"/><path d="M9 5v4l3 2" stroke="#9db8f8" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="9" r="1" fill="#9db8f8"/></svg></div><div class="feat-title">Score de viabilité /100</div><div class="feat-desc">Avant de dépenser un euro, EADEE note ton projet sur 100. Tu sais si ton idée est solide — ou exactement ce qui cloche.</div></div>
@@ -2101,6 +2180,26 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
     <div class="feat-card"><div class="feat-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#a78bfa" stroke-width="1.5"/><polyline points="6,9 9,12 13,6" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="feat-title">Plan d'action 90 jours</div><div class="feat-desc">Chaque semaine planifiée, chaque tâche priorisée. Tu sors du générateur avec un plan concret — tu lances le jour même.</div></div>
     <div class="feat-card"><div class="feat-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 13l4-4 3 3 5-7" stroke="#fbbf24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="1" y="1" width="16" height="16" rx="2" stroke="#fbbf24" stroke-width="1.5"/></svg></div><div class="feat-title">Pitch, KPIs & outils</div><div class="feat-desc">Ton pitch 30 secondes tout prêt, les KPIs à suivre chaque semaine et les outils recommandés pour ton secteur.</div></div>
     <div class="feat-card"><div class="feat-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="3" width="14" height="12" rx="2" stroke="#34d399" stroke-width="1.5"/><polyline points="2,7 9,11 16,7" stroke="#34d399" stroke-width="1.5" stroke-linejoin="round"/></svg></div><div class="feat-title">Emails & démarches admin</div><div class="feat-desc">3 emails rédigés (fournisseur, prospection, relance J+7) + toutes les démarches administratives pour créer ta structure en France.</div></div>
+  </div>
+
+  <!-- STATS BAND -->
+  <div class="stats-band">
+    <div class="stats-cell">
+      <span class="stats-num">12K+</span>
+      <span class="stats-lbl">Plans générés</span>
+    </div>
+    <div class="stats-cell">
+      <span class="stats-num">60s</span>
+      <span class="stats-lbl">Temps de génération</span>
+    </div>
+    <div class="stats-cell">
+      <span class="stats-num">17</span>
+      <span class="stats-lbl">Sections par plan</span>
+    </div>
+    <div class="stats-cell">
+      <span class="stats-num">100%</span>
+      <span class="stats-lbl">Conçu pour la France</span>
+    </div>
   </div>
 
   <!-- PRICING -->
