@@ -2014,7 +2014,7 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
   </div>
   <div class="nav-right" id="navRight">
     <button class="nav-btn btn-ghost" onclick="showAuth('login')">Connexion</button>
-    <button class="nav-btn btn-dark" onclick="showAuth('signup')">Commencer gratuitement →</button>
+    <button class="nav-btn btn-dark" onclick="showAuth('signup')">Commencer →</button>
   </div>
 </nav>
 
@@ -2044,7 +2044,7 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
         <p class="hero-sub">EADEE génère un dossier professionnel avec stratégie, projection financière, démarches admin et emails prêts à envoyer.</p>
         <div class="hero-actions">
           <button class="hero-cta" onclick="showAuth('signup')">
-            Créer mon plan gratuitement
+            Créer mon plan
           </button>
           <span class="hero-link" onclick="scrollToPricing()">Voir les tarifs →</span>
         </div>
@@ -2348,7 +2348,7 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
   <div class="auth-page">
     <div class="auth-card">
       <div class="auth-logo">Eadee<span style="color:var(--acid);background:var(--ink);padding:2px 6px">.</span></div>
-      <div class="auth-sub" id="authSubtext">Crée ton compte gratuitement</div>
+      <div class="auth-sub" id="authSubtext">Crée ton compte</div>
 
       <div class="auth-tabs">
         <button class="auth-tab active" id="tab-signup" onclick="switchAuthTab('signup')">Inscription</button>
@@ -2961,7 +2961,7 @@ function updateNav() {
   } else {
     nr.innerHTML = `
       <button class="nav-btn btn-ghost" onclick="showAuth('login')">Connexion</button>
-      <button class="nav-btn btn-dark" onclick="showAuth('signup')">Commencer gratuitement</button>
+      <button class="nav-btn btn-dark" onclick="showAuth('signup')">Commencer</button>
     `;
   }
 }
@@ -2978,7 +2978,7 @@ function switchAuthTab(mode) {
   document.getElementById('tab-signup').classList.toggle('active', mode === 'signup');
   document.getElementById('tab-login').classList.toggle('active', mode === 'login');
   document.getElementById('signupFields').style.display = mode === 'signup' ? 'block' : 'none';
-  document.getElementById('authSubtext').textContent = mode === 'signup' ? 'Crée ton compte gratuitement' : 'Content de te revoir';
+  document.getElementById('authSubtext').textContent = mode === 'signup' ? 'Crée ton compte' : 'Content de te revoir';
   document.getElementById('authSubmitBtn').textContent = mode === 'signup' ? 'CRÉER MON COMPTE' : 'SE CONNECTER';
   document.getElementById('authNote').style.display = mode === 'signup' ? 'block' : 'none';
 }
@@ -4002,7 +4002,7 @@ function showPlanPreview(plan) {
   }
 
   html += `<button class="preview-cta" onclick="closePlanPreview();selectPlan('${plan}')">
-    ${plan === 'starter' ? 'Commencer gratuitement' : plan === 'builder' ? 'Acheter Builder — 7.99€ / 3 génér.' : 'Acheter Empire — 19.99€ / 8 génér.'}
+    ${plan === 'starter' ? 'Commencer' : plan === 'builder' ? 'Acheter Builder — 7.99€ / 3 génér.' : 'Acheter Empire — 19.99€ / 8 génér.'}
   </button>`;
 
   body.innerHTML = html;
