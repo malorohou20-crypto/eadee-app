@@ -1778,6 +1778,113 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
 }
 .feat-card-wide:hover .feat-icon { background: rgba(167,139,250,0.2) !important; border-color: rgba(167,139,250,0.4) !important; }
 
+/* ===========================================================================
+   HERO — TRADE REPUBLIC STYLE (mock centré, titre massif en bas)
+   =========================================================================== */
+.hero-split {
+  grid-template-columns: 1fr !important;
+  max-width: 680px !important;
+  gap: 52px !important;
+  justify-items: center !important;
+}
+.hero-content {
+  order: 2 !important;
+  text-align: center !important;
+  max-width: 100% !important;
+}
+.hero-badge { margin: 0 auto 28px !important; }
+.hero-h1 {
+  font-size: clamp(48px, 8vw, 112px) !important;
+  max-width: none !important;
+  line-height: 1.02 !important;
+}
+.hero-sub { margin-left: auto !important; margin-right: auto !important; max-width: 480px !important; }
+.hero-content .hero-actions { justify-content: center !important; }
+.hero-mock-wrap {
+  order: 1 !important;
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+.hero-mock-app {
+  transform: none !important;
+  width: 100% !important; max-width: 680px !important;
+}
+
+/* ===========================================================================
+   TR-STYLE ALTERNATING FEATURE SECTIONS
+   =========================================================================== */
+.tr-features { background: var(--paper); }
+.tr-section {
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 80vh; align-items: center;
+  padding: 100px 80px; gap: 80px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+.tr-section-rev .tr-visual { order: 2; }
+.tr-section-rev .tr-text { order: 1; }
+.tr-h2 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(36px, 4.5vw, 68px);
+  font-weight: 300; line-height: 1.1; color: #ecedf2; margin-bottom: 24px;
+}
+.tr-h2 em { font-style: normal; color: #7a7f9a; display: block; }
+.tr-p { font-size: 16px; color: #7a7f9a; line-height: 1.8; max-width: 420px; margin-bottom: 36px; }
+.tr-bullets { display: flex; flex-direction: column; gap: 20px; }
+.tr-bullet-title { font-weight: 600; color: #ecedf2; font-size: 15px; margin-bottom: 3px; }
+.tr-bullet-desc { font-size: 13px; color: #7a7f9a; line-height: 1.65; }
+/* Visual cards TR */
+.tr-visual-card {
+  background: #1a1d26; border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px; padding: 32px;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.55);
+  animation: floatApp 7s ease-in-out infinite;
+}
+/* Score */
+.tr-score-lbl { font-family:'DM Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.15em; color:#7a7f9a; margin-bottom:12px; }
+.tr-score-big { font-family:'Bebas Neue',sans-serif; font-size:96px; line-height:1; color:#9db8f8; display:flex; align-items:baseline; gap:4px; }
+.tr-score-big sub { font-size:36px; color:#7a7f9a; }
+.tr-score-bar { height:6px; background:rgba(255,255,255,0.08); border-radius:3px; overflow:hidden; margin:14px 0 12px; }
+.tr-score-bar-fill { height:100%; width:87%; background:linear-gradient(90deg,#6b8fef,#a78bfa); border-radius:3px; }
+.tr-score-verdict { font-size:11px; color:#34d399; font-family:'DM Mono',monospace; text-transform:uppercase; letter-spacing:.1em; margin-bottom:24px; display:flex; align-items:center; gap:6px; }
+.tr-score-verdict::before { content:''; width:6px; height:6px; border-radius:50%; background:#34d399; flex-shrink:0; }
+.tr-score-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+.tr-score-stat { background:rgba(255,255,255,0.04); border-radius:10px; padding:12px; text-align:center; }
+.tr-score-stat span { font-family:'Bebas Neue',sans-serif; font-size:22px; color:#9db8f8; display:block; line-height:1; }
+.tr-score-stat small { font-family:'DM Mono',monospace; font-size:8px; color:#7a7f9a; text-transform:uppercase; letter-spacing:.1em; margin-top:4px; display:block; }
+/* Revenue */
+.tr-rev-lbl { font-family:'DM Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.15em; color:#7a7f9a; margin-bottom:20px; }
+.tr-rev-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-bottom:16px; }
+.tr-rev-cell { background:rgba(107,143,239,0.06); border:1px solid rgba(107,143,239,0.15); border-radius:12px; padding:16px; text-align:center; }
+.tr-rev-cell.hl { background:linear-gradient(135deg,rgba(107,143,239,0.15),rgba(167,139,250,0.1)); border-color:rgba(107,143,239,0.35); position:relative; overflow:hidden; }
+.tr-rev-cell.hl::before { content:''; position:absolute; top:0;left:0;right:0; height:2px; background:linear-gradient(90deg,#6b8fef,#a78bfa); }
+.tr-rev-cell span { font-family:'Bebas Neue',sans-serif; font-size:28px; color:#9db8f8; display:block; line-height:1; }
+.tr-rev-cell small { font-family:'DM Mono',monospace; font-size:9px; color:#7a7f9a; text-transform:uppercase; letter-spacing:.1em; margin-top:5px; display:block; }
+.tr-rev-detail { display:flex; flex-direction:column; gap:8px; }
+.tr-rev-row { display:flex; justify-content:space-between; align-items:center; padding:8px 12px; background:rgba(255,255,255,0.03); border-radius:8px; font-size:12px; }
+.tr-rev-row span { color:#9db8f8; font-family:'Bebas Neue'; font-size:15px; }
+.tr-rev-row em { color:#7a7f9a; font-style:normal; }
+/* Chat */
+.tr-chat-header { display:flex; align-items:center; gap:8px; margin-bottom:20px; font-family:'DM Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.12em; color:#a78bfa; }
+.tr-chat-dot { width:7px; height:7px; border-radius:50%; background:#a78bfa; position:relative; flex-shrink:0; }
+.tr-chat-dot::after { content:''; position:absolute; inset:0; border-radius:50%; background:#a78bfa; animation:pingDot 1.6s ease infinite; }
+.tr-chat-msgs { display:flex; flex-direction:column; gap:10px; }
+.tr-chat-bot { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:4px 12px 12px 12px; padding:12px 14px; font-size:13px; color:rgba(255,255,255,0.72); line-height:1.65; }
+.tr-chat-bot strong { color:#ecedf2; }
+.tr-chat-user-msg { background:rgba(107,143,239,0.1); border:1px solid rgba(107,143,239,0.2); border-radius:12px 4px 12px 12px; padding:10px 14px; font-size:13px; color:#9db8f8; align-self:flex-end; max-width:85%; }
+/* Responsive TR */
+@media (max-width: 1024px) {
+  .tr-section { grid-template-columns:1fr !important; min-height:auto; padding:72px 40px; gap:48px; }
+  .tr-section-rev .tr-visual { order:1 !important; }
+  .tr-section-rev .tr-text { order:2 !important; }
+}
+@media (max-width: 768px) {
+  .tr-section { padding:56px 20px; gap:36px; }
+  .tr-score-big { font-size:72px !important; }
+  .tr-rev-cell span { font-size:22px !important; }
+  .hero-split { max-width:100% !important; }
+}
+
 /* === FEATURES SECTION HEADER === */
 .feat-section-head {
   padding: 80px 64px 44px;
@@ -2048,7 +2155,7 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
           </button>
           <span class="hero-link" onclick="scrollToPricing()">Voir les tarifs →</span>
         </div>
-        <div style="display:flex;align-items:center;gap:12px;margin-top:40px">
+        <div style="display:flex;align-items:center;gap:12px;margin-top:40px;justify-content:center">
           <div class="hero-avatars">
             <div class="h-av">M</div><div class="h-av">S</div><div class="h-av">L</div><div class="h-av">K</div><div class="h-av">+</div>
           </div>
@@ -2182,30 +2289,90 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
     </div>
   </div>
 
-  <!-- FEATURES HEADER -->
-  <div class="feat-section-head">
-    <div class="section-tag">Ce que contient ton plan</div>
-    <h2 class="section-h2">Complet.<br>Sans compromis.</h2>
-  </div>
+  <!-- FEATURES TR STYLE — 3 sections alternantes -->
+  <div class="tr-features">
 
-  <!-- FEATURES -->
-  <div class="features-strip">
-    <div class="feat-card"><div class="feat-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2a7 7 0 1 1 0 14A7 7 0 0 1 9 2z" stroke="#9db8f8" stroke-width="1.5"/><path d="M9 5v4l3 2" stroke="#9db8f8" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="9" r="1" fill="#9db8f8"/></svg></div><div class="feat-title">Score de viabilité /100</div><div class="feat-desc">Avant de dépenser un euro, EADEE note ton projet sur 100. Tu sais si ton idée est solide — ou exactement ce qui cloche.</div></div>
-    <div class="feat-card"><div class="feat-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="1" y="9" width="3" height="8" rx="1" fill="#6b8fef"/><rect x="7" y="5" width="3" height="12" rx="1" fill="#9db8f8"/><rect x="13" y="1" width="3" height="16" rx="1" fill="#6b8fef"/></svg></div><div class="feat-title">Analyse de marché complète</div><div class="feat-desc">Taille du marché, taux de croissance, part cible, clients potentiels, concurrents — tout le contexte pour te positionner juste.</div></div>
-    <div class="feat-card"><div class="feat-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><polyline points="1,15 6,8 10,11 17,3" stroke="#9db8f8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="12,3 17,3 17,8" stroke="#9db8f8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="feat-title">Projections financières 12 mois</div><div class="feat-desc">CA mois 1, 3, 6 et 12 avec seuil de rentabilité, détail des charges et stratégie d'acquisition. Des chiffres que ta banque prend au sérieux.</div></div>
-    <div class="feat-card"><div class="feat-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#a78bfa" stroke-width="1.5"/><polyline points="6,9 9,12 13,6" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="feat-title">Plan d'action 90 jours</div><div class="feat-desc">Chaque semaine planifiée, chaque tâche priorisée. Tu sors du générateur avec un plan concret — tu lances le jour même.</div></div>
-    <div class="feat-card"><div class="feat-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 13l4-4 3 3 5-7" stroke="#fbbf24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><rect x="1" y="1" width="16" height="16" rx="2" stroke="#fbbf24" stroke-width="1.5"/></svg></div><div class="feat-title">Pitch, KPIs & outils</div><div class="feat-desc">Ton pitch 30 secondes tout prêt, les KPIs à suivre chaque semaine et les outils recommandés pour ton secteur.</div></div>
-    <div class="feat-card"><div class="feat-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="3" width="14" height="12" rx="2" stroke="#34d399" stroke-width="1.5"/><polyline points="2,7 9,11 16,7" stroke="#34d399" stroke-width="1.5" stroke-linejoin="round"/></svg></div><div class="feat-title">Emails & démarches admin</div><div class="feat-desc">3 emails rédigés (fournisseur, prospection, relance J+7) + toutes les démarches administratives pour créer ta structure en France.</div></div>
-    <div class="feat-card feat-card-wide">
-      <div class="feat-icon"><svg width="22" height="22" viewBox="0 0 20 20" fill="none"><path d="M18 9c0 4-3.6 7-8 7a8.8 8.8 0 01-3.5-.7L2 17l1.7-4A6.5 6.5 0 012 9c0-4 3.6-7 8-7s8 3 8 7z" stroke="#a78bfa" stroke-width="1.8" stroke-linejoin="round"/><circle cx="7" cy="9" r="1" fill="#a78bfa"/><circle cx="10" cy="9" r="1" fill="#a78bfa"/><circle cx="13" cy="9" r="1" fill="#a78bfa"/></svg></div>
-      <div>
-        <div class="feat-title" style="font-size:18px!important;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-          Conseiller disponible 24h/24
-          <span style="display:inline-flex;align-items:center;gap:5px;font-family:'DM Mono',monospace;font-size:10px;color:#a78bfa;background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.25);padding:2px 10px;border-radius:20px;font-weight:400;letter-spacing:0.05em"><span style="width:5px;height:5px;border-radius:50%;background:#a78bfa;display:inline-block;flex-shrink:0"></span>En ligne</span>
+    <!-- SECTION 1 — Score de viabilité -->
+    <div class="tr-section">
+      <div class="tr-visual">
+        <div class="tr-visual-card">
+          <div class="tr-score-lbl">Score EADEE · VélôBretagne</div>
+          <div class="tr-score-big">87<sub>/100</sub></div>
+          <div class="tr-score-bar"><div class="tr-score-bar-fill"></div></div>
+          <div class="tr-score-verdict">Projet viable — Fort potentiel de marché</div>
+          <div class="tr-score-stats">
+            <div class="tr-score-stat"><span>1,8 Mds€</span><small>Marché</small></div>
+            <div class="tr-score-stat"><span>+22%</span><small>Croissance</small></div>
+            <div class="tr-score-stat"><span>8 400</span><small>Clients</small></div>
+          </div>
         </div>
-        <div class="feat-desc" style="max-width:560px;margin-top:8px">Pose toutes tes questions sur ton plan, ta stratégie ou tes finances. Tu reçois des réponses précises, adaptées à ton projet — à n'importe quelle heure, sans attente.</div>
+      </div>
+      <div class="tr-text">
+        <h2 class="tr-h2">Score de viabilité.<em>Avant d'investir un euro.</em></h2>
+        <p class="tr-p">EADEE analyse ton idée sur 100 points avant que tu dépenses quoi que ce soit. Marché, concurrents, modèle économique — tout est passé au crible.</p>
+        <div class="tr-bullets">
+          <div><div class="tr-bullet-title">Analyse de marché chiffrée</div><div class="tr-bullet-desc">Taille, croissance, part cible, clients potentiels — sources réelles (INSEE, Xerfi, BPI).</div></div>
+          <div><div class="tr-bullet-title">4 concurrents réels avec leurs prix</div><div class="tr-bullet-desc">Leurs failles exposées, leur menace évaluée, et comment tu te positionnes face à eux.</div></div>
+          <div><div class="tr-bullet-title">Verdict clair et exploitable</div><div class="tr-bullet-desc">Un score /100 et une explication directe : ce qui est solide, ce qui doit évoluer.</div></div>
+        </div>
       </div>
     </div>
+
+    <!-- SECTION 2 — Finances (inversée) -->
+    <div class="tr-section tr-section-rev">
+      <div class="tr-text">
+        <h2 class="tr-h2">Projections financières.<em>12 mois, chiffres réels.</em></h2>
+        <p class="tr-p">Des projections construites sur des hypothèses expliquées, pas des chiffres sortis du chapeau. Ton banquier les prendra au sérieux.</p>
+        <div class="tr-bullets">
+          <div><div class="tr-bullet-title">CA mois 1, 3, 6 et 12</div><div class="tr-bullet-desc">Avec seuil de rentabilité, break-even et ROI sur investissement initial calculés pour ton secteur.</div></div>
+          <div><div class="tr-bullet-title">Détail complet des charges</div><div class="tr-bullet-desc">Fixes, variables, investissements — chaque poste justifié. Export PDF prêt pour ta banque.</div></div>
+          <div><div class="tr-bullet-title">3 canaux d'acquisition chiffrés</div><div class="tr-bullet-desc">CAC estimé par canal, volume de prospects quotidien, budget requis pour atteindre tes objectifs.</div></div>
+        </div>
+      </div>
+      <div class="tr-visual">
+        <div class="tr-visual-card">
+          <div class="tr-rev-lbl">Projections CA · VélôBretagne</div>
+          <div class="tr-rev-grid">
+            <div class="tr-rev-cell"><span>1 200€</span><small>Mois 1</small></div>
+            <div class="tr-rev-cell"><span>4 800€</span><small>Mois 3</small></div>
+            <div class="tr-rev-cell"><span>9 500€</span><small>Mois 6</small></div>
+            <div class="tr-rev-cell hl"><span>68 000€</span><small>An 1</small></div>
+          </div>
+          <div class="tr-rev-detail">
+            <div class="tr-rev-row"><em>Marge brute</em><span>71%</span></div>
+            <div class="tr-rev-row"><em>Break-even</em><span>Mois 4</span></div>
+            <div class="tr-rev-row"><em>ROI initial</em><span>340%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3 — Conseiller 24h/24 -->
+    <div class="tr-section">
+      <div class="tr-visual">
+        <div class="tr-visual-card">
+          <div class="tr-chat-header">
+            <div class="tr-chat-dot"></div>
+            Expert EADEE · En ligne
+          </div>
+          <div class="tr-chat-msgs">
+            <div class="tr-chat-bot">Ta marge de <strong>71%</strong> est solide. Je recommande les partenariats hôtels avant la pub — ROI 3x plus rapide et aucun coût d'acquisition initial.</div>
+            <div class="tr-chat-user-msg">Comment signer mes 10 premiers clients ?</div>
+            <div class="tr-chat-bot">Commence par ton réseau proche : identifie <strong>20 contacts ciblés</strong>, envoie le template de prospection qu'on a préparé. Objectif : 3 rendez-vous cette semaine.</div>
+          </div>
+        </div>
+      </div>
+      <div class="tr-text">
+        <h2 class="tr-h2">Conseiller disponible.<em>24 heures sur 24.</em></h2>
+        <p class="tr-p">Ton Expert EADEE connaît chaque ligne de ton plan. Il répond, affine et te guide — à n'importe quelle heure, sans attente.</p>
+        <div class="tr-bullets">
+          <div><div class="tr-bullet-title">Connaissance totale de ton plan</div><div class="tr-bullet-desc">Toutes les données de ton projet en mémoire. Pas besoin de tout ré-expliquer à chaque question.</div></div>
+          <div><div class="tr-bullet-title">Business, stratégie, finances</div><div class="tr-bullet-desc">Pose n'importe quelle question : il répond avec du concret adapté à ton secteur, pas des généralités.</div></div>
+          <div><div class="tr-bullet-title">Mise à jour du plan en direct</div><div class="tr-bullet-desc">Il peut modifier, affiner ou régénérer des sections entières selon tes retours immédiats.</div></div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <!-- STATS BAND -->
