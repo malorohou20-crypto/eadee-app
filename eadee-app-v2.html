@@ -1784,8 +1784,9 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
 .hero-split {
   display: block !important;
   position: relative !important;
-  max-width: 720px !important;
+  max-width: 960px !important;
   margin: 0 auto !important;
+  padding-bottom: 40px !important;
 }
 /* Mock prend toute la place */
 .hero-mock-wrap {
@@ -1794,12 +1795,23 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
   display: flex !important;
   justify-content: center !important;
   position: relative !important;
+  perspective: 1600px !important;
+}
+@keyframes mockTilt3D {
+  0%   { transform: rotateY(-7deg) rotateX(4deg) translateY(0px); box-shadow: 20px 40px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06); }
+  25%  { transform: rotateY(0deg)  rotateX(-2deg) translateY(-14px); box-shadow: 0px 60px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.08); }
+  50%  { transform: rotateY(7deg)  rotateX(4deg) translateY(0px); box-shadow: -20px 40px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06); }
+  75%  { transform: rotateY(0deg)  rotateX(-2deg) translateY(14px); box-shadow: 0px 20px 60px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.06); }
+  100% { transform: rotateY(-7deg) rotateX(4deg) translateY(0px); box-shadow: 20px 40px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06); }
 }
 .hero-mock-app {
-  transform: none !important;
   width: 100% !important;
-  max-width: 720px !important;
+  max-width: 900px !important;
   position: relative !important;
+  animation: mockTilt3D 8s ease-in-out infinite !important;
+  transform-style: preserve-3d !important;
+  will-change: transform !important;
+  border-radius: 16px !important;
 }
 /* Gradient en bas du mock pour lisibilité du titre */
 .hero-mock-app::after {
@@ -4919,6 +4931,51 @@ function closeLegal() {
 
 // Fermer avec Escape
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLegal(); });
+
+// ========== HERO MOCK 3D TILT (mousemove) ==========
+(function() {
+  function initMockTilt() {
+    const wrap = document.querySelector('.hero-mock-wrap');
+    const mock = document.querySelector('.hero-mock-app');
+    if (!wrap || !mock) return;
+
+    let rafId = null;
+    let isHovering = false;
+
+    wrap.addEventListener('mousemove', (e) => {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        const rect = wrap.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = (e.clientX - cx) / (rect.width / 2);   // -1 à +1
+        const dy = (e.clientY - cy) / (rect.height / 2);  // -1 à +1
+        const rotY = dx * 12;
+        const rotX = -dy * 7;
+        mock.style.animation = 'none';
+        mock.style.transform = `perspective(1600px) rotateY(${rotY}deg) rotateX(${rotX}deg) scale(1.02)`;
+        mock.style.boxShadow = `${-rotY * 3}px 40px 90px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.08)`;
+        mock.style.transition = 'transform 0.08s ease, box-shadow 0.08s ease';
+      });
+    });
+
+    wrap.addEventListener('mouseleave', () => {
+      mock.style.transition = 'transform 0.6s ease, box-shadow 0.6s ease';
+      mock.style.transform = '';
+      mock.style.boxShadow = '';
+      setTimeout(() => {
+        mock.style.animation = '';
+        mock.style.transition = '';
+      }, 600);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMockTilt);
+  } else {
+    initMockTilt();
+  }
+})();
 </script>
 </body>
 </html>
