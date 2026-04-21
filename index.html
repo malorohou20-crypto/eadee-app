@@ -4124,7 +4124,7 @@ function applyPlanModifications(modifications) {
 
 async function sendChatMessage() {
   if (currentPlan !== 'empire') {
-    toast('L'Expert EADEE est réservé au pack Empire', 'error');
+    toast("L'Expert EADEE est réservé au pack Empire", 'error');
     showView('billing'); return;
   }
   const input = document.getElementById('chat-input');
