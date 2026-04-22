@@ -2017,6 +2017,108 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
   .hero-split { max-width:100% !important; }
 }
 
+/* === TR SECTION 4 — 17 sections showcase === */
+.tr-sections-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 7px; margin-top: 32px;
+}
+.tr-sec-item {
+  display: flex; align-items: flex-start; gap: 9px;
+  padding: 10px 12px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px; transition: border-color .2s, background .2s;
+}
+.tr-sec-item:hover { border-color: rgba(107,143,239,0.3); background: rgba(107,143,239,0.04); }
+.tr-sec-num {
+  font-family: 'DM Mono', monospace; font-size: 9px;
+  color: #7a7f9a; letter-spacing: .08em; min-width: 18px; padding-top: 1px;
+}
+.tr-sec-name { font-size: 12px; color: #ecedf2; font-weight: 500; line-height: 1.4; }
+/* Full plan card scrollable */
+.tr-full-card {
+  background: #1a1d26; border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px; box-shadow: 0 40px 100px rgba(0,0,0,0.55);
+  overflow: hidden; animation: floatApp 7s ease-in-out infinite;
+}
+.tr-full-card-hd {
+  padding: 16px 22px; border-bottom: 1px solid rgba(255,255,255,0.07);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.tr-full-card-title { font-family:'DM Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.15em; color:#7a7f9a; }
+.tr-full-card-badge { font-family:'DM Mono',monospace; font-size:9px; background:rgba(107,143,239,0.12); border:1px solid rgba(107,143,239,0.25); color:#9db8f8; border-radius:20px; padding:3px 10px; letter-spacing:.1em; }
+.tr-full-card-body {
+  max-height: 430px; overflow-y: auto; padding: 0;
+  scrollbar-width: thin; scrollbar-color: rgba(107,143,239,0.3) transparent;
+}
+.tr-full-card-body::-webkit-scrollbar { width: 4px; }
+.tr-full-card-body::-webkit-scrollbar-track { background: transparent; }
+.tr-full-card-body::-webkit-scrollbar-thumb { background: rgba(107,143,239,0.3); border-radius: 2px; }
+.tr-pb { padding: 16px 22px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.tr-pb:last-child { border-bottom: none; }
+.tr-pb-title {
+  font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.45);
+  text-transform: uppercase; letter-spacing: .12em;
+  display: flex; align-items: center; gap: 8px; margin-bottom: 12px;
+}
+.tr-pb-title::before { content:''; width:2px; height:10px; flex-shrink:0; background:linear-gradient(180deg,#6b8fef,#a78bfa); border-radius:2px; }
+/* Offres mini */
+.tr-offre-row { display:flex; align-items:center; justify-content:space-between; padding:9px 12px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:8px; margin-bottom:6px; }
+.tr-offre-row:last-child { margin-bottom:0; }
+.tr-offre-name { font-size:12px; font-weight:600; color:#ecedf2; }
+.tr-offre-desc { font-size:11px; color:#7a7f9a; margin-top:2px; }
+.tr-offre-price { font-family:'Bebas Neue',sans-serif; font-size:22px; color:#9db8f8; line-height:1; white-space:nowrap; }
+/* Concurrent mini */
+.tr-cc-row { display:flex; align-items:center; gap:10px; padding:9px 12px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:8px; margin-bottom:6px; }
+.tr-cc-row:last-child { margin-bottom:0; }
+.tr-cc-name { font-size:12px; font-weight:600; color:#ecedf2; flex:1; }
+.tr-cc-desc { font-size:11px; color:#7a7f9a; margin-top:2px; }
+.tr-cc-menace-high { font-family:'DM Mono',monospace; font-size:9px; background:rgba(167,139,250,0.12); color:#c4b5fd; border:1px solid rgba(167,139,250,0.2); border-radius:20px; padding:2px 8px; white-space:nowrap; }
+.tr-cc-menace-med  { font-family:'DM Mono',monospace; font-size:9px; background:rgba(251,191,36,0.1); color:#fbbf24; border:1px solid rgba(251,191,36,0.2); border-radius:20px; padding:2px 8px; white-space:nowrap; }
+.tr-cc-menace-low  { font-family:'DM Mono',monospace; font-size:9px; background:rgba(52,211,153,0.1); color:#34d399; border:1px solid rgba(52,211,153,0.2); border-radius:20px; padding:2px 8px; white-space:nowrap; }
+/* Plan 90j mini */
+.tr-phase-row { display:flex; gap:10px; align-items:flex-start; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.04); }
+.tr-phase-row:last-child { border-bottom:none; padding-bottom:0; }
+.tr-phase-tag { font-family:'DM Mono',monospace; font-size:9px; color:#9db8f8; background:rgba(107,143,239,0.1); border:1px solid rgba(107,143,239,0.2); border-radius:20px; padding:2px 8px; white-space:nowrap; margin-top:1px; }
+.tr-phase-title { font-size:12px; font-weight:600; color:#ecedf2; margin-bottom:2px; }
+.tr-phase-detail { font-size:11px; color:#7a7f9a; line-height:1.5; }
+/* Investissements mini */
+.tr-inv-row { display:flex; justify-content:space-between; align-items:center; padding:7px 0; border-bottom:1px solid rgba(255,255,255,0.04); font-size:12px; }
+.tr-inv-row:last-child { border-bottom:none; padding-bottom:0; }
+.tr-inv-row.total { padding-top:10px; border-top:1px solid rgba(255,255,255,0.1); border-bottom:none; }
+.tr-inv-label { color:#7a7f9a; }
+.tr-inv-amount { font-family:'Bebas Neue',sans-serif; font-size:16px; color:#9db8f8; line-height:1; }
+.tr-inv-row.total .tr-inv-label { color:#ecedf2; font-weight:700; font-size:13px; font-family:'Geist',sans-serif; }
+.tr-inv-row.total .tr-inv-amount { font-size:20px; color:#fff; }
+/* Outils mini */
+.tr-outil-row { display:flex; align-items:center; justify-content:space-between; gap:8px; padding:8px 10px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:8px; margin-bottom:5px; }
+.tr-outil-row:last-child { margin-bottom:0; }
+.tr-outil-name { font-size:12px; font-weight:600; color:#ecedf2; }
+.tr-outil-usage { font-size:11px; color:#7a7f9a; margin-top:1px; }
+.tr-outil-prix { font-family:'DM Mono',monospace; font-size:10px; color:#34d399; white-space:nowrap; }
+/* Persona mini */
+.tr-persona-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.tr-persona-cell { background:rgba(255,255,255,0.03); border-radius:8px; padding:10px 12px; }
+.tr-persona-lbl { font-family:'DM Mono',monospace; font-size:9px; color:#7a7f9a; text-transform:uppercase; letter-spacing:.1em; margin-bottom:5px; }
+.tr-persona-val { font-size:12px; color:#ecedf2; line-height:1.5; }
+.tr-persona-cell.span2 { grid-column:span 2; }
+/* Démarches mini */
+.tr-demarche-row { display:flex; gap:10px; align-items:flex-start; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.04); }
+.tr-demarche-row:last-child { border-bottom:none; padding-bottom:0; }
+.tr-dem-num { font-family:'DM Mono',monospace; font-size:10px; color:#6b8fef; background:rgba(107,143,239,0.1); border:1px solid rgba(107,143,239,0.2); border-radius:50%; width:22px; height:22px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.tr-dem-etape { font-size:12px; font-weight:600; color:#ecedf2; margin-bottom:2px; }
+.tr-dem-detail { font-size:11px; color:#7a7f9a; line-height:1.5; }
+.tr-dem-meta { display:flex; gap:6px; margin-top:5px; }
+.tr-dem-tag { font-family:'DM Mono',monospace; font-size:9px; background:rgba(255,255,255,0.06); color:#7a7f9a; border-radius:20px; padding:2px 7px; }
+/* Email mini */
+.tr-email-card { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:10px; overflow:hidden; }
+.tr-email-hd { padding:10px 14px; border-bottom:1px solid rgba(255,255,255,0.06); display:flex; align-items:center; justify-content:space-between; }
+.tr-email-type { font-family:'DM Mono',monospace; font-size:9px; text-transform:uppercase; letter-spacing:.1em; color:#7a7f9a; }
+.tr-email-badge { font-family:'DM Mono',monospace; font-size:9px; background:rgba(107,143,239,0.1); color:#9db8f8; border:1px solid rgba(107,143,239,0.2); border-radius:20px; padding:2px 8px; }
+.tr-email-body { padding:12px 14px; }
+.tr-email-subject { font-size:12px; font-weight:600; color:#9db8f8; margin-bottom:8px; }
+.tr-email-preview { font-size:11px; color:rgba(255,255,255,0.55); line-height:1.65; }
+
 /* === FEATURES SECTION HEADER === */
 .feat-section-head {
   padding: 80px 64px 44px;
@@ -2539,7 +2641,7 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
     </div>
 
     <!-- SECTION 3 — Conseiller 24h/24 -->
-    <div class="tr-section">
+    <div class="tr-section" id="tr-section-3">
       <div class="tr-visual">
         <div class="tr-visual-card">
           <div class="tr-chat-header">
@@ -2563,6 +2665,203 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
         </div>
       </div>
     </div>
+
+    <!-- SECTION 4 — 17 sections complètes -->
+    <div class="tr-section tr-section-rev">
+      <div class="tr-text">
+        <h2 class="tr-h2">17 sections.<em>Rien n'est laissé au hasard.</em></h2>
+        <p class="tr-p">Un business plan EADEE couvre tout ce qu'un investisseur, une banque ou un conseiller BPI France attend — dans un seul document généré en 60 secondes.</p>
+        <div class="tr-sections-grid">
+          <div class="tr-sec-item"><span class="tr-sec-num">01</span><span class="tr-sec-name">Résumé Exécutif</span></div>
+          <div class="tr-sec-item"><span class="tr-sec-num">10</span><span class="tr-sec-name">Ressources &amp; Outils</span></div>
+          <div class="tr-sec-item"><span class="tr-sec-num">02</span><span class="tr-sec-name">Marché &amp; Opportunité</span></div>
+          <div class="tr-sec-item"><span class="tr-sec-num">11</span><span class="tr-sec-name">KPIs à Suivre</span></div>
+          <div class="tr-sec-item"><span class="tr-sec-num">03</span><span class="tr-sec-name">Modèle Économique</span></div>
+          <div class="tr-sec-item"><span class="tr-sec-num">12</span><span class="tr-sec-name">Pitch 30 Secondes</span></div>
+          <div class="tr-sec-item"><span class="tr-sec-num">04</span><span class="tr-sec-name">Analyse Concurrentielle</span></div>
+          <div class="tr-sec-item"><span class="tr-sec-num">13</span><span class="tr-sec-name">Client Idéal (Persona)</span></div>
+          <div class="tr-sec-item"><span class="tr-sec-num">05</span><span class="tr-sec-name">Projections Financières</span></div>
+          <div class="tr-sec-item"><span class="tr-sec-num">14</span><span class="tr-sec-name">Démarches Administratives</span></div>
+          <div class="tr-sec-item"><span class="tr-sec-num">06</span><span class="tr-sec-name">Acquisition Client</span></div>
+          <div class="tr-sec-item"><span class="tr-sec-num">15</span><span class="tr-sec-name">Email Fournisseur</span></div>
+          <div class="tr-sec-item"><span class="tr-sec-num">07</span><span class="tr-sec-name">Plan d'Action 90 Jours</span></div>
+          <div class="tr-sec-item"><span class="tr-sec-num">16</span><span class="tr-sec-name">Email Prospection</span></div>
+          <div class="tr-sec-item"><span class="tr-sec-num">08</span><span class="tr-sec-name">Investissement &amp; Charges</span></div>
+          <div class="tr-sec-item"><span class="tr-sec-num">17</span><span class="tr-sec-name">Email Relance (J+7)</span></div>
+          <div class="tr-sec-item" style="grid-column:span 2; border-color:rgba(107,143,239,0.2); background:rgba(107,143,239,0.04);"><span class="tr-sec-num">09</span><span class="tr-sec-name" style="color:#9db8f8;">Risques &amp; Mitigation — 5 risques identifiés, solutions concrètes incluses</span></div>
+        </div>
+      </div>
+      <div class="tr-visual">
+        <div class="tr-full-card">
+          <div class="tr-full-card-hd">
+            <span class="tr-full-card-title">Plan VélôBretagne · 17 sections</span>
+            <span class="tr-full-card-badge">EMPIRE ✦</span>
+          </div>
+          <div class="tr-full-card-body">
+
+            <!-- 03 Modèle Économique / Offres -->
+            <div class="tr-pb">
+              <div class="tr-pb-title">03 — Modèle Économique &amp; Offres</div>
+              <div class="tr-offre-row">
+                <div><div class="tr-offre-name">Abonnement Mensuel</div><div class="tr-offre-desc">Vélo + entretien + assistance inclus</div></div>
+                <div class="tr-offre-price">89€/mois</div>
+              </div>
+              <div class="tr-offre-row">
+                <div><div class="tr-offre-name">Pack Découverte</div><div class="tr-offre-desc">Location 3 jours, casque fourni</div></div>
+                <div class="tr-offre-price">149€</div>
+              </div>
+              <div class="tr-offre-row">
+                <div><div class="tr-offre-name">Partenariat Hôtels</div><div class="tr-offre-desc">Flotte dédiée, commission 15%</div></div>
+                <div class="tr-offre-price">B2B</div>
+              </div>
+            </div>
+
+            <!-- 04 Concurrents -->
+            <div class="tr-pb">
+              <div class="tr-pb-title">04 — Analyse Concurrentielle</div>
+              <div class="tr-cc-row">
+                <div style="flex:1"><div class="tr-cc-name">BretagneLoc Vélo</div><div class="tr-cc-desc">Présent sur Brest &amp; Quimper, prix élevés, zéro app</div></div>
+                <span class="tr-cc-menace-high">Menace haute</span>
+              </div>
+              <div class="tr-cc-row">
+                <div style="flex:1"><div class="tr-cc-name">VéloSud Finistère</div><div class="tr-cc-desc">Saisonnier uniquement, flotte vieillissante</div></div>
+                <span class="tr-cc-menace-med">Menace moy.</span>
+              </div>
+              <div class="tr-cc-row">
+                <div style="flex:1"><div class="tr-cc-name">Decathlon Location</div><div class="tr-cc-desc">Grandes surfaces, pas de service terrain</div></div>
+                <span class="tr-cc-menace-low">Menace faible</span>
+              </div>
+            </div>
+
+            <!-- 07 Plan 90 Jours -->
+            <div class="tr-pb">
+              <div class="tr-pb-title">07 — Plan d'Action 90 Jours</div>
+              <div class="tr-phase-row">
+                <span class="tr-phase-tag">J1–30</span>
+                <div><div class="tr-phase-title">Lancement &amp; premiers clients</div><div class="tr-phase-detail">Immatriculation, achat 5 vélos, partenariat 2 hôtels, profil Google My Business, 10 premières réservations.</div></div>
+              </div>
+              <div class="tr-phase-row">
+                <span class="tr-phase-tag">J31–60</span>
+                <div><div class="tr-phase-title">Croissance &amp; visibilité</div><div class="tr-phase-detail">Campagne Meta Ads 300€, extension flotte à 12 vélos, intégration plateforme Airbnb Expériences.</div></div>
+              </div>
+              <div class="tr-phase-row">
+                <span class="tr-phase-tag">J61–90</span>
+                <div><div class="tr-phase-title">Optimisation &amp; break-even</div><div class="tr-phase-detail">Atteinte du seuil de rentabilité mois 4, recrutement 1 assistant saisonnier, ouverture 2ème point dépôt.</div></div>
+              </div>
+            </div>
+
+            <!-- 08 Investissements -->
+            <div class="tr-pb">
+              <div class="tr-pb-title">08 — Investissement &amp; Charges</div>
+              <div class="tr-inv-row"><span class="tr-inv-label">Flotte initiale (10 vélos électriques)</span><span class="tr-inv-amount">6 200€</span></div>
+              <div class="tr-inv-row"><span class="tr-inv-label">Casques, antivols &amp; accessoires</span><span class="tr-inv-amount">480€</span></div>
+              <div class="tr-inv-row"><span class="tr-inv-label">Site web + système réservation</span><span class="tr-inv-amount">390€</span></div>
+              <div class="tr-inv-row"><span class="tr-inv-label">Assurance professionnelle (an 1)</span><span class="tr-inv-amount">720€</span></div>
+              <div class="tr-inv-row"><span class="tr-inv-label">Budget marketing lancement</span><span class="tr-inv-amount">600€</span></div>
+              <div class="tr-inv-row total"><span class="tr-inv-label">Total investissement initial</span><span class="tr-inv-amount">8 390€</span></div>
+            </div>
+
+            <!-- 10 Outils -->
+            <div class="tr-pb">
+              <div class="tr-pb-title">10 — Ressources &amp; Outils Recommandés</div>
+              <div class="tr-outil-row">
+                <div><div class="tr-outil-name">Planity</div><div class="tr-outil-usage">Réservations en ligne + paiement</div></div>
+                <span class="tr-outil-prix">29€/mois</span>
+              </div>
+              <div class="tr-outil-row">
+                <div><div class="tr-outil-name">Canva Pro</div><div class="tr-outil-usage">Supports marketing, réseaux sociaux</div></div>
+                <span class="tr-outil-prix">13€/mois</span>
+              </div>
+              <div class="tr-outil-row">
+                <div><div class="tr-outil-name">Pennylane</div><div class="tr-outil-usage">Comptabilité + facturation auto</div></div>
+                <span class="tr-outil-prix">35€/mois</span>
+              </div>
+              <div class="tr-outil-row">
+                <div><div class="tr-outil-name">Google My Business</div><div class="tr-outil-usage">Référencement local, avis clients</div></div>
+                <span class="tr-outil-prix">Gratuit</span>
+              </div>
+            </div>
+
+            <!-- 13 Persona -->
+            <div class="tr-pb">
+              <div class="tr-pb-title">13 — Client Idéal (Persona)</div>
+              <div class="tr-persona-grid">
+                <div class="tr-persona-cell"><div class="tr-persona-lbl">Prénom / Âge</div><div class="tr-persona-val" style="font-weight:700;font-size:14px;color:#fff">Sophie, 36 ans</div></div>
+                <div class="tr-persona-cell"><div class="tr-persona-lbl">Situation</div><div class="tr-persona-val">Cadre parisienne, séjour éco-tourisme Bretagne</div></div>
+                <div class="tr-persona-cell span2"><div class="tr-persona-lbl">Douleurs principales</div><div class="tr-persona-val">Pas de voiture en vacances, veut explorer sans contrainte, offre actuelle trop chère et peu pratique</div></div>
+                <div class="tr-persona-cell"><div class="tr-persona-lbl">Motivations</div><div class="tr-persona-val">Liberté, éco-responsabilité, découverte locale</div></div>
+                <div class="tr-persona-cell"><div class="tr-persona-lbl">Où la trouver</div><div class="tr-persona-val" style="color:#9db8f8">Instagram, Airbnb Expériences, Google Maps</div></div>
+              </div>
+            </div>
+
+            <!-- 14 Démarches Admin -->
+            <div class="tr-pb">
+              <div class="tr-pb-title">14 — Démarches Administratives</div>
+              <div class="tr-demarche-row">
+                <div class="tr-dem-num">1</div>
+                <div>
+                  <div class="tr-dem-etape">Immatriculation SIREN — INPI</div>
+                  <div class="tr-dem-detail">Déclaration auto-entrepreneur sur guichet-entreprises.fr. Activité : location de vélos (code NAF 7721Z).</div>
+                  <div class="tr-dem-meta"><span class="tr-dem-tag">3–5 jours</span><span class="tr-dem-tag">Gratuit</span><span class="tr-dem-tag">guichet-entreprises.fr</span></div>
+                </div>
+              </div>
+              <div class="tr-demarche-row">
+                <div class="tr-dem-num">2</div>
+                <div>
+                  <div class="tr-dem-etape">Affiliation URSSAF &amp; CFE</div>
+                  <div class="tr-dem-detail">Cotisations sociales 22% du CA. Cotisation foncière des entreprises due dès la 2ème année d'activité.</div>
+                  <div class="tr-dem-meta"><span class="tr-dem-tag">Automatique</span><span class="tr-dem-tag">urssaf.fr</span></div>
+                </div>
+              </div>
+              <div class="tr-demarche-row">
+                <div class="tr-dem-num">3</div>
+                <div>
+                  <div class="tr-dem-etape">Assurance Responsabilité Civile Pro</div>
+                  <div class="tr-dem-detail">Obligatoire avant toute mise en location. Couverture matériel + dommages tiers. Demande de devis à Hiscox ou AXA Pro.</div>
+                  <div class="tr-dem-meta"><span class="tr-dem-tag">1 semaine</span><span class="tr-dem-tag">~60€/mois</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 15-17 Emails -->
+            <div class="tr-pb">
+              <div class="tr-pb-title">15-16-17 — Emails Prêts à Envoyer</div>
+              <div class="tr-email-card" style="margin-bottom:8px">
+                <div class="tr-email-hd">
+                  <span class="tr-email-type">Email Fournisseur</span>
+                  <span class="tr-email-badge">Prêt à copier</span>
+                </div>
+                <div class="tr-email-body">
+                  <div class="tr-email-subject">Demande de devis — Flotte 10 vélos électriques</div>
+                  <div class="tr-email-preview">Bonjour, je lance VélôBretagne, service de location de vélos électriques sur Brest et Quimper. Je recherche un fournisseur pour une flotte initiale de 10 vélos avec option de renouvellement...</div>
+                </div>
+              </div>
+              <div class="tr-email-card" style="margin-bottom:8px">
+                <div class="tr-email-hd">
+                  <span class="tr-email-type">Email Prospection Hôtels</span>
+                  <span class="tr-email-badge">Partenariat B2B</span>
+                </div>
+                <div class="tr-email-body">
+                  <div class="tr-email-subject">Partenariat vélos électriques — Offre exclusive hôtels</div>
+                  <div class="tr-email-preview">Bonjour [Responsable], je propose aux hôtels de la région une flotte de vélos électriques en dépôt. Vos clients profitent d'un service premium, vous touchez 15% sur chaque location...</div>
+                </div>
+              </div>
+              <div class="tr-email-card">
+                <div class="tr-email-hd">
+                  <span class="tr-email-type">Email Relance J+7</span>
+                  <span class="tr-email-badge">Automatique</span>
+                </div>
+                <div class="tr-email-body">
+                  <div class="tr-email-subject">Re : Partenariat VélôBretagne — Toujours intéressé ?</div>
+                  <div class="tr-email-preview">Bonjour [Prénom], je reviens vers vous suite à mon message de la semaine dernière. Pour vous donner un aperçu concret : nos vélos sont déjà déployés chez 3 hôtels partenaires cette saison...</div>
+                </div>
+              </div>
+            </div>
+
+          </div><!-- end tr-full-card-body -->
+        </div><!-- end tr-full-card -->
+      </div>
+    </div><!-- end SECTION 4 -->
 
   </div>
 
