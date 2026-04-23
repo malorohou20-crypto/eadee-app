@@ -2197,6 +2197,15 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
 .popular .plan-feats li { color: #ecedf2 !important; }
 .plan-empire .plan-feats li { color: #ecedf2 !important; }
 .plan-for { color: #7a7f9a !important; font-style: italic; }
+.plan-credits-visual { display:flex; gap:5px; margin:18px 0 8px; }
+.pcv-dot { width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.12); transition:background .2s; }
+.pcv-dot.active { background:#6b8fef; border-color:#6b8fef; box-shadow:0 0 6px rgba(107,143,239,0.5); }
+.popular .pcv-dot.active { background:#9db8f8; border-color:#9db8f8; box-shadow:0 0 8px rgba(157,184,248,0.5); }
+.plan-empire .pcv-dot.active { background:#a78bfa; border-color:#a78bfa; box-shadow:0 0 8px rgba(167,139,250,0.5); }
+.plan-credits-label { font-size:12px; color:#7a7f9a; margin-bottom:14px; }
+.plan-credits-label strong { color:#ecedf2; }
+.pf-tag { font-size:12px; color:#9db8f8; }
+.pf-sep { color:rgba(255,255,255,0.15); font-size:11px; }
 .plan-cta {
   background: transparent !important; border: 1px solid rgba(255,255,255,0.15) !important;
   color: #ecedf2 !important; font-family: 'Geist', sans-serif !important;
@@ -3130,16 +3139,18 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
         <div class="plan-name">Starter</div>
         <div class="plan-amount"><sup>€</sup>2.99</div>
         <div class="plan-per">/ 1 génération</div>
-        <ul class="plan-feats">
-          <li><strong>1 business plan</strong> complet</li>
-          <li>Score de viabilité /100</li>
-          <li>Projections financières 12 mois</li>
-          <li>Plan 90 jours + pitch 30s</li>
-          <li>Emails rédigés + démarches admin</li>
-          <li>Export PDF professionnel</li>
-          <li>Conseiller disponible 24h/24</li>
-        </ul>
-        <div class="plan-for">Valide ton idée sans risquer un euro</div>
+        <div class="plan-credits-visual">
+          <div class="pcv-dot active"></div>
+          <div class="pcv-dot"></div>
+          <div class="pcv-dot"></div>
+          <div class="pcv-dot"></div>
+          <div class="pcv-dot"></div>
+          <div class="pcv-dot"></div>
+          <div class="pcv-dot"></div>
+          <div class="pcv-dot"></div>
+        </div>
+        <div class="plan-credits-label"><strong>1 crédit</strong> · 7 offerts si succès</div>
+        <div class="plan-for">Pour tester ton idée</div>
         <button class="plan-cta" onclick="selectPlan('starter')">Acheter Starter</button>
       </div>
 
@@ -3149,16 +3160,18 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
         <div class="plan-name">Builder</div>
         <div class="plan-amount"><sup>€</sup>7.99</div>
         <div class="plan-per">/ pack 3 générations</div>
-        <ul class="plan-feats">
-          <li><strong>3 business plans</strong> complets</li>
-          <li>Score de viabilité /100</li>
-          <li>Projections financières 12 mois</li>
-          <li>Plan 90 jours + pitch 30s</li>
-          <li>Emails rédigés + démarches admin</li>
-          <li>Export PDF professionnel</li>
-          <li>Conseiller disponible 24h/24</li>
-        </ul>
-        <div class="plan-for">Pour tester, itérer et lancer vite</div>
+        <div class="plan-credits-visual">
+          <div class="pcv-dot active"></div>
+          <div class="pcv-dot active"></div>
+          <div class="pcv-dot active"></div>
+          <div class="pcv-dot"></div>
+          <div class="pcv-dot"></div>
+          <div class="pcv-dot"></div>
+          <div class="pcv-dot"></div>
+          <div class="pcv-dot"></div>
+        </div>
+        <div class="plan-credits-label"><strong>3 crédits</strong> · 2.66€ / génération</div>
+        <div class="plan-for">Pour tester, itérer et lancer</div>
         <button class="plan-cta" onclick="selectPlan('builder')">Acheter Builder</button>
       </div>
 
@@ -3168,18 +3181,38 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
         <div class="plan-name">Empire</div>
         <div class="plan-amount"><sup>€</sup>19.99</div>
         <div class="plan-per">/ pack 8 générations</div>
-        <ul class="plan-feats">
-          <li><strong>8 business plans</strong> complets</li>
-          <li>Score de viabilité /100</li>
-          <li>Projections financières 12 mois</li>
-          <li>Plan 90 jours + pitch 30s</li>
-          <li>Emails rédigés + démarches admin</li>
-          <li>Export PDF professionnel</li>
-          <li>Conseiller disponible 24h/24</li>
-        </ul>
-        <div class="plan-for">Pour bâtir un business sérieux, pas un hobby</div>
+        <div class="plan-credits-visual">
+          <div class="pcv-dot active"></div>
+          <div class="pcv-dot active"></div>
+          <div class="pcv-dot active"></div>
+          <div class="pcv-dot active"></div>
+          <div class="pcv-dot active"></div>
+          <div class="pcv-dot active"></div>
+          <div class="pcv-dot active"></div>
+          <div class="pcv-dot active"></div>
+        </div>
+        <div class="plan-credits-label"><strong>8 crédits</strong> · 2.50€ / génération</div>
+        <div class="plan-for">Pour bâtir sérieusement</div>
         <button class="plan-cta plan-cta-empire" onclick="selectPlan('empire')">Acheter Empire</button>
       </div>
+    </div>
+
+    <!-- Fonctionnalités communes -->
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 24px;margin-top:28px;padding:18px 24px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:14px;max-width:760px;margin-left:auto;margin-right:auto;">
+      <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;color:#7a7f9a;text-transform:uppercase;width:100%;text-align:center;margin-bottom:4px;">Inclus dans chaque crédit</span>
+      <span class="pf-tag">17 sections complètes</span>
+      <span class="pf-sep">·</span>
+      <span class="pf-tag">Score viabilité /100</span>
+      <span class="pf-sep">·</span>
+      <span class="pf-tag">Projections 12 mois</span>
+      <span class="pf-sep">·</span>
+      <span class="pf-tag">Emails rédigés</span>
+      <span class="pf-sep">·</span>
+      <span class="pf-tag">Démarches admin</span>
+      <span class="pf-sep">·</span>
+      <span class="pf-tag">Coach IA 24h/24</span>
+      <span class="pf-sep">·</span>
+      <span class="pf-tag">Export PDF</span>
     </div>
   </div>
 
