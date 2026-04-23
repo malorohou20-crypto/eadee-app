@@ -3128,7 +3128,7 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
       <!-- STARTER -->
       <div class="price-card" onclick="selectPlan('starter')">
         <div class="plan-name">Starter</div>
-        <div class="plan-amount"><sup>€</sup>1.99</div>
+        <div class="plan-amount"><sup>€</sup>2.99</div>
         <div class="plan-per">/ 1 génération</div>
         <ul class="plan-feats">
           <li><strong>1 business plan</strong> complet</li>
@@ -3572,7 +3572,7 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
             <div>
               <div class="pay-plan-selector" id="planSelector">
                 <!-- STARTER -->
-                <div class="pay-plan-option" data-plan="starter" data-price="1.99" data-credits="1" onclick="selectPayPlan(this)">
+                <div class="pay-plan-option" data-plan="starter" data-price="2.99" data-credits="1" onclick="selectPayPlan(this)">
                   <div class="radio-circle"><div class="radio-dot"></div></div>
                   <div style="flex:1;margin-left:14px">
                     <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
@@ -4523,7 +4523,7 @@ function renderHistory() {
 
 // ========== PAYMENT ==========
 function selectPlan(planId) {
-  const plans = { starter: { name: 'Starter', price: 1.99, credits: 1 }, builder: { name: 'Builder', price: 7.99, credits: 3 }, empire: { name: 'Empire', price: 19.99, credits: 8 } };
+  const plans = { starter: { name: 'Starter', price: 2.99, credits: 1 }, builder: { name: 'Builder', price: 7.99, credits: 3 }, empire: { name: 'Empire', price: 19.99, credits: 8 } };
   if (planId === 'starter' && !user) { showAuth('signup'); return; }
   if (!user) { showAuth('signup'); return; }
   selectedPayPlan = plans[planId];
@@ -5546,7 +5546,7 @@ const legalContent = {
       <h3>Article 1 — Offres et tarifs</h3>
       <p>EADEE propose trois formules à la carte, sans abonnement :</p>
       <ul>
-        <li><strong>Starter :</strong> 1,99 € TTC — 1 crédit de génération</li>
+        <li><strong>Starter :</strong> 2,99 € TTC — 1 crédit de génération</li>
         <li><strong>Builder :</strong> 7,99 € TTC — pack de 3 générations de business plan + documents complets</li>
         <li><strong>Empire :</strong> 19,99 € TTC — pack de 8 générations + Conseiller disponible 24h/24</li>
       </ul>
