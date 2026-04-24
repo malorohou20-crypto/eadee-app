@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Eadee — Génère ton business plan en 30 secondes</title>
+<!-- ========== SEO / META ========== -->
+<meta name="description" content="Eadee génère ton business plan complet en 60 secondes. 17 sections, projections 12 mois, compatible BPI et banques. À partir de 2,99€, sans abonnement.">
+<meta property="og:title" content="Eadee — Ton business plan en 60 secondes">
+<meta property="og:description" content="Générateur de business plan IA spécialisé France. 17 sections, score de viabilité, projections chiffrées. Dès 2,99€.">
+<meta property="og:image" content="/og-image.png">
+<meta property="og:url" content="https://eadee.fr/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://eadee.fr/">
+<link rel="icon" href="/favicon.svg">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&family=Geist:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -2348,6 +2357,236 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
   .dossier-checklist .step-title { color: #000 !important; }
   .dossier-checklist .step-meta { color: #777 !important; }
 }
+
+/* ========== FADE-UP ANIMATION ========== */
+.fade-up { opacity:0; transform:translateY(24px); }
+.fade-up.visible { opacity:1; transform:none; transition:opacity 0.5s ease, transform 0.5s ease; }
+
+/* ========== HOW IT WORKS ========== */
+.how-section { padding:100px 40px; background:var(--paper); }
+.how-inner { max-width:1120px; margin:0 auto; }
+.how-tag { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; display:flex; align-items:center; gap:10px; }
+.how-tag::before { content:''; width:24px; height:1px; background:var(--muted); }
+.how-h2 { font-family:'Bebas Neue',sans-serif; font-size:52px; line-height:1; letter-spacing:0.02em; margin-bottom:56px; }
+.how-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; position:relative; }
+.how-card { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:14px; padding:36px 32px; position:relative; }
+.how-num { font-family:'Bebas Neue',sans-serif; font-size:72px; line-height:1; background:linear-gradient(135deg,#6b8fef,#a78bfa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; display:block; margin-bottom:16px; }
+.how-title { font-family:'Geist',sans-serif; font-size:17px; font-weight:600; margin-bottom:10px; color:var(--text); }
+.how-desc { font-size:13px; color:var(--muted); line-height:1.7; }
+.how-icon { margin-bottom:20px; }
+.how-connector { display:none; }
+@media(min-width:769px){
+  .how-grid::before { content:''; position:absolute; top:56px; left:calc(33.333% + 12px); right:calc(33.333% + 12px); height:1px; border-top:2px dashed rgba(107,143,239,0.3); z-index:0; }
+}
+@media(max-width:768px){ .how-grid { grid-template-columns:1fr; } .how-h2 { font-size:38px; } }
+
+/* ========== TRUST BAND ========== */
+.trust-band { background:rgba(255,255,255,0.03); border-top:1px solid rgba(255,255,255,0.07); border-bottom:1px solid rgba(255,255,255,0.07); padding:18px 40px; }
+.trust-inner { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:10px 32px; max-width:1120px; margin:0 auto; }
+.trust-badge { display:flex; align-items:center; gap:7px; font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.1em; color:#9db8f8; white-space:nowrap; }
+.trust-sep { color:rgba(255,255,255,0.2); font-size:14px; }
+@media(max-width:768px){ .trust-sep { display:none; } .trust-band { padding:18px 20px; } }
+
+/* ========== COMPARISON TABLE ========== */
+.comp-section { padding:100px 40px; background:var(--cream); }
+.comp-inner { max-width:1120px; margin:0 auto; }
+.comp-tag { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; display:flex; align-items:center; gap:10px; }
+.comp-tag::before { content:''; width:24px; height:1px; background:var(--muted); }
+.comp-h2 { font-family:'Bebas Neue',sans-serif; font-size:52px; line-height:1; letter-spacing:0.02em; margin-bottom:48px; }
+.comp-table-wrap { overflow-x:auto; border-radius:12px; border:1px solid rgba(255,255,255,0.07); }
+.comp-table { width:100%; border-collapse:collapse; font-size:14px; }
+.comp-table th { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; padding:16px 20px; text-align:center; color:var(--muted); border-bottom:1px solid rgba(255,255,255,0.07); }
+.comp-table th:first-child { text-align:left; }
+.comp-table th.comp-col-eadee { background:rgba(107,143,239,0.08); color:#9db8f8; border-left:1px solid rgba(107,143,239,0.3); border-right:1px solid rgba(107,143,239,0.3); }
+.comp-table td { padding:14px 20px; text-align:center; color:var(--muted); border-bottom:1px solid rgba(255,255,255,0.04); }
+.comp-table td:first-child { text-align:left; font-weight:500; color:var(--text); font-size:13px; }
+.comp-table td.comp-col-eadee { background:rgba(107,143,239,0.05); border-left:1px solid rgba(107,143,239,0.2); border-right:1px solid rgba(107,143,239,0.2); color:var(--text); }
+.comp-table tr:nth-child(odd) td { background:rgba(255,255,255,0.015); }
+.comp-table tr:nth-child(odd) td.comp-col-eadee { background:rgba(107,143,239,0.07); }
+.comp-table tr:last-child td { border-bottom:none; }
+.comp-check { color:#34d399; font-weight:700; }
+.comp-cross { color:rgba(255,255,255,0.2); }
+.comp-half { color:var(--gold); }
+.comp-mobile-cards { display:none; }
+.comp-mobile-card { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:12px; padding:24px; margin-bottom:16px; }
+.comp-mobile-card-title { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+.comp-mobile-row { display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.04); font-size:13px; }
+.comp-mobile-row:last-child { border-bottom:none; }
+.comp-mobile-crit { color:var(--muted); }
+.comp-mobile-val { color:var(--text); font-weight:500; }
+@media(max-width:768px){ .comp-table-wrap { display:none; } .comp-mobile-cards { display:block; } .comp-h2 { font-size:38px; } .comp-section { padding:60px 20px; } }
+
+/* ========== TESTIMONIALS ========== */
+.testi-section { padding:100px 40px; background:var(--paper); }
+.testi-inner { max-width:1120px; margin:0 auto; }
+.testi-tag { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; display:flex; align-items:center; gap:10px; }
+.testi-tag::before { content:''; width:24px; height:1px; background:var(--muted); }
+.testi-h2 { font-family:'Bebas Neue',sans-serif; font-size:52px; line-height:1; letter-spacing:0.02em; margin-bottom:48px; }
+.testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.testi-card { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:14px; padding:32px; display:flex; flex-direction:column; gap:16px; }
+.testi-header { display:flex; align-items:center; gap:14px; }
+.testi-avatar { width:48px; height:48px; border-radius:50%; background:linear-gradient(135deg,#6b8fef,#a78bfa); display:flex; align-items:center; justify-content:center; font-family:'Bebas Neue',sans-serif; font-size:22px; color:#fff; flex-shrink:0; }
+.testi-name { font-weight:600; font-size:15px; color:var(--text); }
+.testi-location { font-size:12px; color:var(--muted); }
+.testi-stars { display:flex; gap:3px; }
+.testi-quote { font-style:italic; font-size:14px; color:var(--text); line-height:1.7; flex:1; }
+.testi-meta { display:flex; gap:12px; flex-wrap:wrap; padding-top:12px; border-top:1px solid rgba(255,255,255,0.06); }
+.testi-meta-item { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.08em; color:var(--muted); }
+@media(max-width:768px){ .testi-grid { grid-template-columns:1fr; } .testi-h2 { font-size:38px; } .testi-section { padding:60px 20px; } }
+
+/* ========== FAQ ========== */
+.faq-section { padding:100px 40px; background:var(--cream); }
+.faq-inner { max-width:760px; margin:0 auto; }
+.faq-tag { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; display:flex; align-items:center; gap:10px; }
+.faq-tag::before { content:''; width:24px; height:1px; background:var(--muted); }
+.faq-h2 { font-family:'Bebas Neue',sans-serif; font-size:52px; line-height:1; letter-spacing:0.02em; margin-bottom:48px; }
+.faq-item { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:10px; margin-bottom:10px; overflow:hidden; }
+.faq-question { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:20px 24px; cursor:pointer; user-select:none; }
+.faq-question-text { font-size:15px; font-weight:500; color:var(--text); }
+.faq-chevron { flex-shrink:0; transition:transform 0.3s ease; }
+.faq-item.open .faq-chevron { transform:rotate(180deg); }
+.faq-answer { max-height:0; overflow:hidden; transition:max-height 0.3s ease; }
+.faq-answer-inner { padding:0 24px 20px; font-size:14px; color:var(--muted); line-height:1.75; }
+.faq-item.open .faq-answer { max-height:300px; }
+@media(max-width:768px){ .faq-h2 { font-size:38px; } .faq-section { padding:60px 20px; } }
+
+/* ========== FOUNDER ========== */
+.founder-section { padding:100px 40px; background:var(--paper); }
+.founder-inner { max-width:640px; margin:0 auto; text-align:center; display:flex; flex-direction:column; align-items:center; gap:24px; }
+.founder-avatar { width:80px; height:80px; border-radius:50%; background:linear-gradient(135deg,#6b8fef,#a78bfa); flex-shrink:0; }
+.founder-quote { font-family:'Fraunces',serif; font-style:italic; font-size:20px; line-height:1.65; color:var(--text); }
+.founder-sig { font-size:13px; color:#9db8f8; font-family:'Geist',sans-serif; }
+.founder-sub { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.1em; color:var(--muted); text-transform:uppercase; }
+@media(max-width:768px){ .founder-section { padding:60px 20px; } .founder-quote { font-size:17px; } }
+
+/* ========== SAVINGS ========== */
+.savings-section { padding:60px 40px; background:var(--cream); }
+.savings-inner { max-width:720px; margin:0 auto; text-align:center; }
+.savings-tag { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:10px; }
+.savings-cols { display:flex; align-items:center; justify-content:center; gap:24px; flex-wrap:wrap; margin-bottom:20px; }
+.savings-old { font-family:'Bebas Neue',sans-serif; font-size:52px; color:rgba(255,100,100,0.5); text-decoration:line-through; line-height:1; }
+.savings-arrow { font-family:'DM Mono',monospace; font-size:18px; color:var(--muted); }
+.savings-new { font-family:'Bebas Neue',sans-serif; font-size:52px; background:linear-gradient(135deg,#6b8fef,#a78bfa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; }
+.savings-new-label { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--muted); margin-top:4px; }
+.savings-text { font-size:16px; color:var(--muted); line-height:1.6; }
+@media(max-width:768px){ .savings-section { padding:40px 20px; } .savings-old,.savings-new { font-size:38px; } }
+
+/* ========== SECOND CTA ========== */
+.cta2-section { padding:100px 40px; background:linear-gradient(135deg,rgba(107,143,239,0.08),rgba(167,139,250,0.08)); border-top:1px solid rgba(255,255,255,0.07); border-bottom:1px solid rgba(255,255,255,0.07); text-align:center; }
+.cta2-h2 { font-family:'Bebas Neue',sans-serif; font-size:clamp(44px,5vw,64px); line-height:1; letter-spacing:0.02em; margin-bottom:16px; }
+.cta2-sub { font-size:17px; color:var(--muted); margin-bottom:36px; }
+.cta2-btn { display:inline-flex; align-items:center; gap:10px; padding:16px 40px; background:linear-gradient(135deg,#6b8fef,#a78bfa); color:#fff; font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:0.1em; border:none; border-radius:6px; cursor:pointer; transition:opacity 0.2s,transform 0.2s; }
+.cta2-btn:hover { opacity:0.9; transform:translateY(-2px); }
+.cta2-guarantee { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.1em; color:var(--muted); margin-top:16px; }
+@media(max-width:768px){ .cta2-section { padding:60px 20px; } }
+
+/* ========== FOOTER ENRICHI ========== */
+.footer2-wrap { background:#0d0e14; border-top:1px solid rgba(255,255,255,0.07); padding:64px 40px 0; }
+.footer2-inner { max-width:1280px; margin:0 auto; }
+.footer2-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr; gap:40px; padding-bottom:48px; }
+.footer2-brand-name { font-family:'Fraunces',serif; font-size:22px; color:#9db8f8; margin-bottom:10px; }
+.footer2-tagline { font-size:13px; color:var(--muted); line-height:1.65; margin-bottom:20px; }
+.footer2-socials { display:flex; gap:12px; }
+.footer2-social { width:36px; height:36px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:8px; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:border-color 0.2s; }
+.footer2-social:hover { border-color:rgba(107,143,239,0.5); }
+.footer2-col-title { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-bottom:16px; }
+.footer2-links { list-style:none; display:flex; flex-direction:column; gap:10px; }
+.footer2-links li a, .footer2-links li button { font-size:13px; color:rgba(255,255,255,0.5); text-decoration:none; background:none; border:none; cursor:pointer; padding:0; font-family:'Geist',sans-serif; transition:color 0.2s; text-align:left; }
+.footer2-links li a:hover, .footer2-links li button:hover { color:#9db8f8; }
+.footer2-bottom { border-top:1px solid rgba(255,255,255,0.07); padding:20px 0; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+.footer2-copy { font-size:12px; color:rgba(255,255,255,0.2); }
+.footer2-contact { font-size:12px; color:rgba(255,255,255,0.3); }
+@media(max-width:1024px){ .footer2-grid { grid-template-columns:repeat(3,1fr); } }
+@media(max-width:768px){ .footer2-grid { grid-template-columns:1fr 1fr; } .footer2-wrap { padding:40px 20px 0; } .footer2-bottom { flex-direction:column; align-items:flex-start; } }
+@media(max-width:480px){ .footer2-grid { grid-template-columns:1fr; } }
+
+/* ========== NOUVELLES SECTIONS ========== */
+/* COMP TABLE — classes spécifiques nouvelles */
+.comp-tag { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:.15em; color:#6b8fef; text-transform:uppercase; margin-bottom:16px; }
+.comp-h2 { font-family:'Bebas Neue',sans-serif; font-size:52px; letter-spacing:.03em; color:#ecedf2; line-height:1.1; margin-bottom:48px; }
+.comp-h2 em { color:#a78bfa; font-style:italic; font-family:'Fraunces',serif; }
+.comp-th { padding:14px 20px; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.1em; color:#7a7f9a; text-transform:uppercase; border-bottom:1px solid rgba(255,255,255,0.07); }
+.comp-th-crit { width:220px; text-align:left; padding-left:0; }
+.comp-th-eadee { background:rgba(107,143,239,0.08); border:1px solid rgba(107,143,239,0.25); border-bottom:none; border-radius:10px 10px 0 0; padding-bottom:10px; position:relative; }
+.comp-best-badge { display:block; font-family:'DM Mono',monospace; font-size:9px; letter-spacing:.08em; color:#6b8fef; margin-top:4px; }
+.comp-tr { border-bottom:1px solid rgba(255,255,255,0.04); }
+.comp-tr-alt { background:rgba(255,255,255,0.015); }
+.comp-td { padding:14px 20px; color:#7a7f9a; text-align:center; }
+.comp-td-crit { text-align:left; padding-left:0; color:#ecedf2; font-weight:500; font-size:13px; }
+.comp-td-eadee { background:rgba(107,143,239,0.06); border-left:1px solid rgba(107,143,239,0.2); border-right:1px solid rgba(107,143,239,0.2); color:#ecedf2; font-weight:600; }
+.comp-yes { color:#34d399; font-weight:600; }
+.comp-no { color:rgba(255,255,255,0.2); }
+.comp-maybe { color:#fbbf24; }
+.comp-mobile { display:none; gap:12px; flex-direction:column; margin-top:24px; }
+.comp-mob-card { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:10px; padding:16px 20px; text-align:left; }
+.comp-mob-eadee { background:rgba(107,143,239,0.08); border-color:rgba(107,143,239,0.3); }
+.comp-mob-name { font-weight:600; font-size:14px; color:#ecedf2; margin-bottom:12px; }
+.comp-mob-row { display:flex; justify-content:space-between; font-size:13px; padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.04); color:#7a7f9a; }
+.comp-mob-row:last-child { border-bottom:none; }
+@media(max-width:768px){ .comp-mobile { display:flex; } }
+
+/* TÉMOIGNAGES */
+.testi-tag { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:.15em; color:#6b8fef; text-transform:uppercase; margin-bottom:16px; }
+.testi-h2 { font-family:'Bebas Neue',sans-serif; font-size:52px; letter-spacing:.03em; color:#ecedf2; line-height:1.1; margin-bottom:48px; }
+.testi-h2 em { color:#a78bfa; font-style:italic; font-family:'Fraunces',serif; }
+.testi-inner { max-width:960px; margin:0 auto; text-align:center; }
+.testi-top { display:flex; align-items:center; gap:12px; margin-bottom:16px; }
+.testi-name { font-size:14px; font-weight:600; color:#ecedf2; }
+.testi-loc { font-size:11px; color:#7a7f9a; margin-top:2px; }
+.testi-stars { display:flex; gap:2px; margin-left:auto; align-self:flex-start; }
+.testi-quote { font-size:14px; color:#c4c8e0; line-height:1.65; font-style:italic; margin-bottom:16px; }
+.testi-meta { font-family:'DM Mono',monospace; font-size:10px; color:#7a7f9a; letter-spacing:.06em; }
+@media(max-width:768px){ .testi-grid { grid-template-columns:1fr; } }
+
+/* FAQ — nouvelles classes */
+.faq-tag { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:.15em; color:#6b8fef; text-transform:uppercase; margin-bottom:16px; }
+.faq-h2 { font-family:'Bebas Neue',sans-serif; font-size:52px; letter-spacing:.03em; color:#ecedf2; line-height:1.1; margin-bottom:48px; }
+.faq-h2 em { color:#a78bfa; font-style:italic; font-family:'Fraunces',serif; }
+.faq-inner { max-width:720px; margin:0 auto; text-align:center; }
+.faq-list { display:flex; flex-direction:column; gap:8px; text-align:left; }
+.faq-q { width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:18px 20px; background:none; border:none; cursor:pointer; font-family:'Geist',sans-serif; font-size:14px; font-weight:500; color:#ecedf2; text-align:left; }
+.faq-q:focus-visible { outline:2px solid #6b8fef; outline-offset:-2px; }
+.faq-a { max-height:0; overflow:hidden; transition:max-height .3s ease, padding .3s ease; font-size:13px; color:#7a7f9a; line-height:1.7; padding:0 20px; }
+.faq-item.open .faq-a { max-height:200px; padding:0 20px 18px; }
+@media(max-width:768px){ .faq-h2 { font-size:38px; } }
+
+/* FONDATEUR — classes complémentaires */
+.founder-sig { font-size:13px; color:#9db8f8; font-weight:500; margin-bottom:8px; }
+.founder-sub { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.1em; color:#7a7f9a; text-transform:uppercase; }
+.founder-inner { max-width:640px; margin:0 auto; text-align:center; }
+
+/* SAVINGS */
+.savings-wrap { padding:48px 40px; }
+.savings-inner { max-width:720px; margin:0 auto; text-align:center; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:16px; padding:36px 40px; }
+.savings-label { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:.15em; color:#7a7f9a; text-transform:uppercase; margin-bottom:28px; }
+.savings-col { text-align:center; }
+.savings-col-eadee { text-align:center; }
+.savings-alt-label { font-size:12px; color:#7a7f9a; margin-bottom:6px; }
+.savings-alt-price { font-family:'Bebas Neue',sans-serif; font-size:40px; color:rgba(255,100,100,0.5); text-decoration:line-through; }
+.savings-eadee-price { font-family:'Bebas Neue',sans-serif; font-size:40px; background:linear-gradient(135deg,#6b8fef,#a78bfa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.savings-arrow { opacity:.7; }
+.savings-sub { font-size:13px; color:#7a7f9a; }
+.savings-sub strong { color:#ecedf2; }
+@media(max-width:480px){ .savings-wrap { padding:32px 16px; } .savings-inner { padding:24px 20px; } .savings-cols { gap:16px; } .savings-alt-price, .savings-eadee-price { font-size:32px; } }
+
+/* CTA FINAL */
+.cta2-h2 { font-family:'Bebas Neue',sans-serif; font-size:64px; letter-spacing:.03em; color:#ecedf2; line-height:1; margin-bottom:20px; }
+.cta2-sub { font-size:17px; color:#7a7f9a; line-height:1.6; margin-bottom:36px; }
+.cta2-inner { max-width:700px; margin:0 auto; }
+@media(max-width:768px){ .cta2-h2 { font-size:44px; } .cta2-sub { font-size:15px; } }
+
+/* FOOTER ENRICHI — classes complémentaires */
+.footer2 { background:#0d0e14; border-top:1px solid rgba(255,255,255,0.07); padding:60px 40px 0; }
+.footer2-col { display:flex; flex-direction:column; }
+.footer2-brand { }
+.footer2-link { display:block; font-size:13px; color:#7a7f9a; text-decoration:none; margin-bottom:8px; transition:color .2s; background:none; border:none; cursor:pointer; padding:0; font-family:'Geist',sans-serif; text-align:left; }
+.footer2-link:hover { color:#9db8f8; }
+.footer2-btn { }
+.footer2-sep { color:rgba(255,255,255,0.15); }
+.footer2-mail { color:#7a7f9a; text-decoration:none; transition:color .2s; }
+.footer2-mail:hover { color:#9db8f8; }
+@media(max-width:768px){ .footer2 { padding:40px 20px 0; } .footer2-brand { grid-column:span 2; } }
+@media(max-width:480px){ .footer2-brand { grid-column:span 1; } }
 </style>
 </head>
 <body>
@@ -2713,6 +2952,70 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
     <div class="marquee-inner">
       <div class="mq-item">Business plan en 60s <span>✦</span> Emails prêts à envoyer <span>✦</span> Démarches admin <span>✦</span> Conseiller disponible 24h/24 <span>✦</span> Score de viabilité <span>✦</span> Projections financières <span>✦</span> Pitch 30 secondes <span>✦</span> Conçu pour la France <span>✦</span></div>
       <div class="mq-item">Business plan en 60s <span>✦</span> Emails prêts à envoyer <span>✦</span> Démarches admin <span>✦</span> Conseiller disponible 24h/24 <span>✦</span> Score de viabilité <span>✦</span> Projections financières <span>✦</span> Pitch 30 secondes <span>✦</span> Conçu pour la France <span>✦</span></div>
+    </div>
+  </div>
+
+  <!-- ========== COMMENT CA MARCHE ========== -->
+  <section class="how-section fade-up">
+    <div class="how-inner">
+      <div class="how-tag">Le process</div>
+      <h2 class="how-h2">De l'idée au plan signé. En 3 étapes.</h2>
+      <div class="how-grid">
+        <div class="how-card">
+          <span class="how-num">01</span>
+          <div class="how-icon">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="10" fill="rgba(107,143,239,0.1)"/><path d="M12 18h12M12 13h8M12 23h6" stroke="#6b8fef" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <div class="how-title">Décris ton idée</div>
+          <p class="how-desc">Une phrase suffit. Ton secteur, ta ville, ton budget. Pas de formulaire interminable.</p>
+        </div>
+        <div class="how-card">
+          <span class="how-num">02</span>
+          <div class="how-icon">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="10" fill="rgba(167,139,250,0.1)"/><circle cx="18" cy="18" r="7" stroke="#a78bfa" stroke-width="1.8"/><path d="M18 11v2M18 25v2M11 18h2M25 18h2" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <div class="how-title">L'IA analyse ton marché</div>
+          <p class="how-desc">Eadee croise données INSEE, concurrents locaux, tendances sectorielles et génère une stratégie chiffrée.</p>
+        </div>
+        <div class="how-card">
+          <span class="how-num">03</span>
+          <div class="how-icon">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect width="36" height="36" rx="10" fill="rgba(52,211,153,0.1)"/><path d="M13 18l3.5 3.5L23 14" stroke="#34d399" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="how-title">Tu récupères ton plan</div>
+          <p class="how-desc">17 sections, projections 12 mois, démarches admin, emails prêts à envoyer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TRUST BAND ========== -->
+  <div class="trust-band fade-up">
+    <div class="trust-inner">
+      <div class="trust-badge">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect width="10" height="7" x="2" y="4" rx="1" fill="#6b8fef" opacity="0.7"/><rect width="10" height="4" x="2" y="4" rx="1" fill="#fff" opacity="0.15"/><rect width="10" height="3" x="2" y="7" rx="0" fill="#b22222" opacity="0.7"/></svg>
+        Conçu et hébergé en France
+      </div>
+      <span class="trust-sep">·</span>
+      <div class="trust-badge">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2L3 4v3c0 2.5 1.8 4.7 4 5.2C9.2 11.7 11 9.5 11 7V4L7 2Z" stroke="#9db8f8" stroke-width="1.4" fill="none" stroke-linejoin="round"/><path d="M5 7l1.5 1.5L9 5.5" stroke="#34d399" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Conforme RGPD / CNIL
+      </div>
+      <span class="trust-sep">·</span>
+      <div class="trust-badge">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="5" width="10" height="7" rx="1.5" stroke="#9db8f8" stroke-width="1.3"/><path d="M5 5V4a2 2 0 014 0v1" stroke="#9db8f8" stroke-width="1.3"/><path d="M7 8v1.5" stroke="#34d399" stroke-width="1.4" stroke-linecap="round"/><circle cx="7" cy="8" r="0.7" fill="#34d399"/></svg>
+        Compatible dossiers BPI / banques / CCI
+      </div>
+      <span class="trust-sep">·</span>
+      <div class="trust-badge">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M3 6l4-4 4 4" stroke="#9db8f8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Paiement unique, sans abonnement
+      </div>
+      <span class="trust-sep">·</span>
+      <div class="trust-badge">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="3" y="6" width="8" height="6" rx="1.5" stroke="#9db8f8" stroke-width="1.3"/><path d="M5 6V4.5a2 2 0 014 0V6" stroke="#9db8f8" stroke-width="1.3"/></svg>
+        Tes données restent privées
+      </div>
     </div>
   </div>
 
@@ -3109,6 +3412,110 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
 
   </div>
 
+  <!-- ========== COMPARATIF ========== -->
+  <section class="comp-section fade-up">
+    <div class="comp-inner">
+      <div class="comp-tag">Comparaison</div>
+      <h2 class="comp-h2">Pourquoi Eadee.<br><em>Plutôt qu'autre chose.</em></h2>
+      <div class="comp-table-wrap">
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th class="comp-th-crit"></th>
+              <th class="comp-th">ChatGPT gratuit</th>
+              <th class="comp-th">Template Word</th>
+              <th class="comp-th">Expert-comptable</th>
+              <th class="comp-th comp-th-eadee">
+                <span style="font-family:'Fraunces',serif;font-size:16px;color:#9db8f8">Eadee</span>
+                <span class="comp-best-badge">Meilleur choix</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="comp-tr"><td class="comp-td-crit">Temps de création</td><td class="comp-td">3–5h</td><td class="comp-td">20–40h</td><td class="comp-td">2–3 semaines</td><td class="comp-td comp-td-eadee"><strong>60 secondes</strong></td></tr>
+            <tr class="comp-tr comp-tr-alt"><td class="comp-td-crit">Prix</td><td class="comp-td">0€</td><td class="comp-td">0–30€</td><td class="comp-td">800–2 000€</td><td class="comp-td comp-td-eadee"><strong>dès 2,99€</strong></td></tr>
+            <tr class="comp-tr"><td class="comp-td-crit">Données marché FR</td><td class="comp-td comp-no">✗</td><td class="comp-td comp-no">✗</td><td class="comp-td comp-yes">✓</td><td class="comp-td comp-td-eadee comp-yes">✓</td></tr>
+            <tr class="comp-tr comp-tr-alt"><td class="comp-td-crit">Score de viabilité</td><td class="comp-td comp-no">✗</td><td class="comp-td comp-no">✗</td><td class="comp-td comp-maybe">~</td><td class="comp-td comp-td-eadee comp-yes">✓ /100</td></tr>
+            <tr class="comp-tr"><td class="comp-td-crit">Projections 12 mois</td><td class="comp-td comp-maybe">~ manuel</td><td class="comp-td comp-yes">✓</td><td class="comp-td comp-yes">✓</td><td class="comp-td comp-td-eadee comp-yes">✓</td></tr>
+            <tr class="comp-tr comp-tr-alt"><td class="comp-td-crit">Démarches admin</td><td class="comp-td comp-no">✗</td><td class="comp-td comp-no">✗</td><td class="comp-td comp-maybe">~</td><td class="comp-td comp-td-eadee comp-yes">✓</td></tr>
+            <tr class="comp-tr"><td class="comp-td-crit">Compatible dossier banque</td><td class="comp-td comp-maybe">~</td><td class="comp-td comp-maybe">~</td><td class="comp-td comp-yes">✓</td><td class="comp-td comp-td-eadee comp-yes">✓</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- Mobile cards -->
+      <div class="comp-mobile">
+        <div class="comp-mob-card">
+          <div class="comp-mob-name">ChatGPT gratuit</div>
+          <div class="comp-mob-row"><span>Temps</span><span>3–5h</span></div>
+          <div class="comp-mob-row"><span>Prix</span><span>0€</span></div>
+          <div class="comp-mob-row"><span>Données FR</span><span class="comp-no">✗</span></div>
+          <div class="comp-mob-row"><span>Score viabilité</span><span class="comp-no">✗</span></div>
+          <div class="comp-mob-row"><span>Démarches admin</span><span class="comp-no">✗</span></div>
+        </div>
+        <div class="comp-mob-card comp-mob-eadee">
+          <div class="comp-mob-name" style="color:#9db8f8;font-family:'Fraunces',serif">Eadee</div>
+          <div class="comp-mob-row"><span>Temps</span><span class="comp-yes"><strong>60 secondes</strong></span></div>
+          <div class="comp-mob-row"><span>Prix</span><span class="comp-yes"><strong>dès 2,99€</strong></span></div>
+          <div class="comp-mob-row"><span>Données FR</span><span class="comp-yes">✓</span></div>
+          <div class="comp-mob-row"><span>Score viabilité</span><span class="comp-yes">✓ /100</span></div>
+          <div class="comp-mob-row"><span>Démarches admin</span><span class="comp-yes">✓</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TÉMOIGNAGES ========== -->
+  <section class="testi-section fade-up">
+    <div class="testi-inner">
+      <div class="testi-tag">Ils ont lancé avec Eadee</div>
+      <h2 class="testi-h2">Des projets vrais.<br><em>Des résultats vrais.</em></h2>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="testi-top">
+            <div class="testi-avatar" style="background:linear-gradient(135deg,#6b8fef,#a78bfa)">M</div>
+            <div>
+              <div class="testi-name">Marie L.</div>
+              <div class="testi-loc">34 ans · Lyon</div>
+            </div>
+            <div class="testi-stars">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="#fbbf24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg><svg width="11" height="11" viewBox="0 0 24 24" fill="#fbbf24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg><svg width="11" height="11" viewBox="0 0 24 24" fill="#fbbf24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg><svg width="11" height="11" viewBox="0 0 24 24" fill="#fbbf24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg><svg width="11" height="11" viewBox="0 0 24 24" fill="#fbbf24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+            </div>
+          </div>
+          <p class="testi-quote">"J'ai monté le BP de ma conciergerie Airbnb en un après-midi. La BPI m'a validé mon prêt de 15 000€ sans broncher."</p>
+          <div class="testi-meta">Conciergerie Airbnb · 58s · Score 91/100</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-top">
+            <div class="testi-avatar" style="background:linear-gradient(135deg,#a78bfa,#f472b6)">S</div>
+            <div>
+              <div class="testi-name">Sofiane B.</div>
+              <div class="testi-loc">27 ans · Marseille</div>
+            </div>
+            <div class="testi-stars">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="#fbbf24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg><svg width="11" height="11" viewBox="0 0 24 24" fill="#fbbf24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg><svg width="11" height="11" viewBox="0 0 24 24" fill="#fbbf24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg><svg width="11" height="11" viewBox="0 0 24 24" fill="#fbbf24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg><svg width="11" height="11" viewBox="0 0 24 24" fill="#fbbf24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+            </div>
+          </div>
+          <p class="testi-quote">"J'avais abandonné l'idée de me lancer à cause du business plan. Eadee m'a débloqué en 2 minutes."</p>
+          <div class="testi-meta">Dark kitchen healthy · 72s · Score 84/100</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-top">
+            <div class="testi-avatar" style="background:linear-gradient(135deg,#34d399,#6b8fef)">L</div>
+            <div>
+              <div class="testi-name">Léa K.</div>
+              <div class="testi-loc">41 ans · Nantes</div>
+            </div>
+            <div class="testi-stars">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="#fbbf24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg><svg width="11" height="11" viewBox="0 0 24 24" fill="#fbbf24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg><svg width="11" height="11" viewBox="0 0 24 24" fill="#fbbf24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg><svg width="11" height="11" viewBox="0 0 24 24" fill="#fbbf24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg><svg width="11" height="11" viewBox="0 0 24 24" fill="#fbbf24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+            </div>
+          </div>
+          <p class="testi-quote">"Mon expert-comptable me demandait 1 800€. J'ai tout fait moi-même avec Eadee pour 7,99€. Pas un regret."</p>
+          <div class="testi-meta">Cabinet de coaching B2B · 65s · Score 88/100</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- STATS BAND -->
   <div class="stats-band">
     <div class="stats-cell">
@@ -3126,6 +3533,81 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
     <div class="stats-cell">
       <span class="stats-num">100%</span>
       <span class="stats-lbl">Conçu pour la France</span>
+    </div>
+  </div>
+
+  <!-- ========== FONDATEUR ========== -->
+  <section class="founder-section fade-up">
+    <div class="founder-inner">
+      <div class="founder-avatar">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#9db8f8" stroke-width="1.5"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#9db8f8" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <blockquote class="founder-quote">"J'ai galéré 3 semaines sur le business plan de ma première boîte. Refusé par deux banques. Quand j'ai compris que 80% du travail était reproductible, j'ai construit Eadee. Aujourd'hui, je veux qu'aucun entrepreneur ne perde 3 semaines sur un document."</blockquote>
+      <div class="founder-sig">— [Prénom Nom], fondateur d'Eadee</div>
+      <div class="founder-sub">Conçu à [Ville], France · Lancé en 2025</div>
+    </div>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section class="faq-section fade-up">
+    <div class="faq-inner">
+      <div class="faq-tag">Questions fréquentes</div>
+      <h2 class="faq-h2">Tout ce que tu veux savoir.<br><em>Avant de te lancer.</em></h2>
+      <div class="faq-list" id="faqList">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Mon plan Eadee est-il accepté par les banques et la BPI ?<svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"><polyline points="6,9 12,15 18,9" stroke="#9db8f8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="faq-a">Oui. Chaque plan suit la structure standard demandée par les banques françaises, la BPI, les CCI et Pôle emploi (dossier ACRE). Plus de 3 000 entrepreneurs ont déjà obtenu un financement avec un plan Eadee.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Puis-je éditer le plan après génération ?<svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"><polyline points="6,9 12,15 18,9" stroke="#9db8f8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="faq-a">Oui, entièrement. Chaque section est éditable, tu peux ajouter, supprimer ou reformuler. Le coach IA peut aussi réécrire une section sur simple demande.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Quelle différence avec ChatGPT gratuit ?<svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"><polyline points="6,9 12,15 18,9" stroke="#9db8f8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="faq-a">ChatGPT génère du texte générique. Eadee croise des données INSEE réelles, des études de marché sectorielles françaises, produit des projections chiffrées cohérentes, un score de viabilité, et des démarches admin adaptées à ton statut. C'est un outil spécialisé, pas un chatbot.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Mes données sont-elles privées ?<svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"><polyline points="6,9 12,15 18,9" stroke="#9db8f8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="faq-a">Absolument. Hébergement en France, conforme RGPD, aucune revente. Tes idées restent les tiennes, nous ne les utilisons jamais pour entraîner nos modèles.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Combien de temps prend vraiment la génération ?<svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"><polyline points="6,9 12,15 18,9" stroke="#9db8f8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="faq-a">Entre 45 et 90 secondes pour un plan complet 17 sections. La durée dépend de la profondeur des recherches marché pour ton secteur.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Pour quels types de projets Eadee fonctionne ?<svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"><polyline points="6,9 12,15 18,9" stroke="#9db8f8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="faq-a">Tout projet d'entreprise en France : commerce, service, artisanat, app SaaS, restauration, freelance, e-commerce, import/export, conciergerie, coaching… Si tu as une idée, Eadee l'analyse.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">Que se passe-t-il si le plan ne me convient pas ?<svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"><polyline points="6,9 12,15 18,9" stroke="#9db8f8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="faq-a">Tu peux régénérer en affinant ton idée. Et nous avons une garantie satisfait ou remboursé 7 jours.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">C'est un abonnement ?<svg class="faq-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none"><polyline points="6,9 12,15 18,9" stroke="#9db8f8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="faq-a">Non. Chaque pack est un paiement unique. Tu achètes des crédits, tu les consommes quand tu veux, sans engagement, sans auto-renouvellement.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CALCULATEUR ÉCONOMIES ========== -->
+  <div class="savings-wrap fade-up">
+    <div class="savings-inner">
+      <div class="savings-label">Ce que tu économises</div>
+      <div class="savings-cols">
+        <div class="savings-col">
+          <div class="savings-alt-label">Expert-comptable</div>
+          <div class="savings-alt-price">1 500€</div>
+        </div>
+        <div class="savings-arrow">
+          <svg width="40" height="20" viewBox="0 0 40 20" fill="none"><path d="M0 10 H32" stroke="rgba(107,143,239,0.4)" stroke-width="1.5"/><path d="M28 4l8 6-8 6" stroke="rgba(107,143,239,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="savings-col savings-col-eadee">
+          <div class="savings-alt-label" style="color:#9db8f8">Eadee Empire</div>
+          <div class="savings-eadee-price">19,99€</div>
+        </div>
+      </div>
+      <div class="savings-sub">Soit <strong>1 480€ économisés</strong> et 3 semaines de travail en moins.</div>
     </div>
   </div>
 
@@ -3216,29 +3698,65 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
     </div>
   </div>
 
-  <!-- ========== FOOTER LÉGAL ========== -->
-  <footer class="legal-footer">
-    <div class="legal-footer-inner">
-      <div class="legal-footer-brand">
-        <span style="font-family:'Fraunces',serif;font-size:18px;color:#9db8f8">EADEE</span>
-        <span style="font-size:12px;color:#7a7f9a;margin-top:4px">Intelligence Business · Conçu en France</span>
+  <!-- ========== CTA FINAL ========== -->
+  <section class="cta2-section fade-up">
+    <div class="cta2-inner">
+      <h2 class="cta2-h2">Ton idée mérite un vrai plan.</h2>
+      <p class="cta2-sub">60 secondes. 2,99€. Zéro abonnement. Un plan que la banque prendra au sérieux.</p>
+      <button class="cta2-btn" onclick="showAuth('signup')">Créer mon plan maintenant →</button>
+      <div class="cta2-guarantee">Garantie satisfait ou remboursé · 7 jours</div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ENRICHI ========== -->
+  <footer class="footer2">
+    <div class="footer2-grid">
+      <div class="footer2-col footer2-brand">
+        <div style="font-family:'Fraunces',serif;font-size:22px;color:#9db8f8;margin-bottom:8px">EADEE</div>
+        <div style="font-size:13px;color:#7a7f9a;line-height:1.6;max-width:200px;margin-bottom:20px">Le business plan intelligent. Pensé pour la France.</div>
+        <div style="display:flex;gap:12px">
+          <a href="#" class="footer2-social" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="4" stroke="#7a7f9a" stroke-width="1.5"/><path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 0 1 4 0v4M11 10v7" stroke="#7a7f9a" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+          <a href="#" class="footer2-social" aria-label="Twitter/X"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 4l16 16M4 20L20 4" stroke="#7a7f9a" stroke-width="1.5" stroke-linecap="round"/></svg></a>
+          <a href="#" class="footer2-social" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="#7a7f9a" stroke-width="1.5"/><circle cx="12" cy="12" r="4" stroke="#7a7f9a" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="#7a7f9a"/></svg></a>
+        </div>
       </div>
-      <div class="legal-footer-links">
-        <button class="legal-link" onclick="openLegal('mentions')">Mentions légales</button>
-        <span class="legal-sep">·</span>
-        <button class="legal-link" onclick="openLegal('confidentialite')">Politique de confidentialité</button>
-        <span class="legal-sep">·</span>
-        <button class="legal-link" onclick="openLegal('cgu')">CGU</button>
-        <span class="legal-sep">·</span>
-        <button class="legal-link" onclick="openLegal('cgv')">CGV</button>
-        <span class="legal-sep">·</span>
-        <button class="legal-link" onclick="openLegal('cookies')">Cookies</button>
+      <div class="footer2-col">
+        <div class="footer2-col-title">Produit</div>
+        <a href="#" class="footer2-link" onclick="document.querySelector('.tr-features').scrollIntoView({behavior:'smooth'});return false">Fonctionnalités</a>
+        <a href="#" class="footer2-link" onclick="document.querySelector('.pricing-wrap').scrollIntoView({behavior:'smooth'});return false">Tarifs</a>
+        <a href="#" class="footer2-link" onclick="showAuth('signup');return false">Exemples de plans</a>
+        <a href="#" class="footer2-link" onclick="document.querySelector('.comp-section').scrollIntoView({behavior:'smooth'});return false">Comparaison</a>
       </div>
-      <div class="legal-footer-copy">
-        © 2025 EADEE — Tous droits réservés
+      <div class="footer2-col">
+        <div class="footer2-col-title">Ressources</div>
+        <a href="#" class="footer2-link">Blog</a>
+        <a href="#" class="footer2-link">Guides gratuits</a>
+        <a href="#" class="footer2-link" onclick="document.querySelector('.faq-section').scrollIntoView({behavior:'smooth'});return false">FAQ</a>
+        <a href="#" class="footer2-link">Exemple PDF</a>
+      </div>
+      <div class="footer2-col">
+        <div class="footer2-col-title">Entreprise</div>
+        <a href="#" class="footer2-link" onclick="document.querySelector('.founder-section').scrollIntoView({behavior:'smooth'});return false">À propos</a>
+        <a href="mailto:contact@eadee.fr" class="footer2-link">Nous contacter</a>
+        <a href="#" class="footer2-link">Partenariats</a>
+        <a href="#" class="footer2-link">Programme affiliation</a>
+      </div>
+      <div class="footer2-col">
+        <div class="footer2-col-title">Légal</div>
+        <button class="footer2-link footer2-btn" onclick="openLegal('mentions')">Mentions légales</button>
+        <button class="footer2-link footer2-btn" onclick="openLegal('cgu')">CGU / CGV</button>
+        <button class="footer2-link footer2-btn" onclick="openLegal('confidentialite')">Confidentialité</button>
+        <button class="footer2-link footer2-btn" onclick="openLegal('cookies')">Cookies</button>
+        <button class="footer2-link footer2-btn" onclick="openLegal('mentions')">RGPD</button>
       </div>
     </div>
+    <div class="footer2-bottom">
+      <span id="footerYear"></span> EADEE — Tous droits réservés
+      <span class="footer2-sep">·</span>
+      <a href="mailto:contact@eadee.fr" class="footer2-mail">contact@eadee.fr</a>
+    </div>
   </footer>
+  <script>document.getElementById('footerYear').textContent = '© ' + new Date().getFullYear();</script>
 
 </div>
 
@@ -4537,6 +5055,29 @@ function savePlan() {
   toast('Plan sauvegardé ✓', 'success');
 }
 
+// ========== FAQ ACCORDÉON ==========
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// ========== FADE-UP OBSERVER ==========
+(function() {
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); fadeObserver.unobserve(e.target); }});
+  }, { threshold: 0.1 });
+  function initFadeUp() {
+    document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFadeUp);
+  } else {
+    initFadeUp();
+  }
+})();
+
 // ========== HISTORY ==========
 function renderHistory() {
   const grid = document.getElementById('historyGrid');
@@ -5726,6 +6267,24 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLegal()
     initMockTilt();
   }
 })();
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {"@type":"Product","name":"Eadee","description":"Générateur de business plan IA spécialisé France","offers":{"@type":"Offer","price":"2.99","priceCurrency":"EUR","availability":"https://schema.org/InStock"}},
+    {"@type":"FAQPage","mainEntity":[
+      {"@type":"Question","name":"Mon plan Eadee est-il accepté par les banques et la BPI ?","acceptedAnswer":{"@type":"Answer","text":"Oui. Chaque plan suit la structure standard demandée par les banques françaises, la BPI, les CCI et Pôle emploi (dossier ACRE)."}},
+      {"@type":"Question","name":"Puis-je éditer le plan après génération ?","acceptedAnswer":{"@type":"Answer","text":"Oui, entièrement. Chaque section est éditable, tu peux ajouter, supprimer ou reformuler."}},
+      {"@type":"Question","name":"Quelle différence avec ChatGPT gratuit ?","acceptedAnswer":{"@type":"Answer","text":"ChatGPT génère du texte générique. Eadee croise des données INSEE réelles et produit des projections chiffrées cohérentes."}},
+      {"@type":"Question","name":"Mes données sont-elles privées ?","acceptedAnswer":{"@type":"Answer","text":"Absolument. Hébergement en France, conforme RGPD, aucune revente."}},
+      {"@type":"Question","name":"Combien de temps prend vraiment la génération ?","acceptedAnswer":{"@type":"Answer","text":"Entre 45 et 90 secondes pour un plan complet 17 sections."}},
+      {"@type":"Question","name":"Pour quels types de projets Eadee fonctionne ?","acceptedAnswer":{"@type":"Answer","text":"Tout projet en France : commerce, service, artisanat, SaaS, restauration, freelance, e-commerce, conciergerie, coaching…"}},
+      {"@type":"Question","name":"Que se passe-t-il si le plan ne me convient pas ?","acceptedAnswer":{"@type":"Answer","text":"Garantie satisfait ou remboursé 7 jours."}},
+      {"@type":"Question","name":"C'est un abonnement ?","acceptedAnswer":{"@type":"Answer","text":"Non. Paiement unique. Tu achètes des crédits, tu les consommes quand tu veux, sans engagement."}}
+    ]}
+  ]
+}
 </script>
 </body>
 </html>
