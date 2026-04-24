@@ -4379,7 +4379,15 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
 // ========== STATE ==========
 let user = null;
 let currentPlan = 'free';
-let plansHistory = JSON.parse(localStorage.getItem('eadee_history') || '[]').map(p => ({ ...p, date: new Date(p.date) }));
+let plansHistory = (function() {
+  try {
+    return JSON.parse(localStorage.getItem('eadee_history') || '[]').map(p => ({ ...p, date: new Date(p.date) }));
+  } catch(e) {
+    console.warn('eadee_history corrompue, réinitialisation.', e);
+    localStorage.removeItem('eadee_history');
+    return [];
+  }
+})();
 let selectedPayPlan = { name: 'Builder', price: 7.99, credits: 3 };
 let userCredits = 0;
 let currentResult = null;
@@ -4709,13 +4717,15 @@ Réponds UNIQUEMENT avec un JSON valide (sans markdown ni backticks):
     console.error('Erreur génération:', err);
     document.getElementById('dashGenerating').style.display = 'none';
     document.getElementById('dashEmptyState').style.display = 'flex';
-    document.getElementById('dashEmptyState').innerHTML = `
+    const errStateEl = document.getElementById('dashEmptyState');
+    errStateEl.innerHTML = `
       <div style="font-size:11px;font-family:'DM Mono',monospace;letter-spacing:0.15em;color:rgba(255,255,255,0.25);margin-bottom:12px">ERREUR</div>
       <div style="font-size:14px;color:rgba(255,255,255,0.5);max-width:260px;line-height:1.6;text-align:center">
-        <strong style="color:rgba(255,255,255,0.7)">Erreur :</strong><br>${err.message || 'Problème de connexion. Réessaie.'}
+        <strong style="color:rgba(255,255,255,0.7)">Erreur :</strong><br><span id="dashErrMsg"></span>
       </div>
       <button onclick="resetGenerator()" style="margin-top:16px;padding:8px 20px;background:var(--acid);color:var(--ink);border:none;border-radius:4px;font-family:\'Bebas Neue\',sans-serif;font-size:16px;letter-spacing:0.1em;cursor:pointer;">Réessayer</button>
     `;
+    document.getElementById('dashErrMsg').textContent = err.message || 'Problème de connexion. Réessaie.';
     toast('Erreur — voir le détail dans le panneau', 'error');
   }
 
@@ -4728,6 +4738,17 @@ function resetGenerator() {
     <div style="font-size:11px;font-family:'DM Mono',monospace;letter-spacing:0.15em;color:rgba(255,255,255,0.15);margin-bottom:12px">RÉSULTAT</div>
     <div style="font-size:14px;max-width:200px;line-height:1.5">Ton business plan complet apparaîtra ici</div>
   `;
+}
+
+// Sanitize helper — échappe les caractères HTML pour éviter les injections XSS
+function esc(str) {
+  if (str == null) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
 function fillPlan(plan) {
@@ -4761,17 +4782,17 @@ function fillPlan(plan) {
   const offresEl = document.getElementById('dOffresBlock');
   offresEl.innerHTML = (plan.offres || []).map(o => `
     <div class="offre-card">
-      <div><div class="offre-name">${o.nom}</div><div class="offre-desc">${o.description}</div></div>
-      <div class="offre-price">${o.prix}</div>
+      <div><div class="offre-name">${esc(o.nom)}</div><div class="offre-desc">${esc(o.description)}</div></div>
+      <div class="offre-price">${esc(o.prix)}</div>
     </div>`).join('');
 
   // 4. Concurrents
   document.getElementById('dConcurrenceIntro').textContent = plan.concurrence_intro || '';
   document.getElementById('dConcurrents').innerHTML = (plan.concurrents || []).map(c => `
     <div class="concurrent-card">
-      <div class="cc-name">${c.nom}</div>
-      <div class="cc-desc">${c.description}</div>
-      <div class="cc-threat threat-${c.menace === 'haute' ? 'high' : c.menace === 'moyenne' ? 'med' : 'low'}">${c.menace}</div>
+      <div class="cc-name">${esc(c.nom)}</div>
+      <div class="cc-desc">${esc(c.description)}</div>
+      <div class="cc-threat threat-${c.menace === 'haute' ? 'high' : c.menace === 'moyenne' ? 'med' : 'low'}">${esc(c.menace)}</div>
     </div>`).join('');
 
   // 5. Finances
@@ -4784,54 +4805,54 @@ function fillPlan(plan) {
   drawRevenueChart(plan.rev_mensuel || []);
 
   document.getElementById('dFinancesDetail').innerHTML = (plan.finances_detail || []).map(f => `
-    <div class="stat-mini"><div class="stat-mini-label">${f.label}</div><div class="stat-mini-val">${f.valeur}</div></div>`).join('');
+    <div class="stat-mini"><div class="stat-mini-label">${esc(f.label)}</div><div class="stat-mini-val">${esc(f.valeur)}</div></div>`).join('');
 
   // 6. Acquisition
   document.getElementById('dAcquisition').innerHTML = (plan.acquisition || []).map(a => `
     <div class="acq-card">
-      <div class="acq-canal">${a.canal}</div>
-      <div class="acq-desc">${a.description}</div>
-      <div class="acq-cac">${a.cac}</div>
+      <div class="acq-canal">${esc(a.canal)}</div>
+      <div class="acq-desc">${esc(a.description)}</div>
+      <div class="acq-cac">${esc(a.cac)}</div>
     </div>`).join('');
 
   // 7. Actions 90j
   document.getElementById('dActions').innerHTML = (plan.actions || []).map(a => `
     <div class="action-row">
-      <div class="action-phase">${a.phase}</div>
+      <div class="action-phase">${esc(a.phase)}</div>
       <div class="action-content">
-        <div class="action-title">${a.titre}</div>
-        <div class="action-detail">${a.detail}</div>
+        <div class="action-title">${esc(a.titre)}</div>
+        <div class="action-detail">${esc(a.detail)}</div>
       </div>
     </div>`).join('');
 
   // 8. Investissements
   document.getElementById('dInvestissement').innerHTML = (plan.investissements || []).map(i => `
     <div class="invest-row${i.total ? ' total' : ''}">
-      <span class="invest-label">${i.label}</span>
-      <span class="invest-amount">${i.montant}</span>
+      <span class="invest-label">${esc(i.label)}</span>
+      <span class="invest-amount">${esc(i.montant)}</span>
     </div>`).join('');
 
   // 9. Risques
   document.getElementById('dRisques').innerHTML = (plan.risques || []).map(r => `
     <div class="risk-card">
-      <div class="risk-title">${r.titre}</div>
-      <div class="risk-solution"><strong>Solution :</strong> ${r.solution}</div>
+      <div class="risk-title">${esc(r.titre)}</div>
+      <div class="risk-solution"><strong>Solution :</strong> ${esc(r.solution)}</div>
     </div>`).join('');
 
   // 10. Outils
   document.getElementById('dOutils').innerHTML = (plan.outils || []).map(o => `
     <div class="outil-card">
-      <div class="outil-name">${o.nom}</div>
-      <div class="outil-usage">${o.usage}</div>
-      <div class="outil-prix">${o.prix}</div>
+      <div class="outil-name">${esc(o.nom)}</div>
+      <div class="outil-usage">${esc(o.usage)}</div>
+      <div class="outil-prix">${esc(o.prix)}</div>
     </div>`).join('');
 
   // 11. KPIs
   document.getElementById('dKpis').innerHTML = (plan.kpis || []).map(k => `
     <div class="stat-mini">
-      <div class="stat-mini-label">${k.nom}</div>
-      <div class="stat-mini-val" style="font-size:18px">${k.cible}</div>
-      <div style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.3);margin-top:4px">${k.frequence}</div>
+      <div class="stat-mini-label">${esc(k.nom)}</div>
+      <div class="stat-mini-val" style="font-size:18px">${esc(k.cible)}</div>
+      <div style="font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.3);margin-top:4px">${esc(k.frequence)}</div>
     </div>`).join('');
 
   // 12. Pitch 30s
@@ -4841,11 +4862,11 @@ function fillPlan(plan) {
   const p = plan.persona;
   document.getElementById('dPersona').innerHTML = p ? `
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-      <div class="stat-mini"><div class="stat-mini-label">Prénom / Âge</div><div style="font-size:15px;font-weight:700;color:#fff;margin-top:4px">${p.nom}, ${p.age}</div></div>
-      <div class="stat-mini"><div class="stat-mini-label">Situation</div><div style="font-size:13px;color:rgba(255,255,255,0.7);margin-top:4px;line-height:1.5">${p.situation}</div></div>
-      <div class="stat-mini" style="grid-column:span 2"><div class="stat-mini-label">Douleurs principales</div><div style="font-size:13px;color:rgba(255,255,255,0.7);margin-top:4px;line-height:1.6">${p.douleurs}</div></div>
-      <div class="stat-mini"><div class="stat-mini-label">Motivations</div><div style="font-size:13px;color:rgba(255,255,255,0.7);margin-top:4px;line-height:1.5">${p.motivations}</div></div>
-      <div class="stat-mini"><div class="stat-mini-label">Où le trouver</div><div style="font-size:13px;color:var(--acid);margin-top:4px;line-height:1.5">${p.ou_le_trouver}</div></div>
+      <div class="stat-mini"><div class="stat-mini-label">Prénom / Âge</div><div style="font-size:15px;font-weight:700;color:#fff;margin-top:4px">${esc(p.nom)}, ${esc(p.age)}</div></div>
+      <div class="stat-mini"><div class="stat-mini-label">Situation</div><div style="font-size:13px;color:rgba(255,255,255,0.7);margin-top:4px;line-height:1.5">${esc(p.situation)}</div></div>
+      <div class="stat-mini" style="grid-column:span 2"><div class="stat-mini-label">Douleurs principales</div><div style="font-size:13px;color:rgba(255,255,255,0.7);margin-top:4px;line-height:1.6">${esc(p.douleurs)}</div></div>
+      <div class="stat-mini"><div class="stat-mini-label">Motivations</div><div style="font-size:13px;color:rgba(255,255,255,0.7);margin-top:4px;line-height:1.5">${esc(p.motivations)}</div></div>
+      <div class="stat-mini"><div class="stat-mini-label">Où le trouver</div><div style="font-size:13px;color:var(--acid);margin-top:4px;line-height:1.5">${esc(p.ou_le_trouver)}</div></div>
     </div>` : '';
 
   const isPaid = currentPlan === 'builder' || currentPlan === 'empire';
@@ -4856,14 +4877,14 @@ function fillPlan(plan) {
     document.getElementById('dDemarches').innerHTML = (plan.demarches_admin || []).map(d => `
       <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:8px;padding:14px 16px">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
-          <div style="font-weight:700;font-size:13px;color:#fff">${d.etape}</div>
+          <div style="font-weight:700;font-size:13px;color:#fff">${esc(d.etape)}</div>
           <div style="display:flex;gap:8px">
-            <span style="font-family:'DM Mono',monospace;font-size:10px;background:rgba(107,143,239,0.1);color:var(--acid);padding:2px 8px;border-radius:20px">${d.delai}</span>
-            <span style="font-family:'DM Mono',monospace;font-size:10px;background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);padding:2px 8px;border-radius:20px">${d.cout}</span>
+            <span style="font-family:'DM Mono',monospace;font-size:10px;background:rgba(107,143,239,0.1);color:var(--acid);padding:2px 8px;border-radius:20px">${esc(d.delai)}</span>
+            <span style="font-family:'DM Mono',monospace;font-size:10px;background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.5);padding:2px 8px;border-radius:20px">${esc(d.cout)}</span>
           </div>
         </div>
-        <div style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.65;margin-bottom:6px">${d.detail}</div>
-        <a href="https://${d.lien}" target="_blank" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--acid);text-decoration:none;opacity:0.7">→ ${d.lien}</a>
+        <div style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.65;margin-bottom:6px">${esc(d.detail)}</div>
+        <a href="https://${esc(d.lien)}" target="_blank" rel="noopener noreferrer" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--acid);text-decoration:none;opacity:0.7">→ ${esc(d.lien)}</a>
       </div>`).join('');
   } else if (!isPaid) {
     document.getElementById('dDemarchesBlock').style.display = 'block';
@@ -4886,7 +4907,7 @@ function fillPlan(plan) {
     document.getElementById('dEmails').innerHTML = emails.map(e => `
       <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;overflow:hidden">
         <div style="padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:space-between">
-          <div style="font-weight:700;font-size:14px;color:#fff">${e.label}</div>
+          <div style="font-weight:700;font-size:14px;color:#fff">${esc(e.label)}</div>
           <button onclick="copyEmail(this)" data-text="${encodeURIComponent('Objet: ' + e.data.sujet + '\n\n' + e.data.corps)}"
             style="font-family:'DM Mono',monospace;font-size:11px;background:rgba(107,143,239,0.1);color:var(--acid);border:1px solid rgba(107,143,239,0.2);border-radius:20px;padding:4px 12px;cursor:pointer">
             Copier
@@ -4894,9 +4915,9 @@ function fillPlan(plan) {
         </div>
         <div style="padding:14px 16px">
           <div style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.35);margin-bottom:6px">OBJET</div>
-          <div style="font-size:13px;color:var(--acid);font-weight:600;margin-bottom:12px">${e.data.sujet}</div>
+          <div style="font-size:13px;color:var(--acid);font-weight:600;margin-bottom:12px">${esc(e.data.sujet)}</div>
           <div style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.35);margin-bottom:6px">CORPS DU MESSAGE</div>
-          <div style="font-size:13px;color:rgba(255,255,255,0.75);line-height:1.75;white-space:pre-wrap">${e.data.corps}</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.75);line-height:1.75;white-space:pre-wrap">${esc(e.data.corps)}</div>
         </div>
       </div>`).join('');
   } else if (!isPaid) {
@@ -5051,7 +5072,12 @@ function copyPlan() {
 
 function savePlan() {
   if (!currentResult) return;
-  plansHistory.unshift(currentResult);
+  // Le plan est déjà ajouté à plansHistory et persisté dans generateDashPlan.
+  // On s'assure juste que la version courante est bien sauvegardée.
+  if (!plansHistory.includes(currentResult)) {
+    plansHistory.unshift(currentResult);
+  }
+  localStorage.setItem('eadee_history', JSON.stringify(plansHistory));
   toast('Plan sauvegardé ✓', 'success');
 }
 
@@ -5143,7 +5169,7 @@ function selectPayPlan(el) {
   const credits = parseInt(el.dataset.credits) || (plan === 'starter' ? 1 : plan === 'builder' ? 3 : 8);
   selectedPayPlan = { name: plan === 'starter' ? 'Starter' : plan === 'builder' ? 'Builder' : 'Empire', price: parseFloat(price), credits };
   document.getElementById('osPlan').textContent = selectedPayPlan.name;
-  document.getElementById('osTotal').textContent = selectedPayPlan.price + '€';
+  document.getElementById('osTotal').textContent = selectedPayPlan.price.toFixed(2) + '€';
   document.getElementById('osCredits').textContent = credits + ' générations';
 
   const feats = plan === 'builder'
@@ -5184,8 +5210,8 @@ async function processPayment() {
 
   const addedCredits = selectedPayPlan.credits || 1;
   userCredits += addedCredits;
-  if (selectedPayPlan.price === 19.99) currentPlan = 'empire';
-  else if (selectedPayPlan.price === 7.99 && currentPlan !== 'empire') currentPlan = 'builder';
+  if (selectedPayPlan.name === 'Empire') currentPlan = 'empire';
+  else if (selectedPayPlan.name === 'Builder' && currentPlan !== 'empire') currentPlan = 'builder';
   else if (currentPlan === 'free') currentPlan = 'starter';
   user.plan = currentPlan;
   updateUsage();
@@ -5209,6 +5235,7 @@ async function processPayment() {
 
 // ========== SETTINGS ==========
 function saveSettings() {
+  if (!user) return;
   const name = document.getElementById('settingsName').value.trim();
   const email = document.getElementById('settingsEmail').value.trim();
   if (name) user.name = name;
