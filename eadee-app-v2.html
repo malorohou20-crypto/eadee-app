@@ -3722,24 +3722,24 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
       </div>
       <div class="footer2-col">
         <div class="footer2-col-title">Produit</div>
-        <a href="#" class="footer2-link" onclick="document.querySelector('.tr-features').scrollIntoView({behavior:'smooth'});return false">Fonctionnalités</a>
-        <a href="#" class="footer2-link" onclick="document.querySelector('.pricing-wrap').scrollIntoView({behavior:'smooth'});return false">Tarifs</a>
-        <a href="#" class="footer2-link" onclick="showAuth('signup');return false">Exemples de plans</a>
-        <a href="#" class="footer2-link" onclick="document.querySelector('.comp-section').scrollIntoView({behavior:'smooth'});return false">Comparaison</a>
+        <button class="footer2-link footer2-btn" onclick="document.querySelector('.tr-features')?.scrollIntoView({behavior:'smooth'})">Fonctionnalités</button>
+        <button class="footer2-link footer2-btn" onclick="document.querySelector('.pricing-wrap')?.scrollIntoView({behavior:'smooth'})">Tarifs</button>
+        <button class="footer2-link footer2-btn" onclick="showAuth('signup')">Exemples de plans</button>
+        <button class="footer2-link footer2-btn" onclick="document.querySelector('.comp-section')?.scrollIntoView({behavior:'smooth'})">Comparaison</button>
       </div>
       <div class="footer2-col">
         <div class="footer2-col-title">Ressources</div>
-        <a href="#" class="footer2-link">Blog</a>
-        <a href="#" class="footer2-link">Guides gratuits</a>
-        <a href="#" class="footer2-link" onclick="document.querySelector('.faq-section').scrollIntoView({behavior:'smooth'});return false">FAQ</a>
-        <a href="#" class="footer2-link">Exemple PDF</a>
+        <button class="footer2-link footer2-btn">Blog</button>
+        <button class="footer2-link footer2-btn">Guides gratuits</button>
+        <button class="footer2-link footer2-btn" onclick="document.querySelector('.faq-section')?.scrollIntoView({behavior:'smooth'})">FAQ</button>
+        <button class="footer2-link footer2-btn">Exemple PDF</button>
       </div>
       <div class="footer2-col">
         <div class="footer2-col-title">Entreprise</div>
-        <a href="#" class="footer2-link" onclick="document.querySelector('.founder-section').scrollIntoView({behavior:'smooth'});return false">À propos</a>
+        <button class="footer2-link footer2-btn" onclick="document.querySelector('.founder-section')?.scrollIntoView({behavior:'smooth'})">À propos</button>
         <a href="mailto:contact@eadee.fr" class="footer2-link">Nous contacter</a>
-        <a href="#" class="footer2-link">Partenariats</a>
-        <a href="#" class="footer2-link">Programme affiliation</a>
+        <button class="footer2-link footer2-btn">Partenariats</button>
+        <button class="footer2-link footer2-btn">Programme affiliation</button>
       </div>
       <div class="footer2-col">
         <div class="footer2-col-title">Légal</div>
@@ -4396,6 +4396,7 @@ let currentResult = null;
 function showPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
+  window.scrollTo(0, 0);
   updateNav(); initChat();
 }
 
