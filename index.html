@@ -432,177 +432,204 @@ nav {
 .google-btn:hover { border-color: var(--ink); }
 
 /* ========== DASHBOARD ========== */
-.dashboard { padding: 0; }
+.dashboard { display:flex; flex-direction:column; min-height:100vh; background:#13141a; }
 
-.dash-layout {
-  display: grid;
-  grid-template-columns: 240px 1fr;
-  min-height: calc(100vh - 60px);
-}
+.dash-layout { display:flex; flex:1; }
 
 /* SIDEBAR */
 .sidebar {
-  background: var(--ink);
-  padding: 28px 20px;
-  display: flex; flex-direction: column; gap: 4px;
+  width:220px; min-width:220px;
+  background:#0d0e14;
+  border-right:1px solid rgba(255,255,255,0.06);
+  display:flex; flex-direction:column;
+  position:sticky; top:0; height:100vh;
+  overflow-y:auto;
 }
 
+.sidebar-logo {
+  padding:20px;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  margin-bottom:8px;
+  display:flex; align-items:center; gap:10px;
+}
+.sidebar-logo-text {
+  font-family:'Fraunces',serif;
+  font-size:20px; font-weight:300;
+  color:#9db8f8; letter-spacing:.04em;
+}
+.sidebar-logo-dot {
+  width:7px; height:7px; border-radius:50%;
+  background:#6b8fef;
+  box-shadow:0 0 8px rgba(107,143,239,0.7);
+  animation:dotPulse 2.2s ease-in-out infinite;
+  flex-shrink:0;
+}
+@keyframes dotPulse {
+  0%,100%{box-shadow:0 0 6px rgba(107,143,239,0.5);opacity:1}
+  50%{box-shadow:0 0 14px rgba(107,143,239,0.9);opacity:.7}
+}
+
+.sidebar-nav { flex:1; padding:8px 0; }
+
 .sidebar-section {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.25);
-  padding: 12px 12px 6px;
-  margin-top: 8px;
+  font-family:'DM Mono',monospace;
+  font-size:9px; letter-spacing:.12em;
+  color:rgba(255,255,255,0.2);
+  text-transform:uppercase;
+  padding:16px 20px 6px;
 }
 
 .sidebar-link {
-  display: flex; align-items: center; gap: 10px;
-  padding: 10px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  color: rgba(255,255,255,0.55);
-  font-size: 14px; font-weight: 500;
-  transition: all 0.15s;
-  text-decoration: none;
+  display:flex; align-items:center; gap:10px;
+  padding:10px 20px;
+  font-size:13px; color:#7a7f9a;
+  cursor:pointer; transition:all .2s;
+  border-left:2px solid transparent;
+  user-select:none;
 }
-.sidebar-link:hover { background: rgba(255,255,255,0.07); color: #fff; }
-.sidebar-link.active { background: rgba(107,143,239,0.12); color: var(--acid); }
+.sidebar-link:hover { color:#ecedf2; background:rgba(107,143,239,0.06); }
+.sidebar-link.active { color:#ecedf2; background:rgba(107,143,239,0.08); border-left-color:#6b8fef; }
 
-.sidebar-icon { font-size: 16px; width: 20px; flex-shrink: 0; }
+.sidebar-icon { width:18px; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
 
-.sidebar-bottom {
-  margin-top: auto;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255,255,255,0.07);
+.sidebar-credits {
+  margin:12px 16px 16px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:10px; padding:14px;
 }
-
-.usage-block {
-  background: rgba(255,255,255,0.05);
-  border-radius: 6px;
-  padding: 14px;
-  margin-bottom: 12px;
+.sc-label {
+  font-family:'DM Mono',monospace; font-size:9px;
+  letter-spacing:.1em; color:#7a7f9a;
+  text-transform:uppercase; margin-bottom:4px;
 }
-
-.usage-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: rgba(255,255,255,0.3);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 8px;
+.sc-count {
+  font-family:'Bebas Neue',sans-serif; font-size:30px;
+  background:linear-gradient(135deg,#6b8fef,#a78bfa);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  background-clip:text; line-height:1;
 }
-
-.usage-bar {
-  height: 4px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 2px;
-  overflow: hidden;
-  margin-bottom: 6px;
+.sc-bar { height:3px; background:rgba(255,255,255,0.08); border-radius:2px; margin:8px 0; overflow:hidden; }
+.sc-fill { height:100%; background:linear-gradient(90deg,#6b8fef,#a78bfa); border-radius:2px; transition:width .5s; }
+.sc-sub { font-size:11px; color:#7a7f9a; }
+.sc-btn {
+  width:100%; margin-top:10px; padding:7px;
+  background:transparent;
+  border:1px solid rgba(107,143,239,0.25);
+  border-radius:6px; color:#9db8f8;
+  font-family:'Geist',sans-serif; font-size:12px;
+  cursor:pointer; transition:background .2s;
 }
+.sc-btn:hover { background:rgba(107,143,239,0.1); }
 
-.usage-fill {
-  height: 100%;
-  background: var(--acid);
-  border-radius: 2px;
-}
-
-.usage-count {
-  font-size: 12px;
-  color: rgba(255,255,255,0.4);
-}
-
-.upgrade-btn {
-  width: 100%; padding: 10px;
-  background: var(--acid); color: var(--ink);
-  border: none; border-radius: 4px;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 16px; letter-spacing: 0.1em;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.upgrade-btn:hover { background: #8ba8ef; }
+/* Compat: keep usage IDs working */
+.usage-fill { height:100%; background:linear-gradient(90deg,#6b8fef,#a78bfa); border-radius:2px; }
 
 /* MAIN CONTENT */
-.dash-main { background: var(--paper); overflow-y: auto; }
+.dash-main { flex:1; padding:32px; overflow-y:auto; max-width:1100px; background:#13141a; }
 
 /* Views */
-.dash-view { display: none; padding: 40px; }
-.dash-view.active { display: block; }
+.dash-view { display:none; }
+.dash-view.active { display:block; }
 
-.view-header {
-  display: flex; align-items: flex-start; justify-content: space-between;
-  margin-bottom: 32px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--border);
+.view-header { margin-bottom:28px; }
+
+.view-title {
+  font-family:'Fraunces',serif;
+  font-size:26px; font-weight:300;
+  color:#ecedf2;
 }
-
-.view-title { font-family: 'Bebas Neue', sans-serif; font-size: 40px; letter-spacing: 0.02em; }
-.view-sub { font-size: 14px; color: var(--muted); margin-top: 4px; }
+.view-sub { font-size:13px; color:#7a7f9a; margin-top:4px; }
 
 /* GENERATOR VIEW */
 .gen-layout {
-  display: grid;
-  grid-template-columns: 380px 1fr;
-  gap: 24px;
-  align-items: start;
+  display:grid;
+  grid-template-columns:360px 1fr;
+  gap:24px;
+  align-items:start;
 }
 
 .gen-panel {
-  background: var(--cream);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 28px;
+  background:#1a1d26;
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px;
+  padding:24px;
 }
 
 .gen-panel-title {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 24px; letter-spacing: 0.05em;
-  margin-bottom: 20px;
-  display: flex; align-items: center; gap: 10px;
+  font-family:'DM Mono',monospace;
+  font-size:10px; letter-spacing:.12em;
+  color:#7a7f9a; text-transform:uppercase;
+  margin-bottom:20px;
+  display:flex; align-items:center; gap:10px;
+}
+
+.form-group { margin-bottom:16px; }
+.form-label {
+  font-family:'DM Mono',monospace;
+  font-size:10px; letter-spacing:.1em;
+  color:#7a7f9a; text-transform:uppercase;
+  display:block; margin-bottom:6px;
 }
 
 .form-textarea {
-  width: 100%; height: 100px;
-  padding: 11px 14px;
-  background: var(--paper);
-  border: 1px solid var(--border);
-  border-radius: 2px;
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 14px; color: var(--ink);
-  outline: none; resize: none; line-height: 1.6;
-  transition: border-color 0.2s;
+  width:100%; min-height:100px;
+  padding:10px 12px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:8px;
+  font-family:'Geist',sans-serif;
+  font-size:13px; color:#ecedf2;
+  outline:none; resize:vertical; line-height:1.6;
+  transition:border-color .2s;
+  box-sizing:border-box;
 }
-.form-textarea:focus { border-color: var(--ink); }
+.form-textarea::placeholder { color:#7a7f9a; }
+.form-textarea:focus { border-color:rgba(107,143,239,0.5); }
 
 .form-select {
-  width: 100%; padding: 11px 14px;
-  background: var(--paper);
-  border: 1px solid var(--border);
-  border-radius: 2px;
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 14px; color: var(--ink);
-  outline: none; appearance: none;
-  transition: border-color 0.2s;
+  width:100%; padding:10px 12px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:8px;
+  font-family:'Geist',sans-serif;
+  font-size:13px; color:#ecedf2;
+  outline:none; appearance:none;
+  cursor:pointer;
+  transition:border-color .2s;
+  box-sizing:border-box;
 }
-.form-select:focus { border-color: var(--ink); }
+.form-select:focus { border-color:rgba(107,143,239,0.5); }
+.form-select option { background:#1a1d26; color:#ecedf2; }
 
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-input {
+  width:100%; padding:10px 12px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:8px;
+  font-family:'Geist',sans-serif;
+  font-size:13px; color:#ecedf2;
+  outline:none;
+  transition:border-color .2s;
+  box-sizing:border-box;
+}
+.form-input::placeholder { color:#7a7f9a; }
+.form-input:focus { border-color:rgba(107,143,239,0.5); }
+
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
 
 .gen-btn {
-  width: 100%; padding: 16px;
-  background: var(--ink); color: var(--acid);
-  border: none; border-radius: 2px;
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 20px; letter-spacing: 0.1em;
-  cursor: pointer; margin-top: 18px;
-  transition: background 0.2s, transform 0.1s;
-  position: relative; overflow: hidden;
+  width:100%; padding:14px;
+  background:linear-gradient(135deg,#6b8fef,#a78bfa);
+  color:#fff; border:none; border-radius:8px;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:18px; letter-spacing:.08em;
+  cursor:pointer; margin-top:16px;
+  transition:opacity .2s, transform .15s;
 }
-.gen-btn:hover { background: #1a1a1a; }
-.gen-btn:active { transform: scale(0.99); }
-.gen-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.gen-btn:hover { opacity:.9; transform:translateY(-1px); }
+.gen-btn:active { transform:scale(0.99); }
+.gen-btn:disabled { opacity:.5; cursor:not-allowed; transform:none; }
 
 /* RESULT PANEL */
 .result-panel {
@@ -1046,18 +1073,16 @@ nav {
   .auth-card { padding: 32px 24px !important; }
 
   /* DASHBOARD */
-  .dash-layout { grid-template-columns: 1fr !important; }
-  .sidebar { display: none !important; }
-  .dash-view { padding: 20px !important; }
+  .dash-layout { flex-direction: column !important; }
+  .sidebar { display: none !important; width: 100% !important; min-width: unset !important; height: auto !important; position: static !important; }
+  .dash-main { padding: 20px !important; max-width: 100% !important; }
   .gen-layout { grid-template-columns: 1fr !important; }
-  .view-title { font-size: 28px !important; }
+  .view-title { font-size: 22px !important; }
   .payment-layout { grid-template-columns: 1fr !important; }
 
   /* MOBILE BOTTOM NAV (Dashboard) */
-  .mobile-nav {
-    display: flex !important;
-  }
-  .dash-main { padding-bottom: 70px !important; }
+  .mobile-nav { display: flex !important; }
+  .dash-main { padding-bottom: 80px !important; }
 
   /* RESULT PANEL */
   .result-panel { min-height: 400px !important; }
@@ -1215,24 +1240,11 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
 .google-btn { background: rgba(255,255,255,0.05) !important; border-color: rgba(255,255,255,0.1) !important; color: #ecedf2 !important; border-radius: 8px !important; }
 .google-btn:hover { border-color: rgba(255,255,255,0.2) !important; background: rgba(255,255,255,0.08) !important; }
 
-/* --- GENERATOR PANEL --- */
-.gen-panel { background: #1a1d26 !important; border-color: rgba(255,255,255,0.08) !important; }
-.gen-panel-title { color: #ecedf2 !important; }
-.gen-btn { background: linear-gradient(135deg, #6b8fef, #a78bfa) !important; color: white !important; border-radius: 8px !important; font-family: 'Geist', sans-serif !important; font-size: 15px !important; letter-spacing: 0 !important; box-shadow: 0 4px 20px rgba(107,143,239,0.35) !important; }
-.gen-btn:hover { filter: brightness(1.1) !important; transform: translateY(-1px) !important; }
+/* --- GENERATOR PANEL (déjà défini dans le design system, overrides supprimés) --- */
 
-/* --- VIEW HEADERS --- */
-.view-title { color: #ecedf2 !important; font-family: 'Fraunces', serif !important; font-weight: 400 !important; letter-spacing: 0 !important; }
-.view-sub { color: #7a7f9a !important; }
-.view-header { border-color: rgba(255,255,255,0.07) !important; }
+/* --- VIEW HEADERS (déjà défini) --- */
 
-/* --- SIDEBAR --- */
-.sidebar { background: #0d0e14 !important; }
-.sidebar-link.active { background: rgba(107,143,239,0.14) !important; color: #9db8f8 !important; }
-.sidebar-link:hover { background: rgba(255,255,255,0.06) !important; }
-.upgrade-btn { background: linear-gradient(135deg, #6b8fef, #a78bfa) !important; color: white !important; font-family: 'Geist', sans-serif !important; letter-spacing: 0 !important; font-size: 14px !important; font-weight: 600 !important; }
-.usage-block { background: rgba(255,255,255,0.04) !important; }
-.usage-fill { background: linear-gradient(90deg, #6b8fef, #a78bfa) !important; }
+/* --- SIDEBAR (déjà défini) --- */
 
 /* --- HISTORY --- */
 .history-card { background: #1a1d26 !important; border-color: rgba(255,255,255,0.07) !important; border-radius: 10px !important; }
@@ -3464,30 +3476,46 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
 
       <!-- SIDEBAR -->
       <aside class="sidebar">
-        <div class="sidebar-link active" onclick="showView('generator')" data-view="generator">
-          <span class="sidebar-icon"><svg width="15" height="15" viewBox="0 0 20 20" fill="none"><polygon points="11,2 3,12 10,12 9,18 17,8 10,8" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span> Générateur
-        </div>
-        <div class="sidebar-link" onclick="showView('history')" data-view="history">
-          <span class="sidebar-icon"><svg width="15" height="15" viewBox="0 0 20 20" fill="none"><rect x="3" y="2" width="14" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><line x1="7" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="7" y1="10" x2="13" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="7" y1="13" x2="10" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Mes plans
-        </div>
-        <div class="sidebar-link" id="chat-sidebar-link" onclick="openChat()" data-view="chat" style="display:none">
-          <span class="sidebar-icon"><svg width="15" height="15" viewBox="0 0 20 20" fill="none"><path d="M18 9c0 4-3.6 7-8 7a8.8 8.8 0 01-3.5-.7L2 17l1.7-4A6.5 6.5 0 012 9c0-4 3.6-7 8-7s8 3 8 7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span> Expert EADEE Empire
-        </div>
-        <div class="sidebar-section">Compte</div>
-        <div class="sidebar-link" onclick="showView('billing')" data-view="billing">
-          <span class="sidebar-icon"><svg width="15" height="15" viewBox="0 0 20 20" fill="none"><rect x="2" y="5" width="16" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/><line x1="2" y1="9" x2="18" y2="9" stroke="currentColor" stroke-width="1.5"/><line x1="5" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span> Abonnement
-        </div>
-        <div class="sidebar-link" onclick="showView('settings')" data-view="settings">
-          <span class="sidebar-icon"><svg width="15" height="15" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M3 17c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span> Paramètres
+        <!-- Logo -->
+        <div class="sidebar-logo">
+          <div class="sidebar-logo-dot"></div>
+          <div class="sidebar-logo-text">EADEE</div>
         </div>
 
-        <div class="sidebar-bottom">
-          <div class="usage-block">
-            <div class="usage-label">Plans ce mois</div>
-            <div class="usage-bar"><div class="usage-fill" id="usageFill" style="width:33%"></div></div>
-            <div class="usage-count" id="usageCount">1 / 3 utilisés</div>
+        <!-- Navigation principale -->
+        <nav class="sidebar-nav">
+          <div class="sidebar-link active" onclick="showView('generator')" data-view="generator">
+            <span class="sidebar-icon"><svg width="15" height="15" viewBox="0 0 20 20" fill="none"><polygon points="11,2 3,12 10,12 9,18 17,8 10,8" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+            Générateur
           </div>
-          <button class="upgrade-btn" onclick="showView('billing')">Acheter un pack</button>
+          <div class="sidebar-link" onclick="showView('history')" data-view="history">
+            <span class="sidebar-icon"><svg width="15" height="15" viewBox="0 0 20 20" fill="none"><rect x="3" y="2" width="14" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><line x1="7" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="7" y1="10" x2="13" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="7" y1="13" x2="10" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+            Mes plans
+          </div>
+          <div class="sidebar-link" id="chat-sidebar-link" onclick="openChat()" data-view="chat" style="display:none">
+            <span class="sidebar-icon"><svg width="15" height="15" viewBox="0 0 20 20" fill="none"><path d="M18 9c0 4-3.6 7-8 7a8.8 8.8 0 01-3.5-.7L2 17l1.7-4A6.5 6.5 0 012 9c0-4 3.6-7 8-7s8 3 8 7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+            Expert IA
+          </div>
+
+          <div class="sidebar-section">Compte</div>
+
+          <div class="sidebar-link" onclick="showView('billing')" data-view="billing">
+            <span class="sidebar-icon"><svg width="15" height="15" viewBox="0 0 20 20" fill="none"><rect x="2" y="5" width="16" height="11" rx="2" stroke="currentColor" stroke-width="1.6"/><line x1="2" y1="9" x2="18" y2="9" stroke="currentColor" stroke-width="1.5"/><line x1="5" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+            Crédits
+          </div>
+          <div class="sidebar-link" onclick="showView('settings')" data-view="settings">
+            <span class="sidebar-icon"><svg width="15" height="15" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+            Paramètres
+          </div>
+        </nav>
+
+        <!-- Widget crédits -->
+        <div class="sidebar-credits">
+          <div class="sc-label">Crédits restants</div>
+          <div class="sc-count" id="usageCount">0</div>
+          <div class="sc-bar"><div class="sc-fill" id="usageFill" style="width:0%"></div></div>
+          <div class="sc-sub">générations disponibles</div>
+          <button class="sc-btn" onclick="showView('billing')">Recharger</button>
         </div>
       </aside>
 
@@ -3497,10 +3525,8 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
         <!-- GENERATOR VIEW -->
         <div class="dash-view active" id="view-generator">
           <div class="view-header">
-            <div>
-              <div class="view-title">Générateur</div>
-              <div class="view-sub">Décris ton idée, ton plan est prêt en 60 secondes</div>
-            </div>
+            <div class="view-title">Génère ton plan</div>
+            <div class="view-sub">Décris ton idée — ton plan complet est prêt en 60 secondes</div>
           </div>
 
           <div class="gen-layout">
@@ -3726,10 +3752,8 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
         <!-- HISTORY VIEW -->
         <div class="dash-view" id="view-history">
           <div class="view-header">
-            <div>
-              <div class="view-title">Mes Plans</div>
-              <div class="view-sub">Tous tes business plans générés</div>
-            </div>
+            <div class="view-title">Mes plans</div>
+            <div class="view-sub">Tous tes business plans générés</div>
           </div>
           <div class="history-grid" id="historyGrid">
             <!-- Populated by JS -->
@@ -3739,10 +3763,8 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
         <!-- BILLING VIEW -->
         <div class="dash-view" id="view-billing">
           <div class="view-header">
-            <div>
-              <div class="view-title">Crédits</div>
-              <div class="view-sub">Recharge tes générations</div>
-            </div>
+            <div class="view-title">Crédits</div>
+            <div class="view-sub">Recharge tes générations</div>
           </div>
 
           <div class="payment-layout">
@@ -3875,26 +3897,30 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
         <!-- SETTINGS VIEW -->
         <div class="dash-view" id="view-settings">
           <div class="view-header">
-            <div>
-              <div class="view-title">Paramètres</div>
-              <div class="view-sub">Gère ton compte</div>
-            </div>
+            <div class="view-title">Paramètres</div>
+            <div class="view-sub">Gère ton compte</div>
           </div>
           <div style="max-width:480px;display:flex;flex-direction:column;gap:20px">
             <div class="gen-panel">
-              <div class="gen-panel-title" style="font-size:18px;display:flex;align-items:center;gap:10px"><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="3" stroke="#9db8f8" stroke-width="1.6"/><path d="M3 17c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke="#9db8f8" stroke-width="1.6" stroke-linecap="round"/></svg> Mon profil</div>
+              <div class="gen-panel-title" style="display:flex;align-items:center;gap:8px">
+                <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="3" stroke="#9db8f8" stroke-width="1.6"/><path d="M3 17c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke="#9db8f8" stroke-width="1.6" stroke-linecap="round"/></svg>
+                Mon profil
+              </div>
               <div class="form-group">
-                <label class="form-label">Prénom & Nom</label>
+                <label class="form-label">Prénom &amp; Nom</label>
                 <input type="text" class="form-input" id="settingsName" value="">
               </div>
               <div class="form-group">
                 <label class="form-label">Email</label>
                 <input type="email" class="form-input" id="settingsEmail" value="">
               </div>
-              <button class="gen-btn" style="margin-top:10px;font-size:16px;padding:12px" onclick="saveSettings()">SAUVEGARDER</button>
+              <button class="gen-btn" style="margin-top:4px;font-size:16px;padding:12px" onclick="saveSettings()">SAUVEGARDER</button>
             </div>
             <div class="gen-panel">
-              <div class="gen-panel-title" style="font-size:18px;display:flex;align-items:center;gap:10px"><svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 1L3 5v6c0 3.6 3 6.5 7 7 4-0.5 7-3.4 7-7V5L10 1z" stroke="#9db8f8" stroke-width="1.6" stroke-linejoin="round"/></svg> Sécurité</div>
+              <div class="gen-panel-title" style="display:flex;align-items:center;gap:8px">
+                <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M10 1L3 5v6c0 3.6 3 6.5 7 7 4-0.5 7-3.4 7-7V5L10 1z" stroke="#9db8f8" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                Sécurité
+              </div>
               <div class="form-group">
                 <label class="form-label">Nouveau mot de passe</label>
                 <input type="password" class="form-input" placeholder="••••••••">
@@ -3903,16 +3929,20 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
                 <label class="form-label">Confirmer</label>
                 <input type="password" class="form-input" placeholder="••••••••">
               </div>
-              <button class="gen-btn" style="margin-top:10px;font-size:16px;padding:12px" onclick="toast('Mot de passe mis à jour ✓','success')">CHANGER LE MOT DE PASSE</button>
+              <button class="gen-btn" style="margin-top:4px;font-size:16px;padding:12px" onclick="toast('Mot de passe mis à jour','success')">CHANGER LE MOT DE PASSE</button>
             </div>
             <div style="text-align:right">
-              <button onclick="logout()" style="background:none;border:none;color:var(--rust);cursor:pointer;font-size:13px;text-decoration:underline">Se déconnecter</button>
+              <button onclick="logout()" style="background:none;border:none;color:#f87171;cursor:pointer;font-size:13px;font-family:'Geist',sans-serif;opacity:.7;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.7">Se déconnecter</button>
             </div>
           </div>
         </div>
 
         <!-- CHAT EMPIRE VIEW -->
         <div class="dash-view" id="view-chat">
+          <div class="view-header">
+            <div class="view-title">Expert IA</div>
+            <div class="view-sub">Conseiller EADEE Empire — disponible 24h/24</div>
+          </div>
           <!-- Chat header -->
           <div style="display:flex;align-items:center;gap:14px;padding:0 0 24px;border-bottom:1px solid rgba(255,255,255,0.07);margin-bottom:24px;">
             <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,rgba(167,139,250,0.25),rgba(107,143,239,0.15));border:1px solid rgba(167,139,250,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
@@ -3951,14 +3981,14 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
         <button class="mob-nav-btn" id="mob-history" onclick="showView('history');setMobActive('history')">
           <span class="mob-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="2" width="14" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><line x1="7" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="7" y1="10" x2="13" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="7" y1="13" x2="10" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>Mes plans
         </button>
-        <button class="mob-nav-btn" id="mob-chat" onclick="openChat();setMobActive('chat')" style="display:none">
-          <span class="mob-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M18 9c0 4-3.6 7-8 7a8.8 8.8 0 01-3.5-.7L2 17l1.7-4A6.5 6.5 0 012 9c0-4 3.6-7 8-7s8 3 8 7z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span>Expert EADEE
-        </button>
         <button class="mob-nav-btn" id="mob-billing" onclick="showView('billing');setMobActive('billing')">
-          <span class="mob-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="5" width="16" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><line x1="2" y1="9" x2="18" y2="9" stroke="currentColor" stroke-width="1.5"/><line x1="5" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>Abonnement
+          <span class="mob-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="5" width="16" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><line x1="2" y1="9" x2="18" y2="9" stroke="currentColor" stroke-width="1.5"/><line x1="5" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>Crédits
+        </button>
+        <button class="mob-nav-btn" id="mob-chat" onclick="openChat();setMobActive('chat')" style="display:none">
+          <span class="mob-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M18 9c0 4-3.6 7-8 7a8.8 8.8 0 01-3.5-.7L2 17l1.7-4A6.5 6.5 0 012 9c0-4 3.6-7 8-7s8 3 8 7z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span>Expert IA
         </button>
         <button class="mob-nav-btn" id="mob-settings" onclick="showView('settings');setMobActive('settings')">
-          <span class="mob-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M3 17c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>Profil
+          <span class="mob-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>Réglages
         </button>
       </nav>
 
@@ -4662,9 +4692,8 @@ function updateUsage() {
   const maxCredits = currentPlan === 'empire' ? 8 : currentPlan === 'builder' ? 3 : 1;
   const pct = Math.min((userCredits / maxCredits) * 100, 100);
   document.getElementById('usageFill').style.width = pct + '%';
-  document.getElementById('usageCount').textContent = userCredits <= 0
-    ? 'Plus de crédits — recharge !'
-    : `${userCredits} crédit${userCredits > 1 ? 's' : ''} restant${userCredits > 1 ? 's' : ''}`;
+  // Widget sidebar : affiche juste le chiffre (Bebas Neue grand format)
+  document.getElementById('usageCount').textContent = userCredits <= 0 ? '0' : String(userCredits);
 }
 
 function copyPlan() {
