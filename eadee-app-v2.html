@@ -3555,11 +3555,11 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
             Mes plans
           </div>
           <div class="sidebar-link" onclick="showView('inspiration')" data-view="inspiration">
-            <span class="sidebar-icon">💡</span>
+            <span class="sidebar-icon"><svg width="15" height="15" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="8" r="5" stroke="currentColor" stroke-width="1.6"/><path d="M8 13h4M9 16h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
             Inspiration
           </div>
           <div class="sidebar-link" onclick="showView('referral')" data-view="referral">
-            <span class="sidebar-icon">🎁</span>
+            <span class="sidebar-icon"><svg width="15" height="15" viewBox="0 0 20 20" fill="none"><path d="M10 2l1.8 5.5H18l-4.8 3.5 1.8 5.5L10 13l-5 3.5 1.8-5.5L2 7.5h6.2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span>
             Inviter un ami
           </div>
           <div class="sidebar-link" id="chat-sidebar-link" onclick="openChat()" data-view="chat" style="display:none">
@@ -3585,7 +3585,7 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
 
         <!-- Widget crédits -->
         <div class="sidebar-credits" id="sidebar-credits-widget">
-          <div class="sc-label">✦ Crédits restants</div>
+          <div class="sc-label">Crédits restants</div>
           <div class="sc-count" id="usageCount">0</div>
           <div class="sc-bar"><div class="sc-fill" id="usageFill" style="width:0%"></div></div>
           <div class="sc-sub">générations disponibles</div>
@@ -3617,16 +3617,16 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
           <!-- Bannière onboarding -->
           <div id="onboarding-banner" style="display:none;margin-bottom:20px;padding:20px;background:linear-gradient(135deg,rgba(107,143,239,0.08),rgba(167,139,250,0.08));border:1px solid rgba(107,143,239,0.25);border-radius:12px;">
             <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px">
-              <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:300;color:#ecedf2" id="onboarding-title">👋 Bienvenue !</div>
+              <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:300;color:#ecedf2" id="onboarding-title">Bienvenue !</div>
               <button onclick="dismissOnboarding()" style="background:none;border:none;color:#7a7f9a;cursor:pointer;font-size:16px;line-height:1;padding:0;flex-shrink:0">✕</button>
             </div>
-            <div style="font-size:13px;color:#9db8f8;margin-bottom:14px">Voici comment générer ton premier plan en 60s :</div>
+            <div style="font-size:13px;color:#9db8f8;margin-bottom:14px">Comment générer ton premier plan en 60 secondes :</div>
             <div style="display:flex;flex-direction:column;gap:8px">
-              <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#ecedf2"><span>1️⃣</span> Décris ton idée (3 phrases minimum)</div>
-              <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#ecedf2"><span>2️⃣</span> Choisis budget, secteur, disponibilité</div>
-              <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#ecedf2"><span>3️⃣</span> Clique sur "Générer" — l'IA fait le reste</div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#ecedf2"><span style="font-family:'DM Mono',monospace;font-size:11px;color:#6b8fef;min-width:18px">01</span> Décris ton idée en quelques phrases</div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#ecedf2"><span style="font-family:'DM Mono',monospace;font-size:11px;color:#6b8fef;min-width:18px">02</span> Choisis budget, secteur, disponibilité</div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#ecedf2"><span style="font-family:'DM Mono',monospace;font-size:11px;color:#6b8fef;min-width:18px">03</span> Clique sur "Générer" — Eadee construit ton plan</div>
             </div>
-            <button onclick="dismissOnboarding()" style="margin-top:16px;padding:8px 20px;background:rgba(107,143,239,0.15);border:1px solid rgba(107,143,239,0.3);border-radius:8px;color:#9db8f8;font-family:'Geist',sans-serif;font-size:13px;cursor:pointer;transition:background .2s">J'ai compris, masquer ✕</button>
+            <button onclick="dismissOnboarding()" style="margin-top:16px;padding:8px 20px;background:rgba(107,143,239,0.15);border:1px solid rgba(107,143,239,0.3);border-radius:8px;color:#9db8f8;font-family:'Geist',sans-serif;font-size:13px;cursor:pointer;transition:background .2s">Compris, masquer</button>
           </div>
 
           <div class="view-header">
@@ -3642,7 +3642,7 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
               <div class="form-group">
                 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
                   <label class="form-label" style="margin-bottom:0">Décris ton idée <span style="color:#f87171">*</span></label>
-                  <button type="button" onclick="openInspireModal()" style="background:rgba(107,143,239,0.1);border:1px solid rgba(107,143,239,0.25);border-radius:6px;color:#9db8f8;font-family:'Geist',sans-serif;font-size:11px;padding:3px 10px;cursor:pointer;transition:all .2s">💡 Inspire-moi</button>
+                  <button type="button" onclick="openInspireModal()" style="background:rgba(107,143,239,0.1);border:1px solid rgba(107,143,239,0.25);border-radius:6px;color:#9db8f8;font-family:'Geist',sans-serif;font-size:11px;padding:3px 10px;cursor:pointer;transition:all .2s">Exemples d'idées</button>
                 </div>
                 <textarea class="form-textarea" id="dashIdea" placeholder="Ex: Je veux créer une application de méditation pour entrepreneurs stressés avec des sessions de 5 minutes..." oninput="onIdeaInput(this)" maxlength="500"></textarea>
                 <div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px">
@@ -3668,7 +3668,7 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
                     <label class="form-label" style="margin-bottom:0">Profil <span style="color:#f87171">*</span></label>
                     <div class="tooltip-wrap">
                       <span style="width:14px;height:14px;border-radius:50%;border:1px solid rgba(255,255,255,0.2);display:inline-flex;align-items:center;justify-content:center;font-size:9px;color:#7a7f9a;cursor:help;font-family:'DM Mono',monospace">ⓘ</span>
-                      <div class="tooltip-box">Débutant → l'IA explique pédagogiquement.<br>Intermédiaire → équilibre conseil / action.<br>Expert → direct, sans rappels de base.</div>
+                      <div class="tooltip-box">Débutant → Eadee explique chaque étape simplement.<br>Intermédiaire → équilibre conseil et action.<br>Expert → direct, sans rappels de base.</div>
                     </div>
                   </div>
                   <select class="form-select" id="dashProfile">
@@ -3720,15 +3720,14 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
 
               <!-- Bannière 0 crédit -->
               <div id="noCredit-banner" style="display:none;margin-top:12px;padding:16px;background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.3);border-radius:10px;align-items:flex-start;gap:12px;">
-                <div style="font-size:20px;line-height:1">🔓</div>
                 <div style="flex:1">
                   <div style="font-size:13px;font-weight:600;color:#ecedf2;margin-bottom:4px">Tu n'as plus de crédits</div>
                   <div style="font-size:12px;color:#7a7f9a;margin-bottom:10px">Achète un pack pour générer ton plan</div>
-                  <button onclick="showView('billing')" style="padding:7px 16px;background:linear-gradient(135deg,#6b8fef,#a78bfa);color:#fff;border:none;border-radius:7px;font-family:'Geist',sans-serif;font-size:12px;font-weight:600;cursor:pointer;">Voir les packs →</button>
+                  <button onclick="showView('billing')" style="padding:7px 16px;background:linear-gradient(135deg,#6b8fef,#a78bfa);color:#fff;border:none;border-radius:7px;font-family:'Geist',sans-serif;font-size:12px;font-weight:600;cursor:pointer;">Voir les packs</button>
                 </div>
               </div>
               <!-- Ligne info permanente sous le bouton -->
-              <div style="margin-top:10px;font-family:'DM Mono',monospace;font-size:11px;color:#7a7f9a;text-align:center;letter-spacing:0.03em">⏱ 60s · 1 crédit utilisé · Modifiable à volonté · Garantie 7 jours</div>
+              <div style="margin-top:10px;font-family:'DM Mono',monospace;font-size:11px;color:#7a7f9a;text-align:center;letter-spacing:0.03em">60 secondes · 1 crédit par génération · Non modifiable · Garantie 7 jours</div>
             </div>
 
             <!-- RESULT — full document -->
@@ -3788,9 +3787,9 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
                 <div style="padding:14px 16px">
                   <div style="font-family:'DM Mono',monospace;font-size:9px;color:#7a7f9a;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px">Idées populaires — clique pour pré-remplir</div>
                   <div style="display:flex;flex-direction:column;gap:6px">
-                    <button class="idea-card-btn" onclick="prefillIdea('airbnb')">🏠 Conciergerie Airbnb — gestion déléguée de biens locatifs à Lyon</button>
-                    <button class="idea-card-btn" onclick="prefillIdea('kitchen')">🍱 Dark kitchen healthy — livraison repas équilibrés, Paris 11ème</button>
-                    <button class="idea-card-btn" onclick="prefillIdea('coaching')">💼 Coaching freelance B2B — accompagnement consultants indépendants</button>
+                    <button class="idea-card-btn" onclick="prefillIdea('airbnb')">Conciergerie locative — gestion déléguée de biens en location courte durée</button>
+                    <button class="idea-card-btn" onclick="prefillIdea('kitchen')">Dark kitchen healthy — repas équilibrés livrés via plateformes</button>
+                    <button class="idea-card-btn" onclick="prefillIdea('coaching')">Coaching freelance B2B — accompagnement de consultants indépendants</button>
                   </div>
                 </div>
               </div>
@@ -4213,22 +4212,49 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
           </div>
           <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px">
             <div class="inspi-card" onclick="prefillIdea('airbnb');showView('generator')">
-              <div class="inspi-icon">🏠</div>
-              <div class="inspi-title">Conciergerie Airbnb</div>
-              <div class="inspi-desc">Gestion déléguée de biens locatifs. Commission 20-25%. Marché : 2,4 Md€.</div>
+              <div class="inspi-title">Conciergerie locative</div>
+              <div class="inspi-desc">Gestion déléguée de biens en location courte durée. Commission sur revenus. Marché : 2,4 Md€.</div>
               <div class="inspi-tags"><span>Immobilier</span><span>Service</span></div>
             </div>
             <div class="inspi-card" onclick="prefillIdea('kitchen');showView('generator')">
-              <div class="inspi-icon">🍱</div>
               <div class="inspi-title">Dark Kitchen Healthy</div>
-              <div class="inspi-desc">Repas équilibrés livrés. Marché en pleine explosion. Livraison via plateformes.</div>
-              <div class="inspi-tags"><span>Food</span><span>E-commerce</span></div>
+              <div class="inspi-desc">Cuisine saine livrée via plateformes. Clientèle active 25-40 ans. Fort potentiel de croissance.</div>
+              <div class="inspi-tags"><span>Food</span><span>Livraison</span></div>
             </div>
             <div class="inspi-card" onclick="prefillIdea('coaching');showView('generator')">
-              <div class="inspi-icon">💼</div>
-              <div class="inspi-title">Coaching B2B</div>
-              <div class="inspi-desc">Accompagnement freelances &amp; consultants. Haute marge. Scalable en ligne.</div>
+              <div class="inspi-title">Coaching freelance B2B</div>
+              <div class="inspi-desc">Accompagnement de consultants indépendants pour scaler leur activité. 100% en ligne.</div>
               <div class="inspi-tags"><span>Services B2B</span><span>Formation</span></div>
+            </div>
+            <div class="inspi-card" onclick="prefillIdea('saas');showView('generator')">
+              <div class="inspi-title">SaaS micro-entreprises</div>
+              <div class="inspi-desc">Outil de gestion tout-en-un pour auto-entrepreneurs. Abonnement mensuel. 2M de cibles en France.</div>
+              <div class="inspi-tags"><span>Tech</span><span>SaaS</span></div>
+            </div>
+            <div class="inspi-card" onclick="prefillIdea('yoga');showView('generator')">
+              <div class="inspi-title">Studio bien-être</div>
+              <div class="inspi-desc">Cours collectifs + séances privées en présentiel et en ligne. Marché bien-être : 5,5 Md€ en France.</div>
+              <div class="inspi-tags"><span>Santé</span><span>Sport</span></div>
+            </div>
+            <div class="inspi-card" onclick="prefillIdea('ecommerce');showView('generator')">
+              <div class="inspi-title">Marque e-commerce niche</div>
+              <div class="inspi-desc">Produits spécialisés vendus en ligne avec audience ciblée. Faibles coûts fixes, marge élevée.</div>
+              <div class="inspi-tags"><span>E-commerce</span><span>Marque</span></div>
+            </div>
+            <div class="inspi-card" onclick="prefillIdea('formation');showView('generator')">
+              <div class="inspi-title">Formation en ligne</div>
+              <div class="inspi-desc">Programme d'apprentissage sur une expertise métier. Revenus passifs une fois créé. Scalable.</div>
+              <div class="inspi-tags"><span>Éducation</span><span>Digital</span></div>
+            </div>
+            <div class="inspi-card" onclick="prefillIdea('agence');showView('generator')">
+              <div class="inspi-title">Agence de services digitaux</div>
+              <div class="inspi-desc">Création de contenu, réseaux sociaux ou SEO pour PME. Modèle retainer mensuel récurrent.</div>
+              <div class="inspi-tags"><span>Agence</span><span>Digital</span></div>
+            </div>
+            <div class="inspi-card" onclick="prefillIdea('artisanat');showView('generator')">
+              <div class="inspi-title">Artisanat premium</div>
+              <div class="inspi-desc">Produits faits main à forte valeur perçue, vendus en ligne et en boutique. Marché du fait-maison en hausse.</div>
+              <div class="inspi-tags"><span>Artisanat</span><span>Créatif</span></div>
             </div>
           </div>
         </div>
@@ -4241,7 +4267,6 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
           </div>
           <div style="max-width:480px">
             <div class="gen-panel" style="text-align:center">
-              <div style="font-size:40px;margin-bottom:12px">🎁</div>
               <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:300;color:#ecedf2;margin-bottom:8px">Partage Eadee, gagne des crédits</div>
               <div style="font-size:13px;color:#7a7f9a;margin-bottom:20px">Pour chaque ami qui crée un compte, vous recevez <strong style="color:#ecedf2">1 crédit chacun</strong>.</div>
               <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:12px;display:flex;align-items:center;gap:10px;margin-bottom:16px">
@@ -4369,18 +4394,18 @@ function updateNav() {
       <span class="nav-plan ${planBadge}" onclick="showPage('dashboard');showView('billing')" style="cursor:pointer" title="Changer de plan">${planLabel}</span>
       <button class="nav-btn btn-ghost" onclick="showPage('dashboard');showView('settings')">${user.name.split(' ')[0]}</button>
       <button class="nav-btn" style="background:transparent;border:none;color:#9db8f8;font-size:18px;padding:4px 8px;position:relative" onclick="toggleNotifDropdown()" title="Notifications" id="notif-btn">
-        🔔<span id="notif-badge" style="position:absolute;top:0;right:0;width:8px;height:8px;border-radius:50%;background:#f87171;display:none"></span>
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 2a6 6 0 00-6 6c0 4-2 5-2 5h16s-2-1-2-5a6 6 0 00-6-6z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M11.73 17a2 2 0 01-3.46 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span id="notif-badge" style="position:absolute;top:0;right:0;width:8px;height:8px;border-radius:50%;background:#f87171;display:none"></span>
       </button>
       <div style="position:relative">
         <button class="nav-btn btn-dark" onclick="toggleNavDropdown()">Mon espace ▾</button>
         <div id="nav-dropdown" style="display:none;position:absolute;top:calc(100% + 8px);right:0;background:#1a1d26;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:8px;min-width:200px;z-index:500;box-shadow:0 12px 40px rgba(0,0,0,0.5)">
-          <div class="nav-dd-item" onclick="showPage('dashboard');showView('settings');closeNavDropdown()">👤 Mon profil</div>
-          <div class="nav-dd-item" onclick="showPage('dashboard');showView('history');closeNavDropdown()">📋 Mes plans</div>
-          <div class="nav-dd-item" onclick="showPage('dashboard');showView('billing');closeNavDropdown()">💳 Crédits &amp; abonnement</div>
-          <div class="nav-dd-item" onclick="showPage('dashboard');showView('settings');closeNavDropdown()">⚙️ Paramètres</div>
-          <div class="nav-dd-item" onclick="showPage('dashboard');showView('help');closeNavDropdown()">❓ Aide</div>
+          <div class="nav-dd-item" onclick="showPage('dashboard');showView('settings');closeNavDropdown()">Mon profil</div>
+          <div class="nav-dd-item" onclick="showPage('dashboard');showView('history');closeNavDropdown()">Mes plans</div>
+          <div class="nav-dd-item" onclick="showPage('dashboard');showView('billing');closeNavDropdown()">Crédits &amp; abonnement</div>
+          <div class="nav-dd-item" onclick="showPage('dashboard');showView('settings');closeNavDropdown()">Paramètres</div>
+          <div class="nav-dd-item" onclick="showPage('dashboard');showView('help');closeNavDropdown()">Aide</div>
           <div style="height:1px;background:rgba(255,255,255,0.07);margin:6px 0"></div>
-          <div class="nav-dd-item" onclick="logout();closeNavDropdown()" style="color:#f87171">🚪 Se déconnecter</div>
+          <div class="nav-dd-item" onclick="logout();closeNavDropdown()" style="color:#f87171">Se déconnecter</div>
         </div>
       </div>
     `;
@@ -5110,9 +5135,15 @@ function stopGenSectionsAnim() {
 }
 
 const IDEA_PROMPTS = {
-  airbnb: "Je veux créer une conciergerie Airbnb à Lyon pour gérer des biens locatifs T2/T3 dans le Vieux-Lyon et la Presqu'île. Je cible les propriétaires qui veulent déléguer complètement. Mon modèle : commission 20-25% sur le CA généré, sans abonnement fixe. Budget : 2 000€. Disponibilité : temps plein.",
-  kitchen: "Je veux lancer une dark kitchen spécialisée en repas healthy et équilibrés à Paris 11ème. Livraison via Uber Eats et Deliveroo. Cible : actifs 25-40 ans soucieux de leur alimentation. Différenciateur : menus rotatifs hebdomadaires, ingrédients sourcés localement. Budget : 8 000€.",
-  coaching: "Je veux proposer du coaching business pour freelances et consultants B2B indépendants. Format : sessions 1h en visio + programme d'accompagnement 3 mois. Cible : consultants avec 2+ ans d'expérience voulant scaler leur CA. Tarif : 2 500€ le programme. Budget : 500€. Disponibilité : mi-temps."
+  airbnb: "Je veux créer une conciergerie de location courte durée pour gérer des biens locatifs T2/T3. Je cible les propriétaires qui veulent déléguer complètement la gestion. Mon modèle : commission 20-25% sur le CA généré, sans abonnement fixe. Budget : 2 000€. Disponibilité : temps plein.",
+  kitchen: "Je veux lancer une dark kitchen spécialisée en repas équilibrés et sains. Livraison via Uber Eats et Deliveroo. Cible : actifs 25-40 ans soucieux de leur alimentation. Différenciateur : menus rotatifs hebdomadaires, ingrédients sourcés localement. Budget : 8 000€.",
+  coaching: "Je veux proposer du coaching business pour freelances et consultants B2B indépendants. Format : sessions 1h en visio + programme d'accompagnement 3 mois. Cible : consultants avec 2+ ans d'expérience voulant scaler leur CA. Tarif : 2 500€ le programme. Budget : 500€.",
+  saas: "Je veux créer un SaaS de gestion tout-en-un pour auto-entrepreneurs français : facturation, devis, suivi clients. Abonnement 15€/mois. Différenciateur : connexion directe avec les déclarations URSSAF. Cible : 2 millions d'auto-entrepreneurs en France. Budget : 5 000€.",
+  yoga: "Je veux ouvrir un studio de bien-être proposant du yoga, de la méditation et des séances de sophrologie. Cours collectifs + séances privées. Cible : actifs 30-50 ans stressés. Tarif : 80€/mois abonnement. Budget : 15 000€. Temps plein.",
+  ecommerce: "Je veux lancer une marque e-commerce spécialisée dans les accessoires pour sportifs outdoor. Vente 100% en ligne. Cible : randonneurs et grimpeurs 25-45 ans. Prix moyen panier : 65€. Différenciateur : produits éco-conçus avec matières recyclées. Budget : 3 000€.",
+  formation: "Je veux créer une formation en ligne sur la gestion des réseaux sociaux pour indépendants et petits commerces. Format : vidéos + modules pratiques + groupe de suivi. Tarif : 297€ le programme. Cible : indépendants sans compétences digitales. Budget : 800€.",
+  agence: "Je veux créer une agence de gestion des réseaux sociaux pour PME locales. Service clé en main : création de contenu + publication + reporting mensuel. Tarif : 500€/mois par client. Cible : commerces et restaurants. Budget : 500€. Mi-temps.",
+  artisanat: "Je veux lancer une marque d'artisanat premium en travail du cuir fait main : sacs, portefeuilles, accessoires. Vente en ligne et marchés créateurs. Prix moyen : 120€. Cible : 30-50 ans cherchant des produits durables et uniques. Budget : 1 500€."
 };
 
 function prefillIdea(key) {
@@ -5216,7 +5247,7 @@ function showDraftIndicator() {
   el.style.opacity = '1';
   clearTimeout(_draftIndicatorTimer);
   _draftIndicatorTimer = setTimeout(() => { if (el) el.style.opacity = '0'; }, 3000);
-  el.textContent = '💾 Brouillon sauvegardé · à l\'instant';
+  el.textContent = 'Brouillon sauvegardé · à l\'instant';
 }
 
 function checkDraft() {
@@ -5363,9 +5394,9 @@ function renderHistory() {
         <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:300;color:#ecedf2;margin-bottom:8px">Tu n'as pas encore généré de plan.</div>
         <div style="font-size:13px;color:#7a7f9a;margin-bottom:28px">Voici 3 idées populaires pour démarrer en 60 secondes :</div>
         <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:28px">
-          <button onclick="prefillIdea('airbnb');showView('generator')" class="idea-card-btn" style="max-width:200px">🏠 Conciergerie Airbnb</button>
-          <button onclick="prefillIdea('kitchen');showView('generator')" class="idea-card-btn" style="max-width:200px">🍱 Dark kitchen healthy</button>
-          <button onclick="prefillIdea('coaching');showView('generator')" class="idea-card-btn" style="max-width:200px">💼 Coaching freelance B2B</button>
+          <button onclick="prefillIdea('airbnb');showView('generator')" class="idea-card-btn" style="max-width:200px">Conciergerie locative</button>
+          <button onclick="prefillIdea('kitchen');showView('generator')" class="idea-card-btn" style="max-width:200px">Dark kitchen healthy</button>
+          <button onclick="prefillIdea('coaching');showView('generator')" class="idea-card-btn" style="max-width:200px">Coaching freelance B2B</button>
         </div>
         <button onclick="showView('generator')" style="padding:12px 28px;background:linear-gradient(135deg,#6b8fef,#a78bfa);color:#fff;border:none;border-radius:8px;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:0.06em;cursor:pointer">COMMENCER MON PREMIER PLAN</button>
       </div>
@@ -6557,16 +6588,18 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLegal()
 <div id="inspire-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:1000;align-items:center;justify-content:center;padding:20px" onclick="if(event.target===this)closeInspireModal()">
   <div style="background:#1a1d26;border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:28px;max-width:540px;width:100%;max-height:80vh;overflow-y:auto">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
-      <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:300;color:#ecedf2">💡 Idées de prompts</div>
+      <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:300;color:#ecedf2">Exemples d'idées</div>
       <button onclick="closeInspireModal()" style="background:none;border:none;color:#7a7f9a;cursor:pointer;font-size:18px">✕</button>
     </div>
     <div style="display:flex;flex-direction:column;gap:10px">
-      <button class="inspire-option" onclick="pickInspire('Je veux créer une conciergerie Airbnb à Lyon pour propriétaires de T2/T3. Gestion déléguée 100%, commission 20-25% sur revenus. Cible : Vieux-Lyon, Presqu\'île, 6ème. Budget : 2 000€. Mi-temps au départ.')">🏠 Conciergerie Airbnb Lyon</button>
-      <button class="inspire-option" onclick="pickInspire('Je veux lancer une dark kitchen healthy à Paris 11ème, livraison via plateformes. Repas équilibrés pour actifs 25-40 ans. Différenciateur : menus hebdomadaires avec ingrédients locaux sourcés. Budget : 8 000€. Temps plein.')">🍱 Dark kitchen healthy Paris</button>
-      <button class="inspire-option" onclick="pickInspire('Je veux proposer du coaching business pour freelances B2B en France. Programme 3 mois en visio, cible : consultants 2+ ans voulant scaler. Tarif : 2 500€ programme. Budget : 500€. Mi-temps.')">💼 Coaching freelance B2B</button>
-      <button class="inspire-option" onclick="pickInspire('Je veux créer un SaaS de gestion de facturation pour auto-entrepreneurs français. Abonnement 15€/mois, modèle freemium. Cible : 2M d\'auto-entrepreneurs. Différenciateur : connexion URSSAF automatique. Budget : 5 000€. Temps plein.')">💻 SaaS facturation auto-entrepreneurs</button>
-      <button class="inspire-option" onclick="pickInspire('Je veux ouvrir un studio de yoga + bien-être à Bordeaux, quartier Saint-Michel. Cours collectifs + séances privées. Cible : femmes 30-50 ans actives. 200€/mois abonnement. Budget : 15 000€. Temps plein.')">🧘 Studio yoga Bordeaux</button>
-      <button class="inspire-option" onclick="pickInspire('Je veux lancer une marque de streetwear haut de gamme en France, vente 100% en ligne. Pièces limitées, collabs artistes locaux. Cible : 18-30 ans urbains. Prix moyen 80€. Budget : 3 000€. Mi-temps.')">👕 Marque streetwear en ligne</button>
+      <button class="inspire-option" onclick="pickInspire(IDEA_PROMPTS.airbnb)">Conciergerie locative — gestion déléguée de biens en location courte durée</button>
+      <button class="inspire-option" onclick="pickInspire(IDEA_PROMPTS.kitchen)">Dark kitchen healthy — repas équilibrés livrés via plateformes</button>
+      <button class="inspire-option" onclick="pickInspire(IDEA_PROMPTS.coaching)">Coaching freelance B2B — accompagnement de consultants indépendants</button>
+      <button class="inspire-option" onclick="pickInspire(IDEA_PROMPTS.saas)">SaaS micro-entreprises — outil de gestion tout-en-un pour auto-entrepreneurs</button>
+      <button class="inspire-option" onclick="pickInspire(IDEA_PROMPTS.yoga)">Studio bien-être — cours collectifs yoga et sophrologie</button>
+      <button class="inspire-option" onclick="pickInspire(IDEA_PROMPTS.formation)">Formation en ligne — programme d'apprentissage sur une expertise métier</button>
+      <button class="inspire-option" onclick="pickInspire(IDEA_PROMPTS.agence)">Agence digitale — gestion des réseaux sociaux pour PME locales</button>
+      <button class="inspire-option" onclick="pickInspire(IDEA_PROMPTS.artisanat)">Artisanat premium — produits faits main à forte valeur perçue</button>
     </div>
   </div>
 </div>
