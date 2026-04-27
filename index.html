@@ -2226,6 +2226,68 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
 .mh-risk-txt { font-size:9px;color:rgba(255,255,255,0.45);line-height:1.55 }
 .mh-faint { font-size:10px;color:rgba(255,255,255,0.3);display:block;margin-top:2px }
 .mh-mono9c { font-family:'DM Mono',monospace;font-size:9px;color:#9db8f8;margin-top:4px }
+
+/* ========== AMÉLIORATIONS UX DASHBOARD ========== */
+@keyframes previewScrollAnim {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+.idea-card-btn {
+  width:100%; text-align:left; padding:10px 12px;
+  background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07);
+  border-radius:8px; color:#ecedf2; font-family:'Geist',sans-serif; font-size:12px;
+  cursor:pointer; transition:all .2s; line-height:1.4;
+}
+.idea-card-btn:hover { background:rgba(107,143,239,0.08); border-color:rgba(107,143,239,0.3); }
+.tip-item {
+  display:flex; align-items:flex-start; gap:10px;
+  padding:10px 14px; border-radius:8px;
+  background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05);
+  font-size:13px; color:#7a7f9a; transition:all .3s;
+}
+.tip-item.done { background:rgba(52,211,153,0.06); border-color:rgba(52,211,153,0.2); color:#ecedf2; }
+.tip-check { font-size:14px; flex-shrink:0; transition:all .2s; }
+.tip-item.done .tip-check { color:#34d399; }
+.gen-section-row {
+  display:flex; align-items:center; gap:10px; padding:7px 0;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  font-size:12px; color:#7a7f9a; font-family:'DM Mono',monospace;
+  transition:color .3s;
+}
+.gen-section-row.active { color:#9db8f8; }
+.gen-section-row.done { color:#34d399; }
+.tooltip-wrap { position:relative; display:inline-flex; }
+.tooltip-box {
+  position:absolute; bottom:calc(100% + 8px); left:50%; transform:translateX(-50%);
+  background:#1a1d26; border:1px solid rgba(255,255,255,0.12); border-radius:8px;
+  padding:10px 12px; font-size:11px; color:#ecedf2; line-height:1.6;
+  width:220px; z-index:100; pointer-events:none; opacity:0; transition:opacity .2s;
+  box-shadow:0 8px 24px rgba(0,0,0,0.4); white-space:normal;
+}
+.tooltip-wrap:hover .tooltip-box { opacity:1; }
+.nav-dd-item {
+  padding:9px 14px; border-radius:8px; font-size:13px; color:#ecedf2;
+  cursor:pointer; transition:background .15s; white-space:nowrap;
+}
+.nav-dd-item:hover { background:rgba(255,255,255,0.06); }
+.inspi-card {
+  background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px; padding:20px; cursor:pointer; transition:all .2s;
+  display:flex; flex-direction:column; gap:8px;
+}
+.inspi-card:hover { background:rgba(107,143,239,0.06); border-color:rgba(107,143,239,0.25); transform:translateY(-2px); }
+.inspi-icon { font-size:28px; }
+.inspi-title { font-family:'Fraunces',serif; font-size:16px; font-weight:300; color:#ecedf2; }
+.inspi-desc { font-size:12px; color:#7a7f9a; line-height:1.6; }
+.inspi-tags { display:flex; gap:6px; flex-wrap:wrap; margin-top:4px; }
+.inspi-tags span { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.08em; padding:3px 8px; background:rgba(107,143,239,0.1); border:1px solid rgba(107,143,239,0.2); border-radius:4px; color:#9db8f8; }
+.inspire-option {
+  width:100%; text-align:left; padding:12px 16px;
+  background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08);
+  border-radius:10px; color:#ecedf2; font-family:'Geist',sans-serif; font-size:13px;
+  cursor:pointer; transition:all .2s; line-height:1.5;
+}
+.inspire-option:hover { background:rgba(107,143,239,0.08); border-color:rgba(107,143,239,0.3); color:#9db8f8; }
 </style>
 </head>
 <body>
@@ -3492,6 +3554,14 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
             <span class="sidebar-icon"><svg width="15" height="15" viewBox="0 0 20 20" fill="none"><rect x="3" y="2" width="14" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><line x1="7" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="7" y1="10" x2="13" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="7" y1="13" x2="10" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
             Mes plans
           </div>
+          <div class="sidebar-link" onclick="showView('inspiration')" data-view="inspiration">
+            <span class="sidebar-icon">💡</span>
+            Inspiration
+          </div>
+          <div class="sidebar-link" onclick="showView('referral')" data-view="referral">
+            <span class="sidebar-icon">🎁</span>
+            Inviter un ami
+          </div>
           <div class="sidebar-link" id="chat-sidebar-link" onclick="openChat()" data-view="chat" style="display:none">
             <span class="sidebar-icon"><svg width="15" height="15" viewBox="0 0 20 20" fill="none"><path d="M18 9c0 4-3.6 7-8 7a8.8 8.8 0 01-3.5-.7L2 17l1.7-4A6.5 6.5 0 012 9c0-4 3.6-7 8-7s8 3 8 7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
             Expert IA
@@ -3507,15 +3577,20 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
             <span class="sidebar-icon"><svg width="15" height="15" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
             Paramètres
           </div>
+          <div class="sidebar-link" onclick="showView('help')" data-view="help">
+            <span class="sidebar-icon"><svg width="15" height="15" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.6"/><path d="M10 14v-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M10 10c0-2 3-2 3-4a3 3 0 10-6 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+            Aide &amp; Support
+          </div>
         </div>
 
         <!-- Widget crédits -->
-        <div class="sidebar-credits">
-          <div class="sc-label">Crédits restants</div>
+        <div class="sidebar-credits" id="sidebar-credits-widget">
+          <div class="sc-label">✦ Crédits restants</div>
           <div class="sc-count" id="usageCount">0</div>
           <div class="sc-bar"><div class="sc-fill" id="usageFill" style="width:0%"></div></div>
           <div class="sc-sub">générations disponibles</div>
-          <button class="sc-btn" onclick="showView('billing')">Recharger</button>
+          <button class="sc-btn" onclick="showView('billing')" id="sc-recharge-btn">Recharger</button>
+          <button class="sc-btn" id="sc-buy-btn" onclick="showView('billing')" style="display:none;background:linear-gradient(135deg,#6b8fef,#a78bfa);color:#fff;border:none;margin-top:6px">Acheter un pack</button>
         </div>
       </aside>
 
@@ -3524,9 +3599,39 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
 
         <!-- GENERATOR VIEW -->
         <div class="dash-view active" id="view-generator">
+
+          <!-- Bannière reprise brouillon -->
+          <div id="draft-resume-banner" style="display:none;margin-bottom:16px;padding:14px 16px;background:rgba(107,143,239,0.08);border:1px solid rgba(107,143,239,0.25);border-radius:10px;align-items:center;gap:12px;flex-wrap:wrap">
+            <div style="flex:1;min-width:200px">
+              <div style="font-size:13px;color:#ecedf2;margin-bottom:3px">Tu avais commencé à décrire une idée.</div>
+              <div style="font-size:12px;color:#7a7f9a;font-style:italic" id="draft-preview-text"></div>
+            </div>
+            <div style="display:flex;gap:8px;flex-shrink:0">
+              <button onclick="resumeDraft()" style="padding:6px 14px;background:linear-gradient(135deg,#6b8fef,#a78bfa);color:#fff;border:none;border-radius:7px;font-size:12px;cursor:pointer">Reprendre</button>
+              <button onclick="discardDraft()" style="padding:6px 14px;background:transparent;border:1px solid rgba(255,255,255,0.12);color:#7a7f9a;border-radius:7px;font-size:12px;cursor:pointer">Effacer</button>
+            </div>
+          </div>
+          <!-- Indicateur draft sauvegardé -->
+          <div id="draft-indicator" style="font-family:'DM Mono',monospace;font-size:10px;color:#7a7f9a;text-align:right;margin-bottom:8px;opacity:0;transition:opacity .3s;margin-top:-8px"></div>
+
+          <!-- Bannière onboarding -->
+          <div id="onboarding-banner" style="display:none;margin-bottom:20px;padding:20px;background:linear-gradient(135deg,rgba(107,143,239,0.08),rgba(167,139,250,0.08));border:1px solid rgba(107,143,239,0.25);border-radius:12px;">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px">
+              <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:300;color:#ecedf2" id="onboarding-title">👋 Bienvenue !</div>
+              <button onclick="dismissOnboarding()" style="background:none;border:none;color:#7a7f9a;cursor:pointer;font-size:16px;line-height:1;padding:0;flex-shrink:0">✕</button>
+            </div>
+            <div style="font-size:13px;color:#9db8f8;margin-bottom:14px">Voici comment générer ton premier plan en 60s :</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#ecedf2"><span>1️⃣</span> Décris ton idée (3 phrases minimum)</div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#ecedf2"><span>2️⃣</span> Choisis budget, secteur, disponibilité</div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#ecedf2"><span>3️⃣</span> Clique sur "Générer" — l'IA fait le reste</div>
+            </div>
+            <button onclick="dismissOnboarding()" style="margin-top:16px;padding:8px 20px;background:rgba(107,143,239,0.15);border:1px solid rgba(107,143,239,0.3);border-radius:8px;color:#9db8f8;font-family:'Geist',sans-serif;font-size:13px;cursor:pointer;transition:background .2s">J'ai compris, masquer ✕</button>
+          </div>
+
           <div class="view-header">
-            <div class="view-title">Génère ton plan</div>
-            <div class="view-sub">Décris ton idée — ton plan complet est prêt en 60 secondes</div>
+            <div class="view-title" id="dash-gen-title">Génère ton plan</div>
+            <div class="view-sub" id="dash-gen-sub">Décris ton idée — ton plan complet est prêt en 60 secondes</div>
           </div>
 
           <div class="gen-layout">
@@ -3535,23 +3640,37 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
               <div class="gen-panel-title">Ton idée</div>
 
               <div class="form-group">
-                <label class="form-label">Décris ton idée</label>
-                <textarea class="form-textarea" id="dashIdea" placeholder="Ex: Je veux créer une application de méditation pour entrepreneurs stressés avec des sessions de 5 minutes..."></textarea>
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+                  <label class="form-label" style="margin-bottom:0">Décris ton idée <span style="color:#f87171">*</span></label>
+                  <button type="button" onclick="openInspireModal()" style="background:rgba(107,143,239,0.1);border:1px solid rgba(107,143,239,0.25);border-radius:6px;color:#9db8f8;font-family:'Geist',sans-serif;font-size:11px;padding:3px 10px;cursor:pointer;transition:all .2s">💡 Inspire-moi</button>
+                </div>
+                <textarea class="form-textarea" id="dashIdea" placeholder="Ex: Je veux créer une application de méditation pour entrepreneurs stressés avec des sessions de 5 minutes..." oninput="onIdeaInput(this)" maxlength="500"></textarea>
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px">
+                  <div style="font-size:11px;color:#7a7f9a;font-family:'DM Mono',monospace" id="idea-quality-msg">Plus tu détailles, meilleur sera ton plan.</div>
+                  <div style="font-size:11px;font-family:'DM Mono',monospace;color:#7a7f9a" id="idea-char-count">0 / 500</div>
+                </div>
               </div>
 
               <div class="form-row">
                 <div class="form-group">
                   <label class="form-label">Budget</label>
                   <select class="form-select" id="dashBudget">
-                    <option value="0€ (bootstrap)">0€ — Bootstrap</option>
                     <option value="moins de 500€">Moins de 500€</option>
-                    <option value="500€ à 2000€" selected>500€ à 2 000€</option>
-                    <option value="2 000€ à 10 000€">2k€ à 10k€</option>
-                    <option value="plus de 10 000€">+10 000€</option>
+                    <option value="500€ à 2 000€" selected>500€ à 2 000€</option>
+                    <option value="2 000€ à 10 000€">2k€ à 10 000€</option>
+                    <option value="10 000€ à 50 000€">10k€ à 50 000€</option>
+                    <option value="plus de 50 000€">+ 50 000€</option>
+                    <option value="budget non défini">Sur mesure / je ne sais pas</option>
                   </select>
                 </div>
                 <div class="form-group">
-                  <label class="form-label">Profil</label>
+                  <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+                    <label class="form-label" style="margin-bottom:0">Profil <span style="color:#f87171">*</span></label>
+                    <div class="tooltip-wrap">
+                      <span style="width:14px;height:14px;border-radius:50%;border:1px solid rgba(255,255,255,0.2);display:inline-flex;align-items:center;justify-content:center;font-size:9px;color:#7a7f9a;cursor:help;font-family:'DM Mono',monospace">ⓘ</span>
+                      <div class="tooltip-box">Débutant → l'IA explique pédagogiquement.<br>Intermédiaire → équilibre conseil / action.<br>Expert → direct, sans rappels de base.</div>
+                    </div>
+                  </div>
                   <select class="form-select" id="dashProfile">
                     <option value="débutant">Débutant</option>
                     <option value="intermédiaire" selected>Intermédiaire</option>
@@ -3568,14 +3687,20 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
                     <option value="tech/SaaS">Tech / SaaS</option>
                     <option value="e-commerce">E-commerce</option>
                     <option value="services B2B">Services B2B</option>
-                    <option value="food">Food & Resto</option>
-                    <option value="santé">Santé & Bien-être</option>
+                    <option value="food">Food &amp; Resto</option>
+                    <option value="santé">Santé &amp; Bien-être</option>
                     <option value="éducation">Éducation</option>
                     <option value="artisanat">Artisanat</option>
                   </select>
                 </div>
                 <div class="form-group">
-                  <label class="form-label">Disponibilité</label>
+                  <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+                    <label class="form-label" style="margin-bottom:0">Disponibilité <span style="color:#f87171">*</span></label>
+                    <div class="tooltip-wrap">
+                      <span style="width:14px;height:14px;border-radius:50%;border:1px solid rgba(255,255,255,0.2);display:inline-flex;align-items:center;justify-content:center;font-size:9px;color:#7a7f9a;cursor:help;font-family:'DM Mono',monospace">ⓘ</span>
+                      <div class="tooltip-box">Détermine les hypothèses de CA et de charge de travail dans tes projections financières.</div>
+                    </div>
+                  </div>
                   <select class="form-select" id="dashTime">
                     <option value="quelques heures/semaine">Quelques h/sem</option>
                     <option value="mi-temps" selected>Mi-temps</option>
@@ -3584,23 +3709,132 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
                 </div>
               </div>
 
+              <div class="form-group" style="margin-top:4px">
+                <label class="form-label">Nom du plan <span style="font-size:10px;color:#7a7f9a;font-weight:400">(optionnel)</span></label>
+                <input type="text" class="form-input" id="dashPlanName" placeholder="Ex: NestManager Lyon, Dark Kitchen Paris...">
+              </div>
+
               <button class="gen-btn" id="dashGenBtn" onclick="generateDashPlan()">
                 GÉNÉRER MON BUSINESS PLAN
               </button>
+
+              <!-- Bannière 0 crédit -->
+              <div id="noCredit-banner" style="display:none;margin-top:12px;padding:16px;background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.3);border-radius:10px;align-items:flex-start;gap:12px;">
+                <div style="font-size:20px;line-height:1">🔓</div>
+                <div style="flex:1">
+                  <div style="font-size:13px;font-weight:600;color:#ecedf2;margin-bottom:4px">Tu n'as plus de crédits</div>
+                  <div style="font-size:12px;color:#7a7f9a;margin-bottom:10px">Achète un pack pour générer ton plan</div>
+                  <button onclick="showView('billing')" style="padding:7px 16px;background:linear-gradient(135deg,#6b8fef,#a78bfa);color:#fff;border:none;border-radius:7px;font-family:'Geist',sans-serif;font-size:12px;font-weight:600;cursor:pointer;">Voir les packs →</button>
+                </div>
+              </div>
+              <!-- Ligne info permanente sous le bouton -->
+              <div style="margin-top:10px;font-family:'DM Mono',monospace;font-size:11px;color:#7a7f9a;text-align:center;letter-spacing:0.03em">⏱ 60s · 1 crédit utilisé · Modifiable à volonté · Garantie 7 jours</div>
             </div>
 
             <!-- RESULT — full document -->
             <div class="result-panel" id="resultPanel" style="background:var(--ink);border-radius:6px;padding:0;overflow:hidden;min-height:500px;display:flex;flex-direction:column;">
-              <div class="result-empty-state" id="dashEmptyState" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;color:rgba(255,255,255,0.2);padding:40px;">
-                <div style="font-size:40px;opacity:0.15;font-family:'Fraunces',serif;color:#9db8f8">▤</div>
-                <div style="font-size:14px;max-width:200px;line-height:1.5">Ton business plan complet apparaîtra ici</div>
+              <!-- ÉTAT A : Aperçu animé + idées populaires -->
+              <div id="preview-state-A" style="flex:1;display:flex;flex-direction:column;overflow:hidden;">
+                <div style="padding:20px 20px 12px;border-bottom:1px solid rgba(255,255,255,0.06);">
+                  <div style="font-family:'Fraunces',serif;font-size:16px;font-weight:300;color:#ecedf2;margin-bottom:4px">Voilà à quoi ressemblera ton plan</div>
+                  <div style="font-family:'DM Mono',monospace;font-size:10px;color:#7a7f9a;letter-spacing:0.05em">Aperçu · NestManager (Conciergerie Lyon)</div>
+                </div>
+                <!-- Mini mock browser -->
+                <div style="margin:16px 16px 0;background:#0a0a0a;border-radius:8px;border:1px solid rgba(255,255,255,0.08);overflow:hidden;flex:1;max-height:340px;position:relative;">
+                  <div style="padding:8px 12px;background:#111;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;gap:6px;flex-shrink:0">
+                    <div style="width:8px;height:8px;border-radius:50%;background:#f87171"></div>
+                    <div style="width:8px;height:8px;border-radius:50%;background:#fbbf24"></div>
+                    <div style="width:8px;height:8px;border-radius:50%;background:#34d399"></div>
+                    <div style="margin-left:8px;font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.2)">eadee.fr/plan/nestmanager</div>
+                  </div>
+                  <div style="overflow:hidden;height:calc(100% - 33px);position:relative">
+                    <div id="preview-scroll-content" style="padding:16px;display:flex;flex-direction:column;gap:10px;animation:previewScrollAnim 18s linear infinite">
+                      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:12px">
+                        <div style="font-family:'DM Mono',monospace;font-size:8px;color:#6b8fef;letter-spacing:0.15em;margin-bottom:6px">01 — RÉSUMÉ EXÉCUTIF</div>
+                        <div style="font-size:11px;color:#ecedf2;line-height:1.6;opacity:0.8">NestManager est une conciergerie Airbnb à Lyon proposant une gestion <strong style="color:#6b8fef">100% déléguée</strong> des biens locatifs. Notre cible : propriétaires de studios T2/T3 Presqu'île, Vieux-Lyon, 6ème.</div>
+                      </div>
+                      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:12px">
+                        <div style="font-family:'DM Mono',monospace;font-size:8px;color:#a78bfa;letter-spacing:0.15em;margin-bottom:8px">02 — MARCHÉ &amp; OPPORTUNITÉ</div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px">
+                          <div style="background:rgba(107,143,239,0.08);border-radius:4px;padding:6px;text-align:center"><div style="font-size:9px;color:#7a7f9a">Marché FR</div><div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:#9db8f8">2,4 Md€</div></div>
+                          <div style="background:rgba(107,143,239,0.08);border-radius:4px;padding:6px;text-align:center"><div style="font-size:9px;color:#7a7f9a">Croiss./an</div><div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:#9db8f8">+31%</div></div>
+                        </div>
+                      </div>
+                      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:12px">
+                        <div style="font-family:'DM Mono',monospace;font-size:8px;color:#34d399;letter-spacing:0.15em;margin-bottom:6px">03 — MODÈLE ÉCONOMIQUE</div>
+                        <div style="font-size:11px;color:#ecedf2;line-height:1.5;opacity:0.8">Commission <strong style="color:#34d399">20-25%</strong> sur CA généré. Sans abonnement fixe. Rentabilité dès le mois 3.</div>
+                      </div>
+                      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:12px">
+                        <div style="font-family:'DM Mono',monospace;font-size:8px;color:#fbbf24;letter-spacing:0.15em;margin-bottom:8px">05 — PROJECTIONS FINANCIÈRES</div>
+                        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px">
+                          <div style="text-align:center"><div style="font-size:8px;color:#7a7f9a">M1</div><div style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#fbbf24">1 200€</div></div>
+                          <div style="text-align:center"><div style="font-size:8px;color:#7a7f9a">M3</div><div style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#fbbf24">4 800€</div></div>
+                          <div style="text-align:center"><div style="font-size:8px;color:#7a7f9a">M6</div><div style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#fbbf24">9 200€</div></div>
+                          <div style="text-align:center"><div style="font-size:8px;color:#7a7f9a">An 1</div><div style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#fbbf24">112k€</div></div>
+                        </div>
+                      </div>
+                      <!-- Duplicate pour loop -->
+                      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:12px">
+                        <div style="font-family:'DM Mono',monospace;font-size:8px;color:#6b8fef;letter-spacing:0.15em;margin-bottom:6px">01 — RÉSUMÉ EXÉCUTIF</div>
+                        <div style="font-size:11px;color:#ecedf2;line-height:1.6;opacity:0.8">NestManager est une conciergerie Airbnb à Lyon proposant une gestion <strong style="color:#6b8fef">100% déléguée</strong> des biens locatifs. Notre cible : propriétaires de studios T2/T3 Presqu'île, Vieux-Lyon, 6ème.</div>
+                      </div>
+                    </div>
+                    <!-- Fade top/bottom -->
+                    <div style="position:absolute;top:0;left:0;right:0;height:40px;background:linear-gradient(to bottom,#0a0a0a,transparent);pointer-events:none"></div>
+                    <div style="position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(to top,#0a0a0a,transparent);pointer-events:none"></div>
+                  </div>
+                </div>
+                <!-- Idées populaires -->
+                <div style="padding:14px 16px">
+                  <div style="font-family:'DM Mono',monospace;font-size:9px;color:#7a7f9a;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px">Idées populaires — clique pour pré-remplir</div>
+                  <div style="display:flex;flex-direction:column;gap:6px">
+                    <button class="idea-card-btn" onclick="prefillIdea('airbnb')">🏠 Conciergerie Airbnb — gestion déléguée de biens locatifs à Lyon</button>
+                    <button class="idea-card-btn" onclick="prefillIdea('kitchen')">🍱 Dark kitchen healthy — livraison repas équilibrés, Paris 11ème</button>
+                    <button class="idea-card-btn" onclick="prefillIdea('coaching')">💼 Coaching freelance B2B — accompagnement consultants indépendants</button>
+                  </div>
+                </div>
               </div>
 
-              <div class="generating-state" id="dashGenerating" style="display:none;flex:1;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center;padding:40px;">
-                <div class="loading-ring"></div>
-                <div style="font-family:'DM Mono',monospace;font-size:12px;color:rgba(255,255,255,0.4);letter-spacing:0.1em" id="genStatusText">Analyse de ton idée...</div>
-                <div style="font-size:12px;color:rgba(255,255,255,0.2);max-width:220px;line-height:1.6">EADEE analyse le marché, calcule les chiffres et construit ton plan...</div>
+              <!-- ÉTAT B : Conseils brief -->
+              <div id="preview-state-B" style="display:none;flex:1;padding:24px;flex-direction:column;gap:16px">
+                <div>
+                  <div style="font-family:'Fraunces',serif;font-size:18px;font-weight:300;color:#ecedf2;margin-bottom:6px">💡 Astuces pour ton brief</div>
+                  <div style="font-size:12px;color:#7a7f9a">Plus ton idée est précise, meilleur sera le plan.</div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:10px" id="tips-list">
+                  <div class="tip-item" id="tip-ville" data-keywords="ville,région,paris,lyon,marseille,bordeaux,nantes,toulouse,lille,strasbourg,france">
+                    <span class="tip-check">○</span>
+                    <span>Mentionne ta ville ou région cible</span>
+                  </div>
+                  <div class="tip-item" id="tip-public" data-keywords="b2b,b2c,client,cible,public,entreprise,particulier,femme,homme,jeune,senior,professionnel">
+                    <span class="tip-check">○</span>
+                    <span>Précise ton public (B2B, B2C, niche, âge)</span>
+                  </div>
+                  <div class="tip-item" id="tip-usp" data-keywords="différence,unique,meilleur,plus rapide,moins cher,exclusif,premier,innovation,nouveau">
+                    <span class="tip-check">○</span>
+                    <span>Indique ton USP (ce qui te différencie)</span>
+                  </div>
+                  <div class="tip-item" id="tip-model" data-keywords="commission,abonnement,vente,freemium,saas,mensuel,annuel,forfait,prix,tarif">
+                    <span class="tip-check">○</span>
+                    <span>Donne ton modèle (commission, abonnement, vente...)</span>
+                  </div>
+                </div>
               </div>
+
+              <!-- ÉTAT C : Stream sections loading -->
+              <div id="preview-state-C" style="display:none;flex:1;padding:24px;flex-direction:column;gap:0">
+                <div id="genStatusText" style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:0.1em;margin-bottom:16px">Génération en cours…</div>
+                <div id="gen-sections-list" style="flex:1;display:flex;flex-direction:column;gap:0;overflow:hidden"></div>
+                <div style="margin-top:16px">
+                  <div style="height:3px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden">
+                    <div id="gen-progress-bar" style="height:100%;background:linear-gradient(90deg,#6b8fef,#a78bfa);border-radius:2px;width:0%;transition:width 1s ease"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ÉTAT D : compat (gardés vides) -->
+              <div id="dashEmptyState" style="display:none"></div>
+              <div id="dashGenerating" style="display:none"></div>
 
               <!-- FULL PLAN DOCUMENT -->
               <div id="dashResult" style="display:none;flex-direction:column;flex:1;">
@@ -3971,6 +4205,76 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
           </div>
         </div>
 
+        <!-- INSPIRATION VIEW -->
+        <div class="dash-view" id="view-inspiration">
+          <div class="view-header">
+            <div class="view-title">Inspiration</div>
+            <div class="view-sub">Idées de business validées — clique pour générer ton plan</div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px">
+            <div class="inspi-card" onclick="prefillIdea('airbnb');showView('generator')">
+              <div class="inspi-icon">🏠</div>
+              <div class="inspi-title">Conciergerie Airbnb</div>
+              <div class="inspi-desc">Gestion déléguée de biens locatifs. Commission 20-25%. Marché : 2,4 Md€.</div>
+              <div class="inspi-tags"><span>Immobilier</span><span>Service</span></div>
+            </div>
+            <div class="inspi-card" onclick="prefillIdea('kitchen');showView('generator')">
+              <div class="inspi-icon">🍱</div>
+              <div class="inspi-title">Dark Kitchen Healthy</div>
+              <div class="inspi-desc">Repas équilibrés livrés. Marché en pleine explosion. Livraison via plateformes.</div>
+              <div class="inspi-tags"><span>Food</span><span>E-commerce</span></div>
+            </div>
+            <div class="inspi-card" onclick="prefillIdea('coaching');showView('generator')">
+              <div class="inspi-icon">💼</div>
+              <div class="inspi-title">Coaching B2B</div>
+              <div class="inspi-desc">Accompagnement freelances &amp; consultants. Haute marge. Scalable en ligne.</div>
+              <div class="inspi-tags"><span>Services B2B</span><span>Formation</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- REFERRAL VIEW -->
+        <div class="dash-view" id="view-referral">
+          <div class="view-header">
+            <div class="view-title">Inviter un ami</div>
+            <div class="view-sub">Vous gagnez chacun 1 crédit gratuit</div>
+          </div>
+          <div style="max-width:480px">
+            <div class="gen-panel" style="text-align:center">
+              <div style="font-size:40px;margin-bottom:12px">🎁</div>
+              <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:300;color:#ecedf2;margin-bottom:8px">Partage Eadee, gagne des crédits</div>
+              <div style="font-size:13px;color:#7a7f9a;margin-bottom:20px">Pour chaque ami qui crée un compte, vous recevez <strong style="color:#ecedf2">1 crédit chacun</strong>.</div>
+              <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:12px;display:flex;align-items:center;gap:10px;margin-bottom:16px">
+                <div style="flex:1;font-family:'DM Mono',monospace;font-size:12px;color:#9db8f8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="referral-link">eadee.fr/ref/ALEX2024</div>
+                <button onclick="navigator.clipboard.writeText(document.getElementById('referral-link').textContent).then(()=>toast('Lien copié ✓','success'))" style="padding:6px 14px;background:linear-gradient(135deg,#6b8fef,#a78bfa);color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer;white-space:nowrap">Copier</button>
+              </div>
+              <div style="font-size:12px;color:#7a7f9a">0 ami(s) invité(s) · 0 crédit(s) gagné(s)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HELP VIEW -->
+        <div class="dash-view" id="view-help">
+          <div class="view-header">
+            <div class="view-title">Aide &amp; Support</div>
+            <div class="view-sub">Questions fréquentes et contact</div>
+          </div>
+          <div style="max-width:600px;display:flex;flex-direction:column;gap:16px">
+            <div class="gen-panel">
+              <div class="gen-panel-title">Questions fréquentes</div>
+              <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+                <div style="padding:12px;background:rgba(255,255,255,0.02);border-radius:8px;font-size:13px;color:#ecedf2"><strong>Mon plan ne se génère pas ?</strong><br><span style="color:#7a7f9a">Vérifie que tu as des crédits et que ta description fait au moins 10 caractères.</span></div>
+                <div style="padding:12px;background:rgba(255,255,255,0.02);border-radius:8px;font-size:13px;color:#ecedf2"><strong>Comment racheter des crédits ?</strong><br><span style="color:#7a7f9a">Va dans "Crédits" dans le menu et choisis un pack.</span></div>
+                <div style="padding:12px;background:rgba(255,255,255,0.02);border-radius:8px;font-size:13px;color:#ecedf2"><strong>Les plans sont-ils sauvegardés ?</strong><br><span style="color:#7a7f9a">Oui, retrouve-les dans "Mes plans". Ils sont stockés localement.</span></div>
+              </div>
+            </div>
+            <div class="gen-panel" style="text-align:center">
+              <div style="font-size:13px;color:#7a7f9a;margin-bottom:12px">Besoin d'aide supplémentaire ?</div>
+              <a href="mailto:support@eadee.fr" style="display:inline-block;padding:10px 24px;background:linear-gradient(135deg,#6b8fef,#a78bfa);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none">Contacter le support →</a>
+            </div>
+          </div>
+        </div>
+
       </main>
 
       <!-- MOBILE BOTTOM NAV -->
@@ -4062,9 +4366,23 @@ function updateNav() {
     const planBadge = currentPlan === 'builder' ? 'plan-builder' : currentPlan === 'empire' ? 'plan-empire' : 'plan-free';
     const planLabel = currentPlan === 'builder' ? 'Builder' : currentPlan === 'empire' ? 'Empire' : 'Starter';
     nr.innerHTML = `
-      <span class="nav-plan ${planBadge}">${planLabel}</span>
+      <span class="nav-plan ${planBadge}" onclick="showPage('dashboard');showView('billing')" style="cursor:pointer" title="Changer de plan">${planLabel}</span>
       <button class="nav-btn btn-ghost" onclick="showPage('dashboard');showView('settings')">${user.name.split(' ')[0]}</button>
-      <button class="nav-btn btn-dark" onclick="showPage('dashboard')">Mon espace</button>
+      <button class="nav-btn" style="background:transparent;border:none;color:#9db8f8;font-size:18px;padding:4px 8px;position:relative" onclick="toggleNotifDropdown()" title="Notifications" id="notif-btn">
+        🔔<span id="notif-badge" style="position:absolute;top:0;right:0;width:8px;height:8px;border-radius:50%;background:#f87171;display:none"></span>
+      </button>
+      <div style="position:relative">
+        <button class="nav-btn btn-dark" onclick="toggleNavDropdown()">Mon espace ▾</button>
+        <div id="nav-dropdown" style="display:none;position:absolute;top:calc(100% + 8px);right:0;background:#1a1d26;border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:8px;min-width:200px;z-index:500;box-shadow:0 12px 40px rgba(0,0,0,0.5)">
+          <div class="nav-dd-item" onclick="showPage('dashboard');showView('settings');closeNavDropdown()">👤 Mon profil</div>
+          <div class="nav-dd-item" onclick="showPage('dashboard');showView('history');closeNavDropdown()">📋 Mes plans</div>
+          <div class="nav-dd-item" onclick="showPage('dashboard');showView('billing');closeNavDropdown()">💳 Crédits &amp; abonnement</div>
+          <div class="nav-dd-item" onclick="showPage('dashboard');showView('settings');closeNavDropdown()">⚙️ Paramètres</div>
+          <div class="nav-dd-item" onclick="showPage('dashboard');showView('help');closeNavDropdown()">❓ Aide</div>
+          <div style="height:1px;background:rgba(255,255,255,0.07);margin:6px 0"></div>
+          <div class="nav-dd-item" onclick="logout();closeNavDropdown()" style="color:#f87171">🚪 Se déconnecter</div>
+        </div>
+      </div>
     `;
   } else {
     nr.innerHTML = `
@@ -4108,7 +4426,7 @@ function handleAuth() {
   document.getElementById('settingsEmail').value = user.email;
 
   toast((authMode === 'signup' ? 'Compte créé ! Achète un pack pour commencer' : 'Connecté ! Bienvenue'), 'success');
-  setTimeout(() => { showPage('dashboard'); showView('generator'); }, 800);
+  setTimeout(() => { showPage('dashboard'); showView('generator'); updateDashHeader(); checkOnboarding(); checkDraft(); updateUsage(); }, 800);
 }
 
 function handleGoogleAuth() {
@@ -4118,7 +4436,7 @@ function handleGoogleAuth() {
   document.getElementById('settingsName').value = user.name;
   document.getElementById('settingsEmail').value = user.email;
   toast('Connecté avec Google ✓', 'success');
-  setTimeout(() => { showPage('dashboard'); showView('generator'); }, 800);
+  setTimeout(() => { showPage('dashboard'); showView('generator'); updateDashHeader(); checkOnboarding(); checkDraft(); updateUsage(); }, 800);
 }
 
 function logout() {
@@ -4131,10 +4449,16 @@ function logout() {
 function showView(name) {
   document.querySelectorAll('.dash-view').forEach(v => v.classList.remove('active'));
   document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
-  document.getElementById('view-' + name).classList.add('active');
+  const viewEl = document.getElementById('view-' + name);
+  if (viewEl) viewEl.classList.add('active');
   const link = document.querySelector(`[data-view="${name}"]`);
   if (link) link.classList.add('active');
   if (name === 'history') renderHistory();
+  if (name === 'generator') {
+    checkOnboarding();
+    updateDashHeader();
+    checkDraft();
+  }
 }
 
 // ========== GENERATE PLAN — V2 ULTRA DÉTAILLÉ ==========
@@ -4172,7 +4496,7 @@ async function generateDashPlan() {
   document.getElementById('dashGenBtn').disabled = true;
   document.getElementById('dashEmptyState').style.display = 'none';
   document.getElementById('dashResult').style.display = 'none';
-  document.getElementById('dashGenerating').style.display = 'flex';
+  setPreviewState('C');
 
   let si = 0;
   const statusInterval = setInterval(() => {
@@ -4365,15 +4689,19 @@ Réponds UNIQUEMENT avec un JSON valide (sans markdown ni backticks):
     userCredits = Math.max(0, userCredits - 1);
     updateUsage();
 
+    stopGenSectionsAnim();
+    setPreviewState(null);
     document.getElementById('dashGenerating').style.display = 'none';
     document.getElementById('dashResult').style.display = 'flex';
     toast('Business plan complet généré ✓', 'success');
 
   } catch(err) {
     clearInterval(statusInterval);
+    stopGenSectionsAnim();
+    setPreviewState('A');
     console.error('Erreur génération:', err);
     document.getElementById('dashGenerating').style.display = 'none';
-    document.getElementById('dashEmptyState').style.display = 'flex';
+    document.getElementById('dashEmptyState').style.display = 'none';
     const errStateEl = document.getElementById('dashEmptyState');
     errStateEl.innerHTML = `
       <div style="font-size:11px;font-family:'DM Mono',monospace;letter-spacing:0.15em;color:rgba(255,255,255,0.25);margin-bottom:12px">ERREUR</div>
@@ -4390,11 +4718,9 @@ Réponds UNIQUEMENT avec un JSON valide (sans markdown ni backticks):
 }
 
 function resetGenerator() {
-  document.getElementById('dashEmptyState').style.display = 'flex';
-  document.getElementById('dashEmptyState').innerHTML = `
-    <div style="font-size:11px;font-family:'DM Mono',monospace;letter-spacing:0.15em;color:rgba(255,255,255,0.15);margin-bottom:12px">RÉSULTAT</div>
-    <div style="font-size:14px;max-width:200px;line-height:1.5">Ton business plan complet apparaîtra ici</div>
-  `;
+  setPreviewState('A');
+  document.getElementById('dashEmptyState').style.display = 'none';
+  document.getElementById('dashResult').style.display = 'none';
 }
 
 // Sanitize helper — échappe les caractères HTML pour éviter les injections XSS
@@ -4694,7 +5020,274 @@ function updateUsage() {
   document.getElementById('usageFill').style.width = pct + '%';
   // Widget sidebar : affiche juste le chiffre (Bebas Neue grand format)
   document.getElementById('usageCount').textContent = userCredits <= 0 ? '0' : String(userCredits);
+  // Amélioration 1 — bouton désactivé si 0 crédit
+  const btn = document.getElementById('dashGenBtn');
+  const banner = document.getElementById('noCredit-banner');
+  if (btn) {
+    if (userCredits <= 0) {
+      btn.disabled = true;
+      btn.style.opacity = '0.4';
+      btn.style.cursor = 'not-allowed';
+      if (banner) banner.style.display = 'flex';
+    } else {
+      btn.disabled = false;
+      btn.style.opacity = '';
+      btn.style.cursor = '';
+      if (banner) banner.style.display = 'none';
+    }
+  }
+  // Amélioration 2 — sidebar CTA
+  const scBuy = document.getElementById('sc-buy-btn');
+  const scRecharge = document.getElementById('sc-recharge-btn');
+  if (scBuy && scRecharge) {
+    if (userCredits <= 0) {
+      scBuy.style.display = 'block';
+      scRecharge.style.display = 'none';
+    } else {
+      scBuy.style.display = 'none';
+      scRecharge.style.display = 'block';
+    }
+  }
 }
+
+// ========== PREVIEW STATES ==========
+const GEN_SECTIONS = [
+  '01 — Résumé Exécutif','02 — Marché & Opportunité','03 — Modèle Économique',
+  '04 — Analyse Concurrentielle','05 — Projections Financières','06 — Acquisition Client',
+  '07 — Plan d\'Action 90 Jours','08 — Investissement & Charges','09 — Risques & Mitigation',
+  '10 — Ressources & Outils','11 — KPIs','12 — Pitch 30s','13 — Persona Client'
+];
+let _genSectionTimer = null;
+
+function setPreviewState(state) {
+  ['A','B','C'].forEach(s => {
+    const el = document.getElementById('preview-state-' + s);
+    if (el) el.style.display = 'none';
+  });
+  if (state === 'A' || state === 'B' || state === 'C') {
+    const el = document.getElementById('preview-state-' + state);
+    if (el) el.style.display = 'flex';
+  }
+  if (state === 'C') startGenSectionsAnim();
+}
+
+function startGenSectionsAnim() {
+  const list = document.getElementById('gen-sections-list');
+  const bar = document.getElementById('gen-progress-bar');
+  const statusEl = document.getElementById('genStatusText');
+  if (!list) return;
+  list.innerHTML = GEN_SECTIONS.map((s,i) =>
+    `<div class="gen-section-row" id="gsrow-${i}"><span class="gsrow-icon" id="gsicon-${i}">·</span>${s}</div>`
+  ).join('');
+  let idx = 0;
+  let elapsed = 0;
+  if (_genSectionTimer) clearInterval(_genSectionTimer);
+  _genSectionTimer = setInterval(() => {
+    elapsed += 3;
+    if (statusEl) statusEl.textContent = `Génération en cours… ${elapsed}s`;
+    if (idx > 0) {
+      const prev = document.getElementById('gsrow-' + (idx-1));
+      const prevIcon = document.getElementById('gsicon-' + (idx-1));
+      if (prev) { prev.classList.remove('active'); prev.classList.add('done'); }
+      if (prevIcon) prevIcon.textContent = '✓';
+    }
+    if (idx < GEN_SECTIONS.length) {
+      const row = document.getElementById('gsrow-' + idx);
+      const icon = document.getElementById('gsicon-' + idx);
+      if (row) row.classList.add('active');
+      if (icon) icon.textContent = '⟳';
+      if (bar) bar.style.width = Math.min(((idx+1)/GEN_SECTIONS.length*100), 95) + '%';
+    }
+    idx++;
+    if (idx > GEN_SECTIONS.length) clearInterval(_genSectionTimer);
+  }, 3000);
+}
+
+function stopGenSectionsAnim() {
+  if (_genSectionTimer) clearInterval(_genSectionTimer);
+  const bar = document.getElementById('gen-progress-bar');
+  if (bar) bar.style.width = '100%';
+}
+
+const IDEA_PROMPTS = {
+  airbnb: "Je veux créer une conciergerie Airbnb à Lyon pour gérer des biens locatifs T2/T3 dans le Vieux-Lyon et la Presqu'île. Je cible les propriétaires qui veulent déléguer complètement. Mon modèle : commission 20-25% sur le CA généré, sans abonnement fixe. Budget : 2 000€. Disponibilité : temps plein.",
+  kitchen: "Je veux lancer une dark kitchen spécialisée en repas healthy et équilibrés à Paris 11ème. Livraison via Uber Eats et Deliveroo. Cible : actifs 25-40 ans soucieux de leur alimentation. Différenciateur : menus rotatifs hebdomadaires, ingrédients sourcés localement. Budget : 8 000€.",
+  coaching: "Je veux proposer du coaching business pour freelances et consultants B2B indépendants. Format : sessions 1h en visio + programme d'accompagnement 3 mois. Cible : consultants avec 2+ ans d'expérience voulant scaler leur CA. Tarif : 2 500€ le programme. Budget : 500€. Disponibilité : mi-temps."
+};
+
+function prefillIdea(key) {
+  const ta = document.getElementById('dashIdea');
+  if (ta && IDEA_PROMPTS[key]) {
+    ta.value = IDEA_PROMPTS[key];
+    ta.dispatchEvent(new Event('input'));
+    ta.focus();
+  }
+}
+
+// ========== ONBOARDING ==========
+function checkOnboarding() {
+  const banner = document.getElementById('onboarding-banner');
+  if (!banner) return;
+  if (!localStorage.getItem('eadee_onboarded')) {
+    banner.style.display = 'block';
+    const title = document.getElementById('onboarding-title');
+    if (title && user) title.textContent = '👋 Bienvenue ' + user.name.split(' ')[0] + ' !';
+  } else {
+    banner.style.display = 'none';
+  }
+}
+function dismissOnboarding() {
+  localStorage.setItem('eadee_onboarded', '1');
+  const banner = document.getElementById('onboarding-banner');
+  if (banner) { banner.style.opacity = '0'; banner.style.transition = 'opacity .3s'; setTimeout(() => banner.style.display = 'none', 300); }
+}
+
+// ========== PERSONALIZED HEADER ==========
+function updateDashHeader() {
+  const titleEl = document.getElementById('dash-gen-title');
+  const subEl = document.getElementById('dash-gen-sub');
+  if (!titleEl || !subEl) return;
+  const firstName = user ? user.name.split(' ')[0] : '';
+  if (firstName) {
+    titleEl.textContent = 'Bonjour ' + firstName + ', prêt à valider ta prochaine idée ?';
+  } else {
+    titleEl.textContent = 'Génère ton plan';
+  }
+  if (plansHistory.length === 0) {
+    subEl.textContent = 'Décris ton idée et reçois ton premier plan en 60 secondes';
+  } else {
+    subEl.textContent = 'Tu as déjà généré ' + plansHistory.length + ' plan' + (plansHistory.length > 1 ? 's' : '') + ' · Continue ou explore une nouvelle idée';
+  }
+}
+
+// ========== IDEA INPUT + DRAFT ==========
+let _draftTimer = null;
+let _draftIndicatorTimer = null;
+
+function onIdeaInput(ta) {
+  const len = ta.value.length;
+  const counter = document.getElementById('idea-char-count');
+  if (counter) {
+    counter.textContent = len + ' / 500';
+    counter.style.color = len >= 150 ? '#34d399' : len >= 50 ? '#6b8fef' : '#7a7f9a';
+  }
+  const msg = document.getElementById('idea-quality-msg');
+  if (msg) {
+    if (len === 0) msg.textContent = 'Plus tu détailles, meilleur sera ton plan.';
+    else if (len < 50) msg.textContent = '🟡 Continue, l\'IA a besoin de plus de contexte.';
+    else if (len < 150) msg.textContent = '🟢 Bien — ajoute ta ville et ton public si possible.';
+    else msg.textContent = '✨ Excellent brief, ton plan sera précis.';
+  }
+  setPreviewState(len >= 30 ? 'B' : 'A');
+  updateTips(ta.value.toLowerCase());
+  clearTimeout(_draftTimer);
+  _draftTimer = setTimeout(() => saveDraft(), 500);
+}
+
+function updateTips(text) {
+  document.querySelectorAll('.tip-item').forEach(item => {
+    const keywords = item.dataset.keywords.split(',');
+    const found = keywords.some(kw => text.includes(kw.trim()));
+    item.classList.toggle('done', found);
+    const checkEl = item.querySelector('.tip-check');
+    if (checkEl) checkEl.textContent = found ? '✓' : '○';
+  });
+}
+
+function saveDraft() {
+  const ta = document.getElementById('dashIdea');
+  if (!ta) return;
+  const draft = {
+    idea: ta.value,
+    budget: document.getElementById('dashBudget')?.value,
+    profile: document.getElementById('dashProfile')?.value,
+    sector: document.getElementById('dashSector')?.value,
+    time: document.getElementById('dashTime')?.value,
+    planName: document.getElementById('dashPlanName')?.value,
+    ts: Date.now()
+  };
+  try { localStorage.setItem('eadee_draft', JSON.stringify(draft)); } catch(e) {}
+  showDraftIndicator();
+}
+
+function showDraftIndicator() {
+  const el = document.getElementById('draft-indicator');
+  if (!el) return;
+  el.style.opacity = '1';
+  clearTimeout(_draftIndicatorTimer);
+  _draftIndicatorTimer = setTimeout(() => { if (el) el.style.opacity = '0'; }, 3000);
+  el.textContent = '💾 Brouillon sauvegardé · à l\'instant';
+}
+
+function checkDraft() {
+  try {
+    const raw = localStorage.getItem('eadee_draft');
+    if (!raw) return;
+    const draft = JSON.parse(raw);
+    if (!draft.idea || draft.idea.trim().length < 10) return;
+    const banner = document.getElementById('draft-resume-banner');
+    const preview = document.getElementById('draft-preview-text');
+    if (banner) {
+      if (preview) preview.textContent = '"' + draft.idea.substring(0, 60) + (draft.idea.length > 60 ? '…' : '') + '"';
+      banner.style.display = 'flex';
+      banner._draft = draft;
+    }
+  } catch(e) {}
+}
+
+function resumeDraft() {
+  const banner = document.getElementById('draft-resume-banner');
+  if (!banner || !banner._draft) return;
+  const d = banner._draft;
+  const ta = document.getElementById('dashIdea');
+  if (ta) { ta.value = d.idea; ta.dispatchEvent(new Event('input')); }
+  if (d.budget) document.getElementById('dashBudget').value = d.budget;
+  if (d.profile) document.getElementById('dashProfile').value = d.profile;
+  if (d.sector) document.getElementById('dashSector').value = d.sector;
+  if (d.time) document.getElementById('dashTime').value = d.time;
+  if (d.planName) document.getElementById('dashPlanName').value = d.planName;
+  banner.style.display = 'none';
+}
+
+function discardDraft() {
+  localStorage.removeItem('eadee_draft');
+  const banner = document.getElementById('draft-resume-banner');
+  if (banner) banner.style.display = 'none';
+}
+
+// ========== INSPIRE MODAL ==========
+function openInspireModal() {
+  document.getElementById('inspire-modal').style.display = 'flex';
+}
+function closeInspireModal() {
+  document.getElementById('inspire-modal').style.display = 'none';
+}
+function pickInspire(text) {
+  const ta = document.getElementById('dashIdea');
+  if (ta) { ta.value = text; ta.dispatchEvent(new Event('input')); }
+  closeInspireModal();
+}
+
+// ========== NAV DROPDOWN ==========
+function toggleNavDropdown() {
+  const dd = document.getElementById('nav-dropdown');
+  if (dd) dd.style.display = dd.style.display === 'none' ? 'block' : 'none';
+}
+function closeNavDropdown() {
+  const dd = document.getElementById('nav-dropdown');
+  if (dd) dd.style.display = 'none';
+}
+function toggleNotifDropdown() {
+  toast('Aucune nouvelle notification', '');
+}
+document.addEventListener('click', (e) => {
+  const dd = document.getElementById('nav-dropdown');
+  if (dd && dd.style.display !== 'none') {
+    if (!e.target.closest('#nav-dropdown') && !e.target.closest('.nav-btn')) {
+      dd.style.display = 'none';
+    }
+  }
+});
 
 function copyPlan() {
   if (!currentResult) return;
@@ -4764,11 +5357,19 @@ function toggleFaq(btn) {
 function renderHistory() {
   const grid = document.getElementById('historyGrid');
   if (plansHistory.length === 0) {
-    grid.innerHTML = `<div style="text-align:center;padding:60px 20px;">
-      <div style="font-size:11px;font-family:'DM Mono',monospace;letter-spacing:0.15em;color:rgba(255,255,255,0.18);margin-bottom:16px">AUCUN PLAN</div>
-      <div style="font-size:15px;color:rgba(255,255,255,0.35);line-height:1.7;">Aucun plan généré pour l'instant.<br>Lance ta première génération !</div>
-      <button onclick="showView('generator')" style="margin-top:20px;padding:10px 24px;background:linear-gradient(135deg,#6b8fef,#a78bfa);color:#fff;border:none;border-radius:8px;font-family:'Geist',sans-serif;font-size:13px;font-weight:600;cursor:pointer;">Générer un plan</button>
-    </div>`;
+    grid.innerHTML = `
+      <div style="grid-column:1/-1;text-align:center;padding:60px 20px">
+        <div style="font-size:48px;margin-bottom:16px;opacity:0.3">📋</div>
+        <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:300;color:#ecedf2;margin-bottom:8px">Tu n'as pas encore généré de plan.</div>
+        <div style="font-size:13px;color:#7a7f9a;margin-bottom:28px">Voici 3 idées populaires pour démarrer en 60 secondes :</div>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:28px">
+          <button onclick="prefillIdea('airbnb');showView('generator')" class="idea-card-btn" style="max-width:200px">🏠 Conciergerie Airbnb</button>
+          <button onclick="prefillIdea('kitchen');showView('generator')" class="idea-card-btn" style="max-width:200px">🍱 Dark kitchen healthy</button>
+          <button onclick="prefillIdea('coaching');showView('generator')" class="idea-card-btn" style="max-width:200px">💼 Coaching freelance B2B</button>
+        </div>
+        <button onclick="showView('generator')" style="padding:12px 28px;background:linear-gradient(135deg,#6b8fef,#a78bfa);color:#fff;border:none;border-radius:8px;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:0.06em;cursor:pointer">COMMENCER MON PREMIER PLAN</button>
+      </div>
+    `;
     return;
   }
   grid.innerHTML = plansHistory.map((p, i) => {
@@ -5722,6 +6323,7 @@ function setCookieConsent(choice) {
   if (b) { b.style.opacity = '0'; b.style.transition = 'opacity .3s'; setTimeout(() => b.style.display = 'none', 300); }
 }
 document.addEventListener('DOMContentLoaded', initCookieBanner);
+document.addEventListener('DOMContentLoaded', () => { setPreviewState('A'); });
 
 // ========== MODAUX LÉGAUX ==========
 const legalContent = {
@@ -5951,6 +6553,24 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLegal()
   }
 })();
 </script>
+<!-- INSPIRE MODAL -->
+<div id="inspire-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:1000;align-items:center;justify-content:center;padding:20px" onclick="if(event.target===this)closeInspireModal()">
+  <div style="background:#1a1d26;border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:28px;max-width:540px;width:100%;max-height:80vh;overflow-y:auto">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+      <div style="font-family:'Fraunces',serif;font-size:20px;font-weight:300;color:#ecedf2">💡 Idées de prompts</div>
+      <button onclick="closeInspireModal()" style="background:none;border:none;color:#7a7f9a;cursor:pointer;font-size:18px">✕</button>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <button class="inspire-option" onclick="pickInspire('Je veux créer une conciergerie Airbnb à Lyon pour propriétaires de T2/T3. Gestion déléguée 100%, commission 20-25% sur revenus. Cible : Vieux-Lyon, Presqu\'île, 6ème. Budget : 2 000€. Mi-temps au départ.')">🏠 Conciergerie Airbnb Lyon</button>
+      <button class="inspire-option" onclick="pickInspire('Je veux lancer une dark kitchen healthy à Paris 11ème, livraison via plateformes. Repas équilibrés pour actifs 25-40 ans. Différenciateur : menus hebdomadaires avec ingrédients locaux sourcés. Budget : 8 000€. Temps plein.')">🍱 Dark kitchen healthy Paris</button>
+      <button class="inspire-option" onclick="pickInspire('Je veux proposer du coaching business pour freelances B2B en France. Programme 3 mois en visio, cible : consultants 2+ ans voulant scaler. Tarif : 2 500€ programme. Budget : 500€. Mi-temps.')">💼 Coaching freelance B2B</button>
+      <button class="inspire-option" onclick="pickInspire('Je veux créer un SaaS de gestion de facturation pour auto-entrepreneurs français. Abonnement 15€/mois, modèle freemium. Cible : 2M d\'auto-entrepreneurs. Différenciateur : connexion URSSAF automatique. Budget : 5 000€. Temps plein.')">💻 SaaS facturation auto-entrepreneurs</button>
+      <button class="inspire-option" onclick="pickInspire('Je veux ouvrir un studio de yoga + bien-être à Bordeaux, quartier Saint-Michel. Cours collectifs + séances privées. Cible : femmes 30-50 ans actives. 200€/mois abonnement. Budget : 15 000€. Temps plein.')">🧘 Studio yoga Bordeaux</button>
+      <button class="inspire-option" onclick="pickInspire('Je veux lancer une marque de streetwear haut de gamme en France, vente 100% en ligne. Pièces limitées, collabs artistes locaux. Cible : 18-30 ans urbains. Prix moyen 80€. Budget : 3 000€. Mi-temps.')">👕 Marque streetwear en ligne</button>
+    </div>
+  </div>
+</div>
+
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
