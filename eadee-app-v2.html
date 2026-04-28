@@ -4013,8 +4013,9 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
                     </div>
                     <div style="display:flex;flex-direction:column;gap:4px">
                       <div class="ppo-feat"><span class="ppo-check">✓</span> <strong>1 crédit</strong> de génération</div>
-                      <div class="ppo-feat"><span class="ppo-check">✓</span> Analyse de base</div>
-                      <div class="ppo-feat"><span class="ppo-check">✓</span> Projections financières</div>
+                      <div class="ppo-feat"><span class="ppo-check">✓</span> Business plan complet — 17 sections</div>
+                      <div class="ppo-feat"><span class="ppo-check">✓</span> Score de viabilité /100</div>
+                      <div class="ppo-feat"><span class="ppo-check">✓</span> Projections financières 12 mois</div>
                     </div>
                   </div>
                 </div>
@@ -4028,10 +4029,10 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
                     </div>
                     <div style="display:flex;flex-direction:column;gap:4px">
                       <div class="ppo-feat"><span class="ppo-check">✓</span> <strong>3 crédits</strong> de génération</div>
-                      <div class="ppo-feat"><span class="ppo-check">✓</span> Export PDF professionnel</div>
-                      <div class="ppo-feat"><span class="ppo-check">✓</span> Pitch deck inclus</div>
-                      <div class="ppo-feat"><span class="ppo-check">✓</span> Historique de tous tes plans</div>
-                      <div class="ppo-feat"><span class="ppo-check">✓</span> Rechargeable à volonté</div>
+                      <div class="ppo-feat"><span class="ppo-check">✓</span> Business plan complet — 17 sections</div>
+                      <div class="ppo-feat"><span class="ppo-check">✓</span> Démarches administratives pré-remplies</div>
+                      <div class="ppo-feat"><span class="ppo-check">✓</span> Emails prêts à envoyer</div>
+                      <div class="ppo-feat"><span class="ppo-check">✓</span> Historique de tes plans</div>
                     </div>
                   </div>
                 </div>
@@ -4046,11 +4047,10 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
                     </div>
                     <div style="display:flex;flex-direction:column;gap:4px">
                       <div class="ppo-feat"><span class="ppo-check">✓</span> <strong>8 crédits</strong> de génération</div>
-                      <div class="ppo-feat"><span class="ppo-check">✓</span> <strong>Expert EADEE</strong> — conseiller 24h/24</div>
-                      <div class="ppo-feat"><span class="ppo-check">✓</span> Étude de marché complète</div>
-                      <div class="ppo-feat"><span class="ppo-check">✓</span> Modèle financier Excel</div>
-                      <div class="ppo-feat"><span class="ppo-check">✓</span> Accès API direct</div>
-                      <div class="ppo-feat"><span class="ppo-check">✓</span> Rechargeable à volonté</div>
+                      <div class="ppo-feat"><span class="ppo-check">✓</span> Business plan complet — 17 sections</div>
+                      <div class="ppo-feat"><span class="ppo-check">✓</span> Démarches admin + emails prêts à envoyer</div>
+                      <div class="ppo-feat"><span class="ppo-check">✓</span> <strong>Conseiller Eadee</strong> — disponible 24h/24</div>
+                      <div class="ppo-feat"><span class="ppo-check">✓</span> Historique de tes plans</div>
                     </div>
                   </div>
                 </div>
@@ -4118,10 +4118,10 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
               </div>
               <div class="os-features" id="osFeatures">
                 <div class="os-feat">3 crédits de génération</div>
-                <div class="os-feat">Export PDF professionnel</div>
-                <div class="os-feat">Pitch deck inclus</div>
-                <div class="os-feat">Historique des plans</div>
-                <div class="os-feat">Rechargeable à volonté</div>
+                <div class="os-feat">Business plan complet — 17 sections</div>
+                <div class="os-feat">Démarches administratives pré-remplies</div>
+                <div class="os-feat">Emails prêts à envoyer</div>
+                <div class="os-feat">Historique de tes plans</div>
               </div>
             </div>
           </div>
@@ -5460,9 +5460,11 @@ function selectPayPlan(el) {
   document.getElementById('osTotal').textContent = selectedPayPlan.price.toFixed(2) + '€';
   document.getElementById('osCredits').textContent = credits + ' générations';
 
-  const feats = plan === 'builder'
-    ? ['3 crédits de génération','Export PDF professionnel','Pitch deck inclus','Historique des plans','Rechargeable à volonté']
-    : ['8 crédits de génération','Expert EADEE 24h/24','Étude de marché complète','Modèle financier Excel','Rechargeable à volonté'];
+  const feats = plan === 'starter'
+    ? ['1 crédit de génération','Business plan complet — 17 sections','Score de viabilité /100','Projections financières 12 mois']
+    : plan === 'builder'
+    ? ['3 crédits de génération','Business plan complet — 17 sections','Démarches administratives pré-remplies','Emails prêts à envoyer','Historique de tes plans']
+    : ['8 crédits de génération','Business plan complet — 17 sections','Démarches admin + emails prêts à envoyer','Conseiller Eadee — disponible 24h/24','Historique de tes plans'];
 
   document.getElementById('osFeatures').innerHTML = feats.map(f => `<div class="os-feat">${f}</div>`).join('');
 }
