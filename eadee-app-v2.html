@@ -4324,26 +4324,6 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
               </div>
             </div>
           </div>
-
-          <!-- EXPERT EADEE SOUS LE GÉNÉRATEUR -->
-          <div style="margin-top:24px;border:1px solid rgba(255,255,255,0.07);border-radius:14px;overflow:hidden;background:rgba(255,255,255,0.02)">
-            <div style="display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.07)">
-              <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#6b8fef,#a78bfa);display:flex;align-items:center;justify-content:center;font-size:15px;color:#fff;flex-shrink:0">✦</div>
-              <div>
-                <div style="font-family:'Fraunces',serif;font-size:15px;color:#ecedf2">Conseiller Eadee</div>
-                <div style="font-size:11px;color:#7a7f9a;margin-top:1px;display:flex;align-items:center;gap:5px"><span style="width:6px;height:6px;border-radius:50%;background:#34d399;display:inline-block"></span>Disponible 24h/24</div>
-              </div>
-              <button onclick="openChatFullscreen()" style="margin-left:auto;padding:7px 16px;background:linear-gradient(135deg,#6b8fef,#a78bfa);border:none;border-radius:8px;color:#fff;font-size:12px;font-weight:600;cursor:pointer;transition:opacity .2s" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">Ouvrir le chat →</button>
-            </div>
-            <div style="padding:16px 20px;display:flex;flex-wrap:wrap;gap:8px">
-              <button class="chat-chip" onclick="openChatFullscreen();setTimeout(()=>sendQuickAction('Améliore mon score','view'),300)">Améliore mon score</button>
-              <button class="chat-chip" onclick="openChatFullscreen();setTimeout(()=>sendQuickAction('Aide-moi avec le statut juridique','view'),300)">Statut juridique</button>
-              <button class="chat-chip" onclick="openChatFullscreen();setTimeout(()=>sendQuickAction('Prépare-moi pour la banque','view'),300)">Prépare-moi pour la banque</button>
-              <button class="chat-chip" onclick="openChatFullscreen();setTimeout(()=>sendQuickAction('Mes 3 plus gros risques','view'),300)">Mes 3 risques</button>
-              <button class="chat-chip" onclick="openChatFullscreen();setTimeout(()=>sendQuickAction('Plan d\'action 30 jours','view'),300)">Plan 30 jours</button>
-            </div>
-          </div>
-
         </div>
 
         <!-- HISTORY VIEW -->
@@ -4516,20 +4496,6 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
               </div>
               <button class="gen-btn" style="margin-top:4px;font-size:16px;padding:12px" onclick="toast('Mot de passe mis à jour','success')">CHANGER LE MOT DE PASSE</button>
             </div>
-            <!-- Inviter un ami -->
-            <div class="gen-panel">
-              <div class="gen-panel-title" style="display:flex;align-items:center;gap:8px">
-                <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M13 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM7 18c0-3 2.7-5 6-5s6 2 6 5" stroke="#9db8f8" stroke-width="1.6" stroke-linecap="round"/><path d="M1 14s1-4 5-4" stroke="#9db8f8" stroke-width="1.6" stroke-linecap="round"/><path d="M3 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" stroke="#9db8f8" stroke-width="1.6"/></svg>
-                Inviter un ami
-              </div>
-              <div style="font-size:13px;color:#7a7f9a;margin-bottom:14px">Pour chaque ami qui crée un compte, vous recevez <strong style="color:#ecedf2">1 crédit chacun</strong>.</div>
-              <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:12px;display:flex;align-items:center;gap:10px;margin-bottom:12px">
-                <div style="flex:1;font-family:'DM Mono',monospace;font-size:12px;color:#9db8f8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="referral-link-settings">eadee.fr/ref/ALEX2024</div>
-                <button onclick="navigator.clipboard.writeText(document.getElementById('referral-link-settings').textContent).then(()=>toast('Lien copié','success'))" style="padding:6px 14px;background:linear-gradient(135deg,#6b8fef,#a78bfa);color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer;white-space:nowrap">Copier</button>
-              </div>
-              <div style="font-size:12px;color:#7a7f9a">0 ami(s) invité(s) · 0 crédit(s) gagné(s)</div>
-            </div>
-
             <div style="text-align:right">
               <button onclick="logout()" style="background:none;border:none;color:#f87171;cursor:pointer;font-size:13px;font-family:'Geist',sans-serif;opacity:.7;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.7">Se déconnecter</button>
             </div>
