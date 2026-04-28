@@ -4103,11 +4103,12 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
                 <span class="os-value" id="osTotal">7.99€</span>
               </div>
               <div class="os-features" id="osFeatures">
-                <div class="os-feat">3 crédits de génération</div>
                 <div class="os-feat">Business plan complet — 17 sections</div>
+                <div class="os-feat">Score de viabilité /100</div>
+                <div class="os-feat">Projections financières 12 mois</div>
                 <div class="os-feat">Démarches administratives pré-remplies</div>
                 <div class="os-feat">Emails prêts à envoyer</div>
-                <div class="os-feat">Historique de tes plans</div>
+                <div class="os-feat">Sans abonnement · Sans expiration</div>
               </div>
             </div>
           </div>
@@ -5446,11 +5447,7 @@ function selectPayPlan(el) {
   document.getElementById('osTotal').textContent = selectedPayPlan.price.toFixed(2) + '€';
   document.getElementById('osCredits').textContent = credits + ' générations';
 
-  const feats = plan === 'starter'
-    ? ['1 crédit de génération','Business plan complet — 17 sections','Score de viabilité /100','Projections financières 12 mois']
-    : plan === 'builder'
-    ? ['3 crédits de génération','Business plan complet — 17 sections','Démarches administratives pré-remplies','Emails prêts à envoyer','Historique de tes plans']
-    : ['8 crédits de génération','Business plan complet — 17 sections','Démarches admin + emails prêts à envoyer','Conseiller Eadee — disponible 24h/24','Historique de tes plans'];
+  const feats = ['Business plan complet — 17 sections','Score de viabilité /100','Projections financières 12 mois','Démarches administratives pré-remplies','Emails prêts à envoyer','Sans abonnement · Sans expiration'];
 
   document.getElementById('osFeatures').innerHTML = feats.map(f => `<div class="os-feat">${f}</div>`).join('');
 }
