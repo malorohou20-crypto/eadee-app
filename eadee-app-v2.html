@@ -6239,13 +6239,13 @@ function scrollToPricing() {
 }
 
 // ========== INIT ==========
-// Mode démo admin — accès via ?malo=empire dans l'URL
+// Mode démo admin — ?preview=eadee2024 → 3 crédits Builder
 (function() {
   const params = new URLSearchParams(window.location.search);
-  if (params.get('malo') === 'empire') {
-    user = { name: 'Malo', email: 'malorohou20@gmail.com', plan: 'empire' };
-    currentPlan = 'empire';
-    userCredits = 8;
+  if (params.get('preview') === 'eadee2024') {
+    user = { name: 'Admin', email: 'admin@eadee.fr', plan: 'builder' };
+    currentPlan = 'builder';
+    userCredits = 3;
     showPage('dashboard');
     showView('generator');
   }
