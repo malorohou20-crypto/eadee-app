@@ -1,5 +1,3 @@
-import Anthropic from '@anthropic-ai/sdk';
-
 export const config = { runtime: 'edge' };
 
 const SYSTEM_PROMPT = `Tu es l'Expert Eadee, conseiller business senior spécialisé dans l'entrepreneuriat français.
@@ -36,21 +34,58 @@ export default async function handler(req) {
     const planContext = formatPlanForContext(plan);
     const systemPrompt = SYSTEM_PROMPT.replace('{PLAN_CONTEXT}', planContext);
 
-    const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-
-    const stream = await client.messages.stream({
-      model: 'claude-sonnet-4-6',
-      max_tokens: 1500,
-      system: systemPrompt,
-      messages: messages.map(m => ({ role: m.role, content: m.content })),
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': process.env.ANTHROPIC_API_KEY,
+        'anthropic-version': '2023-06-01',
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1500,
+        stream: true,
+        system: systemPrompt,
+        messages: messages.map(m => ({ role: m.role, content: String(m.content) })),
+      }),
     });
 
+    if (!res.ok) {
+      const err = await res.text();
+      console.error('Anthropic error:', err);
+      return new Response('Anthropic API error', { status: 502 });
+    }
+
+    // Transformer le SSE Anthropic en texte brut streamé
     const encoder = new TextEncoder();
     const readable = new ReadableStream({
       async start(controller) {
-        for await (const event of stream) {
-          if (event.type === 'content_block_delta' && event.delta.type === 'text_delta') {
-            controller.enqueue(encoder.encode(event.delta.text));
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = '';
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+
+          buffer += decoder.decode(value, { stream: true });
+          const lines = buffer.split('\n');
+          buffer = lines.pop(); // garde la ligne incomplète
+
+          for (const line of lines) {
+            if (!line.startsWith('data: ')) continue;
+            const data = line.slice(6).trim();
+            if (data === '[DONE]') continue;
+            try {
+              const json = JSON.parse(data);
+              if (
+                json.type === 'content_block_delta' &&
+                json.delta?.type === 'text_delta' &&
+                json.delta?.text
+              ) {
+                controller.enqueue(encoder.encode(json.delta.text));
+              }
+            } catch (_) {}
           }
         }
         controller.close();
@@ -76,6 +111,6 @@ function formatPlanForContext(plan) {
 PROJET : ${plan.name || plan.nom_entreprise || 'Sans nom'}
 SECTEUR : ${plan.sector || plan.secteur || ''}
 SCORE VIABILITÉ : ${plan.score || plan.score_viabilite || 'N/A'}/100
-${sections.map((s, i) => `\n## ${String(i+1).padStart(2,'0')} — ${s.title || s.titre || ''}\n${s.content || s.contenu || ''}`).join('\n')}
+${sections.map((s, i) => `\n## ${String(i + 1).padStart(2, '0')} — ${s.title || s.titre || ''}\n${s.content || s.contenu || ''}`).join('\n')}
   `.trim();
 }
