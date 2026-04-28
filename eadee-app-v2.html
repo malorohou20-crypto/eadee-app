@@ -4833,9 +4833,26 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
 
 <script>
 // ========== SUPABASE ==========
-const SUPABASE_URL = 'REMPLACER_PAR_VOTRE_URL_SUPABASE';
-const SUPABASE_ANON_KEY = 'REMPLACER_PAR_VOTRE_ANON_KEY';
-const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+let supabaseClient = null;
+
+async function initSupabase() {
+  try {
+    const res = await fetch('/api/config');
+    const cfg = await res.json();
+    if (cfg.supabaseUrl && cfg.supabaseAnonKey) {
+      supabaseClient = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey);
+      supabaseClient.auth.onAuthStateChange((event) => {
+        if (event === 'SIGNED_IN') loadCurrentUser();
+        if (event === 'SIGNED_OUT') { user = null; userCredits = 0; currentPlan = 'free'; updateNav(); }
+      });
+      await loadCurrentUser();
+    }
+  } catch(e) {
+    console.warn('Supabase init failed:', e);
+  }
+}
+
+window.addEventListener('DOMContentLoaded', initSupabase);
 
 // ========== STATE ==========
 let user = null;
@@ -7561,15 +7578,6 @@ function openChatDrawerFromPlan() {
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeChatDrawer();
 });
-
-// ========== AUTH STATE LISTENER ==========
-if (typeof supabaseClient !== 'undefined') {
-  supabaseClient.auth.onAuthStateChange((event, session) => {
-    if (event === 'SIGNED_IN') loadCurrentUser();
-    if (event === 'SIGNED_OUT') { user = null; userCredits = 0; currentPlan = 'free'; updateNav(); }
-  });
-  window.addEventListener('DOMContentLoaded', loadCurrentUser);
-}
 
 // ========== SIDEBAR MOBILE ==========
 function toggleSidebar() {
