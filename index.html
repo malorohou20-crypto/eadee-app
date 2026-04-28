@@ -4517,14 +4517,6 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
             </div>
             <!-- Col principale chat -->
             <div class="chat-main-col">
-              <!-- Upsell si non-Empire -->
-              <div class="chat-upsell" id="chatUpsell" style="display:none">
-                <div class="chat-upsell-icon">✦</div>
-                <div class="chat-upsell-title">Conseiller Eadee</div>
-                <div class="chat-upsell-sub">Disponible avec le pack Empire. Pose toutes tes questions sur ton plan, 24h/24.</div>
-                <button class="chat-upsell-btn" onclick="showView('billing')">Passer à Empire →</button>
-              </div>
-              <!-- Chat (si Empire) -->
               <div class="chat-wrap" id="chatViewWrap" style="display:none">
                 <div class="chat-hdr">
                   <div class="chat-hdr-avatar">✦</div>
@@ -6401,10 +6393,6 @@ function applyPlanModifications(modifications) {
 }
 
 async function sendChatMessage() {
-  if (currentPlan !== 'empire') {
-    toast("L'Expert EADEE est réservé au pack Empire", 'error');
-    showView('billing'); return;
-  }
   const input = document.getElementById('chat-input');
   const msg = input.value.trim();
   if (!msg) return;
@@ -7097,14 +7085,8 @@ function getChatPlansList() {
 function openChatFullscreen(planId) {
   showView('chat');
   chatState.activeMode = 'view';
-  var isEmpire = currentPlan === 'empire';
   var upsell = document.getElementById('chatUpsell');
   var wrap = document.getElementById('chatViewWrap');
-  if (!isEmpire) {
-    if (upsell) upsell.style.display = 'flex';
-    if (wrap) wrap.style.display = 'none';
-    return;
-  }
   if (upsell) upsell.style.display = 'none';
   if (wrap) wrap.style.display = 'flex';
   populateChatPlanSelect();
@@ -7116,10 +7098,6 @@ function openChatFullscreen(planId) {
 }
 
 function openChatDrawer(planId, prefilledQuestion) {
-  if (currentPlan !== 'empire') {
-    showView('billing');
-    return;
-  }
   chatState.activeMode = 'drawer';
   var drawer = document.getElementById('chatDrawer');
   var backdrop = document.getElementById('chatBackdrop');
