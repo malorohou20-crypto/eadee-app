@@ -2288,6 +2288,77 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
   cursor:pointer; transition:all .2s; line-height:1.5;
 }
 .inspire-option:hover { background:rgba(107,143,239,0.08); border-color:rgba(107,143,239,0.3); color:#9db8f8; }
+
+/* ========== ROADMAP + LIVE FEED (preview-state-A) ========== */
+.rd-panel { display:flex; flex-direction:column; height:100%; overflow:hidden; }
+.rd-block1 { flex:0 0 65%; display:flex; flex-direction:column; overflow:hidden; padding:18px 18px 0; }
+.rd-block2 { flex:0 0 35%; display:flex; flex-direction:column; overflow:hidden; border-top:1px solid rgba(255,255,255,0.07); padding:14px 18px 12px; }
+
+/* Roadmap header */
+.rd-title { font-family:'Fraunces',serif; font-size:18px; font-weight:300; color:#ecedf2; margin-bottom:3px; }
+.rd-subtitle { font-family:'DM Mono',monospace; font-size:10px; color:#7a7f9a; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:14px; }
+
+/* Steps list */
+.rd-steps { display:flex; flex-direction:column; flex:1; overflow:hidden; position:relative; }
+.rd-steps-inner { display:flex; flex-direction:column; gap:0; overflow:hidden; }
+
+/* Vertical line */
+.rd-step { display:flex; align-items:flex-start; gap:12px; position:relative; padding-bottom:10px; }
+.rd-step:last-child { padding-bottom:0; }
+.rd-line-col { display:flex; flex-direction:column; align-items:center; flex-shrink:0; width:28px; }
+.rd-circle { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; flex-shrink:0; position:relative; z-index:1; }
+.rd-circle.done { background:#34d399; }
+.rd-circle.active { background:linear-gradient(135deg,#6b8fef,#a78bfa); }
+.rd-circle.future { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); }
+.rd-vline { width:1px; flex:1; min-height:8px; background:rgba(255,255,255,0.08); margin-top:0; }
+.rd-vline.eadee { background:linear-gradient(to bottom,#6b8fef,#a78bfa); }
+.rd-content { flex:1; padding-top:4px; }
+.rd-step-num { font-family:'Bebas Neue',sans-serif; font-size:11px; color:rgba(255,255,255,0.25); letter-spacing:0.1em; }
+.rd-step-title { font-family:'Geist',sans-serif; font-size:13px; font-weight:600; color:#ecedf2; margin-bottom:2px; }
+.rd-step-title.struck { text-decoration:line-through; color:#7a7f9a; }
+.rd-step-desc { font-size:11px; color:#7a7f9a; line-height:1.5; margin-bottom:4px; }
+.rd-badge { display:inline-block; padding:2px 8px; border-radius:20px; font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.05em; }
+.rd-badge.done-badge { background:rgba(52,211,153,0.1); border:1px solid rgba(52,211,153,0.2); color:#34d399; }
+.rd-badge.eadee-badge { background:rgba(107,143,239,0.15); border:1px solid rgba(107,143,239,0.3); color:#9db8f8; }
+.rd-badge.todo-badge { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); color:#7a7f9a; }
+
+/* Active step (step 02) */
+.rd-step.current .rd-content { background:rgba(107,143,239,0.06); border:1px solid rgba(107,143,239,0.15); border-radius:10px; padding:8px 10px 6px; box-shadow:0 0 24px rgba(107,143,239,0.25); margin-left:0; }
+.rd-here-tag { display:inline-flex; align-items:center; gap:5px; background:rgba(107,143,239,0.15); border:1px solid rgba(107,143,239,0.3); border-radius:20px; padding:2px 8px; font-family:'DM Mono',monospace; font-size:9px; color:#9db8f8; margin-bottom:4px; }
+.rd-dot-pulse { width:6px; height:6px; border-radius:50%; background:#6b8fef; animation:rdDotPulse 1.5s ease-in-out infinite; }
+@keyframes rdDotPulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(0.75)} }
+
+/* CTA */
+.rd-cta { margin-top:10px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.06); font-size:11px; color:#7a7f9a; line-height:1.6; }
+.rd-cta-gold { color:#fbbf24; font-weight:600; }
+
+/* Live feed */
+.lf-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; flex-shrink:0; }
+.lf-badge-live { display:inline-flex; align-items:center; gap:5px; background:rgba(52,211,153,0.1); border:1px solid rgba(52,211,153,0.3); border-radius:20px; padding:3px 8px; font-family:'DM Mono',monospace; font-size:10px; color:#34d399; letter-spacing:0.05em; text-transform:uppercase; }
+.lf-dot-live { width:6px; height:6px; border-radius:50%; background:#34d399; animation:lfPulse 1.2s ease-in-out infinite; }
+@keyframes lfPulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(0.7)} }
+.lf-count { font-family:'DM Mono',monospace; font-size:10px; color:#7a7f9a; letter-spacing:0.05em; text-transform:uppercase; }
+.lf-stream { flex:1; overflow:hidden; display:flex; flex-direction:column; gap:5px; position:relative; }
+.lf-event { display:flex; align-items:flex-start; gap:8px; padding:7px 8px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); border-radius:8px; transition:all .4s ease; flex-shrink:0; }
+.lf-event.entering { animation:lfEnter .4s ease forwards; }
+.lf-event.exiting { animation:lfExit .35s ease forwards; }
+@keyframes lfEnter { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:translateY(0)} }
+@keyframes lfExit { from{opacity:1;max-height:60px;margin-bottom:0} to{opacity:0;max-height:0;margin-bottom:0;padding-top:0;padding-bottom:0} }
+.lf-avatar { width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:#fff; flex-shrink:0; }
+.lf-body { flex:1; min-width:0; }
+.lf-name { font-family:'Geist',sans-serif; font-size:12px; font-weight:600; color:#ecedf2; }
+.lf-desc { font-size:11px; color:#7a7f9a; line-height:1.45; }
+.lf-time { font-family:'DM Mono',monospace; font-size:9px; color:#7a7f9a; margin-top:2px; }
+.lf-score { color:#9db8f8; }
+.lf-purple { color:#a78bfa; }
+.lf-footer { margin-top:8px; flex-shrink:0; }
+.lf-footer a { font-family:'DM Mono',monospace; font-size:11px; color:#9db8f8; cursor:pointer; text-decoration:none; letter-spacing:0.03em; }
+.lf-footer a:hover { color:#6b8fef; }
+
+@media (max-width:1023px) {
+  .rd-block1 { flex:0 0 480px; max-height:480px; }
+  .rd-block2 { flex:0 0 240px; max-height:240px; }
+}
 </style>
 </head>
 <body>
@@ -3734,64 +3805,134 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
             <div class="result-panel" id="resultPanel" style="background:var(--ink);border-radius:6px;padding:0;overflow:hidden;min-height:500px;display:flex;flex-direction:column;">
               <!-- ÉTAT A : Aperçu animé + idées populaires -->
               <div id="preview-state-A" style="flex:1;display:flex;flex-direction:column;overflow:hidden;">
-                <div style="padding:20px 20px 12px;border-bottom:1px solid rgba(255,255,255,0.06);">
-                  <div style="font-family:'Fraunces',serif;font-size:16px;font-weight:300;color:#ecedf2;margin-bottom:4px">Voilà à quoi ressemblera ton plan</div>
-                  <div style="font-family:'DM Mono',monospace;font-size:10px;color:#7a7f9a;letter-spacing:0.05em">Aperçu · NestManager (Conciergerie Lyon)</div>
-                </div>
-                <!-- Mini mock browser -->
-                <div style="margin:16px 16px 0;background:#0a0a0a;border-radius:8px;border:1px solid rgba(255,255,255,0.08);overflow:hidden;flex:1;max-height:340px;position:relative;">
-                  <div style="padding:8px 12px;background:#111;border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;gap:6px;flex-shrink:0">
-                    <div style="width:8px;height:8px;border-radius:50%;background:#f87171"></div>
-                    <div style="width:8px;height:8px;border-radius:50%;background:#fbbf24"></div>
-                    <div style="width:8px;height:8px;border-radius:50%;background:#34d399"></div>
-                    <div style="margin-left:8px;font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,0.2)">eadee.fr/plan/nestmanager</div>
-                  </div>
-                  <div style="overflow:hidden;height:calc(100% - 33px);position:relative">
-                    <div id="preview-scroll-content" style="padding:16px;display:flex;flex-direction:column;gap:10px;animation:previewScrollAnim 18s linear infinite">
-                      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:12px">
-                        <div style="font-family:'DM Mono',monospace;font-size:8px;color:#6b8fef;letter-spacing:0.15em;margin-bottom:6px">01 — RÉSUMÉ EXÉCUTIF</div>
-                        <div style="font-size:11px;color:#ecedf2;line-height:1.6;opacity:0.8">NestManager est une conciergerie Airbnb à Lyon proposant une gestion <strong style="color:#6b8fef">100% déléguée</strong> des biens locatifs. Notre cible : propriétaires de studios T2/T3 Presqu'île, Vieux-Lyon, 6ème.</div>
-                      </div>
-                      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:12px">
-                        <div style="font-family:'DM Mono',monospace;font-size:8px;color:#a78bfa;letter-spacing:0.15em;margin-bottom:8px">02 — MARCHÉ &amp; OPPORTUNITÉ</div>
-                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px">
-                          <div style="background:rgba(107,143,239,0.08);border-radius:4px;padding:6px;text-align:center"><div style="font-size:9px;color:#7a7f9a">Marché FR</div><div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:#9db8f8">2,4 Md€</div></div>
-                          <div style="background:rgba(107,143,239,0.08);border-radius:4px;padding:6px;text-align:center"><div style="font-size:9px;color:#7a7f9a">Croiss./an</div><div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:#9db8f8">+31%</div></div>
+                <div class="rd-panel">
+
+                  <!-- BLOC 1 : Roadmap -->
+                  <div class="rd-block1">
+                    <div class="rd-title">Ta route vers le lancement</div>
+                    <div class="rd-subtitle">7 étapes · Eadee t'aide sur 3 d'entre elles</div>
+
+                    <div class="rd-steps">
+                      <div class="rd-steps-inner">
+
+                        <!-- 01 — done -->
+                        <div class="rd-step">
+                          <div class="rd-line-col">
+                            <div class="rd-circle done" style="font-size:14px;color:#fff">✓</div>
+                            <div class="rd-vline"></div>
+                          </div>
+                          <div class="rd-content" style="padding-top:4px;padding-bottom:10px;">
+                            <div class="rd-step-num">01</div>
+                            <div class="rd-step-title struck">Idée validée</div>
+                            <div class="rd-step-desc">Tu y es presque, Eadee valide la viabilité.</div>
+                            <span class="rd-badge done-badge">Étape précédente</span>
+                          </div>
                         </div>
-                      </div>
-                      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:12px">
-                        <div style="font-family:'DM Mono',monospace;font-size:8px;color:#34d399;letter-spacing:0.15em;margin-bottom:6px">03 — MODÈLE ÉCONOMIQUE</div>
-                        <div style="font-size:11px;color:#ecedf2;line-height:1.5;opacity:0.8">Commission <strong style="color:#34d399">20-25%</strong> sur CA généré. Sans abonnement fixe. Rentabilité dès le mois 3.</div>
-                      </div>
-                      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:12px">
-                        <div style="font-family:'DM Mono',monospace;font-size:8px;color:#fbbf24;letter-spacing:0.15em;margin-bottom:8px">05 — PROJECTIONS FINANCIÈRES</div>
-                        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px">
-                          <div style="text-align:center"><div style="font-size:8px;color:#7a7f9a">M1</div><div style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#fbbf24">1 200€</div></div>
-                          <div style="text-align:center"><div style="font-size:8px;color:#7a7f9a">M3</div><div style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#fbbf24">4 800€</div></div>
-                          <div style="text-align:center"><div style="font-size:8px;color:#7a7f9a">M6</div><div style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#fbbf24">9 200€</div></div>
-                          <div style="text-align:center"><div style="font-size:8px;color:#7a7f9a">An 1</div><div style="font-family:'Bebas Neue',sans-serif;font-size:14px;color:#fbbf24">112k€</div></div>
+
+                        <!-- 02 — actuelle -->
+                        <div class="rd-step current">
+                          <div class="rd-line-col">
+                            <div class="rd-circle active" style="font-size:13px;color:#fff">✦</div>
+                            <div class="rd-vline eadee"></div>
+                          </div>
+                          <div class="rd-content" style="padding-bottom:10px;">
+                            <div class="rd-here-tag"><div class="rd-dot-pulse"></div>Tu es ici</div>
+                            <div class="rd-step-num">02</div>
+                            <div class="rd-step-title">Business plan complet</div>
+                            <div class="rd-step-desc">17 sections, projections, score viabilité.</div>
+                            <span class="rd-badge eadee-badge">✦ Eadee — tu es ici</span>
+                          </div>
                         </div>
-                      </div>
-                      <!-- Duplicate pour loop -->
-                      <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:6px;padding:12px">
-                        <div style="font-family:'DM Mono',monospace;font-size:8px;color:#6b8fef;letter-spacing:0.15em;margin-bottom:6px">01 — RÉSUMÉ EXÉCUTIF</div>
-                        <div style="font-size:11px;color:#ecedf2;line-height:1.6;opacity:0.8">NestManager est une conciergerie Airbnb à Lyon proposant une gestion <strong style="color:#6b8fef">100% déléguée</strong> des biens locatifs. Notre cible : propriétaires de studios T2/T3 Presqu'île, Vieux-Lyon, 6ème.</div>
-                      </div>
+
+                        <!-- 03 — inclus -->
+                        <div class="rd-step">
+                          <div class="rd-line-col">
+                            <div class="rd-circle active" style="font-size:13px;color:#fff">✦</div>
+                            <div class="rd-vline eadee"></div>
+                          </div>
+                          <div class="rd-content" style="padding-bottom:10px;">
+                            <div class="rd-step-num">03</div>
+                            <div class="rd-step-title">Démarches administratives</div>
+                            <div class="rd-step-desc">Choix du statut (SAS, EI, EURL…) + immatriculation.</div>
+                            <span class="rd-badge eadee-badge">✦ Inclus dans ton plan</span>
+                          </div>
+                        </div>
+
+                        <!-- 04 — inclus -->
+                        <div class="rd-step">
+                          <div class="rd-line-col">
+                            <div class="rd-circle active" style="font-size:13px;color:#fff">✦</div>
+                            <div class="rd-vline"></div>
+                          </div>
+                          <div class="rd-content" style="padding-bottom:10px;">
+                            <div class="rd-step-num">04</div>
+                            <div class="rd-step-title">Emails &amp; contacts initiaux</div>
+                            <div class="rd-step-desc">Banques, BPI, fournisseurs, assurances.</div>
+                            <span class="rd-badge eadee-badge">✦ Inclus dans ton plan</span>
+                          </div>
+                        </div>
+
+                        <!-- 05 — futur -->
+                        <div class="rd-step">
+                          <div class="rd-line-col">
+                            <div class="rd-circle future"></div>
+                            <div class="rd-vline"></div>
+                          </div>
+                          <div class="rd-content" style="padding-bottom:10px;">
+                            <div class="rd-step-num">05</div>
+                            <div class="rd-step-title" style="color:#7a7f9a;font-weight:500">Compte bancaire pro</div>
+                            <div class="rd-step-desc">Ouverture et choix de la banque adaptée.</div>
+                            <span class="rd-badge todo-badge">À toi de jouer</span>
+                          </div>
+                        </div>
+
+                        <!-- 06 — futur -->
+                        <div class="rd-step">
+                          <div class="rd-line-col">
+                            <div class="rd-circle future"></div>
+                            <div class="rd-vline"></div>
+                          </div>
+                          <div class="rd-content" style="padding-bottom:10px;">
+                            <div class="rd-step-num">06</div>
+                            <div class="rd-step-title" style="color:#7a7f9a;font-weight:500">Assurance RC Pro &amp; garanties</div>
+                            <div class="rd-step-desc">Protections obligatoires selon ton statut.</div>
+                            <span class="rd-badge todo-badge">À toi de jouer</span>
+                          </div>
+                        </div>
+
+                        <!-- 07 — futur -->
+                        <div class="rd-step">
+                          <div class="rd-line-col">
+                            <div class="rd-circle future"></div>
+                          </div>
+                          <div class="rd-content">
+                            <div class="rd-step-num">07</div>
+                            <div class="rd-step-title" style="color:#7a7f9a;font-weight:500">Lancement &amp; premiers clients</div>
+                            <div class="rd-step-desc">Acquisition, premières ventes, ajustements.</div>
+                            <span class="rd-badge todo-badge">À toi de jouer</span>
+                          </div>
+                        </div>
+
+                      </div><!-- .rd-steps-inner -->
+                    </div><!-- .rd-steps -->
+
+                    <!-- CTA bas bloc 1 -->
+                    <div class="rd-cta">
+                      Eadee couvre 02 + 03 + 04 dans ton plan généré. Tu gagnes ~3 semaines et <span class="rd-cta-gold">1 200€</span> d'expert-comptable.
                     </div>
-                    <!-- Fade top/bottom -->
-                    <div style="position:absolute;top:0;left:0;right:0;height:40px;background:linear-gradient(to bottom,#0a0a0a,transparent);pointer-events:none"></div>
-                    <div style="position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(to top,#0a0a0a,transparent);pointer-events:none"></div>
-                  </div>
-                </div>
-                <!-- Idées populaires -->
-                <div style="padding:14px 16px">
-                  <div style="font-family:'DM Mono',monospace;font-size:9px;color:#7a7f9a;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px">Idées populaires — clique pour pré-remplir</div>
-                  <div style="display:flex;flex-direction:column;gap:6px">
-                    <button class="idea-card-btn" onclick="prefillIdea('airbnb')">Conciergerie locative — gestion déléguée de biens en location courte durée</button>
-                    <button class="idea-card-btn" onclick="prefillIdea('kitchen')">Dark kitchen healthy — repas équilibrés livrés via plateformes</button>
-                    <button class="idea-card-btn" onclick="prefillIdea('coaching')">Coaching freelance B2B — accompagnement de consultants indépendants</button>
-                  </div>
-                </div>
+                  </div><!-- .rd-block1 -->
+
+                  <!-- BLOC 2 : Live feed -->
+                  <div class="rd-block2">
+                    <div class="lf-header">
+                      <div class="lf-badge-live"><div class="lf-dot-live"></div>En direct</div>
+                      <div class="lf-count">347 plans générés aujourd'hui</div>
+                    </div>
+                    <div class="lf-stream" id="lf-stream"></div>
+                    <div class="lf-footer"><a onclick="showView('public-feed')">Voir tous les plans publics →</a></div>
+                  </div><!-- .rd-block2 -->
+
+                </div><!-- .rd-panel -->
               </div>
 
               <!-- ÉTAT B : Conseils brief -->
@@ -4470,6 +4611,11 @@ function showView(name) {
     checkOnboarding();
     updateDashHeader();
     checkDraft();
+    // Start live feed if state A is visible
+    const stateA = document.getElementById('preview-state-A');
+    if (stateA && stateA.style.display !== 'none') setTimeout(startLiveFeed, 150);
+  } else {
+    stopLiveFeed();
   }
 }
 
@@ -5081,6 +5227,8 @@ function setPreviewState(state) {
     if (el) el.style.display = 'flex';
   }
   if (state === 'C') startGenSectionsAnim();
+  if (state === 'A') { setTimeout(startLiveFeed, 100); }
+  else { stopLiveFeed(); }
 }
 
 function startGenSectionsAnim() {
@@ -5120,6 +5268,124 @@ function stopGenSectionsAnim() {
   const bar = document.getElementById('gen-progress-bar');
   if (bar) bar.style.width = '100%';
 }
+
+// ========== LIVE FEED ==========
+let liveFeedInterval = null;
+let _lfTimestampInterval = null;
+let _lfDisplayed = []; // events currently visible (max 5)
+let _lfPoolIdx = 0;
+
+const liveFeedPool = [
+  { name:'Camille B.', city:'Lyon', sector:'Conciergerie', action:'Plan généré', detail:'Business plan <span class="lf-purple">Empire Builder</span> · score viabilité <span class="lf-score">87/100</span>' },
+  { name:'Théo M.', city:'Paris 11e', sector:'SaaS', action:'Pack débloqué', detail:'Pack <span class="lf-purple">Builder</span> activé · business plan en cours' },
+  { name:'Inès K.', city:'Bordeaux', sector:'Restauration', action:'Plan généré', detail:'Dark kitchen halal · score <span class="lf-score">79/100</span> · 3 statuts comparés' },
+  { name:'Lucas D.', city:'Toulouse', sector:'E-commerce', action:'Premier client', detail:'Première vente en ligne · <span class="lf-purple">Empire</span> ouvert il y a 42 jours' },
+  { name:'Sofia R.', city:'Nantes', sector:'Coaching', action:'BPI validé', detail:'Dossier BPI accepté · <span class="lf-score">18 000€</span> accordés' },
+  { name:'Mehdi A.', city:'Marseille', sector:'Artisanat', action:'Plan généré', detail:'Ébénisterie sur-mesure · score <span class="lf-score">82/100</span> · export inclus' },
+  { name:'Julie C.', city:'Strasbourg', sector:'Beauté', action:'Prêt accordé', detail:'Prêt pro <span class="lf-score">25 000€</span> · salon de coiffure afro ouvert' },
+  { name:'Axel P.', city:'Lille', sector:'Sport', action:'Plan généré', detail:'Studio cross-training · score <span class="lf-score">75/100</span> · statut SAS recommandé' },
+  { name:'Yasmine O.', city:'Montpellier', sector:'Formation', action:'Pack débloqué', detail:'Pack <span class="lf-purple">Builder</span> · formation en ligne B2B' },
+  { name:'Romain F.', city:'Rennes', sector:'App mobile', action:'Plan généré', detail:'App de covoiturage local · score <span class="lf-score">91/100</span>' },
+  { name:'Léa S.', city:'Grenoble', sector:'Bien-être', action:'Premier client', detail:'Premier abonné yoga en ligne · <span class="lf-purple">Empire</span> lancé' },
+  { name:'Omar T.', city:'Nice', sector:'Restauration', action:'Plan généré', detail:'Food truck méditerranéen · score <span class="lf-score">80/100</span>' },
+  { name:'Anaïs V.', city:'Nantes', sector:'SaaS', action:'BPI validé', detail:'Aide BPI <span class="lf-score">12 000€</span> · SaaS RH TPE validé' },
+  { name:'Hugo B.', city:'Paris 9e', sector:'Conciergerie', action:'Pack débloqué', detail:'Pack <span class="lf-purple">Empire Builder</span> · 3 biens gérés dès lancement' },
+  { name:'Chloé R.', city:'Bordeaux', sector:'E-commerce', action:'Prêt accordé', detail:'Prêt <span class="lf-score">15 000€</span> · boutique mode éthique' },
+  { name:'Kévin N.', city:'Lyon', sector:'Artisanat', action:'Plan généré', detail:'Lutherie contemporaine · score <span class="lf-score">73/100</span> · EI recommandée' },
+  { name:'Sarah M.', city:'Toulouse', sector:'Coaching', action:'Premier client', detail:'Premier client B2B signé · <span class="lf-purple">Empire</span> ouvert il y a 18 jours' },
+  { name:'Julien D.', city:'Marseille', sector:'Sport', action:'Plan généré', detail:'Application running communautaire · score <span class="lf-score">84/100</span>' },
+  { name:'Fatima L.', city:'Strasbourg', sector:'Beauté', action:'BPI validé', detail:'Dossier BPI accepté · <span class="lf-score">9 000€</span> · institut de beauté' },
+  { name:'Baptiste C.', city:'Paris 15e', sector:'Formation', action:'Plan généré', detail:'Formation devs juniors en ligne · score <span class="lf-score">88/100</span> · EURL conseillée' },
+];
+
+const _lfGradients = [
+  'linear-gradient(135deg,#6b8fef,#a78bfa)',
+  'linear-gradient(135deg,#a78bfa,#ec4899)',
+  'linear-gradient(135deg,#fbbf24,#f59e0b)',
+  'linear-gradient(135deg,#34d399,#6b8fef)',
+];
+
+function _lfFormatTime(secsAgo) {
+  if (secsAgo < 60) return `il y a ${secsAgo}s`;
+  const m = Math.floor(secsAgo / 60);
+  if (m < 60) return `il y a ${m}min`;
+  return `il y a ${Math.floor(m/60)}h`;
+}
+
+function _lfBuildEvent(data, secsAgo) {
+  const initiale = data.name[0];
+  const grad = _lfGradients[_lfPoolIdx % _lfGradients.length];
+  const ts = _lfFormatTime(secsAgo);
+  const div = document.createElement('div');
+  div.className = 'lf-event';
+  div.dataset.born = Date.now() - secsAgo * 1000;
+  div.innerHTML = `
+    <div class="lf-avatar" style="background:${grad}">${initiale}</div>
+    <div class="lf-body">
+      <div class="lf-name">${data.name} <span style="font-weight:400;color:#7a7f9a">· ${data.city}</span></div>
+      <div class="lf-desc">${data.detail}</div>
+      <div class="lf-time">${ts}</div>
+    </div>
+  `;
+  return div;
+}
+
+function _lfUpdateTimestamps() {
+  const stream = document.getElementById('lf-stream');
+  if (!stream) return;
+  const now = Date.now();
+  stream.querySelectorAll('.lf-event').forEach(ev => {
+    const born = parseInt(ev.dataset.born || now);
+    const secs = Math.round((now - born) / 1000);
+    const timeEl = ev.querySelector('.lf-time');
+    if (timeEl) timeEl.textContent = _lfFormatTime(secs);
+  });
+}
+
+function _lfTick() {
+  const stream = document.getElementById('lf-stream');
+  if (!stream) return;
+
+  // Remove oldest if 5 events already shown
+  const events = stream.querySelectorAll('.lf-event');
+  if (events.length >= 5) {
+    const last = events[events.length - 1];
+    last.classList.add('exiting');
+    setTimeout(() => { if (last.parentNode) last.parentNode.removeChild(last); }, 380);
+  }
+
+  // Add new event at top
+  const data = liveFeedPool[_lfPoolIdx % liveFeedPool.length];
+  _lfPoolIdx++;
+  const newEv = _lfBuildEvent(data, Math.floor(Math.random() * 30 + 5));
+  newEv.classList.add('entering');
+  stream.insertBefore(newEv, stream.firstChild);
+}
+
+function startLiveFeed() {
+  const stream = document.getElementById('lf-stream');
+  if (!stream) return;
+  if (liveFeedInterval) return; // already running
+
+  // Pre-populate with 5 events
+  stream.innerHTML = '';
+  _lfPoolIdx = 0;
+  for (let i = 0; i < 5; i++) {
+    const data = liveFeedPool[_lfPoolIdx % liveFeedPool.length];
+    _lfPoolIdx++;
+    const ev = _lfBuildEvent(data, (5 - i) * 45 + Math.floor(Math.random() * 30));
+    stream.appendChild(ev);
+  }
+
+  liveFeedInterval = setInterval(_lfTick, 4500);
+  _lfTimestampInterval = setInterval(_lfUpdateTimestamps, 10000);
+}
+
+function stopLiveFeed() {
+  if (liveFeedInterval) { clearInterval(liveFeedInterval); liveFeedInterval = null; }
+  if (_lfTimestampInterval) { clearInterval(_lfTimestampInterval); _lfTimestampInterval = null; }
+}
+
 
 const IDEA_PROMPTS = {
   airbnb: "Je veux créer une conciergerie de location courte durée pour gérer des biens locatifs T2/T3. Je cible les propriétaires qui veulent déléguer complètement la gestion. Mon modèle : commission 20-25% sur le CA généré, sans abonnement fixe. Budget : 2 000€. Disponibilité : temps plein.",
