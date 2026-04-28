@@ -4104,8 +4104,8 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
               </div>
               <div class="os-features" id="osFeatures">
                 <div class="os-feat">Business plan complet — 17 sections</div>
-                <div class="os-feat">Score de viabilité /100</div>
-                <div class="os-feat">Projections financières 12 mois</div>
+                <div class="os-feat">Généré en 60 secondes</div>
+                <div class="os-feat">Compatible dossier banque & BPI</div>
                 <div class="os-feat">Démarches administratives pré-remplies</div>
                 <div class="os-feat">Emails prêts à envoyer</div>
                 <div class="os-feat">Sans abonnement · Sans expiration</div>
@@ -5447,7 +5447,7 @@ function selectPayPlan(el) {
   document.getElementById('osTotal').textContent = selectedPayPlan.price.toFixed(2) + '€';
   document.getElementById('osCredits').textContent = credits + ' générations';
 
-  const feats = ['Business plan complet — 17 sections','Score de viabilité /100','Projections financières 12 mois','Démarches administratives pré-remplies','Emails prêts à envoyer','Sans abonnement · Sans expiration'];
+  const feats = ['Business plan complet — 17 sections','Généré en 60 secondes','Compatible dossier banque & BPI','Démarches administratives pré-remplies','Emails prêts à envoyer','Sans abonnement · Sans expiration'];
 
   document.getElementById('osFeatures').innerHTML = feats.map(f => `<div class="os-feat">${f}</div>`).join('');
 }
