@@ -3821,6 +3821,10 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
             <span class="sidebar-icon"><svg width="15" height="15" viewBox="0 0 20 20" fill="none"><polygon points="11,2 3,12 10,12 9,18 17,8 10,8" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
             Générateur
           </div>
+          <div class="sidebar-link" id="chat-sidebar-link" onclick="openChatFullscreen()" data-view="chat">
+            <span class="sidebar-icon"><svg width="15" height="15" viewBox="0 0 20 20" fill="none"><path d="M18 9c0 4-3.6 7-8 7a8.8 8.8 0 01-3.5-.7L2 17l1.7-4A6.5 6.5 0 012 9c0-4 3.6-7 8-7s8 3 8 7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+            Expert Eadee
+          </div>
           <div class="sidebar-link" onclick="showView('history')" data-view="history">
             <span class="sidebar-icon"><svg width="15" height="15" viewBox="0 0 20 20" fill="none"><rect x="3" y="2" width="14" height="16" rx="2" stroke="currentColor" stroke-width="1.6"/><line x1="7" y1="7" x2="13" y2="7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="7" y1="10" x2="13" y2="10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><line x1="7" y1="13" x2="10" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
             Mes plans
@@ -3828,14 +3832,6 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
           <div class="sidebar-link" onclick="showView('inspiration')" data-view="inspiration">
             <span class="sidebar-icon"><svg width="15" height="15" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="8" r="5" stroke="currentColor" stroke-width="1.6"/><path d="M8 13h4M9 16h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
             Inspiration
-          </div>
-          <div class="sidebar-link" onclick="showView('referral')" data-view="referral">
-            <span class="sidebar-icon"><svg width="15" height="15" viewBox="0 0 20 20" fill="none"><path d="M10 2l1.8 5.5H18l-4.8 3.5 1.8 5.5L10 13l-5 3.5 1.8-5.5L2 7.5h6.2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span>
-            Inviter un ami
-          </div>
-          <div class="sidebar-link" id="chat-sidebar-link" onclick="openChatFullscreen()" data-view="chat">
-            <span class="sidebar-icon"><svg width="15" height="15" viewBox="0 0 20 20" fill="none"><path d="M18 9c0 4-3.6 7-8 7a8.8 8.8 0 01-3.5-.7L2 17l1.7-4A6.5 6.5 0 012 9c0-4 3.6-7 8-7s8 3 8 7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
-            Expert Eadee
           </div>
 
           <div class="sidebar-section">Compte</div>
@@ -4496,6 +4492,20 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
               </div>
               <button class="gen-btn" style="margin-top:4px;font-size:16px;padding:12px" onclick="toast('Mot de passe mis à jour','success')">CHANGER LE MOT DE PASSE</button>
             </div>
+            <!-- Inviter un ami -->
+            <div class="gen-panel">
+              <div class="gen-panel-title" style="display:flex;align-items:center;gap:8px">
+                <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M13 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM7 18c0-3 2.7-5 6-5s6 2 6 5" stroke="#9db8f8" stroke-width="1.6" stroke-linecap="round"/><path d="M1 14s1-4 5-4" stroke="#9db8f8" stroke-width="1.6" stroke-linecap="round"/><path d="M3 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" stroke="#9db8f8" stroke-width="1.6"/></svg>
+                Inviter un ami
+              </div>
+              <div style="font-size:13px;color:#7a7f9a;margin-bottom:14px">Pour chaque ami qui crée un compte, vous recevez <strong style="color:#ecedf2">1 crédit chacun</strong>.</div>
+              <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:12px;display:flex;align-items:center;gap:10px;margin-bottom:12px">
+                <div style="flex:1;font-family:'DM Mono',monospace;font-size:12px;color:#9db8f8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="referral-link-settings">eadee.fr/ref/ALEX2024</div>
+                <button onclick="navigator.clipboard.writeText(document.getElementById('referral-link-settings').textContent).then(()=>toast('Lien copié','success'))" style="padding:6px 14px;background:linear-gradient(135deg,#6b8fef,#a78bfa);color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer;white-space:nowrap">Copier</button>
+              </div>
+              <div style="font-size:12px;color:#7a7f9a">0 ami(s) invité(s) · 0 crédit(s) gagné(s)</div>
+            </div>
+
             <div style="text-align:right">
               <button onclick="logout()" style="background:none;border:none;color:#f87171;cursor:pointer;font-size:13px;font-family:'Geist',sans-serif;opacity:.7;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.7">Se déconnecter</button>
             </div>
