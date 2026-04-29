@@ -6687,20 +6687,33 @@ function switchDossierTab(idx) {
 
 async function generateDossier() {
   if (!currentResult) { toast('Génère un plan d\'abord', 'error'); return; }
-  if (currentPlan === 'free') {
-    toast('Fonctionnalité réservée aux packs Builder & Empire', 'error');
-    setTimeout(() => showView('billing'), 1000);
-    return;
-  }
 
   const modal = document.getElementById('dossierModal');
-  const loading = document.getElementById('dossierLoading');
-  const body = document.getElementById('dossierBody');
-  const tabs = document.getElementById('dossierTabs');
   const titleEl = document.getElementById('dossierTitle');
   const subEl = document.getElementById('dossierSub');
 
+  const r = currentResult;
+  titleEl.textContent = `DOSSIER — ${r.nom_business || 'MON ENTREPRISE'}`;
+  subEl.textContent = 'Documents pré-remplis pour créer ton entreprise';
   modal.style.display = 'flex';
+
+  // Charger depuis le cache si déjà généré pour ce plan
+  const cacheKey = 'eadee_dossier_' + (r.id || r.timestamp || 'default');
+  const cached = localStorage.getItem(cacheKey);
+  if (cached) {
+    try {
+      const d = JSON.parse(cached);
+      renderDossier(d, r);
+      return;
+    } catch(e) {
+      localStorage.removeItem(cacheKey); // cache corrompu, on régénère
+    }
+  }
+
+  const loading = document.getElementById('dossierLoading');
+  const body = document.getElementById('dossierBody');
+  const tabs = document.getElementById('dossierTabs');
+
   loading.style.display = 'flex';
   tabs.innerHTML = '';
   body.innerHTML = '';
@@ -6825,6 +6838,12 @@ Réponds UNIQUEMENT avec un JSON valide (pas de markdown, pas de backticks):
     let raw = data.content[0].text.trim();
     if (raw.startsWith('```')) raw = raw.replace(/^```[a-z]*\n?/, '').replace(/```$/, '').trim();
     const d = JSON.parse(raw);
+
+    // Sauvegarder dans localStorage pour éviter de régénérer à chaque ouverture
+    try {
+      const cacheKey = 'eadee_dossier_' + (r.id || r.timestamp || 'default');
+      localStorage.setItem(cacheKey, JSON.stringify(d));
+    } catch(_) {}
 
     renderDossier(d, r);
 
