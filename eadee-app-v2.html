@@ -6711,15 +6711,11 @@ async function generateDossier() {
   titleEl.textContent = `DOSSIER — ${r.nom_business || 'MON ENTREPRISE'}`;
   subEl.textContent = 'Documents pré-remplis pour créer ton entreprise';
 
-  // Charger depuis le cache si déjà généré pour ce plan
-  const _dossierCacheKey = 'eadee_dossier_' + (r.id || r.timestamp || 'default');
-  const _dossierCached = localStorage.getItem(_dossierCacheKey);
-  if (_dossierCached) {
-    try {
-      loading.style.display = 'none';
-      renderDossier(JSON.parse(_dossierCached), r);
-      return;
-    } catch(_) { localStorage.removeItem(_dossierCacheKey); }
+  // Charger depuis le plan si déjà généré (dossier sauvegardé dans l'objet plan)
+  if (r.dossier) {
+    loading.style.display = 'none';
+    renderDossier(r.dossier, r);
+    return;
   }
 
   const loadingTexts = [
@@ -6837,7 +6833,11 @@ Réponds UNIQUEMENT avec un JSON valide (pas de markdown, pas de backticks):
     if (raw.startsWith('```')) raw = raw.replace(/^```[a-z]*\n?/, '').replace(/```$/, '').trim();
     const d = JSON.parse(raw);
 
-    try { localStorage.setItem('eadee_dossier_' + (r.id || r.timestamp || 'default'), JSON.stringify(d)); } catch(_) {}
+    // Sauvegarder le dossier dans le plan (currentResult + plansHistory + localStorage)
+    currentResult.dossier = d;
+    const histIdx = plansHistory.findIndex(p => p === r || (p.id && p.id === r.id));
+    if (histIdx !== -1) plansHistory[histIdx].dossier = d;
+    try { localStorage.setItem('eadee_history', JSON.stringify(plansHistory)); } catch(_) {}
 
     renderDossier(d, r);
 
