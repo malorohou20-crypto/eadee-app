@@ -6711,6 +6711,17 @@ async function generateDossier() {
   titleEl.textContent = `DOSSIER — ${r.nom_business || 'MON ENTREPRISE'}`;
   subEl.textContent = 'Documents pré-remplis pour créer ton entreprise';
 
+  // Charger depuis le cache si déjà généré pour ce plan
+  const _dossierCacheKey = 'eadee_dossier_' + (r.id || r.timestamp || 'default');
+  const _dossierCached = localStorage.getItem(_dossierCacheKey);
+  if (_dossierCached) {
+    try {
+      loading.style.display = 'none';
+      renderDossier(JSON.parse(_dossierCached), r);
+      return;
+    } catch(_) { localStorage.removeItem(_dossierCacheKey); }
+  }
+
   const loadingTexts = [
     'Analyse du projet en cours...',
     'Détermination de la forme juridique...',
@@ -6825,6 +6836,8 @@ Réponds UNIQUEMENT avec un JSON valide (pas de markdown, pas de backticks):
     let raw = data.content[0].text.trim();
     if (raw.startsWith('```')) raw = raw.replace(/^```[a-z]*\n?/, '').replace(/```$/, '').trim();
     const d = JSON.parse(raw);
+
+    try { localStorage.setItem('eadee_dossier_' + (r.id || r.timestamp || 'default'), JSON.stringify(d)); } catch(_) {}
 
     renderDossier(d, r);
 
