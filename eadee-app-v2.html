@@ -5291,6 +5291,10 @@ Réponds UNIQUEMENT avec un JSON valide (sans markdown ni backticks):
     localStorage.setItem('eadee_history', JSON.stringify(plansHistory));
     userCredits = Math.max(0, userCredits - 1);
     updateUsage();
+    // Persister les crédits dans Supabase
+    if (supabaseClient && user) {
+      supabaseClient.from('profiles').update({ credits: userCredits }).eq('id', (await supabaseClient.auth.getUser()).data.user?.id).then(() => {});
+    }
 
     stopGenSectionsAnim();
     setPreviewState(null);
