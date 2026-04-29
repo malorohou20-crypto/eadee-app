@@ -4835,7 +4835,10 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
 // ========== SUPABASE ==========
 let supabaseClient = null;
 
+const IS_DEMO = new URLSearchParams(window.location.search).get('preview') === 'eadee2024';
+
 async function initSupabase() {
+  if (IS_DEMO) return; // mode démo — pas besoin de Supabase
   try {
     const res = await fetch('/api/config');
     const cfg = await res.json();
