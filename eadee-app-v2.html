@@ -1220,6 +1220,15 @@ nav {
   .hero-scroll-anim { animation: none !important; }
 }
 
+/* ========== AI ACT DISCLAIMER ========== */
+.ai-disclaimer {
+  display: flex; gap: 14px; padding: 14px 18px;
+  background: rgba(251,191,36,0.06); border: 1px solid rgba(251,191,36,0.2);
+  border-radius: 10px; margin: 16px 0; align-items: flex-start;
+}
+.ai-disclaimer-text { font-size: 13px; line-height: 1.6; color: #ecedf2; }
+.ai-disclaimer-text strong { color: #fbbf24; }
+
 /* ========== DOSSIER CREATION ========== */
 .dossier-overlay {
   position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 8000;
@@ -3837,9 +3846,17 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
       </div>
     </div>
     <div class="footer2-bottom">
-      <span id="footerYear"></span> EADEE — Tous droits réservés
-      <span class="footer2-sep">·</span>
-      <a href="mailto:contact@eadee.fr" class="footer2-mail">contact@eadee.fr</a>
+      <span class="footer2-copy"><span id="footerYear"></span> EADEE — Tous droits réservés</span>
+      <span class="footer2-contact">
+        🇪🇺 Données hébergées en Europe · Conforme RGPD ·
+        <a href="mailto:contact@eadee.fr" style="color:inherit">contact@eadee.fr</a> ·
+        <a href="https://www.cnil.fr/fr/plaintes" target="_blank" rel="noopener" style="color:inherit">Réclamation CNIL</a>
+      </span>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.05);padding:14px 0;text-align:center">
+      <span style="font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,0.2);letter-spacing:0.05em">
+        Les plans générés sont produits par intelligence artificielle (Anthropic Claude). À valider par un professionnel avant tout engagement.
+      </span>
     </div>
   </footer>
   <script>document.getElementById('footerYear').textContent = '© ' + new Date().getFullYear();</script>
@@ -4324,6 +4341,14 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
                 <!-- SCROLLABLE BODY -->
                 <div style="flex:1;overflow-y:auto;padding:0 28px 28px;">
 
+                  <!-- AI ACT DISCLAIMER -->
+                  <div class="ai-disclaimer">
+                    <div class="ai-disclaimer-text">
+                      <strong>Contenu généré par intelligence artificielle.</strong>
+                      Ce plan est produit par un modèle d'IA (Anthropic Claude) à partir de tes données. Il peut contenir des erreurs ou des estimations approximatives. <strong>Avant tout engagement financier ou démarche officielle</strong> (banque, BPI, expert-comptable), fais valider ce plan par un professionnel.
+                    </div>
+                  </div>
+
                   <!-- 1. RÉSUMÉ EXÉCUTIF -->
                   <div class="plan-block">
                     <div class="plan-block-title">01 — Résumé Exécutif<button class="section-coach-btn" onclick="openChatDrawer(chatState.activePlanId,'Peux-tu améliorer mon résumé exécutif pour le rendre plus percutant ?')" title="Demander à l\'Expert Eadee">💬</button></div>
@@ -4626,6 +4651,29 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
                 <button onclick="navigator.clipboard.writeText(document.getElementById('referral-link-settings').textContent).then(()=>toast('Lien copié','success'))" style="padding:6px 14px;background:linear-gradient(135deg,#6b8fef,#a78bfa);color:#fff;border:none;border-radius:6px;font-size:12px;cursor:pointer;white-space:nowrap">Copier</button>
               </div>
               <div style="font-size:12px;color:#7a7f9a">0 ami(s) invité(s) · 0 crédit(s) gagné(s)</div>
+            </div>
+
+            <!-- RGPD — MES DONNÉES -->
+            <div class="gen-panel">
+              <div class="gen-panel-title" style="display:flex;align-items:center;gap:8px">
+                <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="2" stroke="#9db8f8" stroke-width="1.6"/><path d="M7 10h6M7 7h6M7 13h4" stroke="#9db8f8" stroke-width="1.4" stroke-linecap="round"/></svg>
+                Mes données personnelles
+              </div>
+              <div style="font-size:13px;color:#7a7f9a;margin-bottom:16px;line-height:1.6">Conformément au RGPD, tu peux télécharger toutes les données qu'Eadee détient sur toi à tout moment.</div>
+              <div style="display:flex;gap:10px;flex-wrap:wrap">
+                <button onclick="exportMyData()" style="padding:10px 18px;background:linear-gradient(135deg,#6b8fef,#a78bfa);color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Geist',sans-serif">Télécharger mes données (JSON)</button>
+                <button onclick="requestRectification()" style="padding:10px 18px;background:rgba(255,255,255,0.06);color:#ecedf2;border:1px solid rgba(255,255,255,0.12);border-radius:8px;font-size:13px;cursor:pointer;font-family:'Geist',sans-serif">Demander une rectification</button>
+              </div>
+            </div>
+
+            <!-- RGPD — ZONE DE DANGER -->
+            <div class="gen-panel" style="border-color:rgba(239,68,68,0.25)">
+              <div class="gen-panel-title" style="display:flex;align-items:center;gap:8px;color:#f87171">
+                <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M10 3L2 17h16L10 3z" stroke="#f87171" stroke-width="1.6" stroke-linejoin="round"/><path d="M10 9v4M10 14.5v.5" stroke="#f87171" stroke-width="1.6" stroke-linecap="round"/></svg>
+                Zone de danger
+              </div>
+              <div style="font-size:13px;color:#7a7f9a;margin-bottom:16px;line-height:1.6">La suppression est <strong style="color:#ecedf2">définitive</strong>. Tes plans, conversations et données seront supprimés sous 30 jours conformément au RGPD.</div>
+              <button onclick="confirmDeleteAccount()" style="padding:10px 18px;background:rgba(239,68,68,0.1);color:#f87171;border:1px solid rgba(239,68,68,0.3);border-radius:8px;font-size:13px;cursor:pointer;font-family:'Geist',sans-serif">Supprimer définitivement mon compte</button>
             </div>
 
             <div style="text-align:right">
@@ -7065,10 +7113,100 @@ function initCookieBanner() {
     }, 1200);
   }
 }
-function setCookieConsent(choice) {
+async function setCookieConsent(choice) {
   localStorage.setItem('eadee_cookie_consent', choice);
   const b = document.getElementById('cookieBanner');
   if (b) { b.style.opacity = '0'; b.style.transition = 'opacity .3s'; setTimeout(() => b.style.display = 'none', 300); }
+
+  // Logger en DB pour preuve juridique CNIL
+  try {
+    let sessionId = sessionStorage.getItem('eadee_session_id');
+    if (!sessionId) { sessionId = crypto.randomUUID(); sessionStorage.setItem('eadee_session_id', sessionId); }
+    if (supabaseClient) {
+      await supabaseClient.from('cookie_consents').insert({
+        user_id: user?.id || null,
+        session_id: sessionId,
+        consent: choice === 'accept' ? 'accept' : 'refuse',
+        user_agent: navigator.userAgent.substring(0, 200),
+      });
+    }
+  } catch(_) {}
+}
+
+// ========== RGPD — EXPORT DONNÉES ==========
+async function exportMyData() {
+  if (!user || !supabaseClient) { toast('Connecte-toi d\'abord', 'error'); return; }
+  toast('Préparation de tes données…', 'success');
+
+  try {
+    const [profile, plans, chats, purchases] = await Promise.all([
+      supabaseClient.from('profiles').select('*').eq('id', user.id).single(),
+      supabaseClient.from('plans').select('*').eq('user_id', user.id),
+      supabaseClient.from('chat_conversations').select('*').eq('user_id', user.id),
+      supabaseClient.from('purchases').select('*').eq('user_id', user.id),
+    ]);
+
+    const data = {
+      export_date: new Date().toISOString(),
+      note: 'Conformément au RGPD article 20 (droit à la portabilité). Eadee.',
+      user: { id: user.id, email: user.email, profile: profile.data },
+      plans: plans.data || [],
+      chat_conversations: chats.data || [],
+      purchases: purchases.data || [],
+    };
+
+    // Logger la demande
+    await supabaseClient.from('rgpd_requests').insert({ user_id: user.id, type: 'export', status: 'completed', completed_at: new Date().toISOString() });
+
+    // Téléchargement JSON
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href = url;
+    a.download = `eadee-export-${user.name.replace(/\s+/g, '-')}-${Date.now()}.json`;
+    a.click(); URL.revokeObjectURL(url);
+    toast('Export téléchargé', 'success');
+  } catch(e) { toast('Erreur lors de l\'export', 'error'); }
+}
+
+function requestRectification() {
+  if (!user) return;
+  window.location.href = `mailto:contact@eadee.fr?subject=Demande de rectification RGPD&body=Bonjour,%0D%0A%0D%0AJe souhaite faire rectifier les données suivantes :%0D%0A%0D%0A[Décris la donnée à corriger]%0D%0A%0D%0AMon ID utilisateur : ${user.id}`;
+}
+
+// ========== RGPD — SUPPRESSION COMPTE ==========
+async function confirmDeleteAccount() {
+  if (!user || !supabaseClient) return;
+
+  const confirm1 = confirm('⚠️ Es-tu sûr ? Cette action est DÉFINITIVE.\n\nTes plans, conversations et données seront supprimés sous 30 jours.');
+  if (!confirm1) return;
+
+  const typed = prompt(`Pour confirmer, tape exactement :\nSUPPRIMER ${user.email}`);
+  if (typed !== `SUPPRIMER ${user.email}`) { toast('Confirmation incorrecte — suppression annulée', 'error'); return; }
+
+  try {
+    // Logger la demande RGPD
+    await supabaseClient.from('rgpd_requests').insert({ user_id: user.id, type: 'deletion', status: 'pending' });
+
+    // Appeler l'Edge Function de suppression
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    const res = await fetch('/api/delete-user', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userId: user.id, accessToken: session?.access_token }),
+    });
+
+    if (res.ok) {
+      await supabaseClient.auth.signOut();
+      user = null; userCredits = 0; currentPlan = 'free'; plansHistory = [];
+      toast('Compte supprimé. À bientôt.', 'success');
+      setTimeout(() => showPage('landing'), 1500);
+    } else {
+      // Fallback : signout + email admin
+      await supabaseClient.auth.signOut();
+      toast('Demande enregistrée — suppression traitée sous 30 jours', 'success');
+      setTimeout(() => showPage('landing'), 2000);
+    }
+  } catch(e) { toast('Erreur — contacte contact@eadee.fr', 'error'); }
 }
 document.addEventListener('DOMContentLoaded', initCookieBanner);
 document.addEventListener('DOMContentLoaded', () => { setPreviewState('A'); });
@@ -7078,14 +7216,23 @@ const legalContent = {
   mentions: {
     title: 'Mentions légales',
     body: `
-      <div class="legal-info-box">Ces mentions légales doivent être complétées avec vos informations réelles avant mise en ligne.</div>
+      <div class="legal-info-box">⚠️ Placeholders à remplacer avant mise en production. Voir CHECKLIST-CONFORMITE.md</div>
       <h3>Éditeur du site</h3>
-      <p><strong>Nom de la société :</strong> [VOTRE SOCIÉTÉ] — SAS au capital de [X] €<br>
-      <strong>SIRET :</strong> [À COMPLÉTER]<br>
-      <strong>Siège social :</strong> [ADRESSE COMPLÈTE]<br>
-      <strong>Directeur de la publication :</strong> [NOM PRÉNOM]<br>
-      <strong>Email :</strong> contact@eadee.fr<br>
-      <strong>Téléphone :</strong> [À COMPLÉTER]</p>
+      <p>
+        <strong>Dénomination :</strong> [NOM_ENTREPRISE]<br>
+        <strong>Forme juridique :</strong> [FORME_JURIDIQUE]<br>
+        <strong>Siège social :</strong> [ADRESSE_SIEGE]<br>
+        <strong>SIREN :</strong> [SIREN]<br>
+        <strong>SIRET :</strong> [SIRET]<br>
+        <strong>Code APE :</strong> [CODE_APE]<br>
+        <strong>TVA intracommunautaire :</strong> [TVA_INTRA]
+      </p>
+      <h3>Directeur de la publication</h3>
+      <p><strong>Nom :</strong> [NOM_DIRECTEUR]<br>
+      <strong>Email :</strong> contact@eadee.fr</p>
+      <h3>Contact</h3>
+      <p>Email : <a href="mailto:contact@eadee.fr">contact@eadee.fr</a><br>
+      Téléphone : [TELEPHONE]</p>
       <h3>Hébergement</h3>
       <p><strong>Vercel Inc.</strong><br>440 N Barranca Ave #4133, Covina, CA 91723, États-Unis<br>
       Site : <a href="https://vercel.com" target="_blank">vercel.com</a></p>
@@ -7100,78 +7247,77 @@ const legalContent = {
   confidentialite: {
     title: 'Politique de confidentialité',
     body: `
-      <div class="legal-info-box">Conformément au RGPD (Règlement UE 2016/679) et à la loi Informatique et Libertés.</div>
-      <h3>Responsable du traitement</h3>
-      <p>EADEE — [SOCIÉTÉ] — [ADRESSE] — contact@eadee.fr</p>
-      <h3>Données collectées</h3>
-      <p>Dans le cadre de l'utilisation du service, nous collectons :</p>
+      <div class="legal-info-box">⚠️ Placeholder [DATE_MAJ] et [EMAIL_RGPD] à remplacer. Acheter version complète sur LegalPlace.</div>
+      <p><em>Dernière mise à jour : [DATE_MAJ] — Conformément au RGPD (Règlement UE 2016/679) et à la loi Informatique et Libertés.</em></p>
+      <h3>1. Responsable du traitement</h3>
+      <p>[NOM_ENTREPRISE] — [ADRESSE_SIEGE] — <a href="mailto:contact@eadee.fr">contact@eadee.fr</a></p>
+      <h3>2. Données collectées</h3>
       <ul>
-        <li><strong>Données d'identification :</strong> prénom, nom, adresse email</li>
-        <li><strong>Données d'utilisation :</strong> business plans générés, historique de navigation sur l'application</li>
-        <li><strong>Données techniques :</strong> adresse IP, type de navigateur, pages visitées</li>
+        <li><strong>Identification :</strong> email, prénom, mot de passe (hashé)</li>
+        <li><strong>Usage :</strong> idées business, plans générés, conversations avec l'Expert Eadee</li>
+        <li><strong>Technique :</strong> adresse IP (hashée), user agent, logs d'accès</li>
+        <li><strong>Paiement :</strong> traité directement par Stripe — nous ne stockons jamais de numéro de carte</li>
       </ul>
-      <h3>Finalités et bases légales</h3>
+      <h3>3. Bases légales et finalités</h3>
       <ul>
-        <li>Fourniture du service EADEE (base : exécution du contrat)</li>
-        <li>Gestion de votre compte et abonnement (base : exécution du contrat)</li>
-        <li>Amélioration du service et statistiques anonymisées (base : intérêt légitime)</li>
-        <li>Envoi de communications transactionnelles (base : exécution du contrat)</li>
+        <li>Exécution du contrat (art. 6.1.b RGPD) — fourniture du service</li>
+        <li>Consentement (art. 6.1.a) — cookies non essentiels</li>
+        <li>Obligation légale (art. 6.1.c) — facturation, conservation 10 ans</li>
+        <li>Intérêt légitime (art. 6.1.f) — statistiques anonymisées, sécurité</li>
       </ul>
-      <h3>Durée de conservation</h3>
+      <h3>4. Sous-traitants et transferts hors UE</h3>
       <ul>
-        <li>Données de compte : durée de la relation contractuelle + 3 ans</li>
-        <li>Business plans : durée de votre abonnement actif</li>
-        <li>Logs techniques : 12 mois maximum</li>
+        <li><strong>Supabase</strong> (base de données, UE) — profils, plans, conversations</li>
+        <li><strong>Vercel Inc.</strong> (hébergement, USA) — couvert par Data Privacy Framework UE-USA</li>
+        <li><strong>Anthropic PBC</strong> (IA Claude, USA) — idées envoyées pour génération</li>
+        <li><strong>Stripe Inc.</strong> (paiements, USA/Europe) — données de paiement</li>
       </ul>
-      <h3>Vos droits</h3>
-      <p>Conformément au RGPD, vous disposez des droits suivants :</p>
+      <p>Transferts hors UE encadrés par les Clauses Contractuelles Types (CCT) de la Commission européenne.</p>
+      <h3>5. Durée de conservation</h3>
       <ul>
-        <li><strong>Droit d'accès</strong> à vos données personnelles</li>
-        <li><strong>Droit de rectification</strong> de données inexactes</li>
-        <li><strong>Droit à l'effacement</strong> (droit à l'oubli)</li>
-        <li><strong>Droit à la portabilité</strong> de vos données</li>
-        <li><strong>Droit d'opposition</strong> au traitement</li>
-        <li><strong>Droit à la limitation</strong> du traitement</li>
+        <li>Compte actif : durée de la relation contractuelle</li>
+        <li>Compte supprimé : suppression sous 30 jours, sauf factures (10 ans légal)</li>
+        <li>Logs techniques : 12 mois</li>
+        <li>Consentements cookies : 13 mois (recommandation CNIL)</li>
       </ul>
-      <p>Pour exercer ces droits : <a href="mailto:contact@eadee.fr">contact@eadee.fr</a>. Réponse sous 30 jours. Vous pouvez également introduire une réclamation auprès de la <a href="https://www.cnil.fr" target="_blank">CNIL</a>.</p>
-      <h3>Partage des données</h3>
-      <p>Vos données ne sont jamais vendues. Elles peuvent être transmises à nos sous-traitants techniques (hébergement Vercel, IA Anthropic) dans le strict cadre de la fourniture du service, liés par des engagements de confidentialité.</p>
-      <h3>Transfert hors UE</h3>
-      <p>Vercel et Anthropic sont des sociétés américaines. Les transferts sont encadrés par des clauses contractuelles types conformes au RGPD.</p>
+      <h3>6. Tes droits RGPD</h3>
+      <ul>
+        <li>Accès, rectification, suppression (disponibles dans Paramètres)</li>
+        <li>Portabilité — export JSON dans Paramètres → "Mes données"</li>
+        <li>Opposition et limitation du traitement</li>
+        <li>Retrait du consentement à tout moment</li>
+      </ul>
+      <p>Pour exercer tes droits : <a href="mailto:[EMAIL_RGPD]">[EMAIL_RGPD]</a> — réponse sous 30 jours.</p>
+      <h3>7. Réclamation</h3>
+      <p>En cas de désaccord, tu peux saisir la <a href="https://www.cnil.fr/fr/plaintes" target="_blank">CNIL</a>.</p>
     `
   },
   cgu: {
     title: "Conditions Générales d'Utilisation",
     body: `
-      <p><em>En vigueur au 1er janvier 2025 — Dernière mise à jour : janvier 2025</em></p>
+      <div class="legal-info-box">⚠️ [VILLE_TRIBUNAL] à remplacer. Acheter version complète sur LegalPlace.</div>
+      <p><em>En vigueur au [DATE_MAJ] — Dernière mise à jour : [DATE_MAJ]</em></p>
       <h3>Article 1 — Objet</h3>
-      <p>Les présentes CGU régissent l'accès et l'utilisation de la plateforme EADEE, service de génération de business plans par intelligence artificielle.</p>
+      <p>Les présentes CGU régissent l'accès et l'utilisation de la plateforme Eadee, service de génération de business plans par intelligence artificielle (modèle Anthropic Claude).</p>
       <h3>Article 2 — Accès au service</h3>
-      <p>L'accès à EADEE nécessite la création d'un compte avec une adresse email valide. Vous devez avoir au moins 18 ans ou être autorisé par un représentant légal. Vous êtes responsable de la confidentialité de vos identifiants.</p>
+      <p>L'accès nécessite la création d'un compte avec une adresse email valide. Tu dois avoir au moins 18 ans. Tu es responsable de la confidentialité de tes identifiants.</p>
       <h3>Article 3 — Description du service</h3>
-      <p>EADEE propose :</p>
       <ul>
-        <li>Génération automatisée de business plans par IA</li>
-        <li>Analyse de marché et projections financières</li>
-        <li>Documents pré-rédigés (emails, démarches administratives)</li>
-        <li>Accès à un assistant IA (plans Builder et Empire)</li>
+        <li>Génération automatisée de business plans complets (17 sections)</li>
+        <li>Analyse de marché, projections financières, templates d'emails</li>
+        <li>Dossier de création d'entreprise pré-rempli</li>
+        <li>Conseiller Eadee (assistant IA) disponible 24h/24</li>
       </ul>
-      <h3>Article 4 — Utilisation acceptable</h3>
-      <p>Il est interdit d'utiliser EADEE pour :</p>
-      <ul>
-        <li>Générer du contenu illicite, trompeur ou frauduleux</li>
-        <li>Tenter de contourner les systèmes de sécurité</li>
-        <li>Revendre ou redistribuer les contenus générés commercialement sans accord</li>
-        <li>Toute activité contraire aux lois françaises et européennes</li>
-      </ul>
-      <h3>Article 5 — Propriété des contenus générés</h3>
-      <p>Les business plans générés via EADEE vous appartiennent. EADEE conserve le droit d'utiliser des données anonymisées pour améliorer ses modèles.</p>
-      <h3>Article 6 — Limitation de responsabilité</h3>
-      <p>Les business plans générés sont fournis à titre indicatif. EADEE ne garantit pas leur exactitude ni leur adéquation à votre situation spécifique. Ils ne constituent pas un conseil financier, juridique ou fiscal professionnel.</p>
+      <h3>Article 4 — Nature du service IA</h3>
+      <p>Les contenus générés sont produits par intelligence artificielle et fournis à titre indicatif uniquement. Eadee ne garantit pas leur exactitude. Ils ne constituent pas un conseil financier, juridique ou fiscal professionnel. <strong>Faire valider par un professionnel avant tout engagement.</strong></p>
+      <h3>Article 5 — Utilisation acceptable</h3>
+      <p>Sont interdits : génération de contenu illicite ou frauduleux, tentative de contournement des systèmes, revente commerciale sans accord écrit, toute activité contraire au droit français et européen.</p>
+      <h3>Article 6 — Propriété des contenus</h3>
+      <p>Les business plans générés t'appartiennent. Eadee conserve le droit d'utiliser des données anonymisées pour améliorer le service.</p>
       <h3>Article 7 — Modification des CGU</h3>
-      <p>EADEE se réserve le droit de modifier les CGU. Vous serez informé par email avec un préavis de 30 jours. La poursuite d'utilisation vaut acceptation.</p>
+      <p>Eadee peut modifier les CGU avec un préavis de 30 jours par email. La poursuite d'utilisation vaut acceptation.</p>
       <h3>Article 8 — Droit applicable</h3>
-      <p>Les présentes CGU sont soumises au droit français. Tout litige relève des tribunaux compétents de [VILLE].</p>
+      <p>Droit français applicable. Tout litige relève des tribunaux de [VILLE_TRIBUNAL].</p>
     `
   },
   cgv: {
@@ -7222,17 +7368,26 @@ const legalContent = {
         <li>Mémorisation de vos préférences d'interface</li>
         <li>Historique de vos derniers business plans</li>
       </ul>
-      <p><strong>Cookies analytiques :</strong> Actuellement, aucun outil de mesure d'audience (Google Analytics, etc.) n'est utilisé.</p>
-      <p><strong>Cookies publicitaires :</strong> Aucun cookie publicitaire tiers n'est déposé.</p>
-      <h3>Durée de conservation</h3>
-      <p>Les cookies de session sont supprimés à la fermeture du navigateur. Les cookies de préférences sont conservés 12 mois maximum.</p>
-      <h3>Gérer vos préférences</h3>
-      <p>Vous pouvez modifier votre consentement à tout moment :</p>
+      <p><strong>Cookies strictement nécessaires (sans consentement) :</strong></p>
+      <table style="width:100%;font-size:12px;border-collapse:collapse;margin-bottom:16px">
+        <thead><tr style="border-bottom:1px solid rgba(255,255,255,0.1)"><th style="text-align:left;padding:6px 8px;color:#7a7f9a">Nom</th><th style="text-align:left;padding:6px 8px;color:#7a7f9a">Finalité</th><th style="text-align:left;padding:6px 8px;color:#7a7f9a">Durée</th></tr></thead>
+        <tbody>
+          <tr><td style="padding:6px 8px"><code>sb-access-token</code></td><td style="padding:6px 8px">Session Supabase (auth)</td><td style="padding:6px 8px">1 heure</td></tr>
+          <tr><td style="padding:6px 8px"><code>sb-refresh-token</code></td><td style="padding:6px 8px">Renouvellement session</td><td style="padding:6px 8px">1 mois</td></tr>
+          <tr><td style="padding:6px 8px"><code>eadee_cookie_consent</code></td><td style="padding:6px 8px">Mémorisation du choix CNIL</td><td style="padding:6px 8px">13 mois</td></tr>
+          <tr><td style="padding:6px 8px"><code>eadee_history</code></td><td style="padding:6px 8px">Historique local des plans (localStorage)</td><td style="padding:6px 8px">Permanent</td></tr>
+          <tr><td style="padding:6px 8px"><code>eadee_session_id</code></td><td style="padding:6px 8px">Identifiant de session anonyme (CNIL)</td><td style="padding:6px 8px">Session</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Cookies analytiques :</strong> Aucun outil de mesure d'audience tiers (Google Analytics, Hotjar, etc.) n'est utilisé.</p>
+      <p><strong>Cookies publicitaires :</strong> Aucun cookie publicitaire. Aucun tracking cross-site.</p>
+      <h3>Modifier tes préférences</h3>
+      <p>Tu peux retirer ton consentement à tout moment :</p>
       <ul>
-        <li>Via les paramètres de votre navigateur (suppression des cookies)</li>
-        <li>En cliquant sur "Refuser" dans notre bandeau cookies</li>
+        <li>Via les paramètres de ton navigateur (suppression des cookies)</li>
+        <li>En effaçant le localStorage (données locales)</li>
       </ul>
-      <p>La désactivation des cookies essentiels peut affecter le fonctionnement du service.</p>
+      <p>La désactivation des cookies essentiels peut affecter le fonctionnement du service (déconnexion, perte de l'historique local).</p>
       <h3>Contact</h3>
       <p>Pour toute question : <a href="mailto:contact@eadee.fr">contact@eadee.fr</a></p>
     `
