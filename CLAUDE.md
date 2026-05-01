@@ -108,11 +108,22 @@ updateNav()
 ```
 
 ## API endpoints (Vercel Edge)
-- `POST /api/generate`  → génère business plan (streaming)
-- `POST /api/coach`     → Conseiller Eadee, streaming via fetch natif Anthropic
+- `POST /api/proxy`            → génère business plan (non-streaming, via Anthropic)
+- `POST /api/coach`            → Conseiller Eadee, streaming via fetch natif Anthropic
   - Corps : `{ messages, plan, userId }`
   - Utilise `fetch` natif vers `api.anthropic.com` — PAS le SDK npm
-  - Variable env Vercel : `ANTHROPIC_API_KEY` (déjà configurée)
+- `GET  /api/config`           → expose SUPABASE_URL + SUPABASE_ANON_KEY au front
+- `POST /api/stripe-checkout`  → crée une session Stripe Checkout
+- `POST /api/stripe-webhook`   → reçoit paiement confirmé → crédite Supabase
+- `POST /api/delete-user`      → supprime compte auth Supabase (service_role)
+
+## Variables d'environnement Vercel (toutes configurées sauf mention)
+- `ANTHROPIC_API_KEY`          → déjà configurée
+- `NEXT_PUBLIC_SUPABASE_URL`   → déjà configurée
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY` → déjà configurée
+- `STRIPE_SECRET_KEY`          → à ajouter après création compte Stripe
+- `STRIPE_WEBHOOK_SECRET`      → à ajouter après config webhook Stripe
+- `SUPABASE_SERVICE_KEY`       → à ajouter (clé service_role Supabase)
 
 ## Vue générateur — panneau droit
 - **État A (idle)** : Roadmap "Ta route vers le lancement" (7 étapes) + Live feed communauté

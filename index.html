@@ -3848,7 +3848,7 @@ nav { background: rgba(19,20,26,0.92) !important; border-bottom: 1px solid rgba(
     <div class="footer2-bottom">
       <span class="footer2-copy"><span id="footerYear"></span> EADEE — Tous droits réservés</span>
       <span class="footer2-contact">
-        🇪🇺 Données hébergées en Europe · Conforme RGPD ·
+        Données hébergées en Europe · Conforme RGPD ·
         <a href="mailto:contact@eadee.fr" style="color:inherit">contact@eadee.fr</a> ·
         <a href="https://www.cnil.fr/fr/plaintes" target="_blank" rel="noopener" style="color:inherit">Réclamation CNIL</a>
       </span>
@@ -7177,7 +7177,7 @@ function requestRectification() {
 async function confirmDeleteAccount() {
   if (!user || !supabaseClient) return;
 
-  const confirm1 = confirm('⚠️ Es-tu sûr ? Cette action est DÉFINITIVE.\n\nTes plans, conversations et données seront supprimés sous 30 jours.');
+  const confirm1 = confirm('!Es-tu sûr ? Cette action est DÉFINITIVE.\n\nTes plans, conversations et données seront supprimés sous 30 jours.');
   if (!confirm1) return;
 
   const typed = prompt(`Pour confirmer, tape exactement :\nSUPPRIMER ${user.email}`);
@@ -7216,7 +7216,7 @@ const legalContent = {
   mentions: {
     title: 'Mentions légales',
     body: `
-      <div class="legal-info-box">⚠️ Placeholders à remplacer avant mise en production. Voir CHECKLIST-CONFORMITE.md</div>
+      <div class="legal-info-box">!Placeholders à remplacer avant mise en production. Voir CHECKLIST-CONFORMITE.md</div>
       <h3>Éditeur du site</h3>
       <p>
         <strong>Dénomination :</strong> [NOM_ENTREPRISE]<br>
@@ -7247,7 +7247,7 @@ const legalContent = {
   confidentialite: {
     title: 'Politique de confidentialité',
     body: `
-      <div class="legal-info-box">⚠️ Placeholder [DATE_MAJ] et [EMAIL_RGPD] à remplacer. Acheter version complète sur LegalPlace.</div>
+      <div class="legal-info-box">!Placeholder [DATE_MAJ] et [EMAIL_RGPD] à remplacer. Acheter version complète sur LegalPlace.</div>
       <p><em>Dernière mise à jour : [DATE_MAJ] — Conformément au RGPD (Règlement UE 2016/679) et à la loi Informatique et Libertés.</em></p>
       <h3>1. Responsable du traitement</h3>
       <p>[NOM_ENTREPRISE] — [ADRESSE_SIEGE] — <a href="mailto:contact@eadee.fr">contact@eadee.fr</a></p>
@@ -7295,7 +7295,7 @@ const legalContent = {
   cgu: {
     title: "Conditions Générales d'Utilisation",
     body: `
-      <div class="legal-info-box">⚠️ [VILLE_TRIBUNAL] à remplacer. Acheter version complète sur LegalPlace.</div>
+      <div class="legal-info-box">![VILLE_TRIBUNAL] à remplacer. Acheter version complète sur LegalPlace.</div>
       <p><em>En vigueur au [DATE_MAJ] — Dernière mise à jour : [DATE_MAJ]</em></p>
       <h3>Article 1 — Objet</h3>
       <p>Les présentes CGU régissent l'accès et l'utilisation de la plateforme Eadee, service de génération de business plans par intelligence artificielle (modèle Anthropic Claude).</p>
@@ -7329,7 +7329,7 @@ const legalContent = {
       <ul>
         <li><strong>Starter :</strong> 2,99 € TTC — 1 crédit de génération</li>
         <li><strong>Builder :</strong> 7,99 € TTC — pack de 3 générations de business plan + documents complets</li>
-        <li><strong>Empire :</strong> 19,99 € TTC — pack de 8 générations + Conseiller disponible 24h/24</li>
+        <li><strong>Empire :</strong> 19,99 € TTC — pack de 8 crédits de génération</li>
       </ul>
       <p>Les crédits n'ont pas de date d'expiration. Les packs sont rechargeables à volonté. Les prix s'entendent en euros TTC. EADEE se réserve le droit de modifier ses tarifs avec un préavis de 30 jours.</p>
       <h3>Article 2 — Paiement</h3>
