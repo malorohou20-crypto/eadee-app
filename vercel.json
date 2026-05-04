@@ -1,5 +1,5 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/eadee-app-v2.html" }
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
