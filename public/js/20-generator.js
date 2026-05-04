@@ -410,6 +410,7 @@ function fillPlan(plan) {
         <div style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.65;margin-bottom:6px">${esc(d.detail)}</div>
         <a href="https://${esc(d.lien)}" target="_blank" rel="noopener noreferrer" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--acid);text-decoration:none;opacity:0.7">→ ${esc(d.lien)}</a>
       </div>`).join('');
+  }
 
   // 15. Emails (Builder/Empire seulement)
   if (plan.email_fournisseur || plan.email_prospection) {

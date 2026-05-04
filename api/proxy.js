@@ -1,3 +1,5 @@
+export const config = { runtime: 'nodejs' };
+
 import { jsonrepair } from 'jsonrepair';
 
 export default async function handler(req, res) {
