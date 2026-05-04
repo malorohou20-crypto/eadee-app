@@ -435,6 +435,17 @@ function fillPlan(plan) {
           <div style="font-size:13px;color:rgba(255,255,255,0.75);line-height:1.75;white-space:pre-wrap">${esc(e.data.corps)}</div>
         </div>
       </div>`).join('');
+  }
+
+  // 16. Documents annexes (Livrable 5)
+  fillDocumentsAnnexes(plan);
+
+  // 17. Checklist bancabilité (Livrable 6)
+  fillBancabilite(plan);
+
+  // Livrable 7 — indicateurs fiabilité : remplace [VERIFIE]/[ESTIMATION]/[HYPOTHESE]
+  const scrollBody = document.getElementById('planScrollBody');
+  if (scrollBody) applyReliabilityIndicators(scrollBody);
 }
 
 function copyEmail(btn) {

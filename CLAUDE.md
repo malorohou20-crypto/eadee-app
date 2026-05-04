@@ -103,6 +103,7 @@ La SEULE différence est le nombre de crédits :
 | `25-chat.css` | Chat drawer, chat messages, typing indicator, quick actions | Conseiller Eadee |
 | `26-dossier.css` | Modal dossier création | Dossier création |
 | `27-modals.css` | Plan preview modal (historique), nouvelles sections | Modales |
+| `28-plan-extras.css` | Documents annexes, checklist bancabilité, indicateurs fiabilité (dots SVG) | Livrables 5–7 |
 | `90-overrides.css` | Dark mode overrides, fixes spécifiques | Corrections de style |
 | `99-responsive.css` | Tous les `@media` principaux (768px, 1024px, 400px) | Responsive mobile |
 
@@ -124,6 +125,7 @@ La SEULE différence est le nombre de crédits :
 | `40-chat.js` | `openChatFullscreen()`, `openChatDrawer()`, `sendChatMessage(mode)`, `renderChatMessages()`, `sendQuickAction()` | Conseiller Eadee (chat) |
 | `50-billing.js` | `selectPayPlan()`, `processPayment()`, `formatCard()`, `formatExp()` | Paiement Stripe |
 | `51-settings.js` | `saveSettings()`, `exportMyData()`, `confirmDeleteAccount()` | Paramètres + RGPD |
+| `31-plan-actions.js` | `downloadDoc(type)`, `fillDocumentsAnnexes()`, `fillBancabilite()`, `toggleBanc()`, `applyReliabilityIndicators()` | Documents annexes, checklist bancabilité, dots fiabilité |
 | `60-dossier.js` | `generateDossier()`, `renderDossier()`, `switchDossierTab()` | Dossier création |
 | `70-cookies.js` | `initCookieBanner()`, `setCookieConsent()` | Bandeau CNIL |
 | `71-legal.js` | `legalContent` (objet), `openLegal()`, `closeLegal()` | Modaux légaux (CGV, mentions, RGPD) |
