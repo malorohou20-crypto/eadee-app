@@ -21,7 +21,7 @@ function selectPayPlan(el) {
   document.getElementById('osTotal').textContent = selectedPayPlan.price.toFixed(2) + '€';
   document.getElementById('osCredits').textContent = credits + ' générations';
 
-  const feats = ['Business plan complet — 17 sections','Généré en 60 secondes','Compatible dossier banque & BPI','Démarches administratives pré-remplies','Emails prêts à envoyer','Sans abonnement · Sans expiration','Conseiller Eadee 24h/24'];
+  const feats = ['Business plan complet — 20 sections','Généré en 60 secondes','Compatible dossier banque & BPI','Démarches administratives pré-remplies','Emails prêts à envoyer','Sans abonnement · Sans expiration','Conseiller Eadee 24h/24'];
 
   document.getElementById('osFeatures').innerHTML = feats.map(f => `<div class="os-feat">${f}</div>`).join('');
 }
