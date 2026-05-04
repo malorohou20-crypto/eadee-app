@@ -1,0 +1,90 @@
+  color:#7a7f9a; text-transform:uppercase;
+  margin-bottom:20px;
+  display:flex; align-items:center; gap:10px;
+}
+
+.form-group { margin-bottom:16px; }
+.form-label {
+  font-family:'DM Mono',monospace;
+  font-size:10px; letter-spacing:.1em;
+  color:#7a7f9a; text-transform:uppercase;
+  display:block; margin-bottom:6px;
+}
+
+.form-textarea {
+  width:100%; min-height:100px;
+  padding:10px 12px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:8px;
+  font-family:'Geist',sans-serif;
+  font-size:13px; color:#ecedf2;
+  outline:none; resize:vertical; line-height:1.6;
+  transition:border-color .2s;
+  box-sizing:border-box;
+}
+.form-textarea::placeholder { color:#7a7f9a; }
+.form-textarea:focus { border-color:rgba(107,143,239,0.5); }
+
+.form-select {
+  width:100%; padding:10px 12px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:8px;
+  font-family:'Geist',sans-serif;
+  font-size:13px; color:#ecedf2;
+  outline:none; appearance:none;
+  cursor:pointer;
+  transition:border-color .2s;
+  box-sizing:border-box;
+}
+.form-select:focus { border-color:rgba(107,143,239,0.5); }
+.form-select option { background:#1a1d26; color:#ecedf2; }
+
+.form-input {
+  width:100%; padding:10px 12px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:8px;
+  font-family:'Geist',sans-serif;
+  font-size:13px; color:#ecedf2;
+  outline:none;
+  transition:border-color .2s;
+  box-sizing:border-box;
+}
+.form-input::placeholder { color:#7a7f9a; }
+.form-input:focus { border-color:rgba(107,143,239,0.5); }
+
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+
+.gen-btn {
+  width:100%; padding:14px;
+  background:linear-gradient(135deg,#6b8fef,#a78bfa);
+  color:#fff; border:none; border-radius:8px;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:18px; letter-spacing:.08em;
+  cursor:pointer; margin-top:16px;
+  transition:opacity .2s, transform .15s;
+}
+.gen-btn:hover { opacity:.9; transform:translateY(-1px); }
+.gen-btn:active { transform:scale(0.99); }
+.gen-btn:disabled { opacity:.5; cursor:not-allowed; transform:none; }
+
+/* RESULT PANEL */
+.result-panel {
+  background: var(--ink);
+  border-radius: 6px;
+  padding: 28px;
+  color: var(--paper);
+  min-height: 500px;
+  display: flex; flex-direction: column;
+}
+
+.result-empty-state {
+  flex: 1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; gap: 12px;
+  color: rgba(255,255,255,0.2);
+}
+

@@ -1,0 +1,144 @@
+// ========== ONBOARDING ==========
+function checkOnboarding() {
+  const banner = document.getElementById('onboarding-banner');
+  if (!banner) return;
+  if (!localStorage.getItem('eadee_onboarded')) {
+    banner.style.display = 'block';
+    const title = document.getElementById('onboarding-title');
+    if (title && user) title.textContent = '👋 Bienvenue ' + user.name.split(' ')[0] + ' !';
+  } else {
+    banner.style.display = 'none';
+  }
+}
+function dismissOnboarding() {
+  localStorage.setItem('eadee_onboarded', '1');
+  const banner = document.getElementById('onboarding-banner');
+  if (banner) { banner.style.opacity = '0'; banner.style.transition = 'opacity .3s'; setTimeout(() => banner.style.display = 'none', 300); }
+}
+
+// ========== PERSONALIZED HEADER ==========
+function updateDashHeader() {
+  const titleEl = document.getElementById('dash-gen-title');
+  const subEl = document.getElementById('dash-gen-sub');
+  if (!titleEl || !subEl) return;
+  const firstName = user ? user.name.split(' ')[0] : '';
+  if (firstName) {
+    titleEl.textContent = 'Bonjour ' + firstName + ', prêt à valider ta prochaine idée ?';
+  } else {
+    titleEl.textContent = 'Génère ton plan';
+  }
+  if (plansHistory.length === 0) {
+    subEl.textContent = 'Décris ton idée et reçois ton premier plan en 60 secondes';
+  } else {
+    subEl.textContent = 'Tu as déjà généré ' + plansHistory.length + ' plan' + (plansHistory.length > 1 ? 's' : '') + ' · Continue ou explore une nouvelle idée';
+  }
+}
+
+// ========== IDEA INPUT + DRAFT ==========
+let _draftTimer = null;
+let _draftIndicatorTimer = null;
+
+function onIdeaInput(ta) {
+  const len = ta.value.length;
+  const counter = document.getElementById('idea-char-count');
+  if (counter) {
+    counter.textContent = len + ' / 500';
+    counter.style.color = len >= 150 ? '#34d399' : len >= 50 ? '#6b8fef' : '#7a7f9a';
+  }
+  const msg = document.getElementById('idea-quality-msg');
+  if (msg) {
+    if (len === 0) msg.textContent = 'Plus tu détailles, meilleur sera ton plan.';
+    else if (len < 50) msg.textContent = '🟡 Continue, l\'IA a besoin de plus de contexte.';
+    else if (len < 150) msg.textContent = '🟢 Bien — ajoute ta ville et ton public si possible.';
+    else msg.textContent = '✨ Excellent brief, ton plan sera précis.';
+  }
+  setPreviewState(len >= 30 ? 'B' : 'A');
+  updateTips(ta.value.toLowerCase());
+  clearTimeout(_draftTimer);
+  _draftTimer = setTimeout(() => saveDraft(), 500);
+}
+
+function updateTips(text) {
+  document.querySelectorAll('.tip-item').forEach(item => {
+    const keywords = item.dataset.keywords.split(',');
+    const found = keywords.some(kw => text.includes(kw.trim()));
+    item.classList.toggle('done', found);
+    const checkEl = item.querySelector('.tip-check');
+    if (checkEl) checkEl.textContent = found ? '✓' : '○';
+  });
+}
+
+function saveDraft() {
+  const ta = document.getElementById('dashIdea');
+  if (!ta) return;
+  const draft = {
+    idea: ta.value,
+    budget: document.getElementById('dashBudget')?.value,
+    profile: document.getElementById('dashProfile')?.value,
+    sector: document.getElementById('dashSector')?.value,
+    time: document.getElementById('dashTime')?.value,
+    planName: document.getElementById('dashPlanName')?.value,
+    ts: Date.now()
+  };
+  try { localStorage.setItem('eadee_draft', JSON.stringify(draft)); } catch(e) {}
+  showDraftIndicator();
+}
+
+function showDraftIndicator() {
+  const el = document.getElementById('draft-indicator');
+  if (!el) return;
+  el.style.opacity = '1';
+  clearTimeout(_draftIndicatorTimer);
+  _draftIndicatorTimer = setTimeout(() => { if (el) el.style.opacity = '0'; }, 3000);
+  el.textContent = 'Brouillon sauvegardé · à l\'instant';
+}
+
+function checkDraft() {
+  try {
+    const raw = localStorage.getItem('eadee_draft');
+    if (!raw) return;
+    const draft = JSON.parse(raw);
+    if (!draft.idea || draft.idea.trim().length < 10) return;
+    const banner = document.getElementById('draft-resume-banner');
+    const preview = document.getElementById('draft-preview-text');
+    if (banner) {
+      if (preview) preview.textContent = '"' + draft.idea.substring(0, 60) + (draft.idea.length > 60 ? '…' : '') + '"';
+      banner.style.display = 'flex';
+      banner._draft = draft;
+    }
+  } catch(e) {}
+}
+
+function resumeDraft() {
+  const banner = document.getElementById('draft-resume-banner');
+  if (!banner || !banner._draft) return;
+  const d = banner._draft;
+  const ta = document.getElementById('dashIdea');
+  if (ta) { ta.value = d.idea; ta.dispatchEvent(new Event('input')); }
+  if (d.budget) document.getElementById('dashBudget').value = d.budget;
+  if (d.profile) document.getElementById('dashProfile').value = d.profile;
+  if (d.sector) document.getElementById('dashSector').value = d.sector;
+  if (d.time) document.getElementById('dashTime').value = d.time;
+  if (d.planName) document.getElementById('dashPlanName').value = d.planName;
+  banner.style.display = 'none';
+}
+
+function discardDraft() {
+  localStorage.removeItem('eadee_draft');
+  const banner = document.getElementById('draft-resume-banner');
+  if (banner) banner.style.display = 'none';
+}
+
+// ========== INSPIRE MODAL ==========
+function openInspireModal() {
+  document.getElementById('inspire-modal').style.display = 'flex';
+}
+function closeInspireModal() {
+  document.getElementById('inspire-modal').style.display = 'none';
+}
+function pickInspire(text) {
+  const ta = document.getElementById('dashIdea');
+  if (ta) { ta.value = text; ta.dispatchEvent(new Event('input')); }
+  closeInspireModal();
+}
+

@@ -1,0 +1,29 @@
+:root {
+  --ink: #0a0a0a;
+  --paper: #13141a;
+  --cream: #1a1d26;
+  --acid: #6b8fef;
+  --rust: #a78bfa;
+  --muted: #7a7f9a;
+  --border: rgba(255,255,255,0.08);
+  --green: #34d399;
+  --text: #ecedf2;
+  --gold: #fbbf24;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--text);
+  font-family: 'Geist', 'Bricolage Grotesque', sans-serif;
+  min-height: 100vh;
+}
+
+/* ========== UTILS ========== */
+.hidden { display: none !important; }
+
+/* ========== PAGES ========== */
+.page { display: none; min-height: 100vh; }
+.page.active { display: block; }
+
