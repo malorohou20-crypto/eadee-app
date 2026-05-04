@@ -190,7 +190,7 @@
   .hero-split { max-width:100% !important; }
 }
 
-/* === TR SECTION 4 — 17 sections showcase === */
+/* === TR SECTION 4 — 20 sections showcase === */
 .tr-sections-grid {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 7px; margin-top: 32px;
