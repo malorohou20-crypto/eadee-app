@@ -1,3 +1,5 @@
+export const config = { runtime: 'nodejs' };
+
 // =====================================================================
 // EADEE — Génération de vrais documents téléchargeables
 // Formats : DOCX (Word), XLSX (Excel), PDF

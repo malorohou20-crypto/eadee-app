@@ -1,3 +1,5 @@
+export const config = { runtime: 'nodejs' };
+
 // =====================================================================
 // EADEE — Pipeline génération business plan (3 étapes)
 // Étape 1 : Données INSEE (APIs gratuites)
