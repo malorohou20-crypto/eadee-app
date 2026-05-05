@@ -15,7 +15,7 @@ BUSINESS PLAN ACTUEL DU CLIENT:
 - Modèle économique: ${businessPlan.modele_economique || ''}
 - Offres: ${JSON.stringify(businessPlan.offres || [])}
 - Score viabilité: ${businessPlan.score_viabilite || ''}
-- CA An 3 estimé: ${businessPlan.rev_an3 || ''}
+- CA An 1 estimé: ${businessPlan.rev_m12 || ''}
 - Plan JSON complet disponible pour modification.
 ` : '';
 
