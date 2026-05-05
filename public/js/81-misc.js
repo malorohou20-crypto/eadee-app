@@ -35,7 +35,7 @@ function copyPlan() {
     r.marche_analyse,
     ``,
     `PROJECTIONS FINANCIÈRES`,
-    `M1: ${r.rev_m1} | M3: ${r.rev_m3} | M6: ${r.rev_m6} | An1: ${r.rev_m12}`,
+    `M1: ${r.rev_m1} | M3: ${r.rev_m3} | M6: ${r.rev_m6} | An3: ${r.rev_an3}`,
     ``,
     `CONCURRENTS`,
     (r.concurrents||[]).map(c => `- ${c.nom}: ${c.description}`).join('\n'),

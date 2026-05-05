@@ -58,7 +58,7 @@ PROJET:
 - Budget: ${document.getElementById('budget')?.value || 'Non défini'}
 - Modèle économique: ${r.modele_economique || ''}
 - Offres: ${(r.offres || []).map(o => o.nom + ' — ' + o.prix).join(', ')}
-- Chiffre d'affaires estimé M12: ${r.rev_m12 || ''}
+- Chiffre d'affaires estimé M12: ${r.rev_an3 || ''}
 - Investissements: ${(r.investissements || []).filter(i => !i.total).map(i => i.label + ': ' + i.montant).join(', ')}
 - Résumé: ${r.resume_executif || ''}
 
