@@ -1,7 +1,6 @@
 // ========== PAYMENT ==========
 function selectPlan(planId) {
-  const plans = { starter: { name: 'Starter', price: 2.99, credits: 1 }, builder: { name: 'Builder', price: 7.99, credits: 3 }, empire: { name: 'Empire', price: 19.99, credits: 8 } };
-  if (planId === 'starter' && !user) { showAuth('signup'); return; }
+  const plans = { solo: { name: 'Solo', price: 12.99, credits: 1 }, pro: { name: 'Pro', price: 29.99, credits: 3 }, empire: { name: 'Empire', price: 59.99, credits: 8 } };
   if (!user) { showAuth('signup'); return; }
   selectedPayPlan = plans[planId];
   showPage('dashboard');
@@ -15,8 +14,8 @@ function selectPayPlan(el) {
   el.classList.add('selected');
   const plan = el.dataset.plan;
   const price = el.dataset.price;
-  const credits = parseInt(el.dataset.credits) || (plan === 'starter' ? 1 : plan === 'builder' ? 3 : 8);
-  selectedPayPlan = { name: plan === 'starter' ? 'Starter' : plan === 'builder' ? 'Builder' : 'Empire', price: parseFloat(price), credits };
+  const credits = parseInt(el.dataset.credits) || (plan === 'solo' ? 1 : plan === 'pro' ? 3 : 8);
+  selectedPayPlan = { name: plan === 'solo' ? 'Solo' : plan === 'pro' ? 'Pro' : 'Empire', price: parseFloat(price), credits };
   document.getElementById('osPlan').textContent = selectedPayPlan.name;
   document.getElementById('osTotal').textContent = selectedPayPlan.price.toFixed(2) + '€';
   document.getElementById('osCredits').textContent = credits + ' générations';
@@ -45,7 +44,7 @@ async function processPayment() {
   btn.textContent = '⏳ REDIRECTION STRIPE...';
 
   try {
-    const plan = (selectedPayPlan.name || 'starter').toLowerCase();
+    const plan = (selectedPayPlan.name || 'solo').toLowerCase();
     const res = await fetch('/api/stripe-checkout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

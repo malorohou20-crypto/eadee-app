@@ -5,7 +5,7 @@ function showPlanPreview(plan) {
   const title = document.getElementById('previewModalTitle');
 
   const demos = {
-    starter: {
+    solo: {
       title: 'Business Plan — Studio de Yoga',
       score: 71,
       resume: 'Création d\'un studio de yoga à Lyon ciblant les actifs 25-45 ans. Le marché français du bien-être représente 4,8 Mds€ en 2024. Modèle basé sur abonnements mensuels + cours à l\'unité. Différenciation par un format hybride présentiel / replay vidéo.',
@@ -13,7 +13,7 @@ function showPlanPreview(plan) {
       revenus: ['800€','1 500€','2 800€','24 000€'],
       locked: true
     },
-    builder: {
+    pro: {
       title: 'Business Plan — Restaurant Le Phare',
       score: 82,
       resume: 'Restaurant de fruits de mer à Penmarc\'h, Bretagne. Ciblant touristes et locaux aisés. Le marché de la restauration bretonne pèse 1,2 Mds€. Capacité 40 couverts, ticket moyen 38€. Différenciation par la traçabilité pêche locale directe depuis la criée de Guilvinec.',
@@ -240,7 +240,7 @@ function showPlanPreview(plan) {
   }
 
   html += `<button class="preview-cta" onclick="closePlanPreview();selectPlan('${plan}')">
-    ${plan === 'starter' ? 'Commencer' : plan === 'builder' ? 'Acheter Builder — 7.99€ / 3 génér.' : 'Acheter Empire — 19.99€ / 8 génér.'}
+    ${plan === 'solo' ? 'Acheter Solo — 12,99€ / 1 génér.' : plan === 'pro' ? 'Acheter Pro — 29,99€ / 3 génér.' : 'Acheter Empire — 59,99€ / 8 génér.'}
   </button>`;
 
   body.innerHTML = html;

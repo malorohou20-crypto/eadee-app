@@ -385,3 +385,62 @@
 .plan-preview-dark { color: #9db8f8 !important; border-color: rgba(107,143,239,0.3) !important; }
 .plan-preview-dark:hover { background: rgba(107,143,239,0.12) !important; color: #9db8f8 !important; }
 
+/* === NOUVEAUX STYLES PRICING 4 CARTES (L1-L5) === */
+
+/* Carte Découverte (gratuite) */
+.plan-discovery {
+  border: 2px dashed rgba(255,255,255,0.15) !important;
+  background: rgba(19,20,26,0.6) !important;
+  opacity: 0.9;
+}
+.plan-discovery:hover { border-color: rgba(157,184,248,0.3) !important; }
+.plan-icon { font-size: 22px; margin-bottom: 6px; }
+.plan-subtitle { font-size: 12px; color: #7a7f9a; margin-bottom: 10px; font-style: italic; }
+.plan-amount-free { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: #34d399; letter-spacing: .05em; }
+.plan-features-mini { margin: 14px 0; display: flex; flex-direction: column; gap: 6px; }
+.pfm-item { font-size: 12px; color: rgba(255,255,255,0.55); }
+.pfm-limited { color: rgba(255,255,255,0.3); font-style: italic; }
+.plan-cta-discovery {
+  background: transparent !important;
+  border: 1px solid rgba(52,211,153,0.4) !important;
+  color: #34d399 !important;
+}
+.plan-cta-discovery:hover { background: rgba(52,211,153,0.08) !important; }
+
+/* Prix barré promo */
+.plan-amount-wrap { position: relative; }
+.plan-original-price { font-size: 12px; color: rgba(255,255,255,0.35); margin-bottom: 2px; }
+
+/* Per gen label */
+.plan-per-gen { color: #7a7f9a; font-size: 11px; }
+
+/* Bannière features (L2) */
+.pricing-features-banner { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 20px 28px; max-width: 820px; margin: 24px auto 0; text-align: center; }
+.pfb-title { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .12em; color: #9db8f8; text-transform: uppercase; margin-bottom: 14px; }
+.pfb-tags { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 16px; margin-bottom: 12px; }
+.pfb-sub { font-size: 12px; color: #7a7f9a; }
+
+/* Calculateur économies (L3) */
+.pricing-savings-calc { max-width: 500px; margin: 16px auto 0; background: rgba(52,211,153,0.06); border: 1px solid rgba(52,211,153,0.2); border-radius: 12px; padding: 14px 20px; text-align: center; }
+.psc-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: .1em; color: #34d399; text-transform: uppercase; margin-bottom: 10px; }
+.psc-row { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.psc-item { display: flex; flex-direction: column; align-items: center; font-size: 11px; color: rgba(255,255,255,0.5); }
+.psc-item strong { font-size: 16px; font-family: 'Bebas Neue', sans-serif; letter-spacing: .05em; margin-top: 2px; }
+.psc-old strong { color: rgba(255,255,255,0.3); }
+.psc-new strong { color: #34d399; }
+.psc-arrow { font-size: 18px; color: rgba(255,255,255,0.2); }
+.psc-saving { font-size: 11px; color: rgba(255,255,255,0.5); }
+.psc-amount { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: #34d399; letter-spacing: .05em; margin-left: 4px; }
+
+/* Social proof pricing (L4) */
+.pricing-social-proof { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 20px; }
+.psp-item { display: flex; align-items: center; gap: 8px; }
+.psp-num { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: #9db8f8; letter-spacing: .05em; }
+.psp-lbl { font-family: 'DM Mono', monospace; font-size: 9px; color: #7a7f9a; text-transform: uppercase; letter-spacing: .08em; max-width: 80px; line-height: 1.4; }
+.psp-sep { color: rgba(255,255,255,0.1); font-size: 20px; }
+
+/* Bannière promo (L5) */
+.promo-banner { display: flex; align-items: center; justify-content: center; gap: 12px; background: linear-gradient(90deg, rgba(239,68,68,0.15), rgba(251,146,60,0.15)); border: 1px solid rgba(239,68,68,0.3); border-radius: 12px; padding: 10px 20px; margin-bottom: 20px; max-width: 600px; margin-left: auto; margin-right: auto; }
+.promo-badge { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .12em; color: #f97316; text-transform: uppercase; font-weight: 600; }
+.promo-text { font-size: 13px; color: rgba(255,255,255,0.7); }
+

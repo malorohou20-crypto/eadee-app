@@ -35,7 +35,7 @@ let plansHistory = (function() {
     return [];
   }
 })();
-let selectedPayPlan = { name: 'Builder', price: 7.99, credits: 3 };
+let selectedPayPlan = { name: 'Pro', price: 29.99, credits: 3 };
 let userCredits = 0;
 let currentResult = null;
 

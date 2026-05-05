@@ -283,10 +283,10 @@ function fillPlan(plan) {
   document.getElementById('dBizTagline').textContent = plan.tagline || '';
   const badge = document.getElementById('dPlanBadge');
   if (badge) {
-    const labels = { empire: 'Empire ✦', builder: 'Builder', starter: 'Starter' };
-    badge.textContent = labels[currentPlan] || 'Starter';
+    const labels = { empire: 'Empire ✦', pro: 'Pro', solo: 'Solo' };
+    badge.textContent = labels[currentPlan] || 'Découverte';
     if (currentPlan === 'empire') { badge.style.background = 'rgba(167,139,250,0.15)'; badge.style.borderColor = 'rgba(167,139,250,0.3)'; badge.style.color = '#a78bfa'; }
-    else if (currentPlan === 'builder') { badge.style.background = 'rgba(107,143,239,0.12)'; badge.style.borderColor = 'rgba(107,143,239,0.25)'; badge.style.color = '#9db8f8'; }
+    else if (currentPlan === 'pro') { badge.style.background = 'rgba(107,143,239,0.12)'; badge.style.borderColor = 'rgba(107,143,239,0.25)'; badge.style.color = '#9db8f8'; }
     else { badge.style.background = 'rgba(255,255,255,0.05)'; badge.style.borderColor = 'rgba(255,255,255,0.1)'; badge.style.color = '#7a7f9a'; }
   }
   const score = plan.score_viabilite || 72;
@@ -397,7 +397,7 @@ function fillPlan(plan) {
     </div>` : '';
 
 
-  // 14. Démarches admin (Builder/Empire seulement)
+  // 14. Démarches admin (Pro/Empire seulement)
   if (plan.demarches_admin) {
     document.getElementById('dDemarchesBlock').style.display = 'block';
     document.getElementById('dDemarches').innerHTML = (plan.demarches_admin || []).map(d => `
@@ -414,7 +414,7 @@ function fillPlan(plan) {
       </div>`).join('');
   }
 
-  // 15. Emails (Builder/Empire seulement)
+  // 15. Emails (Pro/Empire seulement)
   if (plan.email_fournisseur || plan.email_prospection) {
     document.getElementById('dEmailsBlock').style.display = 'block';
     const emails = [];
@@ -552,7 +552,7 @@ function drawRevenueChart(monthlyData) {
 
 
 function updateUsage() {
-  const maxCredits = currentPlan === 'empire' ? 8 : currentPlan === 'builder' ? 3 : 1;
+  const maxCredits = currentPlan === 'empire' ? 8 : currentPlan === 'pro' ? 3 : 1;
   const pct = Math.min((userCredits / maxCredits) * 100, 100);
   document.getElementById('usageFill').style.width = pct + '%';
   // Widget sidebar : affiche juste le chiffre (Bebas Neue grand format)

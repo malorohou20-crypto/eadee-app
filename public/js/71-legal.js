@@ -114,9 +114,9 @@ const legalContent = {
       <h3>Article 1 — Offres et tarifs</h3>
       <p>EADEE propose trois formules à la carte, sans abonnement :</p>
       <ul>
-        <li><strong>Starter :</strong> 2,99 € TTC — 1 crédit de génération</li>
-        <li><strong>Builder :</strong> 7,99 € TTC — pack de 3 générations de business plan + documents complets</li>
-        <li><strong>Empire :</strong> 19,99 € TTC — pack de 8 crédits de génération</li>
+        <li><strong>Solo :</strong> 12,99 € TTC — 1 crédit de génération</li>
+        <li><strong>Pro :</strong> 29,99 € TTC — pack de 3 générations de business plan + documents complets</li>
+        <li><strong>Empire :</strong> 59,99 € TTC — pack de 8 crédits de génération</li>
       </ul>
       <p>Les crédits n'ont pas de date d'expiration. Les packs sont rechargeables à volonté. Les prix s'entendent en euros TTC. EADEE se réserve le droit de modifier ses tarifs avec un préavis de 30 jours.</p>
       <h3>Article 2 — Paiement</h3>

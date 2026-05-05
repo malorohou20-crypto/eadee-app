@@ -9,8 +9,8 @@ function showPage(name) {
 function updateNav() {
   const nr = document.getElementById('navRight');
   if (user) {
-    const planBadge = currentPlan === 'builder' ? 'plan-builder' : currentPlan === 'empire' ? 'plan-empire' : 'plan-free';
-    const planLabel = currentPlan === 'builder' ? 'Builder' : currentPlan === 'empire' ? 'Empire' : 'Starter';
+    const planBadge = currentPlan === 'pro' ? 'plan-builder' : currentPlan === 'empire' ? 'plan-empire' : 'plan-free';
+    const planLabel = currentPlan === 'pro' ? 'Pro' : currentPlan === 'empire' ? 'Empire' : currentPlan === 'solo' ? 'Solo' : 'Découverte';
     nr.innerHTML = `
       <span class="nav-plan ${planBadge}" onclick="showPage('dashboard');showView('billing')" style="cursor:pointer" title="Changer de plan">${planLabel}</span>
       <button class="nav-btn btn-ghost" onclick="showPage('dashboard');showView('settings')">${user.name.split(' ')[0]}</button>

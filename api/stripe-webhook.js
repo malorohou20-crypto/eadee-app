@@ -64,7 +64,7 @@ export default async function handler(req) {
         const profiles = await profileRes.json();
         const current = profiles[0] || { credits: 0, plan: 'free' };
         const newCredits = (current.credits || 0) + credits;
-        const newPlan = plan === 'empire' ? 'empire' : plan === 'builder' ? 'builder' : 'starter';
+        const newPlan = plan;
 
         // Mettre à jour le profil
         await fetch(`${supabaseUrl}/rest/v1/profiles?id=eq.${userId}`, {

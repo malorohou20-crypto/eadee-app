@@ -246,7 +246,11 @@ export default async function handler(req, res) {
     // ── Nouveau pipeline 3 étapes ────────────────────────────────────
     if (!idea) return res.status(400).json({ error: 'Champ "idea" requis' });
 
-    console.log(`[generate-plan] Début pipeline — ${idea.substring(0, 60)}...`);
+    // ── Mode Découverte (0 crédits) ──────────────────────────────────
+    const credits = parseInt(req.body.credits ?? '1', 10);
+    const isDiscovery = credits === 0;
+
+    console.log(`[generate-plan] Début pipeline — ${idea.substring(0, 60)}... [mode: ${isDiscovery ? 'DÉCOUVERTE' : 'COMPLET'}]`);
 
     // ÉTAPE 1 — Données INSEE (parallèle avec étape 2)
     const inseePromise = fetchINSEEData(sector, city);
@@ -269,7 +273,12 @@ export default async function handler(req, res) {
     // ÉTAPE 3 — Génération du plan
     const knowledgeBase = getKnowledgeContext();
     const systemPrompt = buildSystemPrompt(verifiedData, knowledgeBase);
-    const userPrompt = buildPlanPrompt({ idea, sector, city, budget, profile, time }, verifiedData);
+
+    // En mode découverte, on ne demande que les sections 01-05
+    const discoveryNote = isDiscovery
+      ? '\n\nIMPORTANT MODE DÉCOUVERTE : Génère UNIQUEMENT les sections 01 à 05 (resume_executif, porteur_projet, presentation_projet, etude_marche, analyse_concurrentielle). Les autres sections ne doivent pas apparaître dans le JSON.'
+      : '';
+    const userPrompt = buildPlanPrompt({ idea, sector, city, budget, profile, time }, verifiedData) + discoveryNote;
 
     const planResp = await fetch(ANTHROPIC_API, {
       method: 'POST',
@@ -280,7 +289,7 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         model: MODEL,
-        max_tokens: 10000,
+        max_tokens: isDiscovery ? 3000 : 10000,
         system: systemPrompt,
         messages: [{ role: 'user', content: userPrompt }],
       }),
@@ -308,6 +317,12 @@ export default async function handler(req, res) {
       generation_ms: Date.now() - startTime,
       pipeline_version: '3-step-v1',
     };
+
+    // Mode découverte : ajouter watermark et flag
+    if (isDiscovery) {
+      plan._discovery = true;
+      plan._watermark = "Plan incomplet — Passe à Solo pour les 20 sections complètes";
+    }
 
     console.log(`[generate-plan] Plan généré — ${Date.now() - startTime}ms`);
 
