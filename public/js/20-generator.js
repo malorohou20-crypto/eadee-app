@@ -103,6 +103,7 @@ Réponds UNIQUEMENT avec un JSON valide (sans markdown ni backticks):
   "rev_m3": "X €",
   "rev_m6": "X €",
   "rev_m12": "X €",
+  "rev_an3": "X €",
   "rev_mensuel": [200, 600, 1200, 1800, 2500, 3200, 3800, 4400, 5000, 5700, 6500, 7500],
   "finances_detail": [
     {"label": "CA annuel estimé (an 1)", "valeur": "XX XXX€"},
@@ -325,6 +326,7 @@ function fillPlan(plan) {
   document.getElementById('dRev3').textContent = plan.rev_m3 || '—';
   document.getElementById('dRev6').textContent = plan.rev_m6 || '—';
   document.getElementById('dRev12').textContent = plan.rev_m12 || '—';
+  document.getElementById('dRevAn3').textContent = plan.rev_an3 || '—';
 
   // Draw revenue chart
   drawRevenueChart(plan.rev_mensuel || []);
